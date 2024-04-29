@@ -1,3 +1,8 @@
+import EcommerceCard from "@/components/EcommerceCard";
+import OrdersOverView from "@/components/OrdersOverView";
+import OrdersTable from "@/components/OrdersTable";
+import RecentOrders from "@/components/RecentOrders";
+import TopSellingProducts from "@/components/TopSellingProducts";
 import { AdminLayout } from "@/layout/AdminLayout";
 
 const Ecommerce = () => {
@@ -6,121 +11,10 @@ const Ecommerce = () => {
       <div className="grid grid-cols-12 gap-x-6 mt-5">
         <div className="xxl:col-span-6 xl:col-span-6 col-span-12">
           <div className="grid grid-cols-12 gap-x-6 ">
-            <div className="lg:col-span-6 md:col-span-6 xl:col-span-6 col-span-12">
-              <div className="box">
-                <div className="box-body">
-                  <div className="grid grid-cols-12">
-                    <div className="xxxl:col-span-3 col-span-4 flex items-center ecommerce-icon px-0">
-                      <span className="rounded-md p-4 bg-primary/10">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="svg-white primary"
-                          enable-background="new 0 0 24 24"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          fill="#000000"
-                        >
-                          <g>
-                            <rect fill="none" height="24" width="24" />
-                            <path d="M18,6h-2c0-2.21-1.79-4-4-4S8,3.79,8,6H6C4.9,6,4,6.9,4,8v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V8C20,6.9,19.1,6,18,6z M12,4c1.1,0,2,0.9,2,2h-4C10,4.9,10.9,4,12,4z M18,20H6V8h2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8h4v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8 h2V20z" />
-                          </g>
-                        </svg>
-                      </span>
-                    </div>
-                    <div className="xxxl:col-span-9 col-span-8 ps-0">
-                      <div className="mb-2">Total Sales</div>
-                      <div className="text-[#8c9097] dark:text-white/50 mb-1 text-[0.75rem]">
-                        <span className="text-defaulttextcolor font-semibold text-[1.25rem] leading-none vertical-bottom">
-                          14,732
-                        </span>
-                      </div>
-                      <div>
-                        <span className="text-[0.75rem] mb-0">
-                          Increase by{" "}
-                          <span className="badge bg-success/10 text-success mx-1">
-                            +4.2%
-                          </span>{" "}
-                          this month
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="lg:col-span-6 md:col-span-6 xl:col-span-6 col-span-12">
-                                <div className="box">
-                                    <div className="box-body">
-                                        <div className="grid grid-cols-12">
-                                            <div className="xxxl:col-span-3 col-span-4 flex items-center ecommerce-icon secondary  px-0">
-                                                <span className="rounded-md p-4 bg-secondary/10">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="svg-white secondary" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0,0h24v24H0V0z" fill="none"/><g><path d="M19.5,3.5L18,2l-1.5,1.5L15,2l-1.5,1.5L12,2l-1.5,1.5L9,2L7.5,3.5L6,2v14H3v3c0,1.66,1.34,3,3,3h12c1.66,0,3-1.34,3-3V2 L19.5,3.5z M15,20H6c-0.55,0-1-0.45-1-1v-1h10V20z M19,19c0,0.55-0.45,1-1,1s-1-0.45-1-1v-3H8V5h11V19z"/><rect height="2" width="6" x="9" y="7"/><rect height="2" width="2" x="16" y="7"/><rect height="2" width="6" x="9" y="10"/><rect height="2" width="2" x="16" y="10"/></g></svg>
-                                                </span>
-                                            </div>
-                                            <div className="xxxl:col-span-9 col-span-8 ps-0">
-                                                <div className="mb-2">Total Expenses</div>
-                                                <div className="text-[#8c9097] dark:text-white/50 mb-1 text-[0.75rem]">
-                                                    <span className="font-semibold text-[1.25rem] leading-none text-defaulttextcolor vertical-bottom">
-                                                        $28,346.00
-                                                    </span>
-                                                </div>
-                                                <div>
-                                                    <span className="text-[0.75rem] mb-0">Increase by <span className="badge bg-success/10 text-success mx-1">+12.0%</span> this month</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-            </div>
-            <div className="lg:col-span-6 md:col-span-6 xl:col-span-6 col-span-12">
-                                <div className="box">
-                                    <div className="box-body">
-                                        <div className="grid grid-cols-12">
-                                            <div className="xxxl:col-span-3 col-span-4 flex items-center ecommerce-icon success px-0">
-                                                <span className="rounded-md p-4 bg-success/10">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="svg-white success" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2m0 10c2.7 0 5.8 1.29 6 2H6c.23-.72 3.31-2 6-2m0-12C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 10c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                                                </span>
-                                            </div>
-                                            <div className="xxxl:col-span-9 col-span-8 ps-0">
-                                                <div className="mb-2">Total Visitors</div>
-                                                <div className="text-[#8c9097] dark:text-white/50 mb-1 text-[0.75rem]">
-                                                    <span className="text-defaulttextcolor font-semibold text-[1.25rem]  leading-none vertical-bottom">
-                                                        1,29,368
-                                                    </span>
-                                                </div>
-                                                <div>
-                                                    <span className="text-[0.75rem] mb-0">Decreased by <span className="badge bg-danger/10 text-danger mx-1">-7.6%</span> this month</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-            </div>
-            <div className="lg:col-span-6 md:col-span-6 xl:col-span-6 col-span-12">
-                                <div className="box">
-                                    <div className="box-body">
-                                        <div className="grid grid-cols-12">
-                                            <div className="xxxl:col-span-3 col-span-4 flex items-center ecommerce-icon warning px-0">
-                                                <span className="rounded-md p-4 bg-warning/10">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="svg-white warning" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.55 13c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.37-.66-.11-1.48-.87-1.48H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7l1.1-2h7.45zM6.16 6h12.15l-2.76 5H8.53L6.16 6zM7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                                                </span>
-                                            </div>
-                                            <div className="xxxl:col-span-9 col-span-8 ps-0">
-                                                <div className="mb-2">Total Orders</div>
-                                                <div className="text-[#8c9097] dark:text-white/50 mb-1 text-[0.75rem]">
-                                                    <span className="font-semibold text-[1.25rem] leading-none vertical-bottom text-defaulttextcolor">
-                                                        35,367
-                                                    </span>
-                                                </div>
-                                                <div>
-                                                    <span className="text-[0.75rem] mb-0">Increased by <span className="badge bg-success/10 text-success mx-1">+2.5%</span> this month</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-            </div>
+            <EcommerceCard/>
+            <EcommerceCard/>
+            <EcommerceCard/>
+            <EcommerceCard/>
             <div className="xxl:col-span-6 xl:col-span-6 lg:col-span-6 md:col-span-6 col-span-12">
                                 <div className="box overflow-hidden">
                                     <div className="ecommerce-sale-image">
@@ -163,120 +57,16 @@ const Ecommerce = () => {
                                     </div>
                                     <div className="box-body">
                                         <ul className="list-none mb-0">
-                                            <li className="mb-4">
-                                                <a href="javascript:void(0);">
-                                                    <div className="flex tems-center">
-                                                        <div className="leading-none">
-                                                            <span className="inline-flex justify-center items-center">
-                                                                <img src="../assets/images/ecommerce/jpg/1.jpg" alt="" className="w-[2.5rem] h-[2.5rem]leading-[2.5rem] text-[0.8rem] rounded-md"/>
-                                                            </span>
-                                                        </div>
-                                                        <div className="flex-grow ms-2">
-                                                            <p className="font-semibold mb-0">Smart Phone</p>
-                                                            <p className="text-[0.75rem] !text-[#8c9097] dark:text-white/50 mb-0">Mobiles</p>
-                                                        </div>
-                                                        <div>
-                                                            <span className="text-success font-semibold">$199.99</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li className="mb-4">
-                                                <a href="javascript:void(0);">
-                                                    <div className="flex items-center">
-                                                        <div className="leading-none">
-                                                            <span className="inline-flex justify-center items-center">
-                                                                <img src="../assets/images/ecommerce/jpg/2.jpg" alt="" className="w-[2.5rem] h-[2.5rem]leading-[2.5rem] text-[0.8rem] rounded-md"/>
-                                                            </span>
-                                                        </div>
-                                                        <div className="flex-grow ms-2">
-                                                            <p className="font-semibold mb-0">White Headphones</p>
-                                                            <p className="text-[0.75rem] text-[#8c9097] dark:text-white/50 mb-0">Music</p>
-                                                        </div>
-                                                        <div>
-                                                            <span className="text-success font-semibold">$79.49</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li className="mb-4">
-                                                <a href="javascript:void(0);">
-                                                    <div className="flex items-center">
-                                                        <div className="leading-none">
-                                                            <span className="inline-flex justify-center items-center">
-                                                                <img src="../assets/images/ecommerce/jpg/3.jpg" alt="" className="w-[2.5rem] h-[2.5rem]leading-[2.5rem] text-[0.8rem] rounded-md"/>
-                                                            </span>
-                                                        </div>
-                                                        <div className="flex-grow ms-2">
-                                                            <p className="font-semibold mb-0">Stop Watch</p>
-                                                            <p className="text-[0.75rem] text-[#8c9097] dark:text-white/50 mb-0">Electronics</p>
-                                                        </div>
-                                                        <div>
-                                                            <span className="text-success font-semibold">$49.29</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li className="mb-4">
-                                                <a href="javascript:void(0);">
-                                                    <div className="flex items-center">
-                                                        <div className="leading-none">
-                                                            <span className="inline-flex justify-center items-center">
-                                                                <img src="../assets/images/ecommerce/jpg/4.jpg" alt="" className="w-[2.5rem] h-[2.5rem]leading-[2.5rem] text-[0.8rem] rounded-md"/>
-                                                            </span>
-                                                        </div>
-                                                        <div className="flex-grow ms-2">
-                                                            <p className="font-semibold mb-0">Kikon Camera</p>
-                                                            <p className="text-[0.75rem] text-[#8c9097] dark:text-white/50 mb-0">Electronics</p>
-                                                        </div>
-                                                        <div>
-                                                            <span className="text-success font-semibold">$1,699.00</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li className="mb-4">
-                                                <a href="javascript:void(0);">
-                                                    <div className="flex items-center">
-                                                        <div className="leading-none">
-                                                            <span className="inline-flex justify-center items-center">
-                                                                <img src="../assets/images/ecommerce/jpg/5.jpg" alt="" className="w-[2.5rem] h-[2.5rem]leading-[2.5rem] text-[0.8rem] rounded-md"/>
-                                                            </span>
-                                                        </div>
-                                                        <div className="flex-grow ms-2">
-                                                            <p className="font-semibold mb-0">Photo Frame</p>
-                                                            <p className="text-[0.75rem] text-[#8c9097] dark:text-white/50 mb-0">Furniture</p>
-                                                        </div>
-                                                        <div>
-                                                            <span className="text-success font-semibold">$29.99</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li className="mb-0">
-                                                <a href="javascript:void(0);">
-                                                    <div className="flex items-center">
-                                                        <div className="leading-none">
-                                                            <span className="inline-flex justify-center items-center">
-                                                                <img src="../assets/images/ecommerce/jpg/6.jpg" alt="" className="w-[2.5rem] h-[2.5rem]leading-[2.5rem] text-[0.8rem] rounded-md"/>
-                                                            </span>
-                                                        </div>
-                                                        <div className="flex-grow ms-2">
-                                                            <p className="font-semibold mb-0">Canvas Shoes</p>
-                                                            <p className="text-[0.75rem] text-[#8c9097] dark:text-white/50 mb-0">Footwear</p>
-                                                        </div>
-                                                        <div>
-                                                            <span className="text-success font-semibold">$89.99</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
+                                            <RecentOrders/>
+                                            <RecentOrders/>
+                                            <RecentOrders/>
+                                            <RecentOrders/>
                                         </ul>
                                     </div>
                                 </div>
             </div>
             <div className="xl:col-span-12 col-span-12">
-                                <div className="box">
+                <div className="box">
                                     <div className="box-header justify-between sm:flex block">
                                         <div className="box-title">
                                             Orders
@@ -301,193 +91,7 @@ const Ecommerce = () => {
                                                 role="tabpanel">
                                                 <div className="table-responsive overflow-auto">
                                                     <table className="table box-table table-vcenter whitespace-nowrap mb-0 min-w-full">
-                                                        <tbody className="active-tab">
-                                                            <tr>
-                                                                <td>
-                                                                    <div className="flex items-center">
-                                                                        <div className="leading-none">
-                                                                            <span className="avatar avatar-md online avatar-rounded me-2 !mb-0">
-                                                                                <img src="../assets/images/faces/4.jpg" alt=""/>
-                                                                            </span>
-                                                                        </div>
-                                                                        <div className="items-center">
-                                                                            <span className="text-[0.75rem] text-[#8c9097] dark:text-white/50">Name</span>
-                                                                            <p className="mb-0">Amanda Nanes</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div className="items-center">
-                                                                        <span className="text-[0.75rem] text-[#8c9097] dark:text-white/50">Price</span>
-                                                                        <p className="mb-0 font-semibold">$229.99</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div className="items-center">
-                                                                        <span className="text-[0.75rem] text-[#8c9097] dark:text-white/50">Delivery Date</span>
-                                                                        <p className="mb-0">24 May 2022</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <span className="avatar avatar-md">
-                                                                        <img src="../assets/images/ecommerce/png/1.png" alt=""/>
-                                                                    </span>
-                                                                </td>
-                                                                <td>
-                                                                    <a aria-label="anchor" href="javascript:void(0);">
-                                                                        <span className="orders-arrow"><i className="ri-arrow-right-s-line text-[1.125rem] rtl:before:content-['\ea64']"></i></span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr className="border-y border-inherit border-solid dark:border-defaultborder/10" >
-                                                                <td>
-                                                                    <div className="flex items-center">
-                                                                        <div className="leading-none">
-                                                                            <span className="avatar avatar-md online avatar-rounded me-2 !mb-0">
-                                                                                <img src="../assets/images/faces/10.jpg" alt=""/>
-                                                                            </span>
-                                                                        </div>
-                                                                        <div className="items-center">
-                                                                            <span className="text-[0.75rem] text-[#8c9097] dark:text-white/50">Name</span>
-                                                                            <p className="mb-0">Peter Parkour</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div className="items-center">
-                                                                        <span className="text-[0.75rem] text-[#8c9097] dark:text-white/50">Price</span>
-                                                                        <p className="mb-0 font-semibold">$135.29</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div className="items-center">
-                                                                        <span className="text-[0.75rem] text-[#8c9097] dark:text-white/50">Delivery Date</span>
-                                                                        <p className="mb-0">18 May 2022</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <span className="avatar avatar-md">
-                                                                        <img src="../assets/images/ecommerce/png/2.png" alt=""/>
-                                                                    </span>
-                                                                </td>
-                                                                <td>
-                                                                    <a aria-label="anchor" href="javascript:void(0);">
-                                                                        <span className="orders-arrow"><i className="ri-arrow-right-s-line text-[1.125rem] rtl:before:content-['\ea64']"></i></span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr className="border-y border-inherit border-solid dark:border-defaultborder/10">
-                                                                <td>
-                                                                    <div className="flex items-center">
-                                                                        <div className="leading-none">
-                                                                            <span className="avatar avatar-md offline avatar-rounded me-2 !mb-0">
-                                                                                <img src="../assets/images/faces/12.jpg" alt=""/>
-                                                                            </span>
-                                                                        </div>
-                                                                        <div className="items-center">
-                                                                            <span className="text-[0.75rem] text-[#8c9097] dark:text-white/50">Name</span>
-                                                                            <p className="mb-0">Jackie Chen</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div className="items-center">
-                                                                        <span className="text-[0.75rem] text-[#8c9097] dark:text-white/50">Price</span>
-                                                                        <p className="mb-0 fw-semibold">$1,299.99</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div className="aitems-center">
-                                                                        <span className="text-[0.75rem] text-[#8c9097] dark:text-white/50">Delivery Date</span>
-                                                                        <p className="mb-0">29 May 2022</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <span className="avatar avatar-md">
-                                                                        <img src="../assets/images/ecommerce/png/3.png" alt=""/>
-                                                                    </span>
-                                                                </td>
-                                                                <td>
-                                                                    <a aria-label="anchor" href="javascript:void(0);">
-                                                                        <span className="orders-arrow"><i className="ri-arrow-right-s-line text-[1.125rem] rtl:before:content-['\ea64']"></i></span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr className="border-y border-inherit border-solid dark:border-defaultborder/10">
-                                                                <td>
-                                                                    <div className="flex items-center">
-                                                                        <div className="leading-none">
-                                                                            <span className="avatar avatar-md online avatar-rounded me-2 !mb-0">
-                                                                                <img src="../assets/images/faces/5.jpg" alt=""/>
-                                                                            </span>
-                                                                        </div>
-                                                                        <div className="items-center">
-                                                                            <span className="text-[0.75rem] text-[#8c9097] dark:text-white/50">Name</span>
-                                                                            <p className="mb-0">Ryan Gercia</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div className="items-center">
-                                                                        <span className="text-[0.75rem] text-[#8c9097] dark:text-white/50">Price</span>
-                                                                        <p className="mb-0 fw-semibold">$249.29</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div className="items-center">
-                                                                        <span className="text-[0.75rem] text-[#8c9097] dark:text-white/50">Delivery Date</span>
-                                                                        <p className="mb-0">05 Jun 2022</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <span className="avatar avatar-md">
-                                                                        <img src="../assets/images/ecommerce/png/4.png" alt=""/>
-                                                                    </span>
-                                                                </td>
-                                                                <td>
-                                                                    <a aria-label="anchor" href="javascript:void(0);">
-                                                                        <span className="orders-arrow"><i className="ri-arrow-right-s-line text-[1.125rem] rtl:before:content-['\ea64']"></i></span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <div className="flex items-center">
-                                                                        <div className="leading-none">
-                                                                            <span className="avatar avatar-md offline avatar-rounded me-2 !mb-0">
-                                                                                <img src="../assets/images/faces/14.jpg" alt=""/>
-                                                                            </span>
-                                                                        </div>
-                                                                        <div className="items-center">
-                                                                            <span className="text-[0.75rem] text-[#8c9097] dark:text-white/50">Name</span>
-                                                                            <p className="mb-0">Hugh Jackma</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div className="items-center">
-                                                                        <span className="text-[0.75rem] text-[#8c9097] dark:text-white/50">Price</span>
-                                                                        <p className="mb-0 font-semibold">$499.99</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div className="items-center">
-                                                                        <span className="text-[0.75rem] text-[#8c9097] dark:text-white/50">Delivery Date</span>
-                                                                        <p className="mb-0">15 May 2022</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <span className="avatar avatar-md">
-                                                                        <img src="../assets/images/ecommerce/png/5.png" alt=""/>
-                                                                    </span>
-                                                                </td>
-                                                                <td>
-                                                                    <a aria-label="anchor" href="javascript:void(0);">
-                                                                        <span className="orders-arrow"><i className="ri-arrow-right-s-line text-[1.125rem] rtl:before:content-['\ea64']"></i></span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
+                                                        <OrdersTable/>
                                                     </table>
                                                 </div>
                                             </div>
@@ -879,7 +483,7 @@ const Ecommerce = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                </div>
             </div>
           </div>
         </div>
@@ -952,60 +556,7 @@ const Ecommerce = () => {
                                                         <th scope="col" className="text-start">Total Sales</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody className="top-selling">
-                                                    <tr className="border-y border-inherit border-solid dark:border-defaultborder/10 ">
-                                                        <td className="text-center leading-none">
-                                                            <span className="avatar avatar-md !rounded-full">
-                                                                <img src="../assets/images/ecommerce/png/36.png" className="p-2 !rounded-full bg-light" alt=""/>
-                                                            </span>
-                                                        </td>
-                                                        <td>Ethnic School bag for children (24L)</td>
-                                                        <td>Bags</td>
-                                                        <td><span className="badge badge-sm bg-success/10 text-success !font-normal">In Stock</span></td>
-                                                        <td>
-                                                            <span className="font-semibold">5,093</span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr className="border-y border-inherit border-solid dark:border-defaultborder/10 ">
-                                                        <td className="text-center leading-none">
-                                                            <span className="avatar avatar-md !rounded-full">
-                                                                <img src="../assets/images/ecommerce/png/38.png" className="p-2 !rounded-full bg-light" alt=""/>
-                                                            </span>
-                                                        </td>
-                                                        <td>Leather jacket for men (S,M,L,XL)</td>
-                                                        <td>Clothing</td>
-                                                        <td><span className="badge badge-sm bg-success/10 text-success !font-normal">In Stock</span></td>
-                                                        <td>
-                                                            <span className="font-semibold">6,890</span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr className="border-y border-inherit border-solid dark:border-defaultborder/10 ">
-                                                        <td className="text-center leading-none">
-                                                            <span className="avatar avatar-md !rounded-full">
-                                                                <img src="../assets/images/ecommerce/png/39.png" className="p-2 !rounded-full bg-light" alt=""/>
-                                                            </span>
-                                                        </td>
-                                                        <td>Childrens Teddy toy of high quality</td>
-                                                        <td>Toys</td>
-                                                        <td><span className="badge badge-sm bg-danger/10 text-danger !font-normal">Out Of Stock</span></td>
-                                                        <td>
-                                                            <span className="font-semibold">5,423</span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className="text-center leading-none">
-                                                            <span className="avatar avatar-md !rounded-full">
-                                                                <img src="../assets/images/ecommerce/png/40.png" className="p-2 !rounded-full bg-light" alt=""/>
-                                                            </span>
-                                                        </td>
-                                                        <td>Orange smart watch with square dial (24mm)</td>
-                                                        <td>Fashion</td>
-                                                        <td><span className="badge badge-sm bg-danger/10 text-danger !font-normal">Out Of Stock</span></td>
-                                                        <td>
-                                                            <span className="font-semibold">10,234</span>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
+                                                <TopSellingProducts/>
                                             </table>
                                         </div>
                                     </div>
@@ -1245,143 +796,8 @@ const Ecommerce = () => {
                                                 <th scope="col" className="!text-start">Revenue</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr className="border-y border-inherit border-solid dark:border-defaultborder/10">
-                                                <td>
-                                                    <div className="flex items-center">
-                                                        <div className="me-2 leading-none">
-                                                            <span className="avatar avatar-sm">
-                                                                <img src="../assets/images/ecommerce/png/36.png" alt=""/>
-                                                            </span>
-                                                        </div>
-                                                        <div className="text-sm">Niker College Bag</div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <span className="font-semibold">#1734-9743</span>
-                                                </td>
-                                                <td>
-                                                    $199.99
-                                                </td>
-                                                <td>
-                                                    <span className="badge bg-success/10 text-success">Available</span>
-                                                </td>
-                                                <td>
-                                                    <span className="">3,903</span>
-                                                </td>
-                                                <td>
-                                                    <span className="">$67,899.24</span>
-                                                </td>
-                                            </tr>
-                                            <tr className="border-y border-inherit border-solid dark:border-defaultborder/10">
-                                                <td>
-                                                    <div className="flex items-center">
-                                                        <div className="me-2 leading-none">
-                                                            <span className="avatar avatar-sm">
-                                                                <img src="../assets/images/ecommerce/png/37.png" alt=""/>
-                                                            </span>
-                                                        </div>
-                                                        <div className="">Dslr Camera (50mm f/1.9 HRM Lens)</div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <span className="font-semibold">#1234-4567</span>
-                                                </td>
-                                                <td>
-                                                    $1,299.99
-                                                </td>
-                                                <td>
-                                                    <span className="badge bg-success/10 text-success">Available</span>
-                                                </td>
-                                                <td>
-                                                    <span className="">12,435</span>
-                                                </td>
-                                                <td>
-                                                    <span className="">$3,24,781.92</span>
-                                                </td>
-                                            </tr>
-                                            <tr className="border-y border-inherit border-solid dark:border-defaultborder/10">
-                                                <td>
-                                                    <div className="flex items-center">
-                                                        <div className="me-2 leading-none">
-                                                            <span className="avatar avatar-sm">
-                                                                <img src="../assets/images/ecommerce/png/38.png" alt=""/>
-                                                            </span>
-                                                        </div>
-                                                        <div className="text-[0.875rem]">Outdoor Bomber Jacket</div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <span className="font-semibold">#1902-9883</span>
-                                                </td>
-                                                <td>
-                                                    $99.99
-                                                </td>
-                                                <td>
-                                                    <span className="badge bg-danger/10 text-danger">Not Available</span>
-                                                </td>
-                                                <td>
-                                                    <span className="">5,143</span>
-                                                </td>
-                                                <td>
-                                                    <span className="">$76,102.76</span>
-                                                </td>
-                                            </tr>
-                                            <tr className="border-y border-inherit border-solid dark:border-defaultborder/10">
-                                                <td>
-                                                    <div className="flex items-center">
-                                                        <div className="me-2 leading-none">
-                                                            <span className="avatar avatar-sm">
-                                                                <img src="../assets/images/ecommerce/png/39.png" alt=""/>
-                                                            </span>
-                                                        </div>
-                                                        <div className="text-[0.875rem]">Light Blue Teddy</div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <span className="font-semibold">#8745-1232</span>
-                                                </td>
-                                                <td>
-                                                    $79.00
-                                                </td>
-                                                <td>
-                                                    <span className="badge bg-warning/10 text-warning">Limited Deal</span>
-                                                </td>
-                                                <td>
-                                                    <span className="">	7,183</span>
-                                                </td>
-                                                <td>
-                                                    <span className="">$78,211.83</span>
-                                                </td>
-                                            </tr>
-                                            <tr className="border-y border-inherit border-solid dark:border-defaultborder/10">
-                                                <td>
-                                                    <div className="flex items-center">
-                                                        <div className="me-2 leading-none">
-                                                            <span className="avatar avatar-sm">
-                                                                <img src="../assets/images/ecommerce/png/40.png" alt=""/>
-                                                            </span>
-                                                        </div>
-                                                        <div className="text-[0.875rem]">Orange Smart Watch (24mm)</div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <span className="font-semibold">#1962-9033</span>
-                                                </td>
-                                                <td>
-                                                    $199.99
-                                                </td>
-                                                <td>
-                                                    <span className="badge bg-primary/10 text-primary">In Offer</span>
-                                                </td>
-                                                <td>
-                                                    <span className="">10,287</span>
-                                                </td>
-                                                <td>
-                                                    <span className="">$2,32,982.99</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                                        
+                                        <OrdersOverView/>
                                     </table>
                                 </div>
                             </div>
