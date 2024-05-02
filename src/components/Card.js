@@ -1,6 +1,6 @@
 const Card = () => {
   return (
-    <div className="xl:col-span-6 xxl:col-span-3 lg:col-span-6 md:col-span-6 sm:col-span-12 col-span-12">
+    <div className="xl:col-span-6 xxl:col-span-4 lg:col-span-6 md:col-span-6 sm:col-span-12 col-span-12">
       <div className="box">
         <div className="box-header block !justify-start">
           <div className="sm:flex block items-center w-full">
