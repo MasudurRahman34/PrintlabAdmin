@@ -25,7 +25,10 @@ const AddProductleft = () => {
           </button>
         </div>
         <div>
-          <p className="text-base font-medium mt-5">Title</p>
+          <p className="text-base font-semibold text-black mt-5 ">Title</p>
+          <div className="mt-2">
+           <p className="text-base font-medium  text-black">T-Shirt design</p>
+          </div>
         </div>
         <div className="mt-[200px] flex justify-center items-center">
           <button className="border border-black py-3 text-center px-8 text-base font-bold">

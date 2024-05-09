@@ -1,6 +1,6 @@
+import AccordionsCard from "@/components/AccordionsCard";
 import AddProductleft from "@/components/AddProductleft";
-import AddProductmedile from "@/components/AddProductmedile";
-import AddProductright from "@/components/AddProductright";
+import AddProductmiddle from "@/components/AddProductmiddle";
 import { AdminLayout } from "@/layout/AdminLayout";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
@@ -13,10 +13,10 @@ const Productlis = () => {
           <AddProductleft />
         </div>
         <div className="col-span-7">
-          <AddProductmedile />
+          <AddProductmiddle/>
         </div>
-        <div className="col-span-2 flex justify-center items-center mt-5 bg-white rounded-md">
-          <AddProductright />
+        <div className="col-span-2 mt-5 w-full rounded-md">
+          <AccordionsCard/>
         </div>
       </div>
     </AdminLayout>
