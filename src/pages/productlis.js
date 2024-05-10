@@ -8,14 +8,14 @@ import { FaArrowLeft } from "react-icons/fa";
 const Productlis = () => {
   return (
     <AdminLayout>
-      <div className="grid grid-cols-12 gap-6 px-5 mt-10 bg-[#F0F1F7]">
+      <div className="grid grid-cols-12 gap-3 px-5 mt-5 bg-[#F0F1F7]">
         <div className="col-span-3">
           <AddProductleft />
         </div>
         <div className="col-span-7">
           <AddProductmiddle/>
         </div>
-        <div className="col-span-2 mt-5 w-full rounded-md">
+        <div className="col-span-2 w-full rounded-md">
           <AccordionsCard/>
         </div>
       </div>

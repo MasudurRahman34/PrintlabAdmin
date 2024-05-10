@@ -12,7 +12,7 @@ const AddProductmiddle = () => {
   };
 
   return (
-    <div>
+    <div className="bg-white px-5 py-3 roumded-md">
       <div className="flex gap-4">
         <div className="w-full">
           <label className="text-base mb-2 font-semibold text-black">

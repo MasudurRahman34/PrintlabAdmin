@@ -3,7 +3,7 @@ import { useState } from "react";
 const AccordionsCard = ({ title, card }) => {
   const [togle, setgogle] = useState(false);
   return (
-    <div>
+    <div className="bg-white roumded-md">
       <div class="">
         <div class="hs-accordion-group">
           <div
@@ -68,7 +68,7 @@ const AccordionsCard = ({ title, card }) => {
                 </p>
               </div>
             </div>
-            <div className="mt-2  bg-white border ">
+            <div className="mt-2  bg-white border">
               <button
                 onClick={() => setgogle(!togle)}
                 class="hs-accordion-toggle accordion-button hs-accordion-active:text-primary hs-accordion-active:pb-3 group py-0 inline-flex items-center justify-between gap-x-3 w-full font-semibold text-start text-gray-800 transition hover:text-gray-500 dark:hs-accordion-active:text-primary dark:text-gray-200 dark:hover:text-white/80"

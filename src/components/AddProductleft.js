@@ -2,8 +2,8 @@ import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 const AddProductleft = () => {
     return (
-        <div>
-        <div className="flex">
+        <div className="bg-white  px-5 py-3 rounded-md">
+        <div className="flex  border">
           <input type="Search" className=" border-none rounded-l-lg w-full" />
           <button className="border bg-yellow-500 rounded-r-lg py-3 px-5 text-base font-medium">
             Search
@@ -25,9 +25,9 @@ const AddProductleft = () => {
           </button>
         </div>
         <div>
-          <p className="text-base font-semibold text-black mt-5 ">Title</p>
+          <p className="text-base font-semibold text-black mt-5 ">Product</p>
           <div className="mt-2">
-           <p className="text-base font-medium  text-black">T-Shirt design</p>
+           <p className="text-base font-normal  text-black">T-Shirt design</p>
           </div>
         </div>
         <div className="mt-[200px] flex justify-center items-center">
