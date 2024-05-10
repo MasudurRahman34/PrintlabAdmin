@@ -27,7 +27,29 @@ const AddProductleft = () => {
         <div>
           <p className="text-base font-semibold text-black mt-5 ">Product</p>
           <div className="mt-2">
-           <p className="text-base font-normal  text-black">T-Shirt design</p>
+          <div class="table-responsive">
+          <table class="table whitespace-nowrap  border border-[#949EB7]  !rounded-none min-w-full">
+                                        <thead>
+                                            <tr class="border-b border-[#949EB7]">
+                                                <th scope="col" class="text-start">#</th>
+                                                <th scope="col" class="text-start">Title</th>
+                                                <th scope="col" class="text-start">Category</th>                                               
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr className="border-b border-[#949EB7]">
+                                                <th scope="row" class="text-start">1</th>
+                                                <td>T-shirt</td>
+                                                <td>Shirt</td>                                        
+                                            </tr>                                           
+                                            <tr>
+                                                <th scope="row" class="text-start">1</th>
+                                                <td>T-shirt</td>
+                                                <td>Shirt</td>                                        
+                                            </tr>                                           
+                                        </tbody>
+                                    </table>
+          </div>
           </div>
         </div>
         <div className="mt-[200px] flex justify-center items-center">
