@@ -301,7 +301,6 @@ const AccordionsCard = ({ title, card }) => {
               </div>
             </div>
             <div className="px-2 bg-white border ">
-              {" "}
               <button className=" mb-5 mt-10 py-3 bg-black w-full text-center rounded-md text-base  font-medium text-white">
                 Publish
               </button>
