@@ -173,7 +173,7 @@ const categories = () => {
                         <td>18,Mar 2022</td>
                         <td>+1526-10729</td>
                         <td>
-                          <span class="badge bg-secondary text-white">
+                          <span class="">
                             Pending
                           </span>
                         </td>
