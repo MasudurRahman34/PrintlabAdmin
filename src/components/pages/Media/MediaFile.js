@@ -1,0 +1,233 @@
+import { formateDate } from "@/utils/common";
+import Image from "next/image";
+import React, { useState } from "react";
+import Modal from "react-modal";
+
+const MediaFile = ({ media }) => {
+  const [copied, setCopied] = useState(false);
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  console.log(media);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  const copyUrl = () => {
+    navigator.clipboard.writeText(media.url);
+    setCopied(true);
+  };
+
+  return (
+    <>
+      <div
+        className="w-full xl:col-span-1 lg:col-span-2 md:col-span-4 col-span-6 flex items-center justify-center cursor-pointer"
+        key={media.id}
+        onClick={openModal}
+      >
+        <Image
+          src="/assets/media/mockup 3, 2000pixels .jpg"
+          width={150}
+          height={150}
+          alt={media.slug}
+          className="w-full h-full"
+        />
+      </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        className="top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white   border "
+        style={{
+          overlay: {
+            background: "rgba(0,0,0,0.5)",
+            position: "fixed",
+            zIndex: 999999,
+          },
+          content: {
+            width: "95%",
+            height: "95%",
+            zIndex: 999999,
+            overflow: "hidden",
+            top: "50%",
+            left: "50%",
+            position: "absolute",
+          },
+        }}
+        contentLabel="Example Modal"
+      >
+        <div className="w-full h-full">
+          <div className="flex  items-center justify-between ">
+            <div className="p-2 text-xl font-bold">
+              <p className="">{media.title}</p>
+            </div>
+            <button
+              className="w-14 h-14 flex items-center justify-center   border hover:bg-gray-200"
+              onClick={closeModal}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+          <hr />
+          <div className="  grid grid-cols-12  ">
+            <div className="col-span-8 p-3  pr-2 flex  justify-center">
+              <Image
+                src="/assets/media/mockup 3, 2000pixels .jpg"
+                width={1000}
+                height={700}
+                alt={media.slug}
+                className="max-w-full h-3/4"
+              />
+            </div>
+
+            <div className="col-span-4 p-3 bg-gray-200">
+              <div className="details">
+                <p className="text-sm font-bold">
+                  Title: <span className="font-normal">{media.title}</span>
+                </p>
+                <p className="text-sm font-bold">
+                  Type: <span className="font-normal">{media.mime_type}</span>
+                </p>
+                <p className="text-sm font-bold">
+                  Size: <span className="font-normal">{media.size}</span>
+                </p>
+                <p className="text-sm font-bold">
+                  Created At:{" "}
+                  <span className="font-normal">
+                    {formateDate(media.created_at)}
+                  </span>
+                </p>
+                <p className="text-sm font-bold">
+                  Updated At:{" "}
+                  <span className="font-normal">
+                    {formateDate(media.updated_at)}
+                  </span>
+                </p>
+              </div>
+              <div className="border-t border-white mt-2" />
+              <div className="form my-4 ">
+                <form action="" className="">
+                  <div className="grid grid-cols-12 gap-2 mb-3">
+                    <label
+                      htmlFor="title"
+                      className="text-sm font-bold col-span-4 justify-self-end"
+                    >
+                      Attachment Text
+                    </label>
+
+                    <div className="col-span-8">
+                      <textarea
+                        className="form-control "
+                        id="text-area"
+                        rows="2"
+                      ></textarea>
+                      <p>
+                        The text will be displayed as a link to the media file.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-12 gap-2 mb-3">
+                    <label
+                      htmlFor="title"
+                      className="text-sm font-bold col-span-4 justify-self-end"
+                    >
+                      Title
+                    </label>
+
+                    <div className="col-span-8">
+                      <input type="text" className="form-control" id="input" />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-12 gap-2 mb-3">
+                    <label
+                      htmlFor="title"
+                      className="text-sm font-bold col-span-4 justify-self-end"
+                    >
+                      Caption
+                    </label>
+
+                    <div className="col-span-8">
+                      <textarea
+                        className="form-control "
+                        id="text-area"
+                        rows="2"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-12 gap-2 mb-3">
+                    <label
+                      htmlFor="title"
+                      className="text-sm font-bold col-span-4 justify-self-end"
+                    >
+                      Description
+                    </label>
+
+                    <div className="col-span-8">
+                      <textarea
+                        className="form-control "
+                        id="text-area"
+                        rows="2"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-12 gap-2 mb-3">
+                    <label
+                      htmlFor="title"
+                      className="text-sm font-bold col-span-4 justify-self-end"
+                    >
+                      File Url
+                    </label>
+
+                    <div className="col-span-8">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="input"
+                        value={media.url}
+                        readOnly
+                      />
+                      <div>
+                        <button
+                          type="button"
+                          className="mt-3 ti-btn ti-btn-success ti-btn-wave"
+                          onClick={copyUrl}
+                        >
+                          Copy Url
+                        </button>
+                        {copied && (
+                          <span className="text-green-500 ml-3">Copied</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Modal>
+    </>
+  );
+};
+
+export default MediaFile;
