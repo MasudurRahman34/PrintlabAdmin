@@ -2,7 +2,7 @@ import { getAllCategories } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
-const CategorySelect = ({ selected, setSelected }) => {
+const CategorySelect = ({ selected, onChange, name = "" }) => {
   const { data, isPending, isError } = useQuery({
     queryKey: ["get-all-categories"],
     queryFn: getAllCategories,
@@ -10,10 +10,12 @@ const CategorySelect = ({ selected, setSelected }) => {
 
   return (
     <select
-      class="ti-form-select rounded-sm !py-2 !px-3"
+      className="ti-form-select rounded-sm !py-2 !px-3"
       data-trigger
-      name="choices-single-default"
-      id="choices-single-default"
+      name={name}
+      id={name}
+      value={selected}
+      onChange={onChange}
     >
       <option value="">Choose category</option>
       {data?.data.map((category) => (
@@ -22,9 +24,11 @@ const CategorySelect = ({ selected, setSelected }) => {
           value={category.id}
           selected={selected === category.id}
           onChange={(e) =>
-            setSelected({
-              ...selected,
-              parent_category: e.target.value,
+            onChange({
+              target: {
+                name,
+                value: e.target.value,
+              },
             })
           }
         >

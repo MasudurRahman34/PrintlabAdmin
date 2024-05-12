@@ -2,7 +2,6 @@ import UploadMedia from "../UploadMedia";
 import MediaFile from "./Media/MediaFile";
 import { getAllMedia } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
-import Image from "next/image";
 import React from "react";
 
 const Media = () => {
@@ -11,7 +10,6 @@ const Media = () => {
     queryFn: getAllMedia,
   });
 
-  console.log(data);
   return (
     <div>
       <UploadMedia refetch={refetch} />

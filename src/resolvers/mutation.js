@@ -6,3 +6,6 @@ export const updateMediaMutation = async ({ variables, media_id }) =>
   axios
     .put(`${backendUrl}/media/${media_id}`, variables)
     .then((res) => res.data);
+
+export const addCategoryMutation = async ({ variables }) =>
+  axios.post(`${backendUrl}/categories`, variables).then((res) => res.data);
