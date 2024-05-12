@@ -16,9 +16,9 @@ const Media = () => {
     <div>
       <UploadMedia refetch={refetch} />
 
-      <div className="w-full border border-yellow-400 mt-5 px-5 "></div>
-      <div className="py-5 px-5">
-        <p className="text-sm md:text-md  font-bold">All Media</p>
+      <div className="w-full px-5 mt-5 border border-yellow-400 "></div>
+      <div className="px-5 py-5">
+        <p className="text-sm font-bold md:text-md">All Media</p>
       </div>
       <div className="w-full h-full">
         {isPending ? (
@@ -30,7 +30,7 @@ const Media = () => {
         ) : data?.data.length === 0 ? (
           <div className="text-center text-gray-500">No media found</div>
         ) : (
-          <div className="  gap-3 py-5  grid-cols-12 grid justify-between">
+          <div className="grid justify-between grid-cols-12 gap-3 py-5 ">
             {data?.data.map((media) => (
               <MediaFile key={media.id} media={media} />
             ))}

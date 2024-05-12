@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@milon27/react-media-library": "^2.1.6",
     "@react-icons/all-files": "^4.1.0",
     "@tanstack/react-query": "^5.35.5",
     "@tanstack/react-query-devtools": "^5.35.5",
