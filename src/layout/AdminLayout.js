@@ -13,7 +13,9 @@ export const AdminLayout = ({ children }) => {
       <Header hideSidebar={hideSidebar} toggleSidebar={toggleSidebar} />
       <Sidebar hideSidebar={hideSidebar} toggleSidebar={toggleSidebar} />
       <div className="content main-index">
-        <div className="main-content">{children}</div>
+        <div className="main-content py-3 min-h-[calc(100vh - 3.75rem)] h-full">
+          {children}
+        </div>
       </div>
     </div>
   );

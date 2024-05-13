@@ -9,12 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@milon27/react-media-library": "^2.1.6",
     "@react-icons/all-files": "^4.1.0",
+    "@tanstack/react-query": "^5.35.5",
+    "@tanstack/react-query-devtools": "^5.35.5",
+    "axios": "^1.6.8",
+    "filepond": "^4.31.1",
+    "filepond-plugin-image-exif-orientation": "^1.0.11",
+    "filepond-plugin-image-preview": "^4.6.12",
     "install": "^0.13.0",
     "next": "14.2.2",
     "react": "^18",
     "react-dom": "^18",
+    "react-filepond": "^7.1.2",
+    "react-hot-toast": "^2.4.1",
     "react-icons": "^5.2.0",
+    "react-media-library": "^2.0.3",
+    "react-modal": "^3.16.1",
     "react-quill": "^2.0.0",
     "ui": "github:shadcn/ui"
   },
