@@ -1,15 +1,26 @@
+import { attachMediaMutation } from "@/resolvers/mutation";
 import { getAllMedia } from "@/resolvers/query";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import React, { useEffect } from "react";
+import toast from "react-hot-toast";
 import Modal from "react-modal";
 
 const MediaAttach = ({
   selectedMedia = [],
   addMediaAction,
   multiple = true,
+  attachmentable_id,
+  attachmentable_type,
+  is_profile,
+  refetch,
 }) => {
   const [ids, setIds] = React.useState(() => {
     return selectedMedia;
+  });
+
+  const { mutate, isPending } = useMutation({
+    mutationKey: "attach-media",
+    mutationFn: attachMediaMutation,
   });
 
   const handleMediaSelect = ({ media_id, clear, add }) => {
@@ -69,6 +80,38 @@ const MediaAttach = ({
 
   const closeModal = () => {
     setIsOpen(false);
+  };
+
+  const handleSubmit = () => {
+    const variables = {
+      media_id: ids,
+    };
+
+    if (attachmentable_id) variables.attachmentable_id = attachmentable_id;
+    if (attachmentable_type) variables.source = attachmentable_type;
+    if (is_profile) variables.is_profile = 1;
+
+    mutate(
+      {
+        variables,
+      },
+      {
+        onSuccess: (data) => {
+          console.log("Media attached successfully");
+          closeModal();
+          handleMediaSelect({ clear: true, add: true });
+          toast.success(data?.message || "Media attached successfully");
+          refetch();
+        },
+        onError: (error) => {
+          const keys = Object.keys(error.response.data.message);
+
+          keys.map((key) => {
+            toast.error(error.response.data.message[key][0]);
+          });
+        },
+      }
+    );
   };
 
   return (
@@ -193,13 +236,10 @@ const MediaAttach = ({
             <button
               type="button"
               class="ti-btn ti-btn-primary-full shadow-primary ti-btn-wave"
-              onClick={() => {
-                addMediaAction({ media_ids: ids });
-                closeModal();
-                handleMediaSelect({ clear: true });
-              }}
+              onClick={handleSubmit}
+              disabled={isPending || ids.length === 0}
             >
-              Add Media
+              {isPending ? "Loading..." : "Attach"}
             </button>
           </div>
         </div>

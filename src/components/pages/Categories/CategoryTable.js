@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const CategoryTable = ({ data }) => {
@@ -77,20 +78,20 @@ const CategoryTable = ({ data }) => {
 
                       <td>
                         <div className="flex flex-row items-center !gap-2 text-[0.9375rem]">
-                          <a
+                          <Link
                             aria-label="anchor"
-                            href="edit-products.html"
+                            href={`/categories/${item.slug}`}
                             className="ti-btn ti-btn-wave  !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-info/10 text-info hover:bg-info hover:text-white hover:border-info"
                           >
                             <i className="ri-pencil-line"></i>
-                          </a>
-                          <a
+                          </Link>
+                          <Link
                             aria-label="anchor"
                             href="javascript:void(0);"
                             className="ti-btn ti-btn-wave product-btn !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-danger/10 text-danger hover:bg-danger hover:text-white hover:border-danger"
                           >
                             <i className="ri-delete-bin-line"></i>
-                          </a>
+                          </Link>
                         </div>
                       </td>
                     </tr>
