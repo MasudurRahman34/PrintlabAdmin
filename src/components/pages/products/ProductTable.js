@@ -18,6 +18,9 @@ const ProductTable = ({ products = [] }) => {
                 />
               </th>
               <th scope="col" class="text-start">
+                Image
+              </th>
+              <th scope="col" class="text-start">
                 Product
               </th>
               <th scope="col" class="text-start">

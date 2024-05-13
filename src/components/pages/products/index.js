@@ -1,4 +1,5 @@
 import ProductTable from "./ProductTable";
+import DeleteModal from "@/components/ui/DeleteModal";
 import { getAllProducts } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";

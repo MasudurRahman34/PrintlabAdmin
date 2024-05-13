@@ -1,7 +1,8 @@
+import CategoryRow from "./CategoryRow";
 import Link from "next/link";
 import React from "react";
 
-const CategoryTable = ({ data }) => {
+const CategoryTable = ({ data, refetch }) => {
   return (
     <div className="grid grid-cols-12 gap-6">
       <div className="col-span-12 xl:col-span-12">
@@ -43,58 +44,7 @@ const CategoryTable = ({ data }) => {
                 </thead>
                 <tbody>
                   {data?.data.map((item) => (
-                    <tr className="product-list" key={item}>
-                      <td className="product-checkbox">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          id={`product${item}`}
-                          value=""
-                          aria-label="..."
-                        />
-                      </td>
-                      <td>
-                        <div className="flex items-center">
-                          <div className="me-2">
-                            <span class="avatar me-2">
-                              <img
-                                src="../assets/images/faces/2.jpg"
-                                alt="img"
-                              />
-                            </span>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div className="font-semibold">{item.title}</div>
-                      </td>
-                      <td className="max-w-sm text-wrap">
-                        <div className=" text-muted">{item.description}</div>
-                      </td>
-
-                      <td>
-                        <div className="font-semibold">{item.slug}</div>
-                      </td>
-
-                      <td>
-                        <div className="flex flex-row items-center !gap-2 text-[0.9375rem]">
-                          <Link
-                            aria-label="anchor"
-                            href={`/categories/${item.slug}`}
-                            className="ti-btn ti-btn-wave  !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-info/10 text-info hover:bg-info hover:text-white hover:border-info"
-                          >
-                            <i className="ri-pencil-line"></i>
-                          </Link>
-                          <Link
-                            aria-label="anchor"
-                            href="javascript:void(0);"
-                            className="ti-btn ti-btn-wave product-btn !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-danger/10 text-danger hover:bg-danger hover:text-white hover:border-danger"
-                          >
-                            <i className="ri-delete-bin-line"></i>
-                          </Link>
-                        </div>
-                      </td>
-                    </tr>
+                    <CategoryRow key={item.id} item={item} refetch={refetch} />
                   ))}
                 </tbody>
               </table>

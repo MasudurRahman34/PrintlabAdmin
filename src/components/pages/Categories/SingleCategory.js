@@ -6,6 +6,7 @@ import { getSingleCategoryQuery } from "@/resolvers/query";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import React from "react";
+import toast from "react-hot-toast";
 
 const SingleCategory = () => {
   const router = useRouter();
@@ -127,9 +128,17 @@ const SingleCategory = () => {
                 attachmentable_type="category"
                 refetch={refetch}
               />
+
+              {data?.data.media.length > 0 &&
+                data?.data.media.map((media) => (
+                  <div key={media.id} className="col-span-12">
+                    <img src={media.url} alt={media.name} />
+                  </div>
+                ))}
+
               <div className="col-span-12">
                 <button type="submit" className="ti-btn ti-btn-primary-full">
-                  Add New Category
+                  {updating ? "Updating..." : "Update"}
                 </button>
               </div>
             </div>

@@ -44,11 +44,11 @@ const MediaFile = ({ media }) => {
         onClick={openModal}
       >
         <Image
-          src="/assets/media/mockup 3, 2000pixels .jpg"
+          src={media.url}
           width={150}
           height={150}
           alt={media.slug}
-          className="w-full h-full"
+          className="object-cover w-full h-full rounded-lg max-h-32"
         />
       </div>
       <Modal
@@ -103,7 +103,7 @@ const MediaFile = ({ media }) => {
           <div className="grid grid-cols-12 ">
             <div className="flex justify-center col-span-12 p-3 pr-2 lg:col-span-8">
               <Image
-                src="/assets/media/mockup 3, 2000pixels .jpg"
+                src={media.url}
                 width={1000}
                 height={700}
                 alt={media.slug}
@@ -138,25 +138,6 @@ const MediaFile = ({ media }) => {
               <div className="mt-2 border-t border-white" />
               <div className="my-4 form ">
                 <form action="" className="">
-                  <div className="grid grid-cols-12 gap-2 mb-3">
-                    <label
-                      htmlFor="title"
-                      className="col-span-4 text-sm font-bold justify-self-end"
-                    >
-                      Attachment Text
-                    </label>
-
-                    <div className="col-span-8">
-                      <textarea
-                        className="form-control "
-                        id="text-area"
-                        rows="2"
-                      ></textarea>
-                      <p>
-                        The text will be displayed as a link to the media file.
-                      </p>
-                    </div>
-                  </div>
                   <div className="grid grid-cols-12 gap-2 mb-3">
                     <label
                       htmlFor="title"
@@ -260,9 +241,9 @@ const MediaFile = ({ media }) => {
                     className="m-2 ti-btn ti-btn-danger-full ti-btn-loader"
                   >
                     <span className="me-2">Delete</span>
-                    <span className="loading">
+                    {/*  <span className="loading">
                       <i className="ri-loader-2-fill text-[1rem] animate-spin"></i>
-                    </span>
+                    </span> */}
                   </button>
                   <button
                     type="button"

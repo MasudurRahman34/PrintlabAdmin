@@ -211,7 +211,7 @@ const MediaAttach = ({
                     onClick={() => handleMediaSelect({ media_id: media.id })}
                   >
                     <img
-                      src={"/assets/media/mockup 3, 2000pixels .jpg"}
+                      src={media.url}
                       alt={media.name}
                       className="object-cover w-full h-32"
                     />

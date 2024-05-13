@@ -1,7 +1,9 @@
 import categories from "@/pages/categories";
+import Link from "next/link";
 import React from "react";
 
 const TableRow = ({ product }) => {
+  console.log(product);
   return (
     <tr class="product-list">
       <td class="product-checkbox">
@@ -15,11 +17,13 @@ const TableRow = ({ product }) => {
       </td>
       <td>
         <div class="flex items-center">
-          <div class="me-2">
-            <span class="avatar avatar-md avatar-rounded">
-              <img src="../assets/images/ecommerce/png/1.png" alt="" />
-            </span>
-          </div>
+          <span class="avatar avatar-md me-2">
+            <img src="../assets/images/faces/6.jpg" alt="img" />
+          </span>
+        </div>
+      </td>
+      <td>
+        <div class="flex items-center">
           <div class="font-semibold">{product.title}</div>
         </div>
       </td>
@@ -34,20 +38,20 @@ const TableRow = ({ product }) => {
       <td>24,Nov 2022 - 04:42PM</td>
       <td>
         <div class="flex flex-row items-center !gap-2 text-[0.9375rem]">
-          <a
+          <Link
             aria-label="anchor"
-            href="edit-products.html"
+            href={`/products/${product.slug}`}
             class="ti-btn ti-btn-wave  !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-info/10 text-info hover:bg-info hover:text-white hover:border-info"
           >
             <i class="ri-pencil-line"></i>
-          </a>
-          <a
+          </Link>
+          <Link
             aria-label="anchor"
             href="javascript:void(0);"
             class="ti-btn ti-btn-wave product-btn !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-danger/10 text-danger hover:bg-danger hover:text-white hover:border-danger"
           >
             <i class="ri-delete-bin-line"></i>
-          </a>
+          </Link>
         </div>
       </td>
     </tr>

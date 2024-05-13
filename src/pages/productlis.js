@@ -1,8 +1,15 @@
 import AccordionsCard from "@/components/AccordionsCard";
 import AddProductleft from "@/components/AddProductleft";
-import AddProductmiddle from "@/components/AddProductmiddle";
 import ProductData from "@/components/productdata/ProductData";
 import { AdminLayout } from "@/layout/AdminLayout";
+import dynamic from "next/dynamic";
+
+const AddProductmiddle = dynamic(
+  () => import("@/components/AddProductmiddle"),
+  {
+    ssr: false,
+  }
+);
 
 const Productlis = () => {
   return (

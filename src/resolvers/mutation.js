@@ -20,3 +20,11 @@ export const updateCategoryMutation = async ({ variables, category_id }) =>
 
 export const addProductMutation = async ({ variables }) =>
   axios.post(`${backendUrl}/products`, variables).then((res) => res.data);
+
+export const deleteCategoryMutation = async ({ category_id }) =>
+  axios
+    .delete(`${backendUrl}/categories/${category_id}`)
+    .then((res) => res.data);
+
+export const addAttributeMutation = async ({ variables }) =>
+  axios.post(`${backendUrl}/attributes`, variables).then((res) => res.data);

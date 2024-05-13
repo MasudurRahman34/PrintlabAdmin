@@ -22,7 +22,7 @@ const CategoryIndex = () => {
           <CategoryForm refetch={refetch} />
         </div>
         <div className="col-span-9 category-right">
-          <CategoryTable data={data} />
+          <CategoryTable data={data} refetch={refetch} />
         </div>
       </div>
     </div>
