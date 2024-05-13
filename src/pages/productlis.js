@@ -14,11 +14,11 @@ const Productlis = () => {
         <div className="col-span-7">
           <AddProductmiddle />
         </div>
-        <div className="col-span-2 w-full rounded-md">
+        <div className="w-full col-span-2 rounded-md">
           <AccordionsCard />
         </div>
         <div className="col-span-10 bg-white px-5 rounded-md border border-[#333335]">
-         <ProductData/>
+          <ProductData />
         </div>
       </div>
     </AdminLayout>

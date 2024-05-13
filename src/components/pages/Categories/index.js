@@ -17,9 +17,11 @@ const CategoryIndex = () => {
 
   return (
     <div className="px-5 py-5 bg-white ">
-      <div className="flex gap-4 ">
-        <CategoryForm refetch={refetch} />
-        <div className="w-8/12 category-right">
+      <div className="grid grid-cols-12 gap-4 ">
+        <div className="col-span-3">
+          <CategoryForm refetch={refetch} />
+        </div>
+        <div className="col-span-9 category-right">
           <CategoryTable data={data} />
         </div>
       </div>

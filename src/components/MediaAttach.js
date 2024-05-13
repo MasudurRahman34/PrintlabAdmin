@@ -7,7 +7,6 @@ import Modal from "react-modal";
 
 const MediaAttach = ({
   selectedMedia = [],
-  addMediaAction,
   multiple = true,
   attachmentable_id,
   attachmentable_type,
@@ -65,7 +64,7 @@ const MediaAttach = ({
   };
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
-  const { data, isError, isLoading } = useQuery({
+  const { data, isError, isLoading, error } = useQuery({
     queryKey: ["get-all-media"],
     queryFn: getAllMedia,
   });

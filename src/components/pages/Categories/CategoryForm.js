@@ -25,7 +25,6 @@ const CategoryForm = ({ refetch }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formState);
 
     if (formState.category_name === "") {
       toast.error("Category name is required");
@@ -65,15 +64,8 @@ const CategoryForm = ({ refetch }) => {
     );
   };
 
-  const addMediaAction = ({ media_ids }) => {
-    setFormState({
-      ...formState,
-      media_ids,
-    });
-  };
-
   return (
-    <div className="w-4/12 category-left">
+    <div className=" category-left">
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-12 gap-4 mt-0">
           <div className="col-span-12 ">
@@ -114,14 +106,9 @@ const CategoryForm = ({ refetch }) => {
             ></textarea>
           </div>
 
-          <MediaAttach
-            selectedMedia={formState.media_ids}
-            addMediaAction={addMediaAction}
-            multiple={false}
-          />
           <div className="col-span-12">
             <button type="submit" className="ti-btn ti-btn-primary-full">
-              Add New Category
+              {isPending ? "Adding..." : "Add Category"}
             </button>
           </div>
         </div>
