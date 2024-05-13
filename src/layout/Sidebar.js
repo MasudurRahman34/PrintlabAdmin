@@ -7,32 +7,28 @@ const Sidebar = () => {
       <div class="main-sidebar-header">
         <a href="index.html" class="header-logo">
           <img
-            src="../assets/images/brand-logos/desktop-logo.png"
+            src="../assets/images/brand-logos/printlab-logo.jpg"
             alt="logo"
             class="desktop-logo"
           />
           <img
-            src="../assets/images/brand-logos/toggle-logo.png"
+            src="../assets/images/brand-logos/printlab-logo.jpg"
             alt="logo"
             class="toggle-logo"
           />
           <img
-            src="../assets/images/brand-logos/desktop-dark.png"
+            src="../assets/images/brand-logos/printlab-logo.jpg"
             alt="logo"
             class="desktop-dark"
           />
           <img
-            src="../assets/images/brand-logos/toggle-dark.png"
+            src="../assets/images/brand-logos/printlab-logo.jpg"
             alt="logo"
             class="toggle-dark"
           />
+
           <img
-            src="../assets/images/brand-logos/desktop-white.png"
-            alt="logo"
-            class="desktop-white"
-          />
-          <img
-            src="../assets/images/brand-logos/toggle-white.png"
+            src="../assets/images/brand-logos/printlab-logo.jpg"
             alt="logo"
             class="toggle-white"
           />
