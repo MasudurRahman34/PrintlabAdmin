@@ -13,3 +13,6 @@ export const getAllCategories = async () =>
 
 export const getSingleCategoryQuery = async (slug) =>
   axios.get(`${backendUrl}/categories/${slug}`).then((res) => res.data);
+
+export const getAllProducts = async () =>
+  axios.get(`${backendUrl}/products`).then((res) => res.data);

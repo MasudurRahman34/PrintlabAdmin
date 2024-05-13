@@ -17,3 +17,6 @@ export const updateCategoryMutation = async ({ variables, category_id }) =>
   axios
     .put(`${backendUrl}/categories/${category_id}`, variables)
     .then((res) => res.data);
+
+export const addProductMutation = async ({ variables }) =>
+  axios.post(`${backendUrl}/products`, variables).then((res) => res.data);

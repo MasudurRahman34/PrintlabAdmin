@@ -14,7 +14,7 @@ const CategorySelect = ({ selected, onChange, name = "" }) => {
       data-trigger
       name={name}
       id={name}
-      value={selected}
+      defaultValue={selected}
       onChange={onChange}
     >
       <option value="">Choose category</option>

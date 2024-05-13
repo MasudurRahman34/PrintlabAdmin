@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import React, { useState, useEffect } from "react";
+import "react-quill/dist/quill.snow.css";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-import "react-quill/dist/quill.snow.css";
 
 const AddProductmiddle = () => {
   const [text, setText] = useState("");
@@ -12,23 +12,23 @@ const AddProductmiddle = () => {
   };
 
   return (
-    <div className="bg-white px-5 py-3 roumded-md">
+    <div className="px-5 py-3 bg-white roumded-md">
       <div className="flex gap-4">
         <div className="w-full">
-          <label className="text-base mb-2 font-semibold text-black">
+          <label className="mb-2 text-base font-semibold text-black">
             Title
           </label>
           <input type="text" className="block w-full rounded-md" />
         </div>
         <div className="w-full">
-          <label className="text-base mb-2 font-semibold text-black">
+          <label className="mb-2 text-base font-semibold text-black">
             Slug
           </label>
           <input type="text" className="block w-full rounded-md" />
         </div>
       </div>
       <div className="mt-2">
-        <label className="text-base mb-2 font-semibold text-black">
+        <label className="mb-2 text-base font-semibold text-black">
           Description
         </label>
         <div className="border border-[#949EB7] rounded px-5 py-5">
@@ -38,7 +38,7 @@ const AddProductmiddle = () => {
               onChange={handleChange}
               modules={{
                 toolbar: [
-                  [{ header: [1, 2,3,4,5,6,false] }],
+                  [{ header: [1, 2, 3, 4, 5, 6, false] }],
                   ["bold", "italic", "underline", "strike", "blockquote"],
                   [
                     { list: "ordered" },
@@ -67,10 +67,10 @@ const AddProductmiddle = () => {
           )}
         </div>
       </div>
-      <div className="xl:col-span-12 col-span-12 mb-4">
+      <div className="col-span-12 mb-4 xl:col-span-12">
         <div id="product-features"></div>
       </div>
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <div className="box-body">
           <div>
             <label className="block">
