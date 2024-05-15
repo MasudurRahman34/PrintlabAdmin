@@ -24,10 +24,7 @@ export default function UserManagement() {
                         />
                       </th>
                       <th scope="col" className="text-start">
-                        Team Head
-                      </th>
-                      <th scope="col" className="text-start">
-                        Category
+                    Users
                       </th>
                       <th scope="col" className="text-start">
                         Role
@@ -35,15 +32,7 @@ export default function UserManagement() {
                       <th scope="col" className="text-start">
                         Gmail
                       </th>
-                      <th scope="col" className="text-start">
-                        Team
-                      </th>
-                      <th scope="col" className="text-start">
-                        Work Progress
-                      </th>
-                      <th scope="col" className="text-start">
-                        Revenue
-                      </th>
+                    
                       <th scope="col" className="text-start">
                         Action
                       </th>
@@ -68,49 +57,13 @@ export default function UserManagement() {
                           Mirinda Hers
                         </div>
                       </td>
-                      <td>Recruiter</td>
                       <td>
                         <span className="badge bg-danger/10 text-danger">
                           Employee
                         </span>
                       </td>
                       <td>mirindahers@gmail.com</td>
-                      <td>
-                        <div className="avatar-list-stacked">
-                          <span className="avatar avatar-sm avatar-rounded">
-                            <img src="../assets/images/faces/3.jpg" alt="img" />
-                          </span>
-                          <span className="avatar avatar-sm avatar-rounded">
-                            <img
-                              src="../assets/images/faces/10.jpg"
-                              alt="img"
-                            />
-                          </span>
-                          <span className="avatar avatar-sm avatar-rounded">
-                            <img
-                              src="../assets/images/faces/14.jpg"
-                              alt="img"
-                            />
-                          </span>
-                          <a
-                            className="avatar avatar-sm bg-primary text-white avatar-rounded"
-                            href="javascript:void(0);"
-                          >
-                            +6
-                          </a>
-                        </div>
-                      </td>
-                      <td>
-                        <div className="progress progress-xs">
-                          <div
-                            className="progress-bar bg-primary w-[21%]"
-                            aria-valuenow="21"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                          ></div>
-                        </div>
-                      </td>
-                      <td>$2,325.45</td>
+                    
                       <td>
                         <div className="hstack flex gap-3 text-[.9375rem]">
                           <a
