@@ -1,4 +1,5 @@
 import AttributeList from "./AttributeList";
+import OptionAccordions from "./OptionAccordions";
 import Modal from "@/components/ui/Modal";
 import { getAllAttributeQuery } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
@@ -21,6 +22,8 @@ const Attribute = () => {
           id: attribute.id,
           title: attribute.title,
           checked: false,
+          options: attribute.options,
+          active: false,
         });
       });
       setCheckList(temp);
@@ -40,45 +43,84 @@ const Attribute = () => {
     setCheckList(temp);
   };
 
+  const toggleAccordion = (id) => {
+    const temp = checkList.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          active: !item.active,
+        };
+      }
+      return item;
+    });
+    setCheckList(temp);
+  };
+
   const hideModal = () => {
     setShow(false);
   };
 
   console.log(checkList);
 
+  // make a react useMemo for returning a array of checked items
+
   return (
     <>
       <Modal show={show} hideModal={hideModal} refetch={refetch} />
-      <div className="attribute">
-        {isLoading ? (
-          <div>Loading...</div>
-        ) : isError ? (
-          <div>Error</div>
-        ) : (
-          data?.data.map((attribute) => (
-            <AttributeList
-              title={attribute.title}
-              value={attribute.id}
-              checked={
-                checkList.find((item) => item.id === attribute.id)?.checked
-              }
-              handleCheck={handleCheck}
-              key={attribute.id}
-            />
-          ))
-        )}
-        <div className="mt-3">
-          <button
-            type="button"
-            class="ti-btn ti-btn-primary-full ti-btn-loader m-2"
-            onClick={() => setShow(true)}
-          >
-            <span class="me-2">Add Attribute</span>
-            {/* <span class="loading">
-            <i class="ri-loader-2-fill text-[1rem] animate-spin"></i>
-          </span> */}
-          </button>
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex-1 box">
+          <div className="justify-between box-header">
+            <div className="box-title">Profit Earned</div>
+            <div className="hs-dropdown ti-dropdown">
+              <button
+                type="button"
+                className="ti-btn ti-btn-primary-full ti-btn-loader "
+                onClick={() => setShow(true)}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div className="p-3 box-body">
+            <div id="crm-profits-earned ">
+              {isLoading ? (
+                <div>Loading...</div>
+              ) : isError ? (
+                <div>Error</div>
+              ) : (
+                data?.data.map((attribute) => (
+                  <AttributeList
+                    title={attribute.title}
+                    value={attribute.id}
+                    checked={
+                      checkList.find((item) => item.id === attribute.id)
+                        ?.checked
+                    }
+                    handleCheck={handleCheck}
+                    key={attribute.id}
+                  />
+                ))
+              )}
+            </div>
+          </div>
         </div>
+        <OptionAccordions
+          options={[...checkList]}
+          toggleAccordion={toggleAccordion}
+        />
       </div>
     </>
   );

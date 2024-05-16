@@ -28,3 +28,8 @@ export const deleteCategoryMutation = async ({ category_id }) =>
 
 export const addAttributeMutation = async ({ variables }) =>
   axios.post(`${backendUrl}/attributes`, variables).then((res) => res.data);
+
+export const addAttributeOptionMutation = async ({ variables }) =>
+  axios
+    .post(`${backendUrl}/attribute-options`, variables)
+    .then((res) => res.data);
