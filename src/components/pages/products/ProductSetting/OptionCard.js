@@ -1,60 +1,10 @@
-import ModalLayout from "@/components/ui/ModalLayout";
-import { addAttributeOptionMutation } from "@/resolvers/mutation";
-import { useMutation } from "@tanstack/react-query";
+import CreateOption from "./options/CreateAttributeOption";
+import OptionCardItem from "./options/OptionCardItem";
 import React from "react";
 
-const OptionCard = ({ option, toggleAccordion }) => {
-  const [show, setShow] = React.useState(false);
-
-  const [form_state, setFormState] = React.useState({
-    title: "",
-  });
-
-  const hideModal = () => {
-    setShow(false);
-  };
-
-  const handleChange = (e) => {
-    setFormState({
-      ...form_state,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const { mutate, isPending } = useMutation({
-    mutationKey: "add-attribute-option",
-    mutationFn: addAttributeOptionMutation,
-  });
-
+const OptionCard = ({ option, toggleAccordion, refetch }) => {
   return (
     <>
-      {show && (
-        <ModalLayout
-          show={show}
-          hideModal={hideModal}
-          title={`${option.title} option`}
-          isPending={isPending}
-        >
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-            }}
-          >
-            <div className="">
-              <div className="col-span-12 xl:col-span-4 lg:col-span-6 md:col-span-6 sm:col-span-12">
-                <p className="mb-2 text-muted">Title</p>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="title"
-                  value={form_state.title}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-          </form>
-        </ModalLayout>
-      )}
       <div
         className={`hs-accordion accordion-item custom-accordion-primary ${
           option.active ? "active" : ""
@@ -109,58 +59,12 @@ const OptionCard = ({ option, toggleAccordion }) => {
         >
           <div className="accordion-body">
             <div>
-              <div>
+              <div className="grid w-full grid-cols-12 gap-4">
                 {option?.options?.map((item, index) => (
-                  <div
-                    className="flex items-center justify-between py-3 border-b border-gray-200"
-                    key={index}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="currentColor"
-                          className="w-4 h-4"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M12 4.5v15m7.5-7.5h-15"
-                          />
-                        </svg>
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-sm font-semibold">{item.title}</p>
-                      </div>
-                    </div>
-                  </div>
+                  <OptionCardItem item={item} key={index} />
                 ))}
               </div>
-              <div className="flex items-end justify-end pt-3 border-t border-t-gray-950">
-                <button
-                  type="button"
-                  className="ti-btn ti-btn-primary-full ti-btn-loader "
-                  onClick={() => setShow(true)}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 4.5v15m7.5-7.5h-15"
-                    />
-                  </svg>
-                </button>
-              </div>
+              <CreateOption option={option} refetch={refetch} />
             </div>
           </div>
         </div>

@@ -23,7 +23,7 @@ const Attribute = () => {
           title: attribute.title,
           checked: false,
           options: attribute.options,
-          active: false,
+          active: true,
         });
       });
       setCheckList(temp);
@@ -60,8 +60,6 @@ const Attribute = () => {
     setShow(false);
   };
 
-  console.log(checkList);
-
   // make a react useMemo for returning a array of checked items
 
   return (
@@ -74,7 +72,8 @@ const Attribute = () => {
             <div className="hs-dropdown ti-dropdown">
               <button
                 type="button"
-                className="ti-btn ti-btn-primary-full ti-btn-loader "
+                aria-label="button"
+                className="ti-btn ti-btn-icon ti-btn-primary-full ti-btn-wave"
                 onClick={() => setShow(true)}
               >
                 <svg
@@ -83,7 +82,7 @@ const Attribute = () => {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-7 h-7"
                 >
                   <path
                     stroke-linecap="round"
@@ -118,6 +117,7 @@ const Attribute = () => {
           </div>
         </div>
         <OptionAccordions
+          refetch={refetch}
           options={[...checkList]}
           toggleAccordion={toggleAccordion}
         />

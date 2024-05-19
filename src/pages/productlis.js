@@ -24,7 +24,7 @@ const Productlis = () => {
         <div className="w-full col-span-2 rounded-md">
           <AccordionsCard />
         </div>
-        <div className="col-span-10 bg-white px-5 rounded-md border border-[#333335]">
+        <div className="col-span-12 bg-white px-5 rounded-md border border-[#333335]">
           <ProductData />
         </div>
       </div>
