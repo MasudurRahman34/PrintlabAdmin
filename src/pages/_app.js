@@ -7,6 +7,7 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient();
+import "../components/style/styles.css"
 
 export default function App({ Component, pageProps }) {
   return (
