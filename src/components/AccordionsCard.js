@@ -84,7 +84,7 @@ const AccordionsCard = ({ title, card, Category }) => {
                             />
                             <label htmlFor={item.slug}>{item.title}</label>
                           </div>
-                          {item?.children?.map((childItem, childIdx) => (
+                          {item?.children?.map((childItem) => (
                             <div
                               key={childItem.slug}
                               className="mt-1 flex items-center ml-3"
