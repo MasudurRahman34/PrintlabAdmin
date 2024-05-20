@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-const AccordionsCard = ({ title, card }) => {
+const AccordionsCard = ({ title, card, Category }) => {
   const [togle, setgogle] = useState(false);
   const [categorys, setcategory] = useState(false);
-  const [gallery,setgallery] = useState(false);
-  const [custom,setcustom] = useState(false);
-  const [publish,setpublish] = useState(false);
+  const [gallery, setgallery] = useState(false);
+  const [custom, setcustom] = useState(false);
+  const [publish, setpublish] = useState(false);
+  console.log(Category);
   return (
     <div className="bg-white roumded-md">
       <div class="">
@@ -14,7 +15,7 @@ const AccordionsCard = ({ title, card }) => {
             class="hs-accordion   overflow-hidden !border-b-0"
             id="hs-basic-with-title-and-arrow-stretched-heading-one"
           >
-            <div className="mt-2  bg-white border ">
+            <div className="mt-2 bg-white border ">
               <button
                 onClick={() => setcategory(!categorys)}
                 class="hs-accordion-toggle accordion-button hs-accordion-active:text-primary hs-accordion-active:pb-3 group py-0 inline-flex items-center justify-between gap-x-3 w-full font-semibold text-start text-gray-800 transition hover:text-gray-500 dark:hs-accordion-active:text-primary dark:text-gray-200 dark:hover:text-white/80"
@@ -59,17 +60,52 @@ const AccordionsCard = ({ title, card }) => {
               <div
                 id="hs-basic-with-title-and-arrow-stretched-collapse-one"
                 class={`hs-accordion-content  transition duration-300  ${
-                  categorys ? "opacity-100 visible" : "opacity-0 invisible hidden"
+                  categorys
+                    ? "opacity-100 visible"
+                    : "opacity-0 invisible hidden"
                 } `}
                 aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one"
               >
-                <p class="text-gray-800 !py-3 !px-4 dark:text-gray-200">
-                  <p className="text-sm md:text-base font-normal text-[#2271B1] underline"> <a href="#">Set Product Image</a></p>
-                </p>
+                <div class="text-gray-800 !py-3 !px-4 dark:text-gray-200">
+                  <div className="text-sm md:text-base font-normal text-[#2271B1] underline">
+                    <a href="#">Set Product Image</a>
+                  </div>
+                  <div className="mt-2 category-section ">
+                    <fieldset>
+                      <legend>Choose your Category:</legend>
+
+                    {
+                      Category?.map((item,idx)=><>
+                        <div className="mt-1 flex items-center">
+                        <input
+                          type="checkbox"
+                          id={`${item.slug}`}
+                          name="scales"
+                          className="rounded-md mb-1 mr-1 mt-[2px]"
+                        />
+                        <label for={`${item.slug}`}>{item.title}</label>
+                      </div>
+                      {
+                        item?.children?.map((item,idx)=>(<div key={item.slug} className="mt-1 flex items-center">
+                        <input
+                          type="checkbox"
+                          id={`${item.slug}`}
+                          name="scales"
+                          className="rounded-md mb-1 mr-1 mt-[2px]"
+                        />
+                        <label for={`${item.slug}`}>{item.title}</label>
+                      </div>))
+                      }
+                      </>)
+                    }
+
+                    </fieldset>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="mt-2  bg-white border ">
+            <div className="mt-2 bg-white border ">
               <button
                 onClick={() => setgallery(!gallery)}
                 class="hs-accordion-toggle accordion-button hs-accordion-active:text-primary hs-accordion-active:pb-3 group py-0 inline-flex items-center justify-between gap-x-3 w-full font-semibold text-start text-gray-800 transition hover:text-gray-500 dark:hs-accordion-active:text-primary dark:text-gray-200 dark:hover:text-white/80"
@@ -118,13 +154,16 @@ const AccordionsCard = ({ title, card }) => {
                 } `}
                 aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one"
               >
-                <p class="text-gray-800 !py-3 !px-4 dark:text-gray-200">
-                  <p className="text-sm md:text-base font-normal text-[#2271B1] underline"> <a href="#">Add Product Image Gallery </a></p>
-                </p>
+                <div class="text-gray-800 !py-3 !px-4 dark:text-gray-200">
+                  <div className="text-sm md:text-base font-normal text-[#2271B1] underline">
+                    {" "}
+                    <a href="#">Add Product Image Gallery </a>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="mt-2  bg-white border">
+            <div className="mt-2 bg-white border">
               <button
                 onClick={() => setcustom(!custom)}
                 class="hs-accordion-toggle accordion-button hs-accordion-active:text-primary hs-accordion-active:pb-3 group py-0 inline-flex items-center justify-between gap-x-3 w-full font-semibold text-start text-gray-800 transition hover:text-gray-500 dark:hs-accordion-active:text-primary dark:text-gray-200 dark:hover:text-white/80"
@@ -173,19 +212,24 @@ const AccordionsCard = ({ title, card }) => {
                 } `}
                 aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one"
               >
-              <div>
-                <p className="text-sm md:text-base font-[black] py-3 font-bold px-3" >Add New Custom Field</p>
-                <div className="px-3">
-                  <button className="py-2 px-3 rounded-md text-sm md:text-base font-medium  border border-black ">Add custom</button>
+                <div>
+                  <p className="text-sm md:text-base font-[black] py-3 font-bold px-3">
+                    Add New Custom Field
+                  </p>
+                  <div className="px-3">
+                    <button className="px-3 py-2 text-sm font-medium border border-black rounded-md md:text-base ">
+                      Add custom
+                    </button>
+                  </div>
+                  <p class="text-gray-800 !py-3 !px-4 dark:text-gray-200">
+                    Custom fields can be used to add extra metadata to a post
+                    that you can use in your theme.
+                  </p>
                 </div>
-                <p class="text-gray-800 !py-3 !px-4 dark:text-gray-200">
-                Custom fields can be used to add extra metadata to a post that you can use in your theme.</p>
-                
-              </div>
               </div>
             </div>
 
-            <div className="mt-2  bg-white border ">
+            <div className="mt-2 bg-white border ">
               <button
                 onClick={() => setpublish(!publish)}
                 class="hs-accordion-toggle accordion-button hs-accordion-active:text-primary hs-accordion-active:pb-3 group py-0 inline-flex items-center justify-between gap-x-3 w-full font-semibold text-start text-gray-800 transition hover:text-gray-500 dark:hs-accordion-active:text-primary dark:text-gray-200 dark:hover:text-white/80"
@@ -234,24 +278,62 @@ const AccordionsCard = ({ title, card }) => {
                 } `}
                 aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one"
               >
-               <div>
-                <p class="text-gray-800 !py-3 !px-4 dark:text-gray-200">his is the third.</p>
-                <div className="flex justify-between px-3">
-                  <button  className="text-sm  font-normal py-1 px-2 border rounded border-black">Save Draft</button>
-                  <button className="text-sm  font-normal py-1 px-2 border rounded border-black">Preview</button>
+                <div>
+                  <p class="text-gray-800 !py-3 !px-4 dark:text-gray-200">
+                    his is the third.
+                  </p>
+                  <div className="flex justify-between px-3">
+                    <button className="px-2 py-1 text-sm font-normal border border-black rounded">
+                      Save Draft
+                    </button>
+                    <button className="px-2 py-1 text-sm font-normal border border-black rounded">
+                      Preview
+                    </button>
+                  </div>
+                  <ul className="px-4 mt-4 mb-5">
+                    <li className="flex py-2 text-sm font-normal text-black">
+                      Status :<strong className="font-medium">Draft</strong>{" "}
+                      <a href="#" className="underline ml-5 text-[#2271B1]">
+                        Edit
+                      </a>{" "}
+                    </li>
+                    <li className="flex py-2 text-sm font-normal text-black">
+                      {" "}
+                      Visibility: :
+                      <strong className="font-medium">Publid</strong>{" "}
+                      <a href="#" className="underline ml-5 text-[#2271B1]">
+                        Edit
+                      </a>{" "}
+                    </li>
+                    <li className="flex py-2 text-sm font-normal text-black">
+                      Publish :
+                      <strong className="font-medium">immediately</strong>{" "}
+                      <a href="#" className="underline ml-5 text-[#2271B1]">
+                        Edit
+                      </a>{" "}
+                    </li>
+                    <li className="flex py-2 text-sm font-normal text-black">
+                      Catalog visibility :
+                      <a href="#" className="underline ml-5 text-[#2271B1]">
+                        Edit
+                      </a>{" "}
+                    </li>
+                  </ul>
+                  <a
+                    href="#"
+                    className="text-sm font-normal text-[#2271B1] underline px-4 mb-2"
+                  >
+                    Copy to a new draft
+                  </a>
+                  <div className="flex justify-between px-4 mt-4 mb-4">
+                    <p className="text-sm font-normal text-red-500 underline">
+                      Move to Trash
+                    </p>
+                    <button className="py-1 px-2 border  text-white bg-[#2771B1] rounded text-sm font-semibold ">
+                      Publish
+                    </button>
+                  </div>
                 </div>
-                <ul className="px-4 mt-4 mb-5">
-                  <li className="flex text-sm py-2 font-normal text-black">Status :<strong className="font-medium">Draft</strong> <a href="#" className="underline ml-5 text-[#2271B1]" >Edit</a> </li>
-                  <li className="flex text-sm py-2 font-normal text-black"> Visibility: :<strong className="font-medium">Publid</strong> <a href="#" className="underline ml-5 text-[#2271B1]" >Edit</a> </li>
-                  <li className="flex text-sm py-2 font-normal text-black">Publish :<strong className="font-medium">immediately</strong> <a href="#" className="underline ml-5 text-[#2271B1]" >Edit</a> </li>
-                  <li className="flex text-sm py-2 font-normal text-black">Catalog visibility :<a href="#" className="underline ml-5 text-[#2271B1]" >Edit</a> </li>
-                </ul>
-                <a href="#" className="text-sm font-normal text-[#2271B1] underline px-4 mb-2">Copy to a new draft</a>
-                <div className="px-4 flex justify-between mt-4 mb-4">
-                  <p className="text-sm font-normal text-red-500 underline">Move to Trash</p>
-                  <button className="py-1 px-2 border  text-white bg-[#2771B1] rounded text-sm font-semibold ">Publish</button>
-                </div>
-               </div>
               </div>
             </div>
           </div>
