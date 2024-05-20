@@ -6,7 +6,7 @@ import { useState } from "react";
 const tabList = [
   {
     id: 1,
-    name: "general",
+    name: "specification",
   },
   {
     id: 2,
@@ -65,7 +65,7 @@ export default function ProductData() {
           </ul>
         </div>
         <div className="col-span-10">
-          {active === "general" && <General />}
+          {active === "specification" && <General />}
           {active === "attribute" && <Attribute />}
         </div>
       </div>
