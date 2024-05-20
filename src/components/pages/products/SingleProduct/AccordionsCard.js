@@ -1,3 +1,4 @@
+import Category from "./Category";
 import Status from "./Status";
 import { useState } from "react";
 
@@ -7,6 +8,7 @@ const AccordionsCard = ({ title, card, data, isLoading, isError, refetch }) => {
   const [gallery, setgallery] = useState(false);
   const [custom, setcustom] = useState(false);
   const [publish, setpublish] = useState(false);
+
   return (
     <div className="bg-white roumded-md">
       <div class="">
@@ -57,22 +59,7 @@ const AccordionsCard = ({ title, card, data, isLoading, isError, refetch }) => {
                   </svg>
                 )}
               </button>
-              <div
-                id="hs-basic-with-title-and-arrow-stretched-collapse-one"
-                class={`hs-accordion-content  transition duration-300  ${
-                  categorys
-                    ? "opacity-100 visible"
-                    : "opacity-0 invisible hidden"
-                } `}
-                aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one"
-              >
-                <div class="text-gray-800 !py-3 !px-4 dark:text-gray-200">
-                  <div className="text-sm md:text-base font-normal text-[#2271B1] underline">
-                    {" "}
-                    <a href="#">Set Product Image</a>
-                  </div>
-                </div>
-              </div>
+              <Category categorys={categorys} />
             </div>
 
             <div className="mt-2 bg-white border ">
