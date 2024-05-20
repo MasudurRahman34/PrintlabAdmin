@@ -16,7 +16,7 @@ const TextEditor = ({ text = "", handleChange }) => {
             { indent: "-1" },
             { indent: "+1" },
           ],
-          ["link", "image"],
+          ["link"],
           ["clean"],
         ],
       }}
@@ -31,7 +31,6 @@ const TextEditor = ({ text = "", handleChange }) => {
         "bullet",
         "indent",
         "link",
-        "image",
       ]}
     />
   );

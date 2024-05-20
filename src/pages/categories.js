@@ -3,13 +3,13 @@ import { AdminLayout } from "@/layout/AdminLayout";
 const categories = () => {
   return (
     <AdminLayout>
-      <div className=" bg-white px-5 py-5">
+      <div className="px-5 py-5 bg-white ">
         <h1>Category</h1>
         <div className="flex gap-4 ">
-          <div className="category-left w-4/12">
+          <div className="w-4/12 category-left">
             <form>
               <div className="grid grid-cols-12 gap-4 mt-0">
-                <div className=" col-span-12">
+                <div className="col-span-12 ">
                   <label className="form-label">Category Name</label>
                   <input
                     type="text"
@@ -18,7 +18,7 @@ const categories = () => {
                     aria-label="First name"
                   />
                 </div>
-                <div className=" col-span-12">
+                <div className="col-span-12 ">
                   <label className="form-label">Slug</label>
                   <input
                     type="text"
@@ -27,7 +27,7 @@ const categories = () => {
                     aria-label="Last name"
                   />
                 </div>
-                <div className=" col-span-12">
+                <div className="col-span-12 ">
                   <label for="inputEmail4" className="form-label">
                     Parent category
                   </label>
@@ -55,7 +55,7 @@ const categories = () => {
                     cols="60"
                   ></textarea>
                 </div>
-                <div className="md col-span-12">
+                <div className="col-span-12 md">
                   <label for="inputPassword4" className="form-label">
                     Display type
                   </label>
@@ -103,12 +103,11 @@ const categories = () => {
               </div>
             </form>
           </div>
-          <div className="category-right w-8/12">
+          <div className="w-8/12 category-right">
             <div class="box custom-box">
               <div class="box-header justify-between">
                 <div class="box-title">Category data</div>
-                <div class="prism-toggle">
-                </div>
+                <div class="prism-toggle"></div>
               </div>
               <div class="box-body">
                 <div class="table-responsive">
@@ -119,7 +118,7 @@ const categories = () => {
                           Name
                         </th>
                         <th scope="col" class="text-start">
-                        Description
+                          Description
                         </th>
                         <th scope="col" class="text-start">
                           Slug
@@ -173,9 +172,7 @@ const categories = () => {
                         <td>18,Mar 2022</td>
                         <td>+1526-10729</td>
                         <td>
-                          <span class="">
-                            Pending
-                          </span>
+                          <span class="">Pending</span>
                         </td>
                       </tr>
                     </tbody>
