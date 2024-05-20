@@ -26,7 +26,6 @@ const ProductForm = () => {
   const handleSubmit = () => {
     const variables = {};
     for (const key in formData) {
-      console.log(key, formData[key]);
       if (formData[key]) {
         variables[key] = formData[key];
       } else {

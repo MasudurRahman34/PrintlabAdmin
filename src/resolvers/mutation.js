@@ -33,3 +33,8 @@ export const addAttributeOptionMutation = async ({ variables }) =>
   axios
     .post(`${backendUrl}/attribute-options`, variables)
     .then((res) => res.data);
+
+export const updateProductMutation = async ({ variables, product_id }) =>
+  axios
+    .put(`${backendUrl}/products/${product_id}`, variables)
+    .then((res) => res.data);

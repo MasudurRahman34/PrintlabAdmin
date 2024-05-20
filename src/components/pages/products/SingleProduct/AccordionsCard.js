@@ -1,6 +1,7 @@
+import Status from "./Status";
 import { useState } from "react";
 
-const AccordionsCard = ({ title, card }) => {
+const AccordionsCard = ({ title, card, data, isLoading, isError, refetch }) => {
   const [togle, setgogle] = useState(false);
   const [categorys, setcategory] = useState(false);
   const [gallery, setgallery] = useState(false);
@@ -205,7 +206,7 @@ const AccordionsCard = ({ title, card }) => {
                 aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-one"
                 type="button"
               >
-                Published
+                Status
                 {publish ? (
                   <svg
                     class={`hs-accordion-active:block hs-accordion-active:text-primary hs-accordion-active:group-hover:text-primary w-3 h-3 text-gray-600 group-hover:text-gray-500 dark:text-[#8c9097] dark:text-white/50}`}
@@ -240,70 +241,13 @@ const AccordionsCard = ({ title, card }) => {
                   </svg>
                 )}
               </button>
-              <div
-                id="hs-basic-with-title-and-arrow-stretched-collapse-one"
-                class={`hs-accordion-content  transition duration-300  ${
-                  publish ? "opacity-100 visible" : "opacity-0 invisible hidden"
-                } `}
-                aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one"
-              >
-                <div>
-                  <p class="text-gray-800 !py-3 !px-4 dark:text-gray-200">
-                    his is the third.
-                  </p>
-                  <div className="flex justify-between px-3">
-                    <button className="px-2 py-1 text-sm font-normal border border-black rounded">
-                      Save Draft
-                    </button>
-                    <button className="px-2 py-1 text-sm font-normal border border-black rounded">
-                      Preview
-                    </button>
-                  </div>
-                  <ul className="px-4 mt-4 mb-5">
-                    <li className="flex py-2 text-sm font-normal text-black">
-                      Status :<strong className="font-medium">Draft</strong>{" "}
-                      <a href="#" className="underline ml-5 text-[#2271B1]">
-                        Edit
-                      </a>{" "}
-                    </li>
-                    <li className="flex py-2 text-sm font-normal text-black">
-                      {" "}
-                      Visibility: :
-                      <strong className="font-medium">Publid</strong>{" "}
-                      <a href="#" className="underline ml-5 text-[#2271B1]">
-                        Edit
-                      </a>{" "}
-                    </li>
-                    <li className="flex py-2 text-sm font-normal text-black">
-                      Publish :
-                      <strong className="font-medium">immediately</strong>{" "}
-                      <a href="#" className="underline ml-5 text-[#2271B1]">
-                        Edit
-                      </a>{" "}
-                    </li>
-                    <li className="flex py-2 text-sm font-normal text-black">
-                      Catalog visibility :
-                      <a href="#" className="underline ml-5 text-[#2271B1]">
-                        Edit
-                      </a>{" "}
-                    </li>
-                  </ul>
-                  <a
-                    href="#"
-                    className="text-sm font-normal text-[#2271B1] underline px-4 mb-2"
-                  >
-                    Copy to a new draft
-                  </a>
-                  <div className="flex justify-between px-4 mt-4 mb-4">
-                    <p className="text-sm font-normal text-red-500 underline">
-                      Move to Trash
-                    </p>
-                    <button className="py-1 px-2 border  text-white bg-[#2771B1] rounded text-sm font-semibold ">
-                      Publish
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <Status
+                publish={publish}
+                data={data}
+                isLoading={isLoading}
+                refetch={refetch}
+                isError={isError}
+              />
             </div>
           </div>
         </div>
