@@ -1,4 +1,3 @@
-import CategoryForm from "./CategoryForm";
 import CategorySelect from "@/components/CategorySelect";
 import MediaAttach from "@/components/MediaAttach";
 import { updateCategoryMutation } from "@/resolvers/mutation";
@@ -11,6 +10,7 @@ import toast from "react-hot-toast";
 const SingleCategory = () => {
   const router = useRouter();
   const { slug } = router.query;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
 
   const { data, isPending, isError, error, refetch } = useQuery({
     queryKey: ["get-single-categories", slug],
@@ -76,6 +76,14 @@ const SingleCategory = () => {
     );
   };
 
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="px-5 py-5 bg-white ">
       <div className="flex gap-4 ">
@@ -120,6 +128,27 @@ const SingleCategory = () => {
                 ></textarea>
               </div>
 
+              <div className="col-span-12 mt-6">
+                <div className="box">
+                  <div class="box-header">
+                    <h5 className="box-title">Profile Image</h5>
+                  </div>
+                  <div className="box-body">
+                    <div>
+                      <label className="block">
+                        <span className="sr-only">Choose Profile photo</span>
+                        <button
+                          className="btn btn-primary"
+                          type="button"
+                          onClick={openModal}
+                        >
+                          Choose Profile photo
+                        </button>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <MediaAttach
                 selectedMedia={formState.media_ids}
                 multiple={false}
@@ -127,6 +156,8 @@ const SingleCategory = () => {
                 is_profile={true}
                 attachmentable_type="category"
                 refetch={refetch}
+                closeModal={closeModal}
+                modalIsOpen={modalIsOpen}
               />
 
               {data?.data.media.length > 0 &&
