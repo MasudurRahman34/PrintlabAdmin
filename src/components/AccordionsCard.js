@@ -70,35 +70,38 @@ const AccordionsCard = ({ title, card, Category }) => {
                   <div className="text-sm md:text-base font-normal text-[#2271B1] underline">
                     <a href="#">Set Product Image</a>
                   </div>
-                  <div className="mt-2 category-section ">
-                    <fieldset>
+                  <div className="mt-2 category-section">
+                    <fieldset className="fieldset-scroll max-h-[300px] overflow-y-auto px-2 border">
                       <legend>Choose your Category:</legend>
-
-                    {
-                      Category?.map((item,idx)=><>
-                        <div className="mt-1 flex items-center">
-                        <input
-                          type="checkbox"
-                          id={`${item.slug}`}
-                          name="scales"
-                          className="rounded-md mb-1 mr-1 mt-[2px]"
-                        />
-                        <label for={`${item.slug}`}>{item.title}</label>
-                      </div>
-                      {
-                        item?.children?.map((item,idx)=>(<div key={item.slug} className="mt-1 flex items-center">
-                        <input
-                          type="checkbox"
-                          id={`${item.slug}`}
-                          name="scales"
-                          className="rounded-md mb-1 mr-1 mt-[2px]"
-                        />
-                        <label for={`${item.slug}`}>{item.title}</label>
-                      </div>))
-                      }
-                      </>)
-                    }
-
+                      {Category?.map((item, idx) => (
+                        <div key={item.slug}>
+                          <div className="mt-1 flex items-center">
+                            <input
+                              type="checkbox"
+                              id={item.slug}
+                              name="scales"
+                              className="rounded-md mb-1 mr-1 mt-[2px]"
+                            />
+                            <label htmlFor={item.slug}>{item.title}</label>
+                          </div>
+                          {item?.children?.map((childItem, childIdx) => (
+                            <div
+                              key={childItem.slug}
+                              className="mt-1 flex items-center ml-3"
+                            >
+                              <input
+                                type="checkbox"
+                                id={childItem.slug}
+                                name="scales"
+                                className="rounded-md mb-1 mr-1 mt-[2px]"
+                              />
+                              <label htmlFor={childItem.slug}>
+                                {childItem.title}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
+                      ))}
                     </fieldset>
                   </div>
                 </div>

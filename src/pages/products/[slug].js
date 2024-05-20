@@ -2,7 +2,7 @@ import AccordionsCard from "@/components/AccordionsCard";
 import AddProductleft from "@/components/AddProductleft";
 import ProductData from "@/components/productdata/ProductData";
 import { AdminLayout } from "@/layout/AdminLayout";
-import { getAllCategories, getSingleProducts } from "@/resolvers/query";
+import { getAllCategories, getAllProducts, getSingleProducts } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
 
 import dynamic from "next/dynamic";
@@ -26,11 +26,17 @@ const UpdateProductPage = () => {
   });
   console.log(data);
 
+  
   const { data: categories,isLoading } = useQuery({
     queryKey: ["categories"],
     queryFn: getAllCategories,
   });
-  console.log(data);
+
+
+  const { data: products} = useQuery({
+    queryKey: ["products"],
+    queryFn: getAllProducts,
+  });
 if(isLoading){
   return <h1>Loading...</h1>
 }
@@ -38,7 +44,7 @@ if(isLoading){
     <AdminLayout>
       <div className="grid grid-cols-12 gap-3 px-5 mt-5 bg-[#F0F1F7] mb-[50px]">
         <div className="col-span-3">
-          <AddProductleft />
+          <AddProductleft Products={products?.data} />
         </div>
         <div className="col-span-7">
           <AddProductmiddle />

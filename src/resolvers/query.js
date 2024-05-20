@@ -15,7 +15,7 @@ export const getSingleCategoryQuery = async (slug) =>
   axios.get(`${backendUrl}/categories/${slug}`).then((res) => res.data);
 
 export const getAllProducts = async () =>
-  axios.get(`${backendUrl}/products`).then((res) => res.data);
+await axios.get(`${backendUrl}/products`).then((res) => res.data);
 
 export const getAllAttributeQuery = async () =>
   axios.get(`${backendUrl}/attributes`).then((res) => res.data);
