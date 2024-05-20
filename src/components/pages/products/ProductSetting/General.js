@@ -15,13 +15,10 @@ if(isLoading){
 <h1>Loading...</h1>
 }
   let TextEditor;
-  if (typeof window !== "undefined") {
-    // Only import TextEditor if window is defined (in the browser)
-    TextEditor = require("@/components/TextEditor").default;
+  if (typeof window !== "undefined") { TextEditor = require("@/components/TextEditor").default;
   }
-
-  console.log(data?.data.specification);
-  const { technical_specification_imageUrl, details } = data.data.specification;
+  console.log(data?.data?.specification);
+  const { technical_specification_imageUrl, details } = data?.data?.specification;
 
   return (
     <div className="general">

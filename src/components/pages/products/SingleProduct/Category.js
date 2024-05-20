@@ -1,6 +1,7 @@
 import { getAllCategories } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect } from "react";
+
 const CategoryComponent = ({ categorytogle }) => {
   const [checkedItems, setCheckedItems] = React.useState({});
 
@@ -8,6 +9,7 @@ const CategoryComponent = ({ categorytogle }) => {
     queryKey: "getCategoriesQuery",
     queryFn: getAllCategories,
   });
+
   useEffect(() => {
     if (data) {
       const initialCheckedState = data.data.reduce((acc, item) => {
@@ -27,6 +29,7 @@ const CategoryComponent = ({ categorytogle }) => {
       [slug]: !prev[slug],
     }));
   };
+
   const handleChildChange = (parentSlug, childSlug) => {
     setCheckedItems(prev => {
       const newChecked = { ...prev, [childSlug]: !prev[childSlug] };
@@ -39,6 +42,7 @@ const CategoryComponent = ({ categorytogle }) => {
   if (isLoading) {
     return <div>Loading</div>;
   }
+
   return (
     <div
       id="hs-basic-with-title-and-arrow-stretched-collapse-one"
@@ -87,3 +91,4 @@ const CategoryComponent = ({ categorytogle }) => {
 };
 
 export default CategoryComponent;
+

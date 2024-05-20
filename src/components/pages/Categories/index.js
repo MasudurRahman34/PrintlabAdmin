@@ -8,8 +8,6 @@ import React from "react";
 const CategoryIndex = () => {
   const router = useRouter();
 
-  const { slug } = router.query;
-
   const { data, isPending, isError, error, refetch } = useQuery({
     queryKey: ["get-all-categories"],
     queryFn: getAllCategories,

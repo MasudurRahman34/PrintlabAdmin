@@ -2,6 +2,7 @@ import Switcher from "@/components/ui/Switcher";
 import { updateProductMutation } from "@/resolvers/mutation";
 import { useMutation } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const Status = ({ publish, data, isLoading, isError, refetch }) => {
   const [state, setState] = useState({
@@ -23,59 +24,51 @@ const Status = ({ publish, data, isLoading, isError, refetch }) => {
   }, [data]);
 
   return (
-    <div
-      id="hs-basic-with-title-and-arrow-stretched-collapse-one"
-      class={`hs-accordion-content  transition duration-300  ${
-        publish ? "opacity-100 visible" : "opacity-0 invisible hidden"
-      } `}
-      aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one"
-    >
-      <div>
-        <ul className="px-4 mt-4 mb-5">
-          <li className="flex py-2 text-sm font-normal text-black">
-            <Switcher
-              isChecked={state.visibility}
-              setIsChecked={() => {
-                mutate(
-                  {
-                    variables: {
-                      visibility: state.visibility ? 0 : 1,
-                      title: data.title,
-                    },
-                    product_id: data.id,
-                  },
-                  {
-                    onSuccess: () => {
-                      setState((prev) => ({
-                        ...prev,
-                        visibility: !prev.visibility,
-                      }));
-                      refetch();
-                    },
-                  }
-                );
-              }}
-              lable="Visibility"
-            />
-          </li>
-          <li className="flex py-2 text-sm font-normal text-black">
-            <Switcher
-              isChecked={state.status}
-              setIsChecked={() => {
-                setState((prev) => ({ ...prev, status: !prev.status }));
-                mutate({
+    <div>
+      <ul className="px-4 mt-4 mb-5">
+        <li className="flex py-2 text-sm font-normal text-black">
+          <Switcher
+            isChecked={state.visibility}
+            setIsChecked={() => {
+              mutate(
+                {
                   variables: {
-                    status: state.status ? 0 : 1,
-                    title: data.title,
+                    visibility: state.visibility ? 0 : 1,
                   },
                   product_id: data.id,
-                });
-              }}
-              lable="Status"
-            />
-          </li>
-        </ul>
-      </div>
+                },
+                {
+                  onSuccess: () => {
+                    setState((prev) => ({
+                      ...prev,
+                      visibility: !prev.visibility,
+                    }));
+                    refetch();
+                  },
+                }
+              );
+            }}
+            lable="Visibility"
+          />
+        </li>
+        <li className="flex py-2 text-sm font-normal text-black">
+          <Switcher
+            isChecked={state.status}
+            setIsChecked={() => {
+              setState((prev) => ({ ...prev, status: !prev.status }));
+              mutate({
+                variables: {
+                  status: state.status ? 0 : 1,
+                },
+                product_id: data.id,
+              });
+              toast.success("Product status updated successfully");
+              refetch();
+            }}
+            lable="Status"
+          />
+        </li>
+      </ul>
     </div>
   );
 };

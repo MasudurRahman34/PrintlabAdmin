@@ -1,6 +1,5 @@
 import Attribute from "../pages/products/ProductSetting/Attribute";
 import General from "../pages/products/ProductSetting/General";
-import Advancedata from "./Advancedata";
 import { useState } from "react";
 
 const tabList = [
@@ -10,29 +9,21 @@ const tabList = [
   },
   {
     id: 2,
-    name: "invoce",
+    name: "Specification",
   },
 
   {
     id: 3,
-    name: "sopping",
+    name: "Attribute",
   },
   {
     id: 4,
-    name: "Advance",
-  },
-  {
-    id: 5,
-    name: "offer",
-  },
-  {
-    id: 6,
-    name: "attribute",
+    name: "Offer",
   },
 ];
 
 export default function ProductData() {
-  const [active, setActive] = useState("attribute");
+  const [active, setActive] = useState("Attribute");
 
   return (
     <div>
