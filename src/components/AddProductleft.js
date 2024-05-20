@@ -1,36 +1,6 @@
 import "gridjs/dist/theme/mermaid.css";
 import { Grid, _ } from "gridjs-react";
-import React, { useEffect} from "react";
-const GridHeaderButton = () => {
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      const gridjsHeadRoot = document.getElementsByClassName("gridjs-head");
-      if (gridjsHeadRoot.length > 0) {
-        const button = document.createElement("button");
-        button.innerText = "Add";
-        button.style.cssText = `
-          background-color: #0069d9;
-          color: #fff;
-          border-radius: .25rem;
-          padding: .375rem .75rem;
-          float: right;
-        `;
-        button.onclick = function () {
-          alert(1);
-        };
-        gridjsHeadRoot[0].appendChild(button);
-
-        return () => {
-          if (gridjsHeadRoot[0]) {
-            gridjsHeadRoot[0].removeChild(button);
-          }
-        };
-      }
-    }
-  }, []);
-
-  return null;
-};
+import React, { useEffect } from "react";
 
 const tableColumns = ["Title", "Category"];
 
@@ -61,17 +31,13 @@ function MyCustomGrid() {
 }
 const AddProductleft = () => {
   return (
-    <div className="bg-white  px-5 py-3 xl:px-0 rounded-md  sm:col-span-12 md:col-span-6 lg:col-span-3">
-
+    <div className="px-5 py-3 bg-white rounded-md xl:px-0 sm:col-span-12 md:col-span-6 lg:col-span-3">
       <div>
-        <p className="text-base  font-semibold text-black mt-5  ">Product</p>
+        <p className="mt-5 text-base font-semibold text-black ">Product</p>
         <div className="mt-2">
-
           <MyCustomGrid />
-          <GridHeaderButton />
         </div>
       </div>
-    
     </div>
   );
 };

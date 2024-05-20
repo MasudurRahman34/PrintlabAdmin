@@ -1,6 +1,4 @@
 import axios from "axios";
-import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
-import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import React, { useState } from "react";
 import { FilePond, File, registerPlugin } from "react-filepond";
 
@@ -21,7 +19,7 @@ const UploadMedia = ({ refetch }) => {
   return (
     <div>
       <div className="flex items-center">
-        <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-black">
+        <h1 className="text-xl font-bold text-black md:text-2xl lg:text-3xl xl:text-4xl">
           Media Library
         </h1>
         <div className="flex items-center ml-5">

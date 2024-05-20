@@ -4,17 +4,24 @@ import "@/styles/globals.css";
 import "@/styles/style.css";
 import "filepond/dist/filepond.min.css";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+import "react-quill/dist/quill.snow.css";
 import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient();
-import "../components/style/styles.css"
 
 export default function App({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
       <Component {...pageProps} />
       <ReactQueryDevtools initialIsOpen={false} />
-      <Toaster position="top-center" />
+      <div
+        style={{
+          zIndex: 999999999999999,
+          position: "relative",
+        }}
+      >
+        <Toaster position="top-center" />
+      </div>
     </QueryClientProvider>
   );
 }

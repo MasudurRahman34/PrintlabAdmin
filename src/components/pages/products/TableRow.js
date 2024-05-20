@@ -3,7 +3,6 @@ import Link from "next/link";
 import React from "react";
 
 const TableRow = ({ product }) => {
-  console.log(product);
   return (
     <tr class="product-list">
       <td class="product-checkbox">
