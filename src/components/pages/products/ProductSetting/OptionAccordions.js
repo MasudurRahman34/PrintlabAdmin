@@ -1,7 +1,12 @@
 import OptionCard from "./OptionCard";
 import React, { useEffect } from "react";
 
-const OptionAccordions = ({ options = [], toggleAccordion, refetch }) => {
+const OptionAccordions = ({
+  options = [],
+  toggleAccordion,
+  refetch,
+  handleOptionCheck,
+}) => {
   return (
     <div
       className="flex-1 p-3 accordion customized-accordion accordions-items-seperate"
@@ -16,6 +21,7 @@ const OptionAccordions = ({ options = [], toggleAccordion, refetch }) => {
               option={accordion}
               toggleAccordion={toggleAccordion}
               refetch={refetch}
+              handleOptionCheck={handleOptionCheck}
             />
           ))}
       </div>

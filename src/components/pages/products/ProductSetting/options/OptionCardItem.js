@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-const OptionCardItem = ({ item }) => {
+const OptionCardItem = ({ item, handleOptionCheck }) => {
   const [activeDropdown, setActiveDropdown] = React.useState(false);
+
   return (
     <div className="flex items-center justify-between col-span-12 py-3 border-b border-gray-200 lg:col-span-6">
       <div className="flex w-full gap-3">
@@ -15,7 +16,18 @@ const OptionCardItem = ({ item }) => {
             width: "100%",
           }}
         >
-          <input className="form-check-input" type="checkbox" id="gridCheck1" />
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="gridCheck1"
+            checked={item.checked}
+            onChange={() =>
+              handleOptionCheck({
+                checked_value: item.id,
+                attribute_id: item.attribute_id,
+              })
+            }
+          />
 
           <div className="flex items-center gap-3">
             <p className="text-sm font-semibold">{item.title}</p>

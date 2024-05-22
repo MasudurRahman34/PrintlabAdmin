@@ -39,7 +39,13 @@ const SingleProduct = () => {
         />
       </div>
       <div className="col-span-12 bg-white px-5 rounded-md border border-[#333335]">
-        <ProductData />
+        <ProductData
+          data={data?.data}
+          isLoading={isLoading}
+          error={error}
+          isError={isError}
+          refetch={refetch}
+        />
       </div>
     </div>
   );
