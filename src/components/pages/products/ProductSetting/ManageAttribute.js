@@ -14,7 +14,8 @@ const ManageAttribute = (
   product_isLoading,
   product_error,
   product_isError,
-  product_refetch
+  product_refetch,
+  setState
 ) => {
   const router = useRouter();
   const { slug } = router.query;
@@ -56,9 +57,9 @@ const ManageAttribute = (
           active: true,
         });
       });
-      setState({
-        is_attribute: product_data.is_attribute.value === 1,
-      });
+      // setState({
+      //   is_attribute: product_data.is_attribute.value === 1,
+      // });
       setCheckList(temp);
     }
     if (product_data) {

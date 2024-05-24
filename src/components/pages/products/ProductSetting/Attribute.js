@@ -1,7 +1,9 @@
 import ManageAttribute from "./ManageAttribute";
 import Switcher from "@/components/ui/Switcher";
 import { updateProductMutation } from "@/resolvers/mutation";
-import { useMutation } from "@tanstack/react-query";
+import { getAllAttributeQuery } from "@/resolvers/query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -13,8 +15,16 @@ const Attribute = ({
   product_isError,
   product_refetch,
 }) => {
+  const router = useRouter();
+  const { slug } = router;
   const [state, setState] = useState({
     is_attribute: true,
+  });
+
+  // getting all attribute from here
+  const { data, isLoading, isError, error, refetch } = useQuery({
+    queryKey: "attributes",
+    queryFn: getAllAttributeQuery,
   });
 
   // make a react useMemo for returning a array of checked items
@@ -59,6 +69,7 @@ const Attribute = ({
           product_error={error}
           product_isError={isError}
           product_refetch={refetch}
+          setState={setState}
         />
       )}
     </div>
