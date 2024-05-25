@@ -67,3 +67,11 @@ export const getCombinationTableMutation = async ({ product_id, variables }) =>
   axios
     .post(`${backendUrl}/product/${product_id}/combinations`, variables)
     .then((res) => res.data);
+
+export const updateCombinationMutation = async ({
+  combination_id,
+  variables,
+}) =>
+  axios
+    .put(`${backendUrl}/combinations/${combination_id}`, variables)
+    .then((res) => res.data);

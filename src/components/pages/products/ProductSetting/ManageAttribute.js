@@ -186,7 +186,6 @@ const ManageAttribute = (product_data) => {
 
   const handleMutate = () => {
     const form_data = new FormData();
-    console.log(checkedAttributes);
 
     checkedAttributes.forEach((attribute) => {
       attribute.options.forEach((option) => {
@@ -201,6 +200,9 @@ const ManageAttribute = (product_data) => {
       {
         onSuccess: (data) => {
           console.log(data);
+        },
+        onError: (error) => {
+          toast.error(error.response.data.message);
         },
       }
     );
