@@ -48,10 +48,12 @@ export const createArtworkMutation = async ({ variables }) =>
     .post(`${backendUrl}/product/artwork`, variables)
     .then((res) => res.data);
 
-export const saveAttributeMutation = async ({ variables, product_id }) =>
-  axios
+export const saveAttributeMutation = async ({ variables, product_id }) => {
+  console.log(variables, product_id);
+  return axios
     .post(`${backendUrl}/product/${product_id}/attribute-options`, variables)
     .then((res) => res.data);
+};
 
 export const productAttributeOptionMutation = async ({
   variables,

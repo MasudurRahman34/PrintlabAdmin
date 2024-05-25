@@ -8,7 +8,6 @@ const ProfileImage = ({ data, isLoading, isError, error, refetch }) => {
   const openModal = () => {
     setIsModalOpen(true);
   };
-  console.log(data, "data");
 
   const closeModal = () => {
     setIsModalOpen(false);

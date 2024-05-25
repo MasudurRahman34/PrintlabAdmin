@@ -4,6 +4,7 @@ import React from "react";
 
 const OptionCard = ({
   option,
+  checkedAttribute,
   toggleAccordion,
   refetch,
   handleOptionCheck,
@@ -70,6 +71,7 @@ const OptionCard = ({
                     item={item}
                     key={index}
                     handleOptionCheck={handleOptionCheck}
+                    checkedAttribute={checkedAttribute}
                   />
                 ))}
               </div>

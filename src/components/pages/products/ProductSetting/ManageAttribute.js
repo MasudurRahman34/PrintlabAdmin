@@ -2,24 +2,18 @@ import AttributeList from "./AttributeList";
 import OptionAccordions from "./OptionAccordions";
 import Modal from "@/components/ui/Modal";
 import { saveAttributeMutation } from "@/resolvers/mutation";
-import { getAllAttributeQuery } from "@/resolvers/query";
+import {
+  getAllAttributeQuery,
+  getProductAttributeExistanceQuery,
+} from "@/resolvers/query";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-const ManageAttribute = (
-  product_id,
-  product_data,
-  product_isLoading,
-  product_error,
-  product_isError,
-  product_refetch,
-  setState
-) => {
+const ManageAttribute = (product_data) => {
   const router = useRouter();
   const { slug } = router.query;
-
   const [checkList, setCheckList] = React.useState([]);
   const [show, setShow] = React.useState(false);
 
@@ -30,6 +24,12 @@ const ManageAttribute = (
   const [checkedAttributes, setCheckedAttributes] = useState([]);
 
   // mutation for product update. specially for
+
+  const { data: productAttributeData, isLoading: productAttributeLoading } =
+    useQuery({
+      queryKey: ["product_attribute", slug],
+      queryFn: () => getProductAttributeExistanceQuery(slug),
+    });
 
   // getting all attribute from here
   const { data, isLoading, isError, error, refetch } = useQuery({
@@ -52,7 +52,7 @@ const ManageAttribute = (
         temp.push({
           id: attribute.id,
           title: attribute.title,
-          checked: false,
+          checked: true,
           options: attribute.options,
           active: true,
         });
@@ -62,9 +62,33 @@ const ManageAttribute = (
       // });
       setCheckList(temp);
     }
-    if (product_data) {
+
+    if (productAttributeData) {
+      const temp = [];
+      productAttributeData?.data.forEach((attribute) => {
+        // if attribute id is same as the attribute id from the data then push the option id to the temp array else push the attribute id to the temp array with attribute options id as the options
+
+        if (
+          temp.filter((item) => item.id === attribute.attribute_id).length > 0
+        ) {
+          temp.forEach((item) => {
+            if (item.id === attribute.attribute_id) {
+              item.options.push(attribute.attribute_option_id);
+            }
+          });
+        }
+        // if the attribute id is not in the temp array then push the attribute id with the option id as the options
+        else {
+          temp.push({
+            id: attribute.attribute_id,
+            options: [attribute.attribute_option_id],
+          });
+        }
+      });
+
+      setCheckedAttributes(temp);
     }
-  }, [data, product_data]);
+  }, [data, productAttributeData]);
 
   const handleCheck = (id) => {
     if (checkedAttributes.filter((item) => item.id === id).length > 0) {
@@ -136,7 +160,7 @@ const ManageAttribute = (
     mutate(
       {
         variables: form_data,
-        product_id: product_id,
+        product_id: slug,
       },
       {
         onSuccess: () => {
@@ -208,6 +232,7 @@ const ManageAttribute = (
           handleOptionCheck={handleOptionCheck}
           refetch={refetch}
           options={[...checkList]}
+          checkedAttributes={checkedAttributes}
           toggleAccordion={toggleAccordion}
         />
       </div>

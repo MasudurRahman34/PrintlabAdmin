@@ -16,8 +16,6 @@ const CategoryComponent = () => {
     }
   }, [data]);
 
-  console.log(category);
-
   if (isLoading) {
     return <div>Loading</div>;
   }

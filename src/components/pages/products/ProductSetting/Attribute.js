@@ -1,37 +1,21 @@
 import ManageAttribute from "./ManageAttribute";
 import Switcher from "@/components/ui/Switcher";
 import { updateProductMutation } from "@/resolvers/mutation";
-import { getAllAttributeQuery } from "@/resolvers/query";
+import {
+  getAllAttributeQuery,
+  getProductAttributeExistanceQuery,
+} from "@/resolvers/query";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-const Attribute = ({
-  product_id,
-  product_data,
-  product_isLoading,
-  product_error,
-  product_isError,
-  product_refetch,
-}) => {
+const Attribute = () => {
   const router = useRouter();
-  const { slug } = router;
+
+  const { slug } = router.query;
   const [state, setState] = useState({
     is_attribute: true,
-  });
-
-  // getting all attribute from here
-  const { data, isLoading, isError, error, refetch } = useQuery({
-    queryKey: "attributes",
-    queryFn: getAllAttributeQuery,
-  });
-
-  // make a react useMemo for returning a array of checked items
-
-  const { mutate, isPending } = useMutation({
-    mutationKey: "update_product",
-    mutationFn: updateProductMutation,
   });
 
   return (
@@ -61,17 +45,7 @@ const Attribute = ({
           lable="Is Attribute"
         />
       </div>
-      {state.is_attribute && (
-        <ManageAttribute
-          product_id={slug}
-          product_data={data}
-          product_isLoading={isLoading}
-          product_error={error}
-          product_isError={isError}
-          product_refetch={refetch}
-          setState={setState}
-        />
-      )}
+      {state.is_attribute && <ManageAttribute setState={setState} />}
     </div>
   );
 };

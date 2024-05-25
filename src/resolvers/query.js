@@ -22,3 +22,8 @@ export const getAllAttributeQuery = async () =>
 
 export const getSingleProductQuery = async (slug) =>
   axios.get(`${backendUrl}/products/${slug}`).then((res) => res.data);
+
+export const getProductAttributeExistanceQuery = async (product_id) =>
+  axios
+    .get(`${backendUrl}/product/${product_id}/attribute-options`)
+    .then((res) => res.data);

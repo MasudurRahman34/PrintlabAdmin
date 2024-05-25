@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const OptionCardItem = ({ item, handleOptionCheck }) => {
+const OptionCardItem = ({ item, handleOptionCheck, checkedAttribute }) => {
   const [activeDropdown, setActiveDropdown] = React.useState(false);
 
   return (
@@ -20,7 +20,11 @@ const OptionCardItem = ({ item, handleOptionCheck }) => {
             className="form-check-input"
             type="checkbox"
             id="gridCheck1"
-            checked={item.checked}
+            // if item id is exists in the checkedAttribute array and the checked value is true then set the checked value to true
+            checked={
+              checkedAttribute?.options.filter((element) => element === item.id)
+                .length > 0
+            }
             onChange={() =>
               handleOptionCheck({
                 checked_value: item.id,
