@@ -62,3 +62,8 @@ export const productAttributeOptionMutation = async ({
   axios
     .post(`${backendUrl}/product/${product_id}/attribute-options`, variables)
     .then((res) => res.data);
+
+export const getCombinationTableMutation = async ({ product_id, variables }) =>
+  axios
+    .post(`${backendUrl}/product/${product_id}/combinations`, variables)
+    .then((res) => res.data);

@@ -1,7 +1,11 @@
 import AttributeList from "./AttributeList";
+import ConfigureTable from "./ConfigureTable";
 import OptionAccordions from "./OptionAccordions";
 import Modal from "@/components/ui/Modal";
-import { saveAttributeMutation } from "@/resolvers/mutation";
+import {
+  getCombinationTableMutation,
+  saveAttributeMutation,
+} from "@/resolvers/mutation";
 import {
   getAllAttributeQuery,
   getProductAttributeExistanceQuery,
@@ -173,6 +177,35 @@ const ManageAttribute = (product_data) => {
       }
     );
   };
+
+  const { mutate: saveCombination, isPending: combinationLoading } =
+    useMutation({
+      mutationKey: "save_combination",
+      mutationFn: getCombinationTableMutation,
+    });
+
+  const handleMutate = () => {
+    const form_data = new FormData();
+    console.log(checkedAttributes);
+
+    checkedAttributes.forEach((attribute) => {
+      attribute.options.forEach((option) => {
+        form_data.append(`attributes[${attribute.id}][]`, option);
+      });
+    });
+    saveCombination(
+      {
+        product_id: slug,
+        variables: form_data,
+      },
+      {
+        onSuccess: (data) => {
+          console.log(data);
+        },
+      }
+    );
+  };
+
   return (
     <>
       <Modal show={show} hideModal={hideModal} refetch={refetch} />
@@ -236,7 +269,7 @@ const ManageAttribute = (product_data) => {
           toggleAccordion={toggleAccordion}
         />
       </div>
-      <div className="flex items-center justify-end w-full mt-10">
+      <div className="flex items-center justify-end w-full gap-3 mt-10">
         <button
           type="button"
           class="ti-btn ti-btn-primary-full ti-btn-wave"
@@ -245,8 +278,20 @@ const ManageAttribute = (product_data) => {
         >
           {isPending ? "Saving..." : "Save"}
         </button>
+        <button
+          type="button"
+          class="ti-btn ti-btn-primary-full ti-btn-loader "
+          disabled={isPending}
+          onClick={handleMutate}
+        >
+          <span class="me-2">Publish</span>
+          {combinationLoading ? (
+            <span class="loading">
+              <i class="ri-loader-2-fill text-[1rem] animate-spin"></i>
+            </span>
+          ) : null}
+        </button>
       </div>
-      <div className="py-3"></div>
     </>
   );
 };

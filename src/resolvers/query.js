@@ -27,3 +27,8 @@ export const getProductAttributeExistanceQuery = async (product_id) =>
   axios
     .get(`${backendUrl}/product/${product_id}/attribute-options`)
     .then((res) => res.data);
+
+export const getProductCombinationQuery = async (product_id) =>
+  axios
+    .get(`${backendUrl}/product/${product_id}/combinations`)
+    .then((res) => res.data);
