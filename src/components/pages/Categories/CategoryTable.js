@@ -1,5 +1,4 @@
 import CategoryRow from "./CategoryRow";
-import Link from "next/link";
 import React from "react";
 
 const CategoryTable = ({ data, refetch }) => {
@@ -49,58 +48,7 @@ const CategoryTable = ({ data, refetch }) => {
                 </tbody>
               </table>
             </div>
-            <div className="flex-wrap items-center justify-between sm:flex">
-              <nav aria-label="Page navigation" className="">
-                <ul className="ti-pagination mb-0 flex flex-row rounded-sm text-[1rem] !ps-0">
-                  <li className="page-item disabled">
-                    <a
-                      className="page-link !py-[0.375rem] !px-[0.75rem]"
-                      href="javascript:void(0);"
-                    >
-                      Previous
-                    </a>
-                  </li>
-                  <li className="page-item active">
-                    <a
-                      className="page-link !py-[0.375rem] !px-[0.75rem]"
-                      href="javascript:void(0);"
-                    >
-                      1
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a
-                      className="page-link !py-[0.375rem] !px-[0.75rem]"
-                      href="javascript:void(0);"
-                    >
-                      2
-                    </a>
-                  </li>
-                  <li className="hidden page-item sm:block ">
-                    <a
-                      className="page-link !py-[0.375rem] !px-[0.75rem]"
-                      href="javascript:void(0);"
-                    >
-                      3
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a
-                      className="page-link !text-primary !py-[0.375rem] !px-[0.75rem]"
-                      href="javascript:void(0);"
-                    >
-                      next
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-              <button
-                type="button"
-                className="ti-btn bg-danger text-white !font-medium m-1"
-              >
-                Delete All
-              </button>
-            </div>
+            {/*  <Pagination links={data?.links} /> */}
           </div>
         </div>
       </div>
