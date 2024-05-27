@@ -5,19 +5,16 @@ import React from "react";
 const TableRow = ({ product }) => {
   return (
     <tr class="product-list">
-      <td class="product-checkbox">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="product1"
-          value=""
-          aria-label="..."
-        />
-      </td>
       <td>
         <div class="flex items-center">
           <span class="avatar avatar-md me-2">
-            <img src="../assets/images/faces/6.jpg" alt="img" />
+            <img
+              src={
+                product.media.filter((item) => item.is_profile === 1)[0]?.url ||
+                "../assets/images/faces/6.jpg"
+              }
+              alt="img"
+            />
           </span>
         </div>
       </td>
@@ -43,13 +40,6 @@ const TableRow = ({ product }) => {
             class="ti-btn ti-btn-wave  !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-info/10 text-info hover:bg-info hover:text-white hover:border-info"
           >
             <i class="ri-pencil-line"></i>
-          </Link>
-          <Link
-            aria-label="anchor"
-            href="javascript:void(0);"
-            class="ti-btn ti-btn-wave product-btn !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-danger/10 text-danger hover:bg-danger hover:text-white hover:border-danger"
-          >
-            <i class="ri-delete-bin-line"></i>
           </Link>
         </div>
       </td>

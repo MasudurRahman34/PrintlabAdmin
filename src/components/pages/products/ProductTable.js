@@ -8,15 +8,6 @@ const ProductTable = ({ products = [] }) => {
         <table class="table whitespace-nowrap table-bordered min-w-full">
           <thead>
             <tr>
-              <th scope="col" class="!text-start">
-                <input
-                  class="form-check-input check-all"
-                  type="checkbox"
-                  id="all-products"
-                  value=""
-                  aria-label="..."
-                />
-              </th>
               <th scope="col" class="text-start">
                 Image
               </th>
