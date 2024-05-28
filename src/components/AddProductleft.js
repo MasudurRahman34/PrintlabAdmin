@@ -3,8 +3,13 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllProducts } from "@/resolvers/query";
 import SingleProducttable from "./ui/SingleProducttable";
 import { useState } from "react";
+import Pagination from "./ui/Pagination";
+import { useRouter } from "next/router";
+
 
 const AddProductleft = () => {
+    const router = useRouter();
+  const { page } = router.query;
   const [searchitem,setSearchItem]=useState("")
   const { data:productss, isLoading, isError, refetch } = useQuery({
     queryKey: ["getProductsQuery"],
@@ -16,7 +21,8 @@ const AddProductleft = () => {
   const handleSearchChange = (event) => {
     setSearchItem(event.target.value);
   };
-  console.log(searchitem)
+
+
   return (
     <div class="box-body bg-white">
      <div className="flex justify-between py-3">
@@ -40,6 +46,7 @@ const AddProductleft = () => {
         </tbody>
       </table>
     </div>
+    <Pagination links={productss.links}  />
   </div>
 
   );
