@@ -30,7 +30,6 @@ const SingleProduct = () => {
     queryFn: () => getProductCombinationQuery(slug),
     enabled: !!slug,
   });
-
   return (
     <div className="grid grid-cols-12 gap-3 px-5 mt-5 bg-[#F0F1F7] mb-[50px]">
       <div className="col-span-3">

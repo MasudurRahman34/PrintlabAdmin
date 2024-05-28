@@ -1,7 +1,8 @@
 import TableRow from "./TableRow";
+import Pagination from "@/components/ui/Pagination";
 import React from "react";
 
-const ProductTable = ({ products = [] }) => {
+const ProductTable = ({ products = [], links }) => {
   return (
     <div class="box-body">
       <div class="table-responsive mb-4">
@@ -36,52 +37,7 @@ const ProductTable = ({ products = [] }) => {
           </tbody>
         </table>
       </div>
-      <div class="sm:flex items-center justify-end flex-wrap">
-        <nav aria-label="Page navigation" class="">
-          <ul class="ti-pagination mb-0 flex flex-row rounded-sm text-[1rem] !ps-0">
-            <li class="page-item disabled">
-              <a
-                class="page-link !py-[0.375rem] !px-[0.75rem]"
-                href="javascript:void(0);"
-              >
-                Previous
-              </a>
-            </li>
-            <li class="page-item active">
-              <a
-                class="page-link !py-[0.375rem] !px-[0.75rem]"
-                href="javascript:void(0);"
-              >
-                1
-              </a>
-            </li>
-            <li class="page-item">
-              <a
-                class="page-link !py-[0.375rem] !px-[0.75rem]"
-                href="javascript:void(0);"
-              >
-                2
-              </a>
-            </li>
-            <li class="page-item sm:block hidden ">
-              <a
-                class="page-link !py-[0.375rem] !px-[0.75rem]"
-                href="javascript:void(0);"
-              >
-                3
-              </a>
-            </li>
-            <li class="page-item">
-              <a
-                class="page-link !text-primary !py-[0.375rem] !px-[0.75rem]"
-                href="javascript:void(0);"
-              >
-                next
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <Pagination links={links} />
     </div>
   );
 };
