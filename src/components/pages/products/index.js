@@ -77,15 +77,16 @@ const ProductsComponent = () => {
 
               <div class="ti-btn-list space-x-2 rtl:space-x-reverse">
         <button type="button" class="ti-btn ti-btn-primary-full label-ti-btn">
-            <i className=" label-ti-btn-icon  me-2"><BsFiletypeCsv /></i>
+            <i className=" label-ti-btn-icon  me-2"><BsFiletypeCsv /></i>Export as 
             Cvs
         </button>
         <button type="button" class="ti-btn ti-btn-secondary-full label-ti-btn">
-        <i className=" label-ti-btn-icon  me-2"><LuFileJson /></i>
+        <i className=" label-ti-btn-icon  me-2"><LuFileJson /></i>Export as 
             Json
         </button>
         <button type="button" class="ti-btn ti-btn-warning-full label-ti-btn ">
-        <i className=" label-ti-btn-icon  me-2"><FaRegFilePdf /></i>
+        <i className=" label-ti-btn-icon  me-2"><FaRegFilePdf /></i>Export as 
+
             Pdf
         </button>
     </div>
