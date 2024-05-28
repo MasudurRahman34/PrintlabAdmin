@@ -6,7 +6,7 @@ import { useState } from "react";
 const tabList = [
   {
     id: 1,
-    name: "specification",
+    name: "Artwork",
   },
   {
     id: 2,
@@ -38,28 +38,27 @@ export default function ProductData({
     <div>
       <div className="flex items-center py-5 border-b border-[#333335]">
         <p className="text-base font-medium text-black">Product data</p>
-        <div>
+        {/* <div>
           <select class="ti-form-select rounded-sm !py-2 !px-3 w-[40%] ml-[50px]">
             <option selected>Simple Product</option>
             <option>1</option>
             <option>2</option>
             <option>3</option>
           </select>
-        </div>
+        </div> */}
       </div>
       <div className="grid grid-cols-12 gap-5">
-        <div className="col-span-2">
-          <ul className="bg-[#FAFAFA]">
+        <div className="col-span-2 py-3">
+          <ul className="flex flex-col gap-2">
             {tabList.map((tab) => (
-              <li key={tab.id} className="px-3 py-2 border">
-                <button
-                  className={`text-sm md:text-base font-normal text-[#333335] ${
-                    active === tab.name ? "text-[#333335] font-bold" : ""
-                  }`}
-                  onClick={() => setActive(tab.name)}
-                >
-                  {tab.name}
-                </button>
+              <li
+                key={tab.id}
+                className={`px-3 py-2 border cursor-pointer   ${
+                  active === tab.name ? "text-white  bg-purple-500 " : ""
+                }`}
+                onClick={() => setActive(tab.name)}
+              >
+                <p className={`text-sm md:text-base font-bold`}>{tab.name}</p>
               </li>
             ))}
           </ul>
