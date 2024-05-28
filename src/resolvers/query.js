@@ -14,8 +14,10 @@ export const getAllCategories = async () =>
 export const getSingleCategoryQuery = async (slug) =>
   axios.get(`${backendUrl}/categories/${slug}`).then((res) => res.data);
 
-export const getAllProducts = async () =>
-  await axios.get(`${backendUrl}/products`).then((res) => res.data);
+export const getAllProducts = async ({ page = 1 }) =>
+  await axios
+    .get(`${backendUrl}/products?page=${page}`)
+    .then((res) => res.data);
 
 export const getAllAttributeQuery = async () =>
   axios.get(`${backendUrl}/attributes`).then((res) => res.data);

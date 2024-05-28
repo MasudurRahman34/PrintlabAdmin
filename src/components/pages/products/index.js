@@ -3,12 +3,16 @@ import DeleteModal from "@/components/ui/DeleteModal";
 import { getAllProducts } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 
 const ProductsComponent = () => {
+  const router = useRouter();
+  const { page } = router.query;
   const { data, isLoading, isError, error, refetch } = useQuery({
-    queryKey: ["get-all-products"],
+    queryKey: ["get-all-products", page],
     queryFn: getAllProducts,
+    enabled: !!page,
   });
 
   return (
@@ -58,7 +62,7 @@ const ProductsComponent = () => {
             ) : isError ? (
               <div>Error: {error.message}</div>
             ) : (
-              <ProductTable products={data?.data} />
+              <ProductTable products={data?.data} links={data?.links} />
             )}
           </div>
         </div>
