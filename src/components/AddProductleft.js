@@ -1,77 +1,29 @@
-// import "gridjs/dist/theme/mermaid.css";
-// import { getAllProducts } from "@/resolvers/query";
-// import { useQuery } from "@tanstack/react-query";
-// import { Grid, _ } from "gridjs-react";
-// import React, { useEffect } from "react";
-import { useRouter } from "next/router";
-// import { Pagination } from "gridjs/dist/src/view/plugin/pagination";
-import TableRow from "./pages/products/TableRow";
+
 import { useQuery } from "@tanstack/react-query";
 import { getAllProducts } from "@/resolvers/query";
-import { BsTypeH1 } from "react-icons/bs";
 import SingleProducttable from "./ui/SingleProducttable";
+import { useState } from "react";
 
 const AddProductleft = () => {
-  const router = useRouter();
-  const { slug } = router.query;
-console.log(slug)
-
-
-
-
-
-  // const tableColumns = ["Title", "Category"];
-  // const [tableData, setTableData] = React.useState([]);
+  const [searchitem,setSearchItem]=useState("")
   const { data:productss, isLoading, isError, refetch } = useQuery({
     queryKey: ["getProductsQuery"],
     queryFn:getAllProducts,
   });
-  console.log(productss)
-  // useEffect(() => {
-  //   if (data) {
-  //     setTableData(
-  //       data?.data?.map((product) => [
-  //         product?.title,
-  //         product?.categories[0]?.title,
-  //       ])
-  //     );
-  //   }
-  // }, [data]);
-
-  // function MyCustomGrid() {
-  //   return (
-  //     <Grid
-  //       sort={true}
-  //       search={true}
-  //       columns={tableColumns}
-  //       data={tableData}
-  //       language={{
-  //         search: {
-  //           placeholder: "🔍 Search...",
-  //         },
-  //       }}
-  //       pagination={{
-  //         enabled: true,
-  //         limit: 7,
-  //       }}
-  //     />
-  //   );
-  // }
-
   if (isLoading) {
     return <div>Loading</div>;
   }
+  const handleSearchChange = (event) => {
+    setSearchItem(event.target.value);
+  };
+  console.log(searchitem)
   return (
-    // <div className="px-5 py-3 bg-white rounded-md xl:px-0 sm:col-span-12 md:col-span-6 lg:col-span-3">
-    //   <div>
-    //     <p className="mt-5 text-base font-semibold text-black ">Product</p>
-    //     <div className="mt-2">
-    //       <MyCustomGrid />
-    //     </div>
-    //   </div>
-    // </div>
-    <div class="box-body">
-    <div class="table-responsive mb-4 overflow-y-auto max-h-[500px] ">
+    <div class="box-body bg-white">
+     <div className="flex justify-between py-3">
+     <h5>Products</h5>
+     <input onChange={handleSearchChange} placeholder="Search" className="rounded-md text-sm" />
+     </div>
+    <div class="table-responsive mb-4 overflow-y-auto max-h-[450px] ">
       <table class="table whitespace-nowrap table-bordered min-w-full">
         <thead>
           <tr>
@@ -88,7 +40,6 @@ console.log(slug)
         </tbody>
       </table>
     </div>
-    {/* <Pagination links={links} /> */}
   </div>
 
   );
