@@ -19,21 +19,42 @@ const CategorySelect = ({ selected, onChange, name = "" }) => {
     >
       <option value="">Choose category</option>
       {data?.data.map((category) => (
-        <option
-          key={category.id}
-          value={category.id}
-          selected={selected === category.id}
-          onChange={(e) =>
-            onChange({
-              target: {
-                name,
-                value: e.target.value,
-              },
-            })
-          }
-        >
-          {category.title}
-        </option>
+        <>
+          <option
+            key={category.id}
+            value={category.id}
+            selected={selected === category.id}
+            onChange={(e) =>
+              onChange({
+                target: {
+                  name,
+                  value: e.target.value,
+                },
+              })
+            }
+          >
+            {category.title}
+          </option>
+          {category.children.length > 0 &&
+            category.children.map((child) => (
+              <option
+                key={child.id}
+                value={child.id}
+                selected={selected === child.id}
+                onChange={(e) =>
+                  onChange({
+                    target: {
+                      name,
+                      value: e.target.value,
+                    },
+                  })
+                }
+              >
+                __
+                {child.title}
+              </option>
+            ))}
+        </>
       ))}
     </select>
   );
