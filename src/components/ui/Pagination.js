@@ -1,9 +1,5 @@
 import Link from "next/link";
-import React, { useState } from "react";
-
-const splitedUrl = (url) => {
-  return url.split("v1")[1];
-};
+import React from "react";
 
 const Pagination = ({ links }) => {
   return (
@@ -13,7 +9,7 @@ const Pagination = ({ links }) => {
           {links?.first && (
             <li className="page-item disabled">
               <Link
-                href={splitedUrl(links?.first)}
+                href={links?.first}
                 className="page-link !py-[0.375rem] !px-[0.75rem]"
               >
                 First Page
@@ -24,7 +20,7 @@ const Pagination = ({ links }) => {
             <li className="page-item active">
               <Link
                 className="page-link !py-[0.375rem] !px-[0.75rem]"
-                href={splitedUrl(links?.prev)}
+                href={links?.prev}
               >
                 Prev
               </Link>
@@ -35,7 +31,7 @@ const Pagination = ({ links }) => {
             <li className="hidden page-item sm:block ">
               <Link
                 className="page-link !py-[0.375rem] !px-[0.75rem]"
-                href={splitedUrl(links?.next)}
+                href="javascript:void(0);"
               >
                 Next
               </Link>
@@ -44,7 +40,7 @@ const Pagination = ({ links }) => {
           {links?.last && (
             <li className="page-item">
               <Link
-                href={splitedUrl(links?.last)}
+                href={links?.last}
                 className="page-link !text-primary !py-[0.375rem] !px-[0.75rem]"
               >
                 Last Page
