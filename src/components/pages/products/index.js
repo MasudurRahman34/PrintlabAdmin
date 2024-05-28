@@ -4,18 +4,24 @@ import { getAllProducts } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
+import logo1 from "../../../../public/assets/img/logo/csv.svg"
+import logo2 from "../../../../public/assets/img/logo/json.svg"
+import logo3 from "../../../../public/assets/img/logo/pdf.svg"
 
 const ProductsComponent = () => {
+  const [searchItem, setSearchItem] = useState('');
   const router = useRouter();
   const { page } = router.query;
 
   const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ["get-all-products", page],
-    queryFn: getAllProducts,
+    queryFn:()=> getAllProducts({page}),
   });
-console.log(data)
-console.log(page)
+  const handleSearchChange = (event) => {
+    setSearchItem(event.target.value);
+  };
+  console.log(searchItem)
   return (
     <div className="main-content">
       {/* <!-- Page Header --> */}
@@ -57,22 +63,32 @@ console.log(page)
           <div className="box">
             <div className="box-header justify-between">
               <div className="flex gap-3 items-center">
-              <p classNameName="box-title">Products List</p>
+              <p classNameName="!text-[20px]">Products List</p>
               <div className="flex" role="search">
-                <input className="form-control !w-auto !rounded-sm me-2" type="search"
+
+                <input onChange={handleSearchChange} className="form-control !w-auto !rounded-sm me-2" type="search" value={searchItem}
                 placeholder="Search" aria-label="Search"/>
                 <button className="ti-btn ti-btn-light !font-medium"
                 type="submit">Search</button>
               </div>
+
               </div>
+
               <div class="ti-btn-list space-x-2 rtl:space-x-reverse">
-    <button className="ti-btn ti-btn-secondary-full ti-btn-wave" type="submit">Button</button>
-    <button className="ti-btn ti-btn-secondary-full ti-btn-wave" type="submit">Button</button>
-    <button className="ti-btn ti-btn-secondary-full ti-btn-wave" type="submit">Button</button>
-    <button className="ti-btn ti-btn-secondary-full ti-btn-wave" type="submit">Button</button>
-    <button className="ti-btn ti-btn-secondary-full ti-btn-wave" type="submit">Button</button>
-  
-</div>
+        <button type="button" class="ti-btn ti-btn-primary-full label-ti-btn">
+            <i className=" label-ti-btn-icon  me-2"><img src={logo1}/></i>
+            Cvs
+        </button>
+        <button type="button" class="ti-btn ti-btn-secondary-full label-ti-btn">
+        <i className=" label-ti-btn-icon  me-2"><img src={logo2}/></i>
+            Json
+        </button>
+        <button type="button" class="ti-btn ti-btn-warning-full label-ti-btn ">
+        <i className=" label-ti-btn-icon  me-2"><img src={logo3}/></i>
+            Pdf
+        </button>
+    </div>
+
             </div>
             {isLoading ? (
               <div>Loading...</div>
