@@ -48,7 +48,7 @@ export default function ProductData({
         </div> */}
       </div>
       <div className="grid grid-cols-12 gap-5">
-        <div className="col-span-2 py-3">
+        <div className=" py-3 xxl:col-span-2 xl:col-span-6 col-span-12">
           <ul className="flex flex-col gap-2">
             {tabList.map((tab) => (
               <li
@@ -63,7 +63,7 @@ export default function ProductData({
             ))}
           </ul>
         </div>
-        <div className="col-span-10">
+        <div className=" xxl:col-span-10 xl:col-span-6  col-span-12">
           {active === "Artwork" && (
             <ArtworkComponent
               data={data}

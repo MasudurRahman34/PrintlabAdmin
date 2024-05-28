@@ -27,7 +27,7 @@ const AddProductleft = () => {
     <div class="box-body bg-white">
      <div className="flex justify-between py-3">
      <h5>Products</h5>
-     <input onChange={handleSearchChange} placeholder="Search" className="rounded-md text-sm" />
+     <input onChange={handleSearchChange} placeholder="Search" className="rounded-md text-sm w-[90%] ml-4 " />
      </div>
     <div class="table-responsive mb-4 overflow-y-auto max-h-[450px] ">
       <table class="table whitespace-nowrap table-bordered min-w-full">

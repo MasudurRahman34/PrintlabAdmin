@@ -8,8 +8,8 @@ const Attribute = () => {
   });
 
   return (
-    <div>
-      <div className="py-2">
+    <div className="grid grid-cols-12">
+      <div className="py-2 xxl:col-span-4 xl:col-span-4  col-span-12">
         <Switcher
           isChecked={state.is_attribute}
           setIsChecked={() => {
@@ -34,7 +34,9 @@ const Attribute = () => {
           lable="Is Attribute"
         />
       </div>
+      <div className="xxl:col-span-4 xl:col-span-4  col-span-12">
       {state.is_attribute && <ManageAttribute setState={setState} />}
+      </div>
     </div>
   );
 };
