@@ -1,3 +1,4 @@
+import ConfigureTable from "../ProductSetting/ConfigureTable";
 import AccordionsCard from "./AccordionsCard";
 import AddProductmiddle from "./AddProductmiddle";
 import AddProductleft from "@/components/AddProductleft";
@@ -39,7 +40,16 @@ console.log(data?.data)
         />
       </div>
       <div className="col-span-12 bg-white px-5 rounded-md border border-[#333335]">
-        <ProductData />
+        <ProductData
+          data={data?.data}
+          isLoading={isLoading}
+          error={error}
+          isError={isError}
+          refetch={refetch}
+        />
+      </div>
+      <div className="col-span-12 bg-white px-5 rounded-md border border-[#333335]">
+        <ConfigureTable />
       </div>
     </div>
   );

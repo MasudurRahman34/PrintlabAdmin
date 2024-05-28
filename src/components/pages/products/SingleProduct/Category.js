@@ -23,22 +23,6 @@ const CategoryComponent = ({ categorytogle }) => {
     }
   }, [data]);
 
-  const handleParentChange = (slug) => {
-    setCheckedItems(prev => ({
-      ...prev,
-      [slug]: !prev[slug],
-    }));
-  };
-
-  const handleChildChange = (parentSlug, childSlug) => {
-    setCheckedItems(prev => {
-      const newChecked = { ...prev, [childSlug]: !prev[childSlug] };
-      const parentChecked = newChecked[childSlug] || data.data.find(item => item.slug === parentSlug).children.some(child => newChecked[child.slug]);
-      newChecked[parentSlug] = parentChecked;
-      return newChecked;
-    });
-  };
-
   if (isLoading) {
     return <div>Loading</div>;
   }

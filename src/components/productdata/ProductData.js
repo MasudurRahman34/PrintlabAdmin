@@ -1,5 +1,6 @@
+import ArtworkComponent from "../pages/products/ProductSetting/Artwork";
 import Attribute from "../pages/products/ProductSetting/Attribute";
-import General from "../pages/products/ProductSetting/General";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 const tabList = [
@@ -22,7 +23,15 @@ const tabList = [
   },
 ];
 
-export default function ProductData() {
+export default function ProductData({
+  data,
+  isLoading,
+  isError,
+  error,
+  refetch,
+}) {
+  const router = useRouter();
+  const { slug } = router.query;
   const [active, setActive] = useState("Attribute");
 
   return (
@@ -56,8 +65,25 @@ export default function ProductData() {
           </ul>
         </div>
         <div className="col-span-10">
-          {active === "specification" && <General />}
-          {active === "attribute" && <Attribute />}
+          {active === "Artwork" && (
+            <ArtworkComponent
+              data={data}
+              isLoading={isLoading}
+              error={error}
+              isError={isError}
+              refetch={refetch}
+            />
+          )}
+          {active === "Attribute" && (
+            <Attribute
+              product_id={slug}
+              product_data={data}
+              product_isLoading={isLoading}
+              product_error={error}
+              product_isError={isError}
+              product_refetch={refetch}
+            />
+          )}
         </div>
       </div>
     </div>

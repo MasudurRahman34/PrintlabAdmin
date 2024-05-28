@@ -2,7 +2,13 @@ import CreateOption from "./options/CreateAttributeOption";
 import OptionCardItem from "./options/OptionCardItem";
 import React from "react";
 
-const OptionCard = ({ option, toggleAccordion, refetch }) => {
+const OptionCard = ({
+  option,
+  checkedAttribute,
+  toggleAccordion,
+  refetch,
+  handleOptionCheck,
+}) => {
   return (
     <>
       <div
@@ -61,7 +67,12 @@ const OptionCard = ({ option, toggleAccordion, refetch }) => {
             <div>
               <div className="grid w-full grid-cols-12 gap-4">
                 {option?.options?.map((item, index) => (
-                  <OptionCardItem item={item} key={index} />
+                  <OptionCardItem
+                    item={item}
+                    key={index}
+                    handleOptionCheck={handleOptionCheck}
+                    checkedAttribute={checkedAttribute}
+                  />
                 ))}
               </div>
               <CreateOption option={option} refetch={refetch} />
