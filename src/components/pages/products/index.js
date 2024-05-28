@@ -5,9 +5,10 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import logo1 from "../../../../public/assets/img/logo/csv.svg"
-import logo2 from "../../../../public/assets/img/logo/json.svg"
-import logo3 from "../../../../public/assets/img/logo/pdf.svg"
+import { BsFiletypeCsv } from "react-icons/bs";
+import { LuFileJson } from "react-icons/lu";
+import { FaRegFilePdf } from "react-icons/fa";
+
 
 const ProductsComponent = () => {
   const [searchItem, setSearchItem] = useState('');
@@ -76,15 +77,15 @@ const ProductsComponent = () => {
 
               <div class="ti-btn-list space-x-2 rtl:space-x-reverse">
         <button type="button" class="ti-btn ti-btn-primary-full label-ti-btn">
-            <i className=" label-ti-btn-icon  me-2"><img src={logo1}/></i>
+            <i className=" label-ti-btn-icon  me-2"><BsFiletypeCsv /></i>
             Cvs
         </button>
         <button type="button" class="ti-btn ti-btn-secondary-full label-ti-btn">
-        <i className=" label-ti-btn-icon  me-2"><img src={logo2}/></i>
+        <i className=" label-ti-btn-icon  me-2"><LuFileJson /></i>
             Json
         </button>
         <button type="button" class="ti-btn ti-btn-warning-full label-ti-btn ">
-        <i className=" label-ti-btn-icon  me-2"><img src={logo3}/></i>
+        <i className=" label-ti-btn-icon  me-2"><FaRegFilePdf /></i>
             Pdf
         </button>
     </div>
