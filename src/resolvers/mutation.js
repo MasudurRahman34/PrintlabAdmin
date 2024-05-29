@@ -88,3 +88,6 @@ export const updateSpecificationMutation = async ({
   axios
     .put(`${backendUrl}/product/specification/${specification_id}`, variables)
     .then((res) => res.data);
+
+export const saveProductCategoryMutation = async ({ variables, product_id }) =>
+  axios.post(`${backendUrl}/product/${product_id}/categories`, variables);

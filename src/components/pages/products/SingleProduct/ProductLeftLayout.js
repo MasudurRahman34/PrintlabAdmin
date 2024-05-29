@@ -53,7 +53,7 @@ const ProductLeftLayout = ({ children, title = "" }) => {
         } `}
         aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one"
       >
-        {children}
+        {active && children}
       </div>
     </div>
   );

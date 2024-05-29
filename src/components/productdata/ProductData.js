@@ -39,17 +39,9 @@ export default function ProductData({
     <div>
       <div className="flex items-center py-5 border-b border-[#333335]">
         <p className="text-base font-medium text-black">Product data</p>
-        {/* <div>
-          <select class="ti-form-select rounded-sm !py-2 !px-3 w-[40%] ml-[50px]">
-            <option selected>Simple Product</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
-        </div> */}
       </div>
       <div className="grid grid-cols-12 gap-5">
-        <div className=" py-3 xxl:col-span-2 xl:col-span-6 col-span-12">
+        <div className="col-span-12 py-3  xxl:col-span-2 xl:col-span-6">
           <ul className="flex flex-col gap-2">
             {tabList.map((tab) => (
               <li
@@ -64,7 +56,7 @@ export default function ProductData({
             ))}
           </ul>
         </div>
-        <div className=" xxl:col-span-10 xl:col-span-6  col-span-12">
+        <div className="col-span-12  xxl:col-span-10 xl:col-span-6">
           {active === "Artwork" && (
             <ArtworkComponent
               data={data}

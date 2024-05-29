@@ -14,7 +14,11 @@ const AccordionsCard = ({ data, isLoading, isError, refetch }) => {
             id="hs-basic-with-title-and-arrow-stretched-heading-one"
           >
             <ProductLeftLayout title="Category">
-              <Category />
+              <Category
+                product_data={data}
+                product_loading={isLoading}
+                product_refetch={refetch}
+              />
             </ProductLeftLayout>
 
             <ProductLeftLayout title="Product Profile Image">
