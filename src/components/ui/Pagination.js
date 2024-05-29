@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 const splitedUrl = (url) => {
@@ -6,6 +7,8 @@ const splitedUrl = (url) => {
 };
 
 const Pagination = ({ links }) => {
+  const router = useRouter();
+  console.log(router.asPath);
   return (
     <div className="flex-wrap items-center justify-end sm:flex">
       <nav aria-label="Page navigation">

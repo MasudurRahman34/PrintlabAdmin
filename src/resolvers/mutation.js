@@ -75,3 +75,16 @@ export const updateCombinationMutation = async ({
   axios
     .put(`${backendUrl}/combinations/${combination_id}`, variables)
     .then((res) => res.data);
+
+export const createSpecificationMutation = async ({ variables }) =>
+  axios
+    .post(`${backendUrl}/product/specification`, variables)
+    .then((res) => res.data);
+
+export const updateSpecificationMutation = async ({
+  variables,
+  specification_id,
+}) =>
+  axios
+    .put(`${backendUrl}/product/specification/${specification_id}`, variables)
+    .then((res) => res.data);
