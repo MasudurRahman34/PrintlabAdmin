@@ -21,7 +21,7 @@ const Specification = ({
 }) => {
   const [state, setState] = React.useState({
     details: "",
-    technial_specification_imageUrl: "",
+    technical_specification_imageUrl: "",
     details_imageUrl: "",
     technical_specification: "",
   });
@@ -45,11 +45,6 @@ const Specification = ({
   });
 
   const handleCreate = () => {
-    /* const variables = {
-      product_id,
-      visibility: 1,
-    }; */
-
     const variables = {
       product_id,
       visibility: 1,
@@ -68,9 +63,9 @@ const Specification = ({
       variables.technical_specification = state.technical_specification;
     }
 
-    if (state.technial_specification_imageUrl) {
-      variables.technial_specification_imageUrl =
-        state.technial_specification_imageUrl;
+    if (state.technical_specification_imageUrl) {
+      variables.technical_specification_imageUrl =
+        state.technical_specification_imageUrl;
     }
 
     mutate(
@@ -113,9 +108,9 @@ const Specification = ({
       variables.technical_specification = state.technical_specification;
     }
 
-    if (state.technial_specification_imageUrl) {
-      variables.technial_specification_imageUrl =
-        state.technial_specification_imageUrl;
+    if (state.technical_specification_imageUrl) {
+      variables.technical_specification_imageUrl =
+        state.technical_specification_imageUrl;
     }
 
     updateMutate(
@@ -143,7 +138,7 @@ const Specification = ({
         details_imageUrl: product_data.specification.details_imageUrl,
         technical_specification:
           product_data.specification.technical_specification,
-        technial_specification_imageUrl:
+        technical_specification_imageUrl:
           product_data.specification.technical_specification_imageUrl,
       }));
     }
@@ -204,8 +199,8 @@ const Specification = ({
           <input
             type="text"
             className="block w-full rounded-md"
-            name="technial_specification_imageUrl"
-            value={state.technial_specification_imageUrl}
+            name="technical_specification_imageUrl"
+            value={state.technical_specification_imageUrl}
             onChange={handleChange}
           />
         </div>
