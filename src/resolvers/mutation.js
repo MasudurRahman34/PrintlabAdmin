@@ -91,3 +91,8 @@ export const updateSpecificationMutation = async ({
 
 export const saveProductCategoryMutation = async ({ variables, product_id }) =>
   axios.post(`${backendUrl}/product/${product_id}/categories`, variables);
+
+export const deleteMediaAttachmentMutation = async ({ attachmentId }) =>
+  axios
+    .delete(`${backendUrl}/attachment/${attachmentId}`)
+    .then((res) => res.data);

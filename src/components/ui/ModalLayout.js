@@ -7,6 +7,7 @@ const ModalLayout = ({
   isPending,
   handleMutate,
   title = "",
+  buttonText = "Save",
 }) => {
   return (
     <div

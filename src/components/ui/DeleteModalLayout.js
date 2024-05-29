@@ -1,20 +1,29 @@
 import React from "react";
 
-const DeleteModal = ({ show, hideModal, title, handleDelete, isPending }) => {
+const DeleteModal = ({
+  show,
+  hideModal,
+  isPending,
+  handleMutate,
+  title = "",
+}) => {
   return (
     <div
       id="hs-vertically-centered-modal"
-      className={` hs-overlay ti-modal bg-black/40 ${show ? "open" : "hidden"}`}
-      onClick={hideModal}
+      className={` hs-overlay bg-black/40 ti-modal ${
+        show ? "open" : "hidden"
+      } `}
     >
-      <div
-        className="hs-overlay-open:mt-7 ti-modal-box mt-0 ease-out min-h-[calc(100%-3.5rem)] flex items-center "
-        style={{ color: "black" }}
-      >
-        <div className="ti-modal-content">
+      <div className="hs-overlay-open:mt-7 ti-modal-box mt-0 ease-out min-h-[calc(100%-3.5rem)] flex items-center justify-center">
+        <div
+          className="ti-modal-content"
+          style={{
+            color: "black",
+          }}
+        >
           <div className="ti-modal-header">
-            <h6 className="modal-title" id="staticBackdropLabel2">
-              {title || "Delete Modal"}
+            <h6 className=" modal-title" id="staticBackdropLabel2">
+              {title}
             </h6>
             <button
               type="button"
@@ -38,11 +47,9 @@ const DeleteModal = ({ show, hideModal, title, handleDelete, isPending }) => {
               </svg>
             </button>
           </div>
-          <div className="ti-modal-body">
-            <p>
-              Are you sure you want to delete this item? You cannot undo this
-              action.
-            </p>
+          <div className="text-black ti-modal-body">
+            Are you sure you want to delete this item? You cannot undo this
+            action.
           </div>
           <div className="ti-modal-footer">
             <button
@@ -54,9 +61,9 @@ const DeleteModal = ({ show, hideModal, title, handleDelete, isPending }) => {
               Close
             </button>
             <button
-              className="ti-btn ti-btn-danger-full"
+              className="ti-btn ti-btn-primary-full"
               href="javascript:void(0);"
-              onClick={handleDelete}
+              onClick={handleMutate}
               disabled={isPending}
             >
               {isPending ? "Deleting..." : "Delete"}

@@ -1,6 +1,7 @@
 import { attachMediaMutation } from "@/resolvers/mutation";
 import { getAllMedia } from "@/resolvers/query";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import Image from "next/image";
 import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import Modal from "react-modal";
@@ -15,9 +16,7 @@ const MediaAttach = ({
   modalIsOpen,
   closeModal,
 }) => {
-  const [ids, setIds] = React.useState(() => {
-    return selectedMedia;
-  });
+  const [ids, setIds] = React.useState([]);
 
   const { mutate, isPending } = useMutation({
     mutationKey: "attach-media",
@@ -106,6 +105,12 @@ const MediaAttach = ({
     );
   };
 
+  useEffect(() => {
+    if (selectedMedia.length > 0) {
+      setIds(selectedMedia);
+    }
+  }, [selectedMedia]);
+
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -176,15 +181,17 @@ const MediaAttach = ({
               {data?.data.map((media) => (
                 <button
                   key={media.id}
-                  className={`col-span-1 p-2 border  bg-gray-100 rounded-md min-w-[150px] h-auto max-w-[200px] ${
+                  className={`col-span-1 p-2 flex items-center justify-center border  bg-gray-100 rounded-md min-w-[150px] h-auto max-w-[200px] ${
                     ids.includes(media.id) && "border-primary"
                   }`}
                   onClick={() => handleMediaSelect({ media_id: media.id })}
                 >
-                  <img
+                  <Image
                     src={media.url}
                     alt={media.name}
-                    className="object-cover w-full h-32"
+                    className="object-cover w-32 h-32"
+                    width={200}
+                    height={200}
                   />
                 </button>
               ))}

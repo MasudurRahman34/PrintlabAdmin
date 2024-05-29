@@ -8,7 +8,7 @@ const splitedUrl = (url) => {
 
 const Pagination = ({ links }) => {
   const router = useRouter();
-  console.log(router.asPath);
+
   return (
     <div className="flex-wrap items-center justify-end sm:flex">
       <nav aria-label="Page navigation w-full">
