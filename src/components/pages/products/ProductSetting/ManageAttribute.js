@@ -57,6 +57,7 @@ const ManageAttribute = ({ product_data, product_refetch }) => {
           id: attribute.id,
           title: attribute.title,
           options: attribute.options,
+          type: attribute.type,
           active: true,
         });
       });
@@ -253,6 +254,7 @@ const ManageAttribute = ({ product_data, product_refetch }) => {
                   <AttributeList
                     title={attribute.title}
                     value={attribute.id}
+                    type={attribute.type}
                     attribute_refetch={refetch}
                     product_refetch={product_refetch}
                     checked={

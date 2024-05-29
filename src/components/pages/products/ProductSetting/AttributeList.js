@@ -8,6 +8,7 @@ const AttributeList = ({
   handleCheck,
   attribute_refetch,
   product_refetch,
+  type,
 }) => {
   return (
     <div className="flex items-center justify-between w-full mt-2">
@@ -17,6 +18,7 @@ const AttributeList = ({
           attribute_id={value}
           attribute_refetch={attribute_refetch}
           product_refetch={product_refetch}
+          attribute={{ title, type }}
         />
       </label>
       <input

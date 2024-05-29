@@ -1,4 +1,5 @@
 import DeleteModal from "@/components/ui/DeleteModal";
+import Modal from "@/components/ui/Modal";
 import { deleteAttributeMutation } from "@/resolvers/mutation";
 import {
   Menu,
@@ -9,15 +10,17 @@ import {
 } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { useMutation } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 
 const AttributeManage = ({
   attribute_id,
   product_refetch,
   attribute_refetch,
+  attribute = {},
 }) => {
   const [show, setShow] = React.useState(false);
+  const [editShow, setEditShow] = useState(false);
   const { mutate, isPending } = useMutation({
     mutationKey: "delete attribute option",
     mutationFn: deleteAttributeMutation,
@@ -47,6 +50,15 @@ const AttributeManage = ({
 
   return (
     <>
+      <Modal
+        show={editShow}
+        hideModal={() => {
+          setEditShow(false);
+        }}
+        refetch={attribute_refetch}
+        attribute={attribute}
+        attribute_id={attribute_id}
+      />
       <DeleteModal
         handleDelete={handleDelete}
         isPending={isPending}
@@ -99,7 +111,7 @@ const AttributeManage = ({
               <button
                 className="group hover:bg-gray-100 flex w-full items-center gap-2 rounded-lg py-1.5 px-3 "
                 onClick={() => {
-                  setShow(true);
+                  setEditShow(true);
                 }}
               >
                 <svg

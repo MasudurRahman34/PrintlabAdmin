@@ -1,6 +1,9 @@
-import { addAttributeMutation } from "@/resolvers/mutation";
+import {
+  addAttributeMutation,
+  updateAttributeMutation,
+} from "@/resolvers/mutation";
 import { useMutation } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const typeList = [
@@ -66,7 +69,7 @@ const typeList = [
   },
 ];
 
-const Modal = ({ show, hideModal, refetch }) => {
+const Modal = ({ show, hideModal, refetch, attribute, attribute_id }) => {
   const [form_state, set_form_state] = useState({
     title: "",
     type: 1,
@@ -76,6 +79,11 @@ const Modal = ({ show, hideModal, refetch }) => {
     mutationFn: addAttributeMutation,
   });
 
+  const { mutate: updateAttribute, isPending: updatePending } = useMutation({
+    mutationKey: "updateAttribute",
+    mutationFn: updateAttributeMutation,
+  });
+
   const handleChange = (e) => {
     set_form_state({
       ...form_state,
@@ -83,7 +91,7 @@ const Modal = ({ show, hideModal, refetch }) => {
     });
   };
 
-  const handleMutate = () => {
+  const handleCreate = () => {
     const variables = {};
     if (!form_state.title || form_state.title === "")
       toast.error("Title is required");
@@ -114,6 +122,51 @@ const Modal = ({ show, hideModal, refetch }) => {
       }
     );
   };
+
+  const handleUpdate = () => {
+    const variables = {};
+    if (!form_state.title || form_state.title === "")
+      toast.error("Title is required");
+    if (!form_state.type || form_state.type < 0 || form_state.type > 15)
+      toast.error("Type is required");
+
+    variables.title = form_state.title;
+    variables.type = form_state.type;
+
+    updateAttribute(
+      {
+        attribute_id,
+        variables,
+      },
+      {
+        onSuccess: () => {
+          refetch();
+          hideModal();
+          toast.success("Attribute updated Successfully");
+        },
+        onError: () => {
+          toast.error("Failed to edit attribute");
+        },
+      }
+    );
+  };
+
+  const handleSubmit = () => {
+    if (attribute_id) {
+      handleUpdate();
+    } else {
+      handleCreate();
+    }
+  };
+
+  useEffect(() => {
+    if (attribute_id) {
+      set_form_state({
+        title: attribute.title,
+        type: attribute.type.value,
+      });
+    }
+  }, [attribute_id]);
 
   return (
     <div
@@ -151,11 +204,11 @@ const Modal = ({ show, hideModal, refetch }) => {
           <div className="ti-modal-body">
             <form action="">
               <div>
-                <div class="xl:col-span-4 lg:col-span-6 md:col-span-6 sm:col-span-12 col-span-12">
-                  <p class="mb-2 text-muted">Title</p>
+                <div className="col-span-12 xl:col-span-4 lg:col-span-6 md:col-span-6 sm:col-span-12">
+                  <p className="mb-2 text-muted">Title</p>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="input"
                     name="title"
                     value={form_state.title}
@@ -164,9 +217,15 @@ const Modal = ({ show, hideModal, refetch }) => {
                 </div>
               </div>
               <div className="mt-3">
-                <div class="xl:col-span-4 lg:col-span-6 md:col-span-6 sm:col-span-12 col-span-12">
-                  <p class="mb-2 text-muted">Type</p>
-                  <select class="form-select" id="select">
+                <div className="col-span-12 xl:col-span-4 lg:col-span-6 md:col-span-6 sm:col-span-12">
+                  <p className="mb-2 text-muted">Type</p>
+                  <select
+                    className="form-select"
+                    id="select"
+                    onChange={handleChange}
+                    name="type"
+                    value={form_state.type}
+                  >
                     {typeList.map((type) => (
                       <option key={type.id} value={type.id}>
                         {type.name}
@@ -189,10 +248,10 @@ const Modal = ({ show, hideModal, refetch }) => {
             <button
               className="ti-btn ti-btn-primary-full"
               href="javascript:void(0);"
-              onClick={handleMutate}
-              disabled={isPending}
+              onClick={handleSubmit}
+              disabled={isPending || updatePending}
             >
-              {isPending ? "Saving..." : "Save"}
+              {isPending || updatePending ? "Saving..." : "Save"}
             </button>
           </div>
         </div>

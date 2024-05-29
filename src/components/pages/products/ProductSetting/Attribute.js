@@ -18,7 +18,6 @@ const Attribute = ({ product_data, product_refetch }) => {
                 variables: {
                   is_attribute: state.is_attribute ? 0 : 1,
                 },
-                product_id,
               },
               {
                 onSuccess: () => {

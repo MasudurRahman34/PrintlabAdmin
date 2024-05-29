@@ -105,3 +105,8 @@ export const deleteAttributeMutation = async ({ attribute_id }) =>
   axios
     .delete(`${backendUrl}/attributes/${attribute_id}`)
     .then((res) => res.data);
+
+export const updateAttributeMutation = async ({ attribute_id, variables }) =>
+  axios
+    .put(`${backendUrl}/attributes/${attribute_id}`, variables)
+    .then((res) => res.data);
