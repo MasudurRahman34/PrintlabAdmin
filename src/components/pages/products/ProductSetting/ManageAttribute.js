@@ -52,10 +52,10 @@ const ManageAttribute = ({ product_data, product_refetch }) => {
     if (data) {
       const temp = [];
       data.data.forEach((attribute) => {
+        console.log(checkedAttributes);
         temp.push({
           id: attribute.id,
           title: attribute.title,
-          checked: true,
           options: attribute.options,
           active: true,
         });
@@ -64,9 +64,13 @@ const ManageAttribute = ({ product_data, product_refetch }) => {
       //   is_attribute: product_data.is_attribute.value === 1,
       // });
       setCheckList(temp);
+
+      if (checkedAttributes.length > 0) {
+        setCheckedAttributes((prev) => [...prev]);
+      }
     }
 
-    if (productAttributeData) {
+    if (productAttributeData?.data.length > 0) {
       const temp = [];
       productAttributeData?.data.forEach((attribute) => {
         // if attribute id is same as the attribute id from the data then push the option id to the temp array else push the attribute id to the temp array with attribute options id as the options
