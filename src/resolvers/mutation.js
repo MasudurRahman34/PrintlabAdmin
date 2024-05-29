@@ -96,3 +96,7 @@ export const deleteMediaAttachmentMutation = async ({ attachmentId }) =>
   axios
     .delete(`${backendUrl}/attachment/${attachmentId}`)
     .then((res) => res.data);
+export const deleteAttributeOptionMutation = async ({ attribute_option_id }) =>
+  axios
+    .delete(`${backendUrl}/attribute-options/${attribute_option_id}`)
+    .then((res) => res.data);

@@ -33,7 +33,7 @@ export default function ProductData({
 }) {
   const router = useRouter();
   const { slug } = router.query;
-  const [active, setActive] = useState("Specification");
+  const [active, setActive] = useState("Attribute");
 
   return (
     <div>
@@ -41,7 +41,7 @@ export default function ProductData({
         <p className="text-base font-medium text-black">Product data</p>
       </div>
       <div className="grid grid-cols-12 gap-5">
-        <div className="col-span-12 py-3  xxl:col-span-2 xl:col-span-6">
+        <div className="col-span-12 py-3 xxl:col-span-2 xl:col-span-6">
           <ul className="flex flex-col gap-2">
             {tabList.map((tab) => (
               <li
@@ -56,7 +56,7 @@ export default function ProductData({
             ))}
           </ul>
         </div>
-        <div className="col-span-12  xxl:col-span-10 xl:col-span-6">
+        <div className="col-span-12 xxl:col-span-10 xl:col-span-6">
           {active === "Artwork" && (
             <ArtworkComponent
               data={data}

@@ -1,8 +1,13 @@
+import AttributeOptionManage from "./AttributeOptionManage";
 import React, { useState } from "react";
 
-const OptionCardItem = ({ item, handleOptionCheck, checkedAttribute }) => {
-  const [activeDropdown, setActiveDropdown] = React.useState(false);
-
+const OptionCardItem = ({
+  item,
+  handleOptionCheck,
+  checkedAttribute,
+  product_refetch,
+  attribute_refetch,
+}) => {
   return (
     <div className="flex items-center justify-between col-span-12 py-3 border-b border-gray-200 lg:col-span-6">
       <div className="flex w-full gap-3">
@@ -34,46 +39,13 @@ const OptionCardItem = ({ item, handleOptionCheck, checkedAttribute }) => {
           />
 
           <div className="flex items-center gap-3">
-            <p className="text-sm font-semibold">{item.title}</p>
+            <p className="text-sm font-semibold text-black">{item.title}</p>
             <div className="ti-btn-group !m-0">
-              <div
-                className={`hs-dropdown ti-dropdown relative z-50 ${
-                  activeDropdown && "open"
-                } `}
-              >
-                <button
-                  className=""
-                  onClick={() => {
-                    setActiveDropdown(!activeDropdown);
-                  }}
-                >
-                  <i class="ri-arrow-down-s-line align-middle inline-block"></i>
-                </button>
-
-                <ul
-                  className={` hs-dropdown-menu ti-dropdown-menu ${
-                    activeDropdown ? "block" : "hidden"
-                  }`}
-                  aria-labelledby="dropdownMenuButton1"
-                  style={
-                    activeDropdown
-                      ? {
-                          position: "absolute",
-                          margin: "0px",
-                          top: "100%",
-                          right: "0",
-                        }
-                      : { display: "none" }
-                  }
-                >
-                  <li>
-                    <button className="ti-dropdown-item">Action</button>
-                  </li>
-                  <li>
-                    <button className="ti-dropdown-item">Another action</button>
-                  </li>
-                </ul>
-              </div>
+              <AttributeOptionManage
+                attribute_option_id={item.id}
+                product_refetch={product_refetch}
+                attribute_refetch={attribute_refetch}
+              />
             </div>
           </div>
         </div>

@@ -6,8 +6,10 @@ const OptionCard = ({
   option,
   checkedAttribute,
   toggleAccordion,
-  refetch,
+
+  product_refetch,
   handleOptionCheck,
+  attribute_refetch,
 }) => {
   return (
     <>
@@ -72,10 +74,16 @@ const OptionCard = ({
                     key={index}
                     handleOptionCheck={handleOptionCheck}
                     checkedAttribute={checkedAttribute}
+                    product_refetch={product_refetch}
+                    attribute_refetch={attribute_refetch}
                   />
                 ))}
               </div>
-              <CreateOption option={option} refetch={refetch} />
+              <CreateOption
+                option={option}
+                refetch={attribute_refetch}
+                product_refetch={product_refetch}
+              />
             </div>
           </div>
         </div>

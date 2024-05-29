@@ -1,5 +1,4 @@
 import AttributeList from "./AttributeList";
-import ConfigureTable from "./ConfigureTable";
 import OptionAccordions from "./OptionAccordions";
 import Modal from "@/components/ui/Modal";
 import {
@@ -15,7 +14,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-const ManageAttribute = (product_data) => {
+const ManageAttribute = ({ product_data, product_refetch }) => {
   const router = useRouter();
   const { slug } = router.query;
   const [checkList, setCheckList] = React.useState([]);
@@ -44,7 +43,7 @@ const ManageAttribute = (product_data) => {
   // mutate for saving attribute option
 
   const { mutate, isPending } = useMutation({
-    mutationKey: "save attribute",
+    mutationKey: ["save attribute"],
     mutationFn: saveAttributeMutation,
   });
 
@@ -212,7 +211,7 @@ const ManageAttribute = (product_data) => {
     <>
       <Modal show={show} hideModal={hideModal} refetch={refetch} />
       <div className="flex items-start justify-between gap-3">
-        <div className="flex-1 box">
+        <div className="w-full box max-w-64">
           <div className="justify-between box-header">
             <div className="box-title">Profit Earned</div>
             <div className="hs-dropdown ti-dropdown">
@@ -266,6 +265,8 @@ const ManageAttribute = (product_data) => {
         <OptionAccordions
           handleOptionCheck={handleOptionCheck}
           refetch={refetch}
+          product_refetch={product_refetch}
+          attribute_refetch={refetch}
           options={[...checkList]}
           checkedAttributes={checkedAttributes}
           toggleAccordion={toggleAccordion}

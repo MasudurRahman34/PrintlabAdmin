@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
 
-const CreateOption = ({ option, refetch }) => {
+const CreateOption = ({ option, refetch, product_refetch }) => {
   const [show, setShow] = React.useState(false);
 
   const [form_state, setFormState] = React.useState({
@@ -44,6 +44,7 @@ const CreateOption = ({ option, refetch }) => {
           console.log(data);
           toast.success("Option added successfully");
           hideModal();
+          product_refetch();
           refetch();
         },
         onError: (error) => {

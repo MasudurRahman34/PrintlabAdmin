@@ -5,8 +5,10 @@ const OptionAccordions = ({
   options = [],
   toggleAccordion,
   checkedAttributes,
-  refetch,
+
+  product_refetch,
   handleOptionCheck,
+  attribute_refetch,
 }) => {
   return (
     <div
@@ -23,11 +25,12 @@ const OptionAccordions = ({
             <OptionCard
               key={accordion.id}
               option={accordion}
+              attribute_refetch={attribute_refetch}
               checkedAttribute={checkedAttributes.find(
                 (item) => item.id === accordion.id
               )}
               toggleAccordion={toggleAccordion}
-              refetch={refetch}
+              product_refetch={product_refetch}
               handleOptionCheck={handleOptionCheck}
             />
           ))}

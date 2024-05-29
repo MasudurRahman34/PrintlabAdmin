@@ -2,14 +2,14 @@ import ManageAttribute from "./ManageAttribute";
 import Switcher from "@/components/ui/Switcher";
 import React, { useEffect, useState } from "react";
 
-const Attribute = () => {
+const Attribute = ({ product_data, product_refetch }) => {
   const [state, setState] = useState({
     is_attribute: true,
   });
 
   return (
     <div className="grid grid-cols-12">
-      <div className="py-2 xxl:col-span-4 xl:col-span-4  col-span-12">
+      <div className="col-span-12 ">
         <Switcher
           isChecked={state.is_attribute}
           setIsChecked={() => {
@@ -34,8 +34,14 @@ const Attribute = () => {
           lable="Is Attribute"
         />
       </div>
-      <div className="xxl:col-span-4 xl:col-span-4  col-span-12">
-      {state.is_attribute && <ManageAttribute setState={setState} />}
+      <div className="col-span-12">
+        {state.is_attribute && (
+          <ManageAttribute
+            setState={setState}
+            product_data={product_data}
+            product_refetch={product_refetch}
+          />
+        )}
       </div>
     </div>
   );
