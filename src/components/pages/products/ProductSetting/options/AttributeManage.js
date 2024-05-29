@@ -1,5 +1,5 @@
 import DeleteModal from "@/components/ui/DeleteModal";
-import { deleteAttributeOptionMutation } from "@/resolvers/mutation";
+import { deleteAttributeMutation } from "@/resolvers/mutation";
 import {
   Menu,
   MenuButton,
@@ -12,30 +12,30 @@ import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
 
-const AttributeOptionManage = ({
-  attribute_option_id,
+const AttributeManage = ({
+  attribute_id,
   product_refetch,
   attribute_refetch,
 }) => {
   const [show, setShow] = React.useState(false);
   const { mutate, isPending } = useMutation({
     mutationKey: "delete attribute option",
-    mutationFn: deleteAttributeOptionMutation,
+    mutationFn: deleteAttributeMutation,
   });
 
   const handleDelete = () => {
     mutate(
       {
-        attribute_option_id,
+        attribute_id,
       },
       {
         onSuccess: () => {
           product_refetch();
           attribute_refetch();
-          toast.success("Attribute option deleted successfully");
+          toast.success("Attribute  deleted successfully");
         },
         onError: (error) => {
-          toast.error("Failed to delete attribute option");
+          toast.error("Failed to delete attribute ");
         },
       }
     );
@@ -56,7 +56,7 @@ const AttributeOptionManage = ({
       />
       <Menu>
         <MenuButton>
-          <ChevronDownIcon className="size-4" />
+          <ChevronDownIcon className="ml-2 size-4" />
         </MenuButton>
         <Transition
           enter="transition ease-out duration-75"
@@ -67,8 +67,8 @@ const AttributeOptionManage = ({
           leaveTo="opacity-0 scale-95"
         >
           <MenuItems
-            anchor="bottom end"
-            className="w-32 origin-top-right rounded-xl border border-white/5 bg-white text-gray-950 p-1 text-sm/6  [--anchor-gap:var(--spacing-1)] focus:outline-none"
+            anchor="right start"
+            className="w-32 origin-top-right rounded-xl border border-white/5 bg-gray-200 text-gray-950 p-1 text-sm/6  [--anchor-gap:var(--spacing-1)] focus:outline-none"
           >
             <MenuItem>
               <button
@@ -113,7 +113,7 @@ const AttributeOptionManage = ({
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    d="M12 4.5v15m7.5-7.5h-15"
+                    d="M5 13l4 4L19 7"
                   />
                 </svg>
                 Edit
@@ -126,4 +126,4 @@ const AttributeOptionManage = ({
   );
 };
 
-export default AttributeOptionManage;
+export default AttributeManage;

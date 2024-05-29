@@ -100,3 +100,8 @@ export const deleteAttributeOptionMutation = async ({ attribute_option_id }) =>
   axios
     .delete(`${backendUrl}/attribute-options/${attribute_option_id}`)
     .then((res) => res.data);
+
+export const deleteAttributeMutation = async ({ attribute_id }) =>
+  axios
+    .delete(`${backendUrl}/attributes/${attribute_id}`)
+    .then((res) => res.data);

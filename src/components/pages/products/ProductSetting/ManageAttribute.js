@@ -217,7 +217,7 @@ const ManageAttribute = ({ product_data, product_refetch }) => {
       <div className="flex items-start justify-between gap-3">
         <div className="w-full box max-w-64">
           <div className="justify-between box-header">
-            <div className="box-title">Profit Earned</div>
+            <div className="box-title">Attributes</div>
             <div className="hs-dropdown ti-dropdown">
               <button
                 type="button"
@@ -253,6 +253,8 @@ const ManageAttribute = ({ product_data, product_refetch }) => {
                   <AttributeList
                     title={attribute.title}
                     value={attribute.id}
+                    attribute_refetch={refetch}
+                    product_refetch={product_refetch}
                     checked={
                       checkedAttributes.filter(
                         (item) => item.id === attribute.id

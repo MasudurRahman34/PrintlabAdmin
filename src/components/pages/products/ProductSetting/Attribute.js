@@ -9,7 +9,7 @@ const Attribute = ({ product_data, product_refetch }) => {
 
   return (
     <div className="grid grid-cols-12">
-      <div className="col-span-12 ">
+      <div className="col-span-12 mt-3 ">
         <Switcher
           isChecked={state.is_attribute}
           setIsChecked={() => {
