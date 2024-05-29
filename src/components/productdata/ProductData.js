@@ -1,5 +1,6 @@
 import ArtworkComponent from "../pages/products/ProductSetting/Artwork";
 import Attribute from "../pages/products/ProductSetting/Attribute";
+import Specification from "../pages/products/ProductSetting/Specification";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -32,7 +33,7 @@ export default function ProductData({
 }) {
   const router = useRouter();
   const { slug } = router.query;
-  const [active, setActive] = useState("Attribute");
+  const [active, setActive] = useState("Specification");
 
   return (
     <div>
@@ -73,9 +74,19 @@ export default function ProductData({
               refetch={refetch}
             />
           )}
+          {active === "Specification" && (
+            <Specification
+              product_id={data?.id}
+              product_data={data}
+              product_isLoading={isLoading}
+              product_error={error}
+              product_isError={isError}
+              product_refetch={refetch}
+            />
+          )}
           {active === "Attribute" && (
             <Attribute
-              product_id={slug}
+              product_id={data?.id}
               product_data={data}
               product_isLoading={isLoading}
               product_error={error}
