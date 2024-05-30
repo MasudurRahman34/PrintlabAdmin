@@ -14,7 +14,7 @@ export const getAllCategories = async () =>
 export const getSingleCategoryQuery = async (slug) =>
   axios.get(`${backendUrl}/categories/${slug}`).then((res) => res.data);
 
-export const getAllProducts = async ({ page=1 }) =>
+export const getAllProducts = async ({ page = 1 }) =>
   await axios
     .get(`${backendUrl}/products?page=${page}`)
     .then((res) => res.data);
@@ -34,3 +34,5 @@ export const getProductCombinationQuery = async (product_id) =>
   axios
     .get(`${backendUrl}/product/${product_id}/combinations`)
     .then((res) => res.data);
+export const getAllDeliveryServiceQuery = async () =>
+  axios.get(`${backendUrl}/services/deliveries`).then((res) => res.data);

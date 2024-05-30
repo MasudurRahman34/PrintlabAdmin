@@ -117,3 +117,14 @@ export const updateAttributeOptionMutation = async ({
   axios
     .put(`${backendUrl}/attribute-options/${attribute_option_id}`, variables)
     .then((res) => res.data);
+
+export const updateDeliveryServiceMutation = async ({
+  delivery_service_id,
+  variables,
+}) =>
+  axios
+    .put(`${backendUrl}/services/${delivery_service_id}`, variables)
+    .then((res) => res.data);
+
+export const createDeliveryServiceMutation = async ({ variables }) =>
+  axios.post(`${backendUrl}/services`, variables).then((res) => res.data);

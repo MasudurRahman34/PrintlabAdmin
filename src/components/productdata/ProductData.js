@@ -1,5 +1,6 @@
 import ArtworkComponent from "../pages/products/ProductSetting/Artwork";
 import Attribute from "../pages/products/ProductSetting/Attribute";
+import DeliveryService from "../pages/products/ProductSetting/DeliveryService";
 import Specification from "../pages/products/ProductSetting/Specification";
 import { useState } from "react";
 
@@ -19,7 +20,7 @@ const tabList = [
   },
   {
     id: 4,
-    name: "Offer",
+    name: "Delivery Service",
   },
 ];
 
@@ -31,7 +32,7 @@ export default function ProductData({
   refetch,
   combination_refetch,
 }) {
-  const [active, setActive] = useState("Attribute");
+  const [active, setActive] = useState("Delivery Service");
 
   return (
     <div>
@@ -76,6 +77,17 @@ export default function ProductData({
           )}
           {active === "Attribute" && (
             <Attribute
+              product_id={data?.id}
+              product_data={data}
+              product_isLoading={isLoading}
+              product_error={error}
+              product_isError={isError}
+              product_refetch={refetch}
+              combination_refetch={combination_refetch}
+            />
+          )}
+          {active === "Delivery Service" && (
+            <DeliveryService
               product_id={data?.id}
               product_data={data}
               product_isLoading={isLoading}
