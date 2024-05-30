@@ -87,18 +87,24 @@ const CombinationRow = ({ row, idx }) => {
       </td>
       <td>
         <div className="avatar-list-stacked">
-          <span className="badge bg-primary/10 text-primary">Visible</span>
+          <span className="badge bg-primary/10 text-primary">
+            {row?.visibility.label}
+          </span>
         </div>
       </td>
       <td>
         <div className="avatar-list-stacked">
-          <span className="badge bg-primary/10 text-primary">Published</span>
+          <span className="badge bg-primary/10 text-primary">
+            {row.status.label}
+          </span>
         </div>
       </td>
       <td>
         {/* Default is a radio button . where any one should be selected */}
         <div className="avatar-list-stacked">
-          <span className="badge bg-primary/10 text-primary">Default</span>
+          <span className="badge bg-primary/10 text-primary">
+            {row.default.label}
+          </span>
         </div>
       </td>
       <td>
