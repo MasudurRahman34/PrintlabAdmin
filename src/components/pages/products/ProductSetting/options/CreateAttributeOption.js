@@ -44,6 +44,9 @@ const CreateOption = ({ option, refetch, product_refetch }) => {
           console.log(data);
           toast.success("Option added successfully");
           hideModal();
+          setFormState({
+            title: "",
+          });
           product_refetch();
           refetch();
         },
@@ -60,7 +63,7 @@ const CreateOption = ({ option, refetch, product_refetch }) => {
         <ModalLayout
           show={show}
           hideModal={hideModal}
-          title={`${option.title} option`}
+          title={`${option.title} options`}
           isPending={isPending}
           handleMutate={handleSubmit}
         >

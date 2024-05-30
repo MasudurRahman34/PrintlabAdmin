@@ -1,5 +1,9 @@
 import DeleteModal from "@/components/ui/DeleteModal";
-import { deleteAttributeOptionMutation } from "@/resolvers/mutation";
+import ModalLayout from "@/components/ui/ModalLayout";
+import {
+  deleteAttributeOptionMutation,
+  updateAttributeOptionMutation,
+} from "@/resolvers/mutation";
 import {
   Menu,
   MenuButton,
@@ -9,18 +13,36 @@ import {
 } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { useMutation } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 
 const AttributeOptionManage = ({
   attribute_option_id,
   product_refetch,
   attribute_refetch,
+  attribute_option,
 }) => {
-  const [show, setShow] = React.useState(false);
+  const [show, setShow] = useState(false);
+  const [editShow, setEditShow] = useState(false);
+  const [form_state, setFormState] = React.useState({
+    title: attribute_option.title,
+  });
+
+  const handleChange = (e) => {
+    setFormState({
+      ...form_state,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const { mutate, isPending } = useMutation({
     mutationKey: "delete attribute option",
     mutationFn: deleteAttributeOptionMutation,
+  });
+
+  const { mutate: updateMutate, isPending: isUpdatePending } = useMutation({
+    mutationKey: "update attribute option",
+    mutationFn: updateAttributeOptionMutation,
   });
 
   const handleDelete = () => {
@@ -45,8 +67,57 @@ const AttributeOptionManage = ({
     setShow(false);
   };
 
+  const handleSubmit = () => {
+    const variables = {
+      title: form_state.title,
+      attribute_id: attribute_option.attribute_id,
+    };
+
+    updateMutate(
+      {
+        variables,
+        attribute_option_id,
+      },
+      {
+        onSuccess: () => {
+          product_refetch();
+          attribute_refetch();
+          toast.success("Attribute option updated successfully");
+          setEditShow(false);
+        },
+        onError: (error) => {
+          toast.error("Failed to update attribute option");
+        },
+      }
+    );
+  };
+
   return (
     <>
+      {editShow && (
+        <ModalLayout
+          show={editShow}
+          hideModal={() => {
+            setEditShow(false);
+          }}
+          title={`${attribute_option.title} options`}
+          isPending={isUpdatePending}
+          handleMutate={handleSubmit}
+        >
+          <div className="">
+            <div className="col-span-12 xl:col-span-4 lg:col-span-6 md:col-span-6 sm:col-span-12">
+              <p className="mb-2 text-muted">Title</p>
+              <input
+                type="text"
+                className="form-control"
+                name="title"
+                value={form_state.title}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+        </ModalLayout>
+      )}
       <DeleteModal
         handleDelete={handleDelete}
         isPending={isPending}
@@ -99,7 +170,8 @@ const AttributeOptionManage = ({
               <button
                 className="group hover:bg-gray-100 flex w-full items-center gap-2 rounded-lg py-1.5 px-3 "
                 onClick={() => {
-                  setShow(true);
+                  console.log("show");
+                  setEditShow(true);
                 }}
               >
                 <svg

@@ -13,6 +13,7 @@ const OptionAccordions = ({
   return (
     <div
       className="flex-1 p-3 accordion customized-accordion accordions-items-seperate"
+      style={{ width: "100%" }}
       id="customizedAccordion"
     >
       <div className="hs-accordion-group">

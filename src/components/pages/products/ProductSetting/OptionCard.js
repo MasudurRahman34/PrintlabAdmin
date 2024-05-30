@@ -67,7 +67,7 @@ const OptionCard = ({
         >
           <div className="accordion-body">
             <div>
-              <div className="grid w-full grid-cols-12 gap-4">
+              <div className="grid w-full grid-cols-12 gap-5">
                 {option?.options?.map((item, index) => (
                   <OptionCardItem
                     item={item}

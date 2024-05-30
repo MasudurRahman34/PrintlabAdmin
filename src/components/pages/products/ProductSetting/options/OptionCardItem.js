@@ -9,7 +9,7 @@ const OptionCardItem = ({
   attribute_refetch,
 }) => {
   return (
-    <div className="flex items-center justify-between col-span-12 py-3 border-b border-gray-200 lg:col-span-6">
+    <div className="flex items-center justify-between col-span-12 px-3 py-3 border border-gray-500 rounded-md lg:col-span-6 xl:col-span-4">
       <div className="flex w-full gap-3">
         <div
           class="form-check "
@@ -45,6 +45,7 @@ const OptionCardItem = ({
                 attribute_option_id={item.id}
                 product_refetch={product_refetch}
                 attribute_refetch={attribute_refetch}
+                attribute_option={item}
               />
             </div>
           </div>

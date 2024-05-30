@@ -110,3 +110,11 @@ export const updateAttributeMutation = async ({ attribute_id, variables }) =>
   axios
     .put(`${backendUrl}/attributes/${attribute_id}`, variables)
     .then((res) => res.data);
+
+export const updateAttributeOptionMutation = async ({
+  attribute_option_id,
+  variables,
+}) =>
+  axios
+    .put(`${backendUrl}/attribute-options/${attribute_option_id}`, variables)
+    .then((res) => res.data);

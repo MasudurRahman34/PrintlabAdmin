@@ -215,8 +215,8 @@ const ManageAttribute = ({ product_data, product_refetch }) => {
   return (
     <>
       <Modal show={show} hideModal={hideModal} refetch={refetch} />
-      <div className="flex items-start justify-between gap-3">
-        <div className="w-full box max-w-64">
+      <div className="flex flex-col items-start justify-between w-full gap-3 md:flex-row">
+        <div className="w-full box lg:max-w-64">
           <div className="justify-between box-header">
             <div className="box-title">Attributes</div>
             <div className="hs-dropdown ti-dropdown">
