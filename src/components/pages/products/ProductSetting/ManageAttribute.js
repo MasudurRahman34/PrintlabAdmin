@@ -10,13 +10,14 @@ import {
   getProductAttributeExistanceQuery,
 } from "@/resolvers/query";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-const ManageAttribute = ({ product_data, product_refetch }) => {
-  const router = useRouter();
-  const { slug } = router.query;
+const ManageAttribute = ({
+  product_data,
+  product_refetch,
+  combination_refetch,
+}) => {
   const [checkList, setCheckList] = React.useState([]);
   const [show, setShow] = React.useState(false);
 
@@ -24,19 +25,24 @@ const ManageAttribute = ({ product_data, product_refetch }) => {
     setShow(false);
   };
 
+  // state for checked attributes
   const [checkedAttributes, setCheckedAttributes] = useState([]);
 
   // mutation for product update. specially for
 
-  const { data: productAttributeData, isLoading: productAttributeLoading } =
-    useQuery({
-      queryKey: ["product_attribute", slug],
-      queryFn: () => getProductAttributeExistanceQuery(slug),
-    });
+  const {
+    data: productAttributeData,
+    isLoading: productAttributeLoading,
+    refetch: productAttributeRefetch,
+  } = useQuery({
+    queryKey: ["product_attribute", product_data?.id],
+    queryFn: () => getProductAttributeExistanceQuery(product_data?.id),
+    enabled: !!product_data?.id,
+  });
 
   // getting all attribute from here
   const { data, isLoading, isError, error, refetch } = useQuery({
-    queryKey: "attributes",
+    queryKey: ["attributes"],
     queryFn: getAllAttributeQuery,
   });
 
@@ -47,56 +53,11 @@ const ManageAttribute = ({ product_data, product_refetch }) => {
     mutationFn: saveAttributeMutation,
   });
 
-  // useEffect for setting the data to the checkList
-  useEffect(() => {
-    if (data) {
-      const temp = [];
-      data.data.forEach((attribute) => {
-        console.log(checkedAttributes);
-        temp.push({
-          id: attribute.id,
-          title: attribute.title,
-          options: attribute.options,
-          type: attribute.type,
-          active: true,
-        });
-      });
-      // setState({
-      //   is_attribute: product_data.is_attribute.value === 1,
-      // });
-      setCheckList(temp);
-
-      if (checkedAttributes.length > 0) {
-        setCheckedAttributes((prev) => [...prev]);
-      }
-    }
-
-    if (productAttributeData?.data.length > 0) {
-      const temp = [];
-      productAttributeData?.data.forEach((attribute) => {
-        // if attribute id is same as the attribute id from the data then push the option id to the temp array else push the attribute id to the temp array with attribute options id as the options
-
-        if (
-          temp.filter((item) => item.id === attribute.attribute_id).length > 0
-        ) {
-          temp.forEach((item) => {
-            if (item.id === attribute.attribute_id) {
-              item.options.push(attribute.attribute_option_id);
-            }
-          });
-        }
-        // if the attribute id is not in the temp array then push the attribute id with the option id as the options
-        else {
-          temp.push({
-            id: attribute.attribute_id,
-            options: [attribute.attribute_option_id],
-          });
-        }
-      });
-
-      setCheckedAttributes(temp);
-    }
-  }, [data, productAttributeData]);
+  const { mutate: saveCombination, isPending: combinationLoading } =
+    useMutation({
+      mutationKey: "save_combination",
+      mutationFn: getCombinationTableMutation,
+    });
 
   const handleCheck = (id) => {
     if (checkedAttributes.filter((item) => item.id === id).length > 0) {
@@ -168,25 +129,20 @@ const ManageAttribute = ({ product_data, product_refetch }) => {
     mutate(
       {
         variables: form_data,
-        product_id: slug,
+        product_id: product_data.id,
       },
       {
         onSuccess: () => {
           refetch();
+          productAttributeRefetch();
           toast.success("Attribute created successfully");
         },
         onError: (error) => {
-          console.log(error);
+          toast.error("Attribute creation failed");
         },
       }
     );
   };
-
-  const { mutate: saveCombination, isPending: combinationLoading } =
-    useMutation({
-      mutationKey: "save_combination",
-      mutationFn: getCombinationTableMutation,
-    });
 
   const handleMutate = () => {
     const form_data = new FormData();
@@ -198,26 +154,76 @@ const ManageAttribute = ({ product_data, product_refetch }) => {
     });
     saveCombination(
       {
-        product_id: slug,
+        product_id: product_data.id,
         variables: form_data,
       },
       {
         onSuccess: (data) => {
-          console.log(data);
+          combination_refetch();
+          toast.success("Product Configured successfully");
         },
         onError: (error) => {
-          toast.error(error.response.data.message);
+          toast.error("Product Configuration failed");
         },
       }
     );
   };
 
+  // useEffect for setting the data to the checkList
+  useEffect(() => {
+    if (data) {
+      const temp = [];
+      data.data.forEach((attribute) => {
+        temp.push({
+          id: attribute.id,
+          title: attribute.title,
+          options: attribute.options,
+          type: attribute.type,
+          active: true,
+        });
+      });
+      // setState({
+      //   is_attribute: product_data.is_attribute.value === 1,
+      // });
+      setCheckList(temp);
+
+      if (checkedAttributes.length > 0) {
+        setCheckedAttributes((prev) => [...prev]);
+      }
+    }
+
+    if (productAttributeData?.data.length > 0) {
+      const temp = [];
+      productAttributeData?.data.forEach((attribute) => {
+        // if attribute id is same as the attribute id from the data then push the option id to the temp array else push the attribute id to the temp array with attribute options id as the options
+
+        if (
+          temp.filter((item) => item.id === attribute.attribute_id).length > 0
+        ) {
+          temp.forEach((item) => {
+            if (item.id === attribute.attribute_id) {
+              item.options.push(attribute.attribute_option_id);
+            }
+          });
+        }
+        // if the attribute id is not in the temp array then push the attribute id with the option id as the options
+        else {
+          temp.push({
+            id: attribute.attribute_id,
+            options: [attribute.attribute_option_id],
+          });
+        }
+      });
+
+      setCheckedAttributes(temp);
+    }
+  }, [data, productAttributeData]);
   return (
     <>
       <Modal show={show} hideModal={hideModal} refetch={refetch} />
       <div className="flex flex-col items-start justify-between w-full gap-3 md:flex-row">
         <div className="w-full box lg:max-w-64">
-          <div className="justify-between box-header">
+          <div className="flex justify-between box-header">
             <div className="box-title">Attributes</div>
             <div className="hs-dropdown ti-dropdown">
               <button
@@ -281,27 +287,30 @@ const ManageAttribute = ({ product_data, product_refetch }) => {
         />
       </div>
       <div className="flex items-center justify-end w-full gap-3 mt-10">
-        <button
-          type="button"
-          class="ti-btn ti-btn-primary-full ti-btn-wave"
-          disabled={isPending}
-          onClick={handleSave}
-        >
-          {isPending ? "Saving..." : "Save"}
-        </button>
-        <button
-          type="button"
-          class="ti-btn ti-btn-primary-full ti-btn-loader "
-          disabled={isPending}
-          onClick={handleMutate}
-        >
-          <span class="me-2">Publish</span>
-          {combinationLoading ? (
-            <span class="loading">
-              <i class="ri-loader-2-fill text-[1rem] animate-spin"></i>
-            </span>
-          ) : null}
-        </button>
+        {productAttributeData?.data?.length > 0 ? (
+          <button
+            type="button"
+            class="ti-btn ti-btn-primary-full ti-btn-loader "
+            disabled={isPending}
+            onClick={handleMutate}
+          >
+            <span class="me-2">Configure Product</span>
+            {combinationLoading ? (
+              <span class="loading">
+                <i class="ri-loader-2-fill text-[1rem] animate-spin"></i>
+              </span>
+            ) : null}
+          </button>
+        ) : (
+          <button
+            type="button"
+            class="ti-btn ti-btn-primary-full ti-btn-wave"
+            disabled={isPending}
+            onClick={handleSave}
+          >
+            {isPending ? "Saving..." : "Save"}
+          </button>
+        )}
       </div>
     </>
   );

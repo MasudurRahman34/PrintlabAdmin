@@ -1,7 +1,6 @@
 import ArtworkComponent from "../pages/products/ProductSetting/Artwork";
 import Attribute from "../pages/products/ProductSetting/Attribute";
 import Specification from "../pages/products/ProductSetting/Specification";
-import { useRouter } from "next/router";
 import { useState } from "react";
 
 const tabList = [
@@ -30,9 +29,8 @@ export default function ProductData({
   isError,
   error,
   refetch,
+  combination_refetch,
 }) {
-  const router = useRouter();
-  const { slug } = router.query;
   const [active, setActive] = useState("Attribute");
 
   return (
@@ -41,7 +39,7 @@ export default function ProductData({
         <p className="text-base font-medium text-black">Product data</p>
       </div>
       <div className="grid grid-cols-12 gap-5">
-        <div className="col-span-12 py-3 xxl:col-span-2 xl:col-span-6">
+        <div className="col-span-12 py-3 md:col-span-4 ">
           <ul className="flex flex-col gap-2">
             {tabList.map((tab) => (
               <li
@@ -56,7 +54,7 @@ export default function ProductData({
             ))}
           </ul>
         </div>
-        <div className="col-span-12 xxl:col-span-10 xl:col-span-6">
+        <div className="col-span-12 md:col-span-8">
           {active === "Artwork" && (
             <ArtworkComponent
               data={data}
@@ -84,6 +82,7 @@ export default function ProductData({
               product_error={error}
               product_isError={isError}
               product_refetch={refetch}
+              combination_refetch={combination_refetch}
             />
           )}
         </div>

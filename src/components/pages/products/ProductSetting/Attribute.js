@@ -2,7 +2,7 @@ import ManageAttribute from "./ManageAttribute";
 import Switcher from "@/components/ui/Switcher";
 import React, { useEffect, useState } from "react";
 
-const Attribute = ({ product_data, product_refetch }) => {
+const Attribute = ({ product_data, product_refetch, combination_refetch }) => {
   const [state, setState] = useState({
     is_attribute: true,
   });
@@ -33,12 +33,13 @@ const Attribute = ({ product_data, product_refetch }) => {
           lable="Is Attribute"
         />
       </div>
-      <div className="col-span-12">
+      <div className="col-span-12 ">
         {state.is_attribute && (
           <ManageAttribute
             setState={setState}
             product_data={product_data}
             product_refetch={product_refetch}
+            combination_refetch={combination_refetch}
           />
         )}
       </div>

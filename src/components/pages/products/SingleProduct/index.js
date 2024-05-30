@@ -25,17 +25,19 @@ const SingleProduct = () => {
     data: combination_data,
     isError: combination_error,
     isLoading: combination_loading,
+    refetch: combination_refetch,
   } = useQuery({
-    queryKey: ["getCombinationTable", slug],
-    queryFn: () => getProductCombinationQuery(slug),
-    enabled: !!slug,
+    queryKey: ["getCombinationTable", data?.data?.id],
+    queryFn: () => getProductCombinationQuery(data?.data?.id),
+    enabled: !!data?.data?.id,
   });
+
   return (
     <div className="grid grid-cols-12 gap-3 px-5 mt-5 bg-[#F0F1F7] mb-[50px]">
-      <div className="xxl:col-span-3 xl:col-span-6  col-span-12">
+      <div className="col-span-12 xxl:col-span-3 xl:col-span-6">
         <AddProductleft />
       </div>
-      <div className=" xxl:col-span-7 xl:col-span-6  col-span-12">
+      <div className="col-span-12 xxl:col-span-7 xl:col-span-6">
         <AddProductmiddle
           data={data?.data}
           isLoading={isLoading}
@@ -43,7 +45,7 @@ const SingleProduct = () => {
           isError={isError}
         />
       </div>
-      <div className="w-full xxl:col-span-2 xl:col-span-6  col-span-12 rounded-md">
+      <div className="w-full col-span-12 rounded-md xxl:col-span-2 xl:col-span-6">
         <AccordionsCard
           data={data?.data}
           isLoading={isLoading}
@@ -58,6 +60,7 @@ const SingleProduct = () => {
           error={error}
           isError={isError}
           refetch={refetch}
+          combination_refetch={combination_refetch}
         />
       </div>
 

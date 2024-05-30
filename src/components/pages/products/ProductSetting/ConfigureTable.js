@@ -1,8 +1,5 @@
 import CombinationRow from "./CombinationRow";
-import { getProductCombinationQuery } from "@/resolvers/query";
-import { useMutation, useQuery } from "@tanstack/react-query";
 import { Grid, _ } from "gridjs-react";
-import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
 const ConfigureTable = ({ data }) => {
