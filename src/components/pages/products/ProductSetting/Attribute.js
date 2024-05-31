@@ -1,6 +1,6 @@
 import ManageAttribute from "./ManageAttribute";
 import Switcher from "@/components/ui/Switcher";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const Attribute = ({ product_data, product_refetch, combination_refetch }) => {
   const [state, setState] = useState({

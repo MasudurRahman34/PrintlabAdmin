@@ -9,20 +9,20 @@ const OptionCardItem = ({
   attribute_refetch,
 }) => {
   return (
-    <div className="flex items-center justify-between col-span-12 px-3 py-3 border border-gray-500 rounded-md lg:col-span-6 xl:col-span-4">
+    <div className="flex items-center col-span-12 px-3 py-3 border rounded-md lg:col-span-6 xl:col-span-4">
       <div className="flex w-full gap-3">
         <div
           class="form-check "
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
+
             gap: "5px",
             width: "100%",
           }}
         >
           <input
-            className="form-check-input"
+            className="pr-2 form-check-input"
             type="checkbox"
             id="gridCheck1"
             // if item id is exists in the checkedAttribute array and the checked value is true then set the checked value to true
@@ -39,7 +39,7 @@ const OptionCardItem = ({
           />
 
           <div className="flex items-center gap-3">
-            <p className="text-sm font-semibold text-black">{item.title}</p>
+            <p className="text-sm font-semibold text-black ">{item.title}</p>
             <div className="ti-btn-group !m-0">
               <AttributeOptionManage
                 attribute_option_id={item.id}

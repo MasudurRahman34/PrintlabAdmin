@@ -38,16 +38,16 @@ const CreateProductModal = ({ modalIsOpen = false, setIsOpen }) => {
         return;
       }
     }
+    variables.category_id = parseInt(variables.category_id);
 
     mutate(
       { variables },
       {
         onSuccess: (data) => {
           toast.success("Product added successfully");
-          router.push(`/products/${data.data.slug}`);
+          window.open(`/products/${data.data.slug}`);
         },
         onError: (error) => {
-          console.log(error);
           toast.error(error.response.data.message[0] || "An error occurred");
         },
       }
