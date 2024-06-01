@@ -4,7 +4,7 @@ import React from "react";
 const Sidebar = ({hideSidebar}) => {
   console.log(hideSidebar)
   return (
-    <aside className="hidden app-sidebar lg:block" id="sidebar">
+    <aside className={`hidden app-sidebar lg:block   ${hideSidebar ?"w-[5rem]":"w-[15rem]"} `} id="sidebar">
       {/*  <!-- Start::main-sidebar-header --> */}
       <div className="main-sidebar-header ">
       <i className={`bx bx-file-blank side-menu__icon`}></i>
@@ -55,10 +55,7 @@ const Sidebar = ({hideSidebar}) => {
             </svg>
           </div>
           <ul className="main-menu">
-            {/*   <!-- Start::slide__category --> */}
-            <li className="slide__category">
-              <span className="category-name">Main</span>
-            </li>
+
 
             <Link href="/">
               <li className="slide has-sub">
