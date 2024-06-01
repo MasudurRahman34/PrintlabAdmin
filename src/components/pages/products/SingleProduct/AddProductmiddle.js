@@ -96,7 +96,7 @@ const AddProductmiddle = ({ data, isLoading, isError, refetch }) => {
         </label>
         <div className="border border-[#949EB7] rounded px-5 py-5">
           <TextEditor
-          className="max-h-[200px]"
+            className="min-h-[150px]"
             value={state.description}
             onChange={(value) =>
               setState((prev) => ({

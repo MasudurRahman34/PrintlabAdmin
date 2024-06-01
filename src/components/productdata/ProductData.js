@@ -1,4 +1,5 @@
 import ArtworkComponent from "../pages/products/ProductSetting/Artwork";
+import ArtworkService from "../pages/products/ProductSetting/ArtworkService";
 import Attribute from "../pages/products/ProductSetting/Attribute";
 import DeliveryService from "../pages/products/ProductSetting/DeliveryService";
 import Specification from "../pages/products/ProductSetting/Specification";
@@ -22,6 +23,10 @@ const tabList = [
     id: 4,
     name: "Delivery Service",
   },
+  {
+    id: 5,
+    name: "Artwork Service",
+  },
 ];
 
 export default function ProductData({
@@ -32,7 +37,7 @@ export default function ProductData({
   refetch,
   combination_refetch,
 }) {
-  const [active, setActive] = useState("Delivery Service");
+  const [active, setActive] = useState("Artwork Service");
 
   return (
     <div>
@@ -88,6 +93,17 @@ export default function ProductData({
           )}
           {active === "Delivery Service" && (
             <DeliveryService
+              product_id={data?.id}
+              product_data={data}
+              product_isLoading={isLoading}
+              product_error={error}
+              product_isError={isError}
+              product_refetch={refetch}
+              combination_refetch={combination_refetch}
+            />
+          )}
+          {active === "Artwork Service" && (
+            <ArtworkService
               product_id={data?.id}
               product_data={data}
               product_isLoading={isLoading}

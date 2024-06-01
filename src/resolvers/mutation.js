@@ -136,3 +136,11 @@ export const updateProductDeliveryServiceMutation = async ({
   axios
     .post(`${backendUrl}/product/${product_id}/services/delivery`, variables)
     .then((res) => res.data);
+
+export const updateProductArtworkServiceMutation = async ({
+  artwork_id,
+  variables,
+}) =>
+  axios
+    .put(`${backendUrl}/services/${artwork_id}`, variables)
+    .then((res) => res.data);
