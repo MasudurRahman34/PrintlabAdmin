@@ -1,11 +1,16 @@
 import TableRow from "./TableRow";
 import ModalLayout from "@/components/ui/ModalLayout";
 import { createDeliveryServiceMutation } from "@/resolvers/mutation";
-import { getAllDeliveryServiceQuery } from "@/resolvers/query";
+import {
+  getAllDeliveryServiceQuery,
+  getProductDeliveryServiceQuery,
+} from "@/resolvers/query";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
-const DeliveryService = () => {
+const DeliveryService = ({ product_data }) => {
+  const [tableState, setTableState] = useState([]);
   const [state, setState] = useState({
     title: "",
     type: 0,
@@ -15,6 +20,14 @@ const DeliveryService = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["getAllDeliveryService"],
     queryFn: getAllDeliveryServiceQuery,
+  });
+  const {
+    data: productDeliveryServiceData,
+    isLoading: productDeliveryServiceLoading,
+  } = useQuery({
+    queryKey: ["product_delivery_service", product_data?.id],
+    queryFn: () => getProductDeliveryServiceQuery(product_data?.id),
+    enabled: !!product_data?.id,
   });
 
   const { mutate, isPending } = useMutation({
@@ -29,15 +42,42 @@ const DeliveryService = () => {
       { variables },
       {
         onSuccess: (data) => {
-          console.log(data);
+          toast.success("Delivery Service created successfully");
+          setShow(false);
           refetch();
         },
         onError: (error) => {
+          toast.error(error.response.data.message[0] || "An error occurred");
           console.log(error);
         },
       }
     );
   };
+
+  useEffect(() => {
+    if (!productDeliveryServiceData?.data.length > 0 && data?.data.length > 0) {
+      setTableState(data.data);
+    }
+
+    if (productDeliveryServiceData?.data.length > 0 && data?.data.length > 0) {
+      const temp = data.data.map((item) => {
+        const found = productDeliveryServiceData.data.find(
+          (element) => element.service_id === item.id
+        );
+        if (found) {
+          return {
+            ...item,
+            cost: found.cost,
+            duration: found.duration,
+          };
+        }
+        return item;
+      });
+      setTableState(temp);
+    }
+  }, [productDeliveryServiceData, data]);
+
+  console.log(tableState);
 
   return (
     <>
@@ -120,7 +160,13 @@ const DeliveryService = () => {
                   <td colSpan="5">Loading...</td>
                 </tr>
               ) : (
-                data?.data.map((row) => <TableRow row={row} key={row.id} />)
+                tableState.map((row) => (
+                  <TableRow
+                    row={row}
+                    key={row.id}
+                    product_id={product_data?.id}
+                  />
+                ))
               )}
             </tbody>
           </table>

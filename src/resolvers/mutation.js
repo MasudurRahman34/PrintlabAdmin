@@ -128,3 +128,11 @@ export const updateDeliveryServiceMutation = async ({
 
 export const createDeliveryServiceMutation = async ({ variables }) =>
   axios.post(`${backendUrl}/services`, variables).then((res) => res.data);
+
+export const updateProductDeliveryServiceMutation = async ({
+  product_id,
+  variables,
+}) =>
+  axios
+    .post(`${backendUrl}/product/${product_id}/services/delivery`, variables)
+    .then((res) => res.data);
