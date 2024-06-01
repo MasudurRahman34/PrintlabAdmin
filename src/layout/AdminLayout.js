@@ -1,3 +1,4 @@
+
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import React, { useState } from "react";
@@ -5,9 +6,9 @@ import React, { useState } from "react";
 export const AdminLayout = ({ children }) => {
   const [hideSidebar, setHideSidebar] = useState(false);
   const toggleSidebar = () => {
-    console.log("toggleSidebar");
     setHideSidebar(!hideSidebar);
   };
+  console.log(hideSidebar)
   return (
     <div className="page">
       <Header hideSidebar={hideSidebar} toggleSidebar={toggleSidebar} />

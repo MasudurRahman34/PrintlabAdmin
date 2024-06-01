@@ -20,6 +20,7 @@ export default function OrdersList() {
                         <th scope="col" className="text-start">Tracking No</th>
                         <th scope="col" className="text-start">Price</th>
                         <th scope="col" className="text-start">Quantity</th>
+                        {/* <th scope="col" className="text-start">Status</th> */}
                         <th scope="col" className="text-start">Total Price</th>
                     </tr>
                 </thead>
@@ -48,6 +49,7 @@ export default function OrdersList() {
                             <span className="text-[0.9375rem] font-semibold">$1,249</span>
                         </td>
                         <td>1</td>
+                
                         <td>$1,249</td>
                     </tr>
                   

@@ -1,13 +1,13 @@
 import React from "react";
 
 const Header = ({ toggleSidebar, hideSidebar }) => {
+  console.log(hideSidebar)
   return (
     <>
       <header className="app-header">
         <nav className="main-header !h-[3.75rem]" aria-label="Global">
           <div className="main-header-container ps-[0.725rem] pe-[1rem] ">
             <div className="header-content-left">
-              {/*     <!-- Start::header-element --> */}
               <div className="header-element">
                 <div className="horizontal-logo">
                   <a href="index.html" className="header-logo">
@@ -15,10 +15,9 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                   </a>
                 </div>
               </div>
-              {/* <!-- End::header-element -->
-        <!-- Start::header-element --> */}
+  
               <div className="header-element md:px-[0.325rem] !items-center">
-                {/*  <!-- Start::header-link --> */}
+   
                 <a
                   aria-label="Hide Sidebar"
                   className="sidemenu-toggle animated-arrow  hor-toggle horizontal-navtoggle inline-flex items-center"
@@ -26,9 +25,9 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                 >
                   <span></span>
                 </a>
-                {/* <!-- End::header-link --> */}
+          
               </div>
-              {/*  <!-- End::header-element --> */}
+ 
             </div>
 
             <div className="header-content-right">
