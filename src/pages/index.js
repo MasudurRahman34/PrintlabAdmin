@@ -6,7 +6,6 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     <AdminLayout>
-   
         <div className=" grid grid-cols-12 gap-x-6 mt-5">
         {/* left section */}
         <div className="xxl:col-span-9 xl:col-span-9 col-span-12">
@@ -25,7 +24,7 @@ export default function Home() {
                       <span className="opacity-[0.7]">
                         of the given target, you can also check your status
                       </span>
-                      .
+                      
                     </span>
                     <span className="block font-semibold mt-[0.125rem]">
                       <a
