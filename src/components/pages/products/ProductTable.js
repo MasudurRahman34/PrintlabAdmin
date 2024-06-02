@@ -2,7 +2,7 @@ import TableRow from "./TableRow";
 import Pagination from "@/components/ui/Pagination";
 import React from "react";
 
-const ProductTable = ({ products = [], links }) => {
+const ProductTable = ({ products = [], links, refetch }) => {
   return (
     <div class="box-body">
       <div class="table-responsive mb-4">
@@ -32,7 +32,13 @@ const ProductTable = ({ products = [], links }) => {
           </thead>
           <tbody>
             {products.map((product) => {
-              return <TableRow key={product.id} product={product} />;
+              return (
+                <TableRow
+                  key={product.id}
+                  product={product}
+                  refetch={refetch}
+                />
+              );
             })}
           </tbody>
         </table>

@@ -144,3 +144,6 @@ export const updateProductArtworkServiceMutation = async ({
   axios
     .put(`${backendUrl}/services/${artwork_id}`, variables)
     .then((res) => res.data);
+
+export const deleteProductMutation = async ({ product_id }) =>
+  axios.delete(`${backendUrl}/products/${product_id}`).then((res) => res.data);

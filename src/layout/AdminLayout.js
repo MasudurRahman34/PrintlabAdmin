@@ -7,7 +7,7 @@ export const AdminLayout = ({ children }) => {
   const toggleSidebar = () => {
     setHideSidebar(!hideSidebar);
   };
-  console.log(hideSidebar);
+
   return (
     <div className="page">
       <Header hideSidebar={hideSidebar} toggleSidebar={toggleSidebar} />

@@ -1,4 +1,3 @@
-import CategorySelect from "@/components/CategorySelect";
 import { addProductMutation } from "@/resolvers/mutation";
 import { useMutation } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
@@ -11,11 +10,17 @@ const TextEditor = dynamic(() => import("@/components/TextEditor"), {
   ssr: false,
 });
 
+const product_types = [
+  { id: 1, name: "simple", value: "1" },
+  { id: 2, name: "configurable", value: "2" },
+  { id: 3, name: "clothing", value: "3" },
+];
+
 const CreateProductModal = ({ modalIsOpen = false, setIsOpen }) => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     title: "",
-    category_id: "",
+    type: "",
     description: "",
   });
 
@@ -38,13 +43,19 @@ const CreateProductModal = ({ modalIsOpen = false, setIsOpen }) => {
         return;
       }
     }
-    variables.category_id = parseInt(variables.category_id);
+    variables.type = parseInt(variables.type);
 
     mutate(
       { variables },
       {
         onSuccess: (data) => {
           toast.success("Product added successfully");
+          setIsOpen(false);
+          setFormData({
+            title: "",
+            type: "",
+            description: "",
+          });
           window.open(`/products/${data.data.slug}`);
         },
         onError: (error) => {
@@ -149,13 +160,22 @@ const CreateProductModal = ({ modalIsOpen = false, setIsOpen }) => {
                           for="product-category-add"
                           className="form-label"
                         >
-                          Category
+                          Product Type
                         </label>
-                        <CategorySelect
-                          name="category_id"
-                          selected={formData.category_id}
+                        <select
+                          name="type"
+                          value={formData.type}
                           onChange={handleChange}
-                        />
+                          className="form-select w-full !rounded-md"
+                          id="product-category-add"
+                        >
+                          <option value="">Select Product Type</option>
+                          {product_types.map((type) => (
+                            <option key={type.id} value={type.value}>
+                              {type.name}
+                            </option>
+                          ))}
+                        </select>
                       </div>
 
                       <div className="col-span-12 xl:col-span-12">

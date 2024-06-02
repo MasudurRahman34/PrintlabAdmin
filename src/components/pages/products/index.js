@@ -125,7 +125,11 @@ const ProductsComponent = () => {
               ) : isError ? (
                 <div>Error: {error.message}</div>
               ) : (
-                <ProductTable products={data?.data} links={data?.links} />
+                <ProductTable
+                  products={data?.data}
+                  links={data?.links}
+                  refetch={refetch}
+                />
               )}
             </div>
           </div>

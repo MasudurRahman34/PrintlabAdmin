@@ -10,6 +10,7 @@ import {
   getProductAttributeExistanceQuery,
 } from "@/resolvers/query";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -18,6 +19,9 @@ const ManageAttribute = ({
   product_refetch,
   combination_refetch,
 }) => {
+  const router = useRouter();
+  const { slug } = router.query;
+
   const [checkList, setCheckList] = React.useState([]);
   const [show, setShow] = React.useState(false);
 
@@ -217,7 +221,7 @@ const ManageAttribute = ({
 
       setCheckedAttributes(temp);
     }
-  }, [data, productAttributeData]);
+  }, [data, productAttributeData, slug]);
   return (
     <>
       <Modal show={show} hideModal={hideModal} refetch={refetch} />
