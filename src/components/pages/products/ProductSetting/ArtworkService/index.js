@@ -40,7 +40,6 @@ const ArtworkService = ({
         </button>
       </div>
       <div className="grid grid-cols-12 mt-4 ">
-        {/* Here will be a tab when i will click on a table two input will be show  */}
         <div className="col-span-12 lg:col-span-4 ">
           {!isError &&
             data?.data.length > 0 &&
