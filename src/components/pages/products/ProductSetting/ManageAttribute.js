@@ -221,7 +221,7 @@ const ManageAttribute = ({
 
       setCheckedAttributes(temp);
     }
-  }, [data, productAttributeData, slug]);
+  }, [data, productAttributeData]);
   return (
     <>
       <Modal show={show} hideModal={hideModal} refetch={refetch} />

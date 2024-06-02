@@ -3,7 +3,8 @@ import ArtworkService from "../pages/products/ProductSetting/ArtworkService";
 import Attribute from "../pages/products/ProductSetting/Attribute";
 import DeliveryService from "../pages/products/ProductSetting/DeliveryService";
 import Specification from "../pages/products/ProductSetting/Specification";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const tabList = [
   {
@@ -37,7 +38,15 @@ export default function ProductData({
   refetch,
   combination_refetch,
 }) {
-  const [active, setActive] = useState("Artwork Service");
+  const router = useRouter();
+  const { slug } = router.query;
+  const [active, setActive] = useState("Artwork");
+
+  useEffect(() => {
+    if (slug) {
+      setActive("Artwork");
+    }
+  }, [slug]);
 
   return (
     <div>
