@@ -1,10 +1,15 @@
 import React from "react";
 
 const Header = ({ toggleSidebar, hideSidebar }) => {
-  console.log(hideSidebar)
+  console.log(hideSidebar);
   return (
     <>
-      <header className="app-header">
+      <header
+        className="app-header"
+        style={{
+          paddingLeft: hideSidebar ? "5rem" : "15rem",
+        }}
+      >
         <nav className="main-header !h-[3.75rem]" aria-label="Global">
           <div className="main-header-container ps-[0.725rem] pe-[1rem] ">
             <div className="header-content-left">
@@ -15,19 +20,16 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                   </a>
                 </div>
               </div>
-  
+
               <div className="header-element md:px-[0.325rem] !items-center">
-   
                 <a
                   aria-label="Hide Sidebar"
-                  className="sidemenu-toggle animated-arrow  hor-toggle horizontal-navtoggle inline-flex items-center"
+                  className="inline-flex items-center sidemenu-toggle animated-arrow hor-toggle horizontal-navtoggle"
                   onClick={toggleSidebar}
                 >
                   <span></span>
                 </a>
-          
               </div>
- 
             </div>
 
             <div className="header-content-right">
@@ -60,10 +62,10 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                   className="hs-dropdown-menu ti-dropdown-menu min-w-[10rem] hidden !-mt-3"
                   aria-labelledby="dropdown-flag"
                 >
-                  <div className="ti-dropdown-divider divide-y divide-gray-200 dark:divide-white/10">
+                  <div className="divide-y divide-gray-200 ti-dropdown-divider dark:divide-white/10">
                     <div className="py-2 first:pt-0 last:pb-0">
                       <div className="ti-dropdown-item !p-[0.65rem] ">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
+                        <div className="flex items-center w-full space-x-2 rtl:space-x-reverse">
                           <div className="h-[1.375rem] flex items-center w-[1.375rem] rounded-full">
                             <img
                               src="../assets/images/flags/us_flag.jpg"
@@ -79,7 +81,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         </div>
                       </div>
                       <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
+                        <div className="flex items-center w-full space-x-2 rtl:space-x-reverse">
                           <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
                             <img
                               src="../assets/images/flags/spain_flag.jpg"
@@ -95,7 +97,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         </div>
                       </div>
                       <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
+                        <div className="flex items-center w-full space-x-2 rtl:space-x-reverse">
                           <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
                             <img
                               src="../assets/images/flags/french_flag.jpg"
@@ -111,7 +113,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         </div>
                       </div>
                       <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
+                        <div className="flex items-center w-full space-x-2 rtl:space-x-reverse">
                           <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
                             <img
                               src="../assets/images/flags/germany_flag.jpg"
@@ -127,7 +129,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         </div>
                       </div>
                       <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
+                        <div className="flex items-center w-full space-x-2 rtl:space-x-reverse">
                           <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
                             <img
                               src="../assets/images/flags/italy_flag.jpg"
@@ -143,7 +145,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         </div>
                       </div>
                       <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
+                        <div className="flex items-center w-full space-x-2 rtl:space-x-reverse">
                           <div className="h-[1.375rem] w-[1.375rem] flex items-center  rounded-sm">
                             <img
                               src="../assets/images/flags/russia_flag.jpg"
@@ -222,8 +224,8 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                   <div>
                     <hr className="dropdown-divider dark:border-white/10" />
                   </div>
-                  <ul className="list-none mb-0" id="header-cart-items-scroll">
-                    <li className="ti-dropdown-item border-b dark:border-defaultborder/10 border-defaultborder ">
+                  <ul className="mb-0 list-none" id="header-cart-items-scroll">
+                    <li className="border-b ti-dropdown-item dark:border-defaultborder/10 border-defaultborder ">
                       <div className="flex items-start cart-dropdown-item">
                         <img
                           src="../assets/images/ecommerce/jpg/1.jpg"
@@ -250,8 +252,8 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                               </a>
                             </div>
                           </div>
-                          <div className="min-w-fit flex  items-start justify-between">
-                            <ul className="header-product-item dark:text-white/50 flex">
+                          <div className="flex items-start justify-between min-w-fit">
+                            <ul className="flex header-product-item dark:text-white/50">
                               <li>Metallic Blue</li>
                               <li>6gb Ram</li>
                             </ul>
@@ -260,7 +262,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       </div>
                     </li>
 
-                    <li className="ti-dropdown-item border-b dark:border-defaultborder/10 border-defaultborder">
+                    <li className="border-b ti-dropdown-item dark:border-defaultborder/10 border-defaultborder">
                       <div className="flex items-start cart-dropdown-item">
                         <img
                           src="../assets/images/ecommerce/jpg/3.jpg"
@@ -285,7 +287,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                               </a>
                             </div>
                           </div>
-                          <div className="min-w-fit flex items-start justify-between">
+                          <div className="flex items-start justify-between min-w-fit">
                             <ul className="header-product-item">
                               <li>Analog</li>
                               <li>
@@ -298,7 +300,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         </div>
                       </div>
                     </li>
-                    <li className="ti-dropdown-item border-b dark:border-defaultborder/10 border-defaultborder">
+                    <li className="border-b ti-dropdown-item dark:border-defaultborder/10 border-defaultborder">
                       <div className="flex items-start cart-dropdown-item">
                         <img
                           src="../assets/images/ecommerce/jpg/5.jpg"
@@ -323,15 +325,15 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                               </a>
                             </div>
                           </div>
-                          <div className="min-w-fit flex items-start justify-between">
-                            <ul className="header-product-item flex">
+                          <div className="flex items-start justify-between min-w-fit">
+                            <ul className="flex header-product-item">
                               <li>Decorative</li>
                             </ul>
                           </div>
                         </div>
                       </div>
                     </li>
-                    <li className="ti-dropdown-item border-b dark:border-defaultborder/10 border-defaultborder">
+                    <li className="border-b ti-dropdown-item dark:border-defaultborder/10 border-defaultborder">
                       <div className="flex items-start cart-dropdown-item">
                         <img
                           src="../assets/images/ecommerce/jpg/4.jpg"
@@ -356,8 +358,8 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                               </a>
                             </div>
                           </div>
-                          <div className="min-w-fit flex items-start justify-between">
-                            <ul className="header-product-item flex">
+                          <div className="flex items-start justify-between min-w-fit">
+                            <ul className="flex header-product-item">
                               <li>Black</li>
                               <li>50MM</li>
                             </ul>
@@ -391,7 +393,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                             </div>
                           </div>
                           <div className="flex items-start justify-between">
-                            <ul className="header-product-item flex">
+                            <ul className="flex header-product-item">
                               <li>Gray</li>
                               <li>Sports</li>
                             </ul>
@@ -400,11 +402,11 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       </div>
                     </li>
                   </ul>
-                  <div className="p-3 empty-header-item border-t">
+                  <div className="p-3 border-t empty-header-item">
                     <div className="grid">
                       <a
                         href="checkout.html"
-                        className="w-full ti-btn ti-btn-primary-full p-2"
+                        className="w-full p-2 ti-btn ti-btn-primary-full"
                       >
                         Proceed to checkout
                       </a>
@@ -480,7 +482,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                             <i className="ti ti-gift text-[1.125rem]"></i>
                           </span>
                         </div>
-                        <div className="grow flex items-center justify-between">
+                        <div className="flex items-center justify-between grow">
                           <div>
                             <p className="mb-0 text-defaulttextcolor dark:text-[#8c9097] dark:text-white/50 text-[0.8125rem] font-semibold">
                               <a href="notifications.html">
@@ -511,7 +513,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                             <i className="ti ti-discount-2 text-[1.125rem]"></i>
                           </span>
                         </div>
-                        <div className="grow flex items-center justify-between">
+                        <div className="flex items-center justify-between grow">
                           <div>
                             <p className="mb-0 text-defaulttextcolor dark:text-[#8c9097] dark:text-white/50 text-[0.8125rem]  font-semibold">
                               <a href="notifications.html">
@@ -541,7 +543,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                             <i className="ti ti-user-check text-[1.125rem]"></i>
                           </span>
                         </div>
-                        <div className="grow flex items-center justify-between">
+                        <div className="flex items-center justify-between grow">
                           <div>
                             <p className="mb-0 text-defaulttextcolor dark:text-[#8c9097] dark:text-white/50 text-[0.8125rem]  font-semibold">
                               <a href="notifications.html">
@@ -571,7 +573,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                             <i className="ti ti-circle-check text-[1.125rem]"></i>
                           </span>
                         </div>
-                        <div className="grow flex items-center justify-between">
+                        <div className="flex items-center justify-between grow">
                           <div>
                             <p className="mb-0 text-defaulttextcolor dark:text-[#8c9097] dark:text-white/50  text-[0.8125rem]  font-semibold">
                               <a href="notifications.html">
@@ -604,7 +606,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                             <i className="ti ti-clock text-[1.125rem]"></i>
                           </span>
                         </div>
-                        <div className="grow flex items-center justify-between">
+                        <div className="flex items-center justify-between grow">
                           <div>
                             <p className="mb-0 text-defaulttextcolor dark:text-[#8c9097] dark:text-white/50  text-[0.8125rem]  font-semibold">
                               <a href="notifications.html">
@@ -632,7 +634,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                     </li>
                   </ul>
 
-                  <div className="p-4 empty-header-item1 border-t mt-2">
+                  <div className="p-4 mt-2 border-t empty-header-item1">
                     <div className="grid">
                       <a
                         href="notifications.html"
@@ -678,16 +680,16 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       </p>
                     </div>
                   </div>
-                  <div className="dropdown-divider mb-0"></div>
+                  <div className="mb-0 dropdown-divider"></div>
                   <div
-                    className="ti-dropdown-divider divide-y divide-gray-200 dark:divide-white/10 main-header-shortcuts p-2"
+                    className="p-2 divide-y divide-gray-200 ti-dropdown-divider dark:divide-white/10 main-header-shortcuts"
                     id="header-shortcut-scroll"
                   >
                     <div className="grid grid-cols-3 gap-2">
                       <div className="">
                         <a
                           href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <div>
                             <img
@@ -704,7 +706,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       <div className="">
                         <a
                           href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <img
                             src="../assets/images/apps/microsoft-powerpoint.png"
@@ -719,7 +721,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       <div className="">
                         <a
                           href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <img
                             src="../assets/images/apps/microsoft-word.png"
@@ -735,7 +737,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       <div className="">
                         <a
                           href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <img
                             src="../assets/images/apps/calender.png"
@@ -750,7 +752,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       <div className="">
                         <a
                           href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <img
                             src="../assets/images/apps/sketch.png"
@@ -765,7 +767,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       <div className="">
                         <a
                           href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <img
                             src="../assets/images/apps/google-docs.png"
@@ -780,7 +782,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       <div className="">
                         <a
                           href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <img
                             src="../assets/images/apps/google.png"
@@ -795,7 +797,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       <div className="">
                         <a
                           href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <img
                             src="../assets/images/apps/translate.png"
@@ -810,7 +812,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       <div className="">
                         <a
                           href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <img
                             src="../assets/images/apps/google-sheets.png"
@@ -824,7 +826,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="p-4 first:pt-0 border-t">
+                  <div className="p-4 border-t first:pt-0">
                     <a
                       className="w-full ti-btn ti-btn-primary-full p-2 !m-0"
                       href="javascript:void(0);"
@@ -846,7 +848,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                   className="inline-flex flex-shrink-0 justify-center items-center gap-2  !rounded-full font-medium dark:hover:bg-black/20 dark:text-[#8c9097] dark:text-white/50 dark:hover:text-white dark:focus:ring-white/10 dark:focus:ring-offset-white/10"
                 >
                   <i className="bx bx-fullscreen full-screen-open header-link-icon"></i>
-                  <i className="bx bx-exit-fullscreen full-screen-close header-link-icon hidden"></i>
+                  <i className="hidden bx bx-exit-fullscreen full-screen-close header-link-icon"></i>
                 </a>
                 {/*     <!-- End::header-link --> */}
               </div>
@@ -867,7 +869,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                     alt="Image Description"
                   />
                 </button>
-                <div className="md:block hidden dropdown-profile">
+                <div className="hidden md:block dropdown-profile">
                   <p className="font-semibold mb-0 leading-none text-[#536485] text-[0.813rem] ">
                     Json Taylor
                   </p>

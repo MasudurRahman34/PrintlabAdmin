@@ -1,40 +1,96 @@
 import Link from "next/link";
 import React from "react";
+import { AiFillProduct } from "react-icons/ai";
+import { BiCategory } from "react-icons/bi";
+import { FaHome } from "react-icons/fa";
+import { FaUsersCog } from "react-icons/fa";
+import { IoMdAddCircle } from "react-icons/io";
+import { LuListOrdered } from "react-icons/lu";
+import { MdPermMedia } from "react-icons/md";
+import { PiFlagBannerFoldFill } from "react-icons/pi";
+import { TbListDetails } from "react-icons/tb";
 
-const Sidebar = ({hideSidebar}) => {
-  console.log(hideSidebar)
+const links = [
+  {
+    href: "/",
+    label: "Home",
+    Icon: () => <FaHome />,
+  },
+  {
+    href: "/products",
+    label: "Products",
+    Icon: () => <AiFillProduct />,
+  },
+  {
+    href: "/orders",
+    label: "Orders",
+    Icon: () => <LuListOrdered />,
+  },
+  {
+    href: "/ordersdetails",
+    label: "Orders Detail",
+    Icon: () => <LuListOrdered />,
+  },
+  {
+    href: "/productdetails",
+    label: "Products Detail",
+    Icon: () => <AiFillProduct />,
+  },
+  {
+    href: "/categories",
+    label: "Category",
+    Icon: () => <BiCategory />,
+  },
+  {
+    href: "/addproduct",
+    label: "Add Products",
+    Icon: () => <IoMdAddCircle />,
+  },
+  {
+    href: "/media",
+    label: "Media",
+    Icon: () => <MdPermMedia />,
+  },
+  {
+    href: "/banner",
+    label: "Add Banner",
+    Icon: () => <PiFlagBannerFoldFill />,
+  },
+  {
+    href: "/usermanagements",
+    label: "Users",
+    Icon: () => <FaUsersCog />,
+  },
+];
+
+const Sidebar = ({ hideSidebar }) => {
   return (
-    <aside className={`hidden app-sidebar lg:block   ${hideSidebar ?"w-[5rem]":"w-[15rem]"} `} id="sidebar">
+    <aside
+      className={`hidden app-sidebar lg:block   ${
+        hideSidebar ? "w-[5rem]" : "w-[15rem]"
+      } `}
+      id="sidebar"
+    >
       {/*  <!-- Start::main-sidebar-header --> */}
-      <div className="main-sidebar-header ">
-      <i className={`bx bx-file-blank side-menu__icon`}></i>
-        <a href="index.html" className={`header-logo ${hideSidebar? " opacity-0 invisible" :" opacity-100 visible"}"`}>
-          <img
-            src="../assets/images/brand-logos/printlab-logo.jpg"
-            alt="logo"
-            className="desktop-logo"
-          />
-          <img
-            src="../assets/images/brand-logos/printlab-logo.jpg"
-            alt="logo"
-            className="toggle-logo"
-          />
-          <img
-            src="../assets/images/brand-logos/printlab-logo.jpg"
-            alt="logo"
-            className="desktop-dark"
-          />
-          <img
-            src="../assets/images/brand-logos/printlab-logo.jpg"
-            alt="logo"
-            className="toggle-dark"
-          />
-
-          <img
-            src="../assets/images/brand-logos/printlab-logo.jpg"
-            alt="logo"
-            className="toggle-white"
-          />
+      <div
+        className="main-sidebar-header "
+        style={{
+          width: hideSidebar ? "5rem" : "15rem",
+        }}
+      >
+        <a
+          href="index.html"
+          className={`header-logo ${
+            hideSidebar ? " opacity-0 invisible" : " opacity-100 visible"
+          }"`}
+        >
+          {!hideSidebar && (
+            <img
+              src="../assets/images/brand-logos/printlab-logo.jpg"
+              alt="logo"
+              className="desktop-dark"
+            />
+          )}
         </a>
       </div>
       {/*  <!-- End::main-sidebar-header -->
@@ -55,180 +111,27 @@ const Sidebar = ({hideSidebar}) => {
             </svg>
           </div>
           <ul className="main-menu">
-
-
-            <Link href="/">
-              <li className="slide has-sub">
-                <a className="side-menu__item">
-                <i className="bx bx-home side-menu__icon"></i>
-                  <div className={`${hideSidebar? " opacity-0 invisible" :" opacity-100 visible"}`}>
-                  <span className="side-menu__label">Dashboards</span>
-                  <i className="fe fe-chevron-right side-menu__angle"></i>
-                  </div>
-                </a>
-              </li>
-            </Link>
-
-            <Link href="/products">
-              <li className="slide has-sub">
-                <a className="side-menu__item">
-                  <i className="bx bx-file-blank side-menu__icon"></i>
-                  <div className={`${hideSidebar? " opacity-0 invisible" :" opacity-100 visible"}`}>
-                  <span className="side-menu__label">Products</span>
-                  <i className="fe fe-chevron-right side-menu__angle"></i>
-                  </div>
-                </a>
-              </li>
-            </Link>
-            <Link href="/orders">
-              <li className="slide has-sub">
-                <a className="side-menu__item">
-                  <i className="bx bx-file-blank side-menu__icon"></i>
-                  <div className={`${hideSidebar? " opacity-0 invisible" :" opacity-100 visible"}`}>
-                  <span className="side-menu__label">Orders</span>
-                  <i className="fe fe-chevron-right side-menu__angle"></i>
-                  </div>
-                </a>
-              </li>
-            </Link>
-
-            <Link href="/ordersdetails">
-              <li className="slide has-sub">
-                <a className="side-menu__item">
-                  <i className="bx bx-file-blank side-menu__icon"></i>
-                  <div className={`${hideSidebar? " opacity-0 invisible" :" opacity-100 visible"}`}>
-                  <span className="side-menu__label">Orders Detail</span>
-                  <i className="fe fe-chevron-right side-menu__angle"></i>
-                  </div>
-                </a>
-              </li>
-            </Link>
-
-            <Link href="/productdetails">
-              <li className="slide has-sub">
-                <a className="side-menu__item">
-                  <i className="bx bx-file-blank side-menu__icon"></i>
-                  <div className={`${hideSidebar? " opacity-0 invisible" :" opacity-100 visible"}`}>
-                  <span className="side-menu__label">Products Detail</span>
-                  <i className="fe fe-chevron-right side-menu__angle"></i>
-                  </div>
-                  
-                </a>
-              </li>
-            </Link>
-
-            <Link href="/categories">
-              <li className="slide has-sub">
-                <a className="side-menu__item">
-                  <i className="bx bx-file-blank side-menu__icon"></i>
-                
-                  <div className={`${hideSidebar? " opacity-0 invisible" :" opacity-100 visible"}`}>
-                  <span className="side-menu__label">Category</span>
-                  <i className="fe fe-chevron-right side-menu__angle"></i>
-                  </div>
-                </a>
-              </li>
-            </Link>
-            <Link href="/addproduct">
-              <li className="slide has-sub">
-                <a className="side-menu__item">
-                  <i className="bx bx-file-blank side-menu__icon"></i>
-            
-                  <div className={`${hideSidebar? " opacity-0 invisible" :" opacity-100 visible"}`}>
-                  <span className="side-menu__label">Add Products</span>
-                  <i className="fe fe-chevron-right side-menu__angle"></i>
-                  </div>
-                </a>
-              </li>
-            </Link>
-            <Link href="/media">
-              <li className="slide has-sub">
-                <a className="side-menu__item">
-                  <i className="bx bx-file-blank side-menu__icon"></i>
-                  <div className={`${hideSidebar? " opacity-0 invisible" :" opacity-100 visible"}`}>
-                  <span className="side-menu__label">Media</span>
-                  <i className="fe fe-chevron-right side-menu__angle"></i>
-                  </div>
-                </a>
-              </li>
-            </Link>
-            <Link href="/banner">
-              <li className="slide has-sub">
-                <a className="side-menu__item">
-                  <i className="bx bx-file-blank side-menu__icon"></i>
-               
-                  <div className={`${hideSidebar? " opacity-0 invisible" :" opacity-100 visible"}`}>
-                  <span className="side-menu__label">Add Banner</span>
-                  <i className="fe fe-chevron-right side-menu__angle"></i>
-                  </div>
-                </a>
-              </li>
-            </Link>
-            <Link href="/usermanagements">
-              <li className="slide has-sub">
-                <a className="side-menu__item">
-                  <i className="bx bx-file-blank side-menu__icon"></i>
-                  <div className={`${hideSidebar? " opacity-0 invisible" :" opacity-100 visible"}`}>
-                  <span className="side-menu__label">Users</span>
-                  <i className="fe fe-chevron-right side-menu__angle"></i>
-                  </div>
-                </a>
-              </li>
-            </Link>
-            {/* <li className="slide has-sub">
-              <a href="javascript:void(0);" className="side-menu__item">
-                <i className="bx bx-medal side-menu__icon"></i>
-                <span className="side-menu__label">Utilities</span>
-                <i className="fe fe-chevron-right side-menu__angle"></i>
-              </a>
-              <ul className="slide-menu child1">
-                <li className="slide side-menu__label1">
-                  <a href="javascript:void(0)">Utilities</a>
+            {links.map((link, idx) => {
+              return (
+                <li className="slide has-sub" key={idx}>
+                  <Link href={link.href} className="side-menu__item">
+                    <span>
+                      <link.Icon />
+                    </span>
+                    <span
+                      className={`${
+                        hideSidebar
+                          ? " opacity-0 invisible"
+                          : " opacity-100 visible"
+                      }`}
+                    >
+                      <span className="side-menu__label">{link.label}</span>
+                    </span>
+                  </Link>
                 </li>
-                <li className="slide">
-                  <a href="avatars.html" className="side-menu__item">
-                    Avatars
-                  </a>
-                </li>
-                <li className="slide">
-                  <a href="borders.html" className="side-menu__item">
-                    Borders
-                  </a>
-                </li>
-                <li className="slide">
-                  <a href="colors.html" className="side-menu__item">
-                    Colors
-                  </a>
-                </li>
-                <li className="slide">
-                  <a href="grids.html" className="side-menu__item">
-                    Grids
-                  </a>
-                </li>
-                <li className="slide">
-                  <a href="flex.html" className="side-menu__item">
-                    Flex
-                  </a>
-                </li>
-                <li className="slide">
-                  <a href="columns.html" className="side-menu__item">
-                    Columns
-                  </a>
-                </li>
-              </ul>
-            </li> */}
+              );
+            })}
           </ul>
-          {/* <div className="slide-right" id="slide-right">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="#7b8191"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
-            </svg>
-          </div> */}
         </nav>
         {/*       <!-- End::nav --> */}
       </div>
