@@ -6,7 +6,6 @@ const OptionCard = ({
   option,
   checkedAttribute,
   toggleAccordion,
-
   product_refetch,
   handleOptionCheck,
   attribute_refetch,
@@ -76,6 +75,7 @@ const OptionCard = ({
                     checkedAttribute={checkedAttribute}
                     product_refetch={product_refetch}
                     attribute_refetch={attribute_refetch}
+                    attribute={option}
                   />
                 ))}
               </div>

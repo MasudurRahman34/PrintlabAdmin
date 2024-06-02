@@ -13,12 +13,12 @@ export const AdminLayout = ({ children }) => {
       <Header hideSidebar={hideSidebar} toggleSidebar={toggleSidebar} />
       <Sidebar hideSidebar={hideSidebar} toggleSidebar={toggleSidebar} />
       <div
-        className="w-full content main-index"
+        className=" content main-index"
         style={{
           marginLeft: hideSidebar ? "5rem" : "15rem",
         }}
       >
-        <div className="main-content py-3 min-h-[calc(100vh - 3.75rem)] h-full !w-full ">
+        <div className="main-content py-3 min-h-[calc(100vh - 3.75rem)] h-full w-full ">
           {children}
         </div>
       </div>

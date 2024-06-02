@@ -14,6 +14,7 @@ import {
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { SketchPicker } from "react-color";
 import toast from "react-hot-toast";
 
 const AttributeOptionManage = ({
@@ -21,6 +22,7 @@ const AttributeOptionManage = ({
   product_refetch,
   attribute_refetch,
   attribute_option,
+  attribute,
 }) => {
   const [show, setShow] = useState(false);
   const [editShow, setEditShow] = useState(false);
@@ -104,16 +106,28 @@ const AttributeOptionManage = ({
           isPending={isUpdatePending}
           handleMutate={handleSubmit}
         >
-          <div className="">
-            <div className="col-span-12 xl:col-span-4 lg:col-span-6 md:col-span-6 sm:col-span-12">
+          <div className="min-w-[350px] ">
+            <div className="w-full col-span-12 xl:col-span-4 lg:col-span-6 md:col-span-6 sm:col-span-12">
               <p className="mb-2 text-muted">Title</p>
-              <input
-                type="text"
-                className="form-control"
-                name="title"
-                value={form_state.title}
-                onChange={handleChange}
-              />
+              {attribute?.type?.label === "Select" ? (
+                <input
+                  type="text"
+                  className="form-control"
+                  name="title"
+                  value={form_state.title}
+                  onChange={handleChange}
+                />
+              ) : attribute?.type?.label === "Color" ? (
+                <SketchPicker
+                  color={form_state.title}
+                  onChange={(color) => {
+                    setFormState({
+                      ...form_state,
+                      title: color.hex,
+                    });
+                  }}
+                />
+              ) : null}
             </div>
           </div>
         </ModalLayout>
