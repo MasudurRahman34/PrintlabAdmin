@@ -7,7 +7,7 @@ export default function SingleProducttable({ product }) {
   return (
     <tr
       className={`product-list cursor-pointer ${
-        product?.slug === slug || id ? "bg-gray-500  !text-white" : " "
+        product?.slug === slug || id ? "bg-purple-600  !text-white" : " "
       }  `}
       onClick={() => {
         router.push(`/products/${product?.slug || id}`);
