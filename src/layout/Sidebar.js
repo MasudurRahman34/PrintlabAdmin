@@ -21,12 +21,12 @@ const links = [
     label: "Products",
     Icon: () => <AiFillProduct className="w-6 h-6" />,
   },
-  {
+  /*  {
     href: "/orders",
     label: "Orders",
     Icon: () => <LuListOrdered className="w-6 h-6" />,
-  },
-  {
+  }, */
+  /*  {
     href: "/ordersdetails",
     label: "Orders Detail",
     Icon: () => <LuListOrdered className="w-6 h-6" />,
@@ -35,23 +35,23 @@ const links = [
     href: "/productdetails",
     label: "Products Detail",
     Icon: () => <AiFillProduct className="w-6 h-6" />,
-  },
+  }, */
   {
     href: "/categories",
     label: "Category",
     Icon: () => <BiCategory className="w-6 h-6" />,
   },
-  {
+  /* {
     href: "/addproduct",
     label: "Add Products",
     Icon: () => <IoMdAddCircle className="w-6 h-6" />,
-  },
+  }, */
   {
     href: "/media",
     label: "Media",
     Icon: () => <MdPermMedia className="w-6 h-6" />,
   },
-  {
+  /*  {
     href: "/banner",
     label: "Add Banner",
     Icon: () => <PiFlagBannerFoldFill className="w-6 h-6" />,
@@ -60,7 +60,7 @@ const links = [
     href: "/usermanagements",
     label: "Users",
     Icon: () => <FaUsersCog className="w-6 h-6" />,
-  },
+  }, */
 ];
 
 const Sidebar = ({ hideSidebar }) => {
