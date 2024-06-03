@@ -21,12 +21,12 @@ const links = [
     label: "Products",
     Icon: () => <AiFillProduct className="w-6 h-6" />,
   },
-  /* {
+  /*  {
     href: "/orders",
     label: "Orders",
     Icon: () => <LuListOrdered className="w-6 h-6" />,
   }, */
-  /* {
+  /*  {
     href: "/ordersdetails",
     label: "Orders Detail",
     Icon: () => <LuListOrdered className="w-6 h-6" />,
@@ -41,7 +41,11 @@ const links = [
     label: "Category",
     Icon: () => <BiCategory className="w-6 h-6" />,
   },
-
+  /* {
+    href: "/addproduct",
+    label: "Add Products",
+    Icon: () => <IoMdAddCircle className="w-6 h-6" />,
+  }, */
   {
     href: "/media",
     label: "Media",

@@ -34,7 +34,6 @@
     "react-media-library": "^2.0.3",
     "react-modal": "^3.16.1",
     "react-quill": "^2.0.0",
-    "react-rich-text-editor": "^2.1.2",
     "ui": "github:shadcn/ui"
   },
   "devDependencies": {

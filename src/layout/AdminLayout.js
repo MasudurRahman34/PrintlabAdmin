@@ -1,13 +1,14 @@
 import Header from "./Header";
 import Sidebar from "./Sidebar";
+import useScreenWidth from "@/hooks/useScreenWidth";
 import React, { useState } from "react";
 
 export const AdminLayout = ({ children }) => {
+  const screenWidth = useScreenWidth();
   const [hideSidebar, setHideSidebar] = useState(false);
   const toggleSidebar = () => {
     setHideSidebar(!hideSidebar);
   };
-
   return (
     <div className="page">
       <Header hideSidebar={hideSidebar} toggleSidebar={toggleSidebar} />
