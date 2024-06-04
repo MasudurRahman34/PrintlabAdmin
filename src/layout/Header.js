@@ -1,25 +1,26 @@
+import useScreenWidth from "@/hooks/useScreenWidth";
 import React from "react";
 
 const Header = ({ toggleSidebar, hideSidebar }) => {
-  console.log(hideSidebar);
+  const screenWidth = useScreenWidth();
   return (
     <>
       <header
         className="app-header"
         style={{
-          paddingLeft: hideSidebar ? "5rem" : "15rem",
+          paddingLeft: screenWidth > 992 ? (hideSidebar ? "5rem" : "15rem") : 0,
         }}
       >
         <nav className="main-header !h-[3.75rem]" aria-label="Global">
           <div className="main-header-container ps-[0.725rem] pe-[1rem] ">
             <div className="header-content-left">
-              <div className="header-element">
+              {/* <div className="header-element">
                 <div className="horizontal-logo">
                   <a href="index.html" className="header-logo">
                     PrintLab
                   </a>
                 </div>
-              </div>
+              </div> */}
 
               <div className="header-element md:px-[0.325rem] !items-center">
                 <a

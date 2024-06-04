@@ -1,6 +1,6 @@
 import { getAllCategories } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useEffect } from "react";
 
 const CategorySelect = ({ selected, onChange, name = "" }) => {
   const { data, isPending, isError } = useQuery({
@@ -8,13 +8,18 @@ const CategorySelect = ({ selected, onChange, name = "" }) => {
     queryFn: getAllCategories,
   });
 
+  useEffect(() => {}, [selected]);
+
+  if (isPending) return <p>Loading...</p>;
+  if (isError) return <p>Error fetching categories. Please try again later</p>;
+
   return (
     <select
       className="ti-form-select rounded-sm !py-2 !px-3"
       data-trigger
       name={name}
       id={name}
-      defaultValue={selected}
+      value={selected}
       onChange={onChange}
     >
       <option value="">Choose category</option>

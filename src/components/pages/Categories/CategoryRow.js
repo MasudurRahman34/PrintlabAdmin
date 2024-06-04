@@ -1,4 +1,5 @@
 import Delete from "./Delete";
+import { truncateHTML } from "@/utils/common";
 import Link from "next/link";
 import React from "react";
 
@@ -9,15 +10,6 @@ const CategoryRow = ({ item, refetch }) => {
   return (
     <>
       <tr className="product-list" key={item}>
-        <td className="product-checkbox">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            id={`product${item}`}
-            value=""
-            aria-label="..."
-          />
-        </td>
         <td>
           <div className="flex items-center">
             <div className="me-2">
@@ -30,8 +22,13 @@ const CategoryRow = ({ item, refetch }) => {
         <td>
           <div className="font-bold">{item.title}</div>
         </td>
-        <td className="max-w-sm text-wrap">
-          <div className=" text-muted">{item.description}</div>
+        <td className="min-w-sm">
+          <div className="">
+            {truncateHTML({
+              html: item.description,
+              maxWords: 8,
+            })}
+          </div>
         </td>
 
         <td>
@@ -54,15 +51,6 @@ const CategoryRow = ({ item, refetch }) => {
       {item.children.length > 0 &&
         item.children.map((child) => (
           <tr className="product-list" key={child}>
-            <td className="product-checkbox">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                id={`product${child}`}
-                value=""
-                aria-label="..."
-              />
-            </td>
             <td>
               <div className="flex items-center">
                 <div className="me-2">
@@ -73,13 +61,18 @@ const CategoryRow = ({ item, refetch }) => {
               </div>
             </td>
             <td>
-              <div className="font-medium">
+              <div className="font-medium ">
                 {" "}
                 {">"} {child.title}
               </div>
             </td>
             <td className="max-w-sm text-wrap">
-              <div className=" text-muted">{child.description}</div>
+              <div className=" text-muted">
+                {truncateHTML({
+                  html: child.description,
+                  maxWords: 8,
+                })}
+              </div>
             </td>
 
             <td>

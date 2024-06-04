@@ -1,18 +1,24 @@
 import CategorySelect from "@/components/CategorySelect";
 import MediaAttach from "@/components/MediaAttach";
+import AttachedMediaRender from "@/components/ui/AttachedMediaRender";
 import { updateCategoryMutation } from "@/resolvers/mutation";
 import { getSingleCategoryQuery } from "@/resolvers/query";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import toast from "react-hot-toast";
+
+const TextEditor = dynamic(() => import("@/components/TextEditor"), {
+  ssr: false,
+});
 
 const SingleCategory = () => {
   const router = useRouter();
   const { slug } = router.query;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
-  const { data, isPending, isError, error, refetch } = useQuery({
+  const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ["get-single-categories", slug],
     queryFn: () => getSingleCategoryQuery(slug),
     enabled: !!slug,
@@ -24,6 +30,8 @@ const SingleCategory = () => {
     description: "",
     media_ids: [],
   });
+
+  console.log(formState);
   const { mutate, isPending: updating } = useMutation({
     mutationKey: "update-category",
     mutationFn: updateCategoryMutation,
@@ -84,10 +92,21 @@ const SingleCategory = () => {
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    if (data) {
+      setFormState({
+        category_name: data?.data.title,
+        parent_category: data?.data.category_id,
+        description: data?.data.description,
+        media_ids: data?.data.media.map((media) => media.id),
+      });
+    }
+  }, [data]);
+
   return (
     <div className="px-5 py-5 bg-white ">
       <div className="flex gap-4 ">
-        <div className="w-4/12 category-left">
+        <div className="w-full category-left">
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-12 gap-4 mt-0">
               <div className="col-span-12 ">
@@ -117,15 +136,12 @@ const SingleCategory = () => {
                 <label for="inputAddress" className="form-label">
                   Description
                 </label>
-                <textarea
-                  id="description"
-                  className="w-full rounded-md"
-                  name="description"
-                  value={formState.description}
-                  onChange={handleChange}
-                  rows="6"
-                  cols="60"
-                ></textarea>
+                <TextEditor
+                  text={formState.description}
+                  handleChange={(value) =>
+                    setFormState({ ...formState, description: value })
+                  }
+                />
               </div>
 
               <div className="col-span-12 mt-6">
@@ -162,8 +178,11 @@ const SingleCategory = () => {
 
               {data?.data.media.length > 0 &&
                 data?.data.media.map((media) => (
-                  <div key={media.id} className="col-span-12">
-                    <img src={media.url} alt={media.name} />
+                  <div key={media.id} className="w-[80px] h-[80px]">
+                    <AttachedMediaRender
+                      media={media}
+                      product_refetch={refetch}
+                    />
                   </div>
                 ))}
 
