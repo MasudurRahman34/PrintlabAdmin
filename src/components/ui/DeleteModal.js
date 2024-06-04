@@ -4,12 +4,18 @@ const DeleteModal = ({ show, hideModal, title, handleDelete, isPending }) => {
   return (
     <div
       id="hs-vertically-centered-modal"
-      className={` hs-overlay ti-modal bg-black/40 ${show ? "open" : "hidden"}`}
-      onClick={hideModal}
+      className={` hs-overlay ti-modal ${show ? "open" : "hidden"}`}
     >
       <div
-        className="hs-overlay-open:mt-7 ti-modal-box mt-0 ease-out min-h-[calc(100%-3.5rem)] flex items-center "
-        style={{ color: "black" }}
+        className={`w-screen absolute h-screen bg-black/40 ${
+          show ? "open" : "hidden"
+        }`}
+        style={{ zIndex: 9998 }}
+        onClick={hideModal}
+      ></div>
+      <div
+        className="hs-overlay-open:mt-7 w-full ti-modal-box mt-0 ease-out min-h-[calc(100%-3.5rem)] flex items-center relative"
+        style={{ color: "black", zIndex: 9999 }}
       >
         <div className="ti-modal-content">
           <div className="ti-modal-header">
@@ -54,6 +60,7 @@ const DeleteModal = ({ show, hideModal, title, handleDelete, isPending }) => {
               Close
             </button>
             <button
+              type="button"
               className="ti-btn ti-btn-danger-full"
               href="javascript:void(0);"
               onClick={handleDelete}

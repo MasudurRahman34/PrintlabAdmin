@@ -67,11 +67,15 @@ const ManageAttribute = ({
     if (checkedAttributes.filter((item) => item.id === id).length > 0) {
       setCheckedAttributes(checkedAttributes.filter((item) => item.id !== id));
     } else {
+      const attribute_options = productAttributeData?.data
+        .filter((attribute) => attribute.attribute_id === id)
+        .map((attribute) => attribute.attribute_option_id);
+
       setCheckedAttributes([
         ...checkedAttributes,
         {
           id: id,
-          options: [],
+          options: [...attribute_options],
         },
       ]);
     }
@@ -291,7 +295,7 @@ const ManageAttribute = ({
         />
       </div>
       <div className="flex items-center justify-end w-full gap-3 mt-10">
-        {productAttributeData?.data?.length > 0 ? (
+        {productAttributeData?.data?.length > 0 && (
           <button
             type="button"
             class="ti-btn ti-btn-primary-full ti-btn-loader "
@@ -305,16 +309,15 @@ const ManageAttribute = ({
               </span>
             ) : null}
           </button>
-        ) : (
-          <button
-            type="button"
-            class="ti-btn ti-btn-primary-full ti-btn-wave"
-            disabled={isPending}
-            onClick={handleSave}
-          >
-            {isPending ? "Saving..." : "Save"}
-          </button>
         )}
+        <button
+          type="button"
+          class="ti-btn ti-btn-primary-full ti-btn-wave"
+          disabled={isPending}
+          onClick={handleSave}
+        >
+          {isPending ? "Saving..." : "Save"}
+        </button>
       </div>
     </>
   );
