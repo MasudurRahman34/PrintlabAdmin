@@ -9,7 +9,6 @@ const OptionCardItem = ({
   attribute,
   attribute_refetch,
 }) => {
-  console.log(attribute);
   return (
     <div className="flex items-center col-span-12 px-3 py-3 border rounded-md lg:col-span-6 xl:col-span-4">
       <div className="flex w-full gap-3">

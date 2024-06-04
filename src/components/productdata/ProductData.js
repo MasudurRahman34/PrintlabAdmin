@@ -17,16 +17,16 @@ const tabList = [
   },
 
   {
-    id: 3,
-    name: "Attribute",
-  },
-  {
     id: 4,
     name: "Delivery Service",
   },
   {
     id: 5,
     name: "Artwork Service",
+  },
+  {
+    id: 3,
+    name: "Attribute",
   },
 ];
 

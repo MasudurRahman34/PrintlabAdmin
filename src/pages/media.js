@@ -1,6 +1,5 @@
 import Media from "@/components/pages/Media";
 import { AdminLayout } from "@/layout/AdminLayout";
-import Image from "next/image";
 import React from "react";
 
 const page = () => {

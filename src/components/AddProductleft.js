@@ -40,7 +40,7 @@ const AddProductleft = () => {
           <input
             onChange={handleSearchChange}
             placeholder="Search"
-            className="text-sm rounded-md"
+            className="text-xs rounded-md"
           />
           <button
             onClick={() => setModalIsOpen(true)}
