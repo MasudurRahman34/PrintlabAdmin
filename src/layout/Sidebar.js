@@ -4,7 +4,7 @@ import React from "react";
 const Sidebar = ({hideSidebar}) => {
   console.log(hideSidebar)
   return (
-    <aside className={`hidden app-sidebar lg:block   ${hideSidebar ?"w-[5rem]":"w-[15rem]"} `} id="sidebar">
+    <aside className={`hidden app-sidebar lg:block    ${hideSidebar ?"w-[5rem]":"w-[15rem]"} `} id="sidebar">
       {/*  <!-- Start::main-sidebar-header --> */}
       <div className="main-sidebar-header ">
       <i className={`bx bx-file-blank side-menu__icon`}></i>

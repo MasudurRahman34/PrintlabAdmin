@@ -71,7 +71,7 @@ const ProductsComponent = () => {
             <div className="box">
               <div className="justify-between box-header">
                 <div className="flex items-center gap-3">
-                  <p classNameName="!text-[20px]">Products List</p>
+                  <p classNameName="!text-[20px] md:text-[30px]">Products List</p>
                   <div className="flex" role="search">
                     <input
                       onChange={handleSearchChange}
@@ -82,7 +82,7 @@ const ProductsComponent = () => {
                       aria-label="Search"
                     />
                     <button
-                      className="ti-btn ti-btn-light !font-medium"
+                      className="ti-btn ti-btn-light !font-medium hidden "
                       type="submit"
                     >
                       Search
@@ -90,10 +90,10 @@ const ProductsComponent = () => {
                   </div>
                 </div>
 
-                <div class="ti-btn-list space-x-2 rtl:space-x-reverse">
+                <div className="ti-btn-list space-x-2 rtl:space-x-reverse">
                   <button
                     type="button"
-                    class="ti-btn ti-btn-primary-full label-ti-btn"
+                    className="ti-btn ti-btn-primary-full label-ti-btn  "
                   >
                     <i className=" label-ti-btn-icon me-2">
                       <BsFiletypeCsv />
