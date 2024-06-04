@@ -15,7 +15,7 @@ const CategorySelect = ({ selected, onChange, name = "" }) => {
 
   return (
     <select
-      className="ti-form-select rounded-sm !py-2 !px-3"
+      className="ti-form-select rounded-sm !py-2 !px-3 "
       data-trigger
       name={name}
       id={name}

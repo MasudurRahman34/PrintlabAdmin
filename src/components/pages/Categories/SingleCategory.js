@@ -24,12 +24,7 @@ const SingleCategory = () => {
     enabled: !!slug,
   });
 
-  const [formState, setFormState] = React.useState({
-    category_name: "",
-    parent_category: "",
-    description: "",
-    media_ids: [],
-  });
+  const [formState, setFormState] = React.useState({});
 
   console.log(formState);
   const { mutate, isPending: updating } = useMutation({

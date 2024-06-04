@@ -71,7 +71,6 @@ const ProductsComponent = () => {
             <div className="box">
               <div className="justify-between box-header">
                 <div className="flex items-center gap-3">
-                  <p classNameName="!text-[20px]">Products List</p>
                   <div className="flex" role="search">
                     <input
                       onChange={handleSearchChange}
@@ -81,16 +80,10 @@ const ProductsComponent = () => {
                       placeholder="Search"
                       aria-label="Search"
                     />
-                    <button
-                      className="ti-btn ti-btn-light !font-medium"
-                      type="submit"
-                    >
-                      Search
-                    </button>
                   </div>
                 </div>
 
-                <div class="ti-btn-list space-x-2 rtl:space-x-reverse">
+                <div class="ti-btn-list space-x-2 rtl:space-x-reverse hidden lg:block">
                   <button
                     type="button"
                     class="ti-btn ti-btn-primary-full label-ti-btn"

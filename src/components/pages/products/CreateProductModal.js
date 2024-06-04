@@ -101,13 +101,13 @@ const CreateProductModal = ({ modalIsOpen = false, setIsOpen }) => {
         },
       }}
     >
-      <div className="grid h-full grid-cols-12 gap-6">
+      <div className="grid h-full grid-cols-12 gap-6 overflow-y-auto">
         <div className="h-full col-span-12 xl:col-span-12">
           <div className="h-full box">
             <div className="box-body add-products !p-0 flex flex-col h-full justify-between">
               <div className="flex items-center justify-between ">
                 <div className="p-2 text-xl font-bold">
-                  <p className="">All Media</p>
+                  <p className="">Create Product</p>
                 </div>
                 <button
                   className="flex items-center justify-center border w-14 h-14 hover:bg-gray-200"
