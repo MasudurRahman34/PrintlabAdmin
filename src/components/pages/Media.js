@@ -28,9 +28,9 @@ const Media = () => {
         ) : data?.data.length === 0 ? (
           <div className="text-center text-gray-500">No media found</div>
         ) : (
-          <div className="grid justify-between grid-cols-12 gap-3 py-5 ">
+          <div className="flex flex-wrap gap-3 py-5 ">
             {data?.data.map((media) => (
-              <MediaFile key={media.id} media={media} />
+              <MediaFile key={media.id} media={media} refetch={refetch} />
             ))}
           </div>
         )}

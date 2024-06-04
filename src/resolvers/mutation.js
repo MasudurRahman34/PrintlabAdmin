@@ -147,3 +147,6 @@ export const updateProductArtworkServiceMutation = async ({
 
 export const deleteProductMutation = async ({ product_id }) =>
   axios.delete(`${backendUrl}/products/${product_id}`).then((res) => res.data);
+
+export const deleteMediaMutation = async ({ media_id }) =>
+  axios.delete(`${backendUrl}/media/${media_id}`).then((res) => res.data);

@@ -117,7 +117,7 @@ const Sidebar = ({ hideSidebar, toggleSidebar, isOpen, setIsOpen }) => {
         {/*  <!-- End::main-sidebar-header -->
 
     <!-- Start::main-sidebar --> */}
-        <div className="main-sidebar w-[100px]" id="sidebar-scroll">
+        <div className="main-sidebar " id="sidebar-scroll">
           {/*  <!-- Start::nav --> */}
           <nav className="main-menu-container nav nav-pills flex-column sub-open">
             <div className="slide-left" id="slide-left">

@@ -1,11 +1,12 @@
-import { updateMediaMutation } from "@/resolvers/mutation";
+import { deleteMediaMutation, updateMediaMutation } from "@/resolvers/mutation";
 import { formateDate } from "@/utils/common";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import Modal from "react-modal";
 
-const MediaFile = ({ media }) => {
+const MediaFile = ({ media, refetch }) => {
   const [copied, setCopied] = useState(false);
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [formState, setFormState] = useState({
@@ -17,6 +18,11 @@ const MediaFile = ({ media }) => {
   const { mutate, isPending } = useMutation({
     mutationKey: "update-media",
     mutationFn: updateMediaMutation,
+  });
+
+  const { mutate: deleteMedia, isPending: deleteIsPending } = useMutation({
+    mutationKey: "delete-media",
+    mutationFn: deleteMediaMutation,
   });
 
   function openModal() {
@@ -36,10 +42,45 @@ const MediaFile = ({ media }) => {
     setCopied(true);
   };
 
+  const updateMedia = () => {
+    mutate(
+      {
+        variables: formState,
+        media_id: media.id,
+      },
+      {
+        onSuccess: (data) => {
+          toast.success("Media updated successfully");
+        },
+        onError: (err) => {
+          toast.error("Failed to update media");
+        },
+      }
+    );
+  };
+
+  const deleteMediaHandler = () => {
+    deleteMedia(
+      {
+        media_id: media.id,
+      },
+      {
+        onSuccess: (data) => {
+          setIsOpen(false);
+          refetch();
+          toast.success("Media deleted successfully");
+        },
+        onError: (err) => {
+          toast.error("Failed to delete media");
+        },
+      }
+    );
+  };
+
   return (
     <>
       <div
-        className="flex items-center justify-center w-full col-span-6 cursor-pointer xl:col-span-1 lg:col-span-2 md:col-span-4"
+        className="flex items-center justify-center cursor-pointer w-28 h-28"
         key={media.id}
         onClick={openModal}
       >
@@ -74,7 +115,7 @@ const MediaFile = ({ media }) => {
         }}
         contentLabel="Example Modal"
       >
-        <div className="w-full h-full">
+        <div className="w-full h-full overflow-y-auto">
           <div className="flex items-center justify-between ">
             <div className="p-2 text-xl font-bold">
               <p className="">{media.title}</p>
@@ -100,18 +141,18 @@ const MediaFile = ({ media }) => {
             </button>
           </div>
           <hr />
-          <div className="grid grid-cols-12 ">
-            <div className="flex justify-center col-span-12 p-3 pr-2 lg:col-span-8">
+          <div className="grid grid-cols-12 min-h-[88vh]">
+            <div className="flex justify-center col-span-12 p-3 pr-2 lg:col-span-6">
               <Image
                 src={media.url}
-                width={1000}
+                width={700}
                 height={700}
                 alt={media.slug}
-                className="max-w-full h-3/4"
+                className="object-cover w-full h-full rounded-lg max-w-[700px] "
               />
             </div>
 
-            <div className="col-span-12 p-3 bg-gray-200 lg:col-span-4">
+            <div className="col-span-12 p-3 bg-gray-200 lg:col-span-6">
               <div className="details">
                 <p className="text-sm font-bold">
                   Title: <span className="font-normal">{media.title}</span>
@@ -162,22 +203,7 @@ const MediaFile = ({ media }) => {
                       />
                     </div>
                   </div>
-                  <div className="grid grid-cols-12 gap-2 mb-3">
-                    <label
-                      htmlFor="title"
-                      className="col-span-4 text-sm font-bold justify-self-end"
-                    >
-                      Caption
-                    </label>
 
-                    <div className="col-span-8">
-                      <textarea
-                        className="form-control "
-                        id="text-area"
-                        rows="2"
-                      ></textarea>
-                    </div>
-                  </div>
                   <div className="grid grid-cols-12 gap-2 mb-3">
                     <label
                       htmlFor="title"
@@ -239,6 +265,7 @@ const MediaFile = ({ media }) => {
                   <button
                     type="button"
                     className="m-2 ti-btn ti-btn-danger-full ti-btn-loader"
+                    onClick={deleteMediaHandler}
                   >
                     <span className="me-2">Delete</span>
                     {/*  <span className="loading">
@@ -248,23 +275,7 @@ const MediaFile = ({ media }) => {
                   <button
                     type="button"
                     className="m-2 ti-btn ti-btn-primary-full ti-btn-loader"
-                    onClick={() => {
-                      mutate(
-                        {
-                          variables: formState,
-                          media_id: media.id,
-                        },
-                        {
-                          onSuccess: (data) => {
-                            console.log(data);
-                            console.log("success");
-                          },
-                          onError: (err) => {
-                            console.log("error");
-                          },
-                        }
-                      );
-                    }}
+                    onClick={updateMedia}
                   >
                     <span className="me-2">
                       {" "}
