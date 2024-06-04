@@ -82,7 +82,7 @@ const ProductsComponent = () => {
                       aria-label="Search"
                     />
                     <button
-                      className="ti-btn ti-btn-light !font-medium hidden "
+                      className="ti-btn ti-btn-light !font-medium "
                       type="submit"
                     >
                       Search
