@@ -1,14 +1,20 @@
 import useScreenWidth from "@/hooks/useScreenWidth";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Header = ({ toggleSidebar, hideSidebar }) => {
+  const [screen_size, setScreenSize] = useState(0);
+
   const screenWidth = useScreenWidth();
+
+  useEffect(() => {
+    setScreenSize(screenWidth);
+  }, [screenWidth]);
   return (
     <>
       <header
         className="app-header"
         style={{
-          paddingLeft: screenWidth > 992 ? (hideSidebar ? "5rem" : "15rem") : 0,
+          paddingLeft: screen_size > 992 ? (hideSidebar ? "5rem" : "15rem") : 0,
         }}
       >
         <nav className="main-header !h-[3.75rem]" aria-label="Global">

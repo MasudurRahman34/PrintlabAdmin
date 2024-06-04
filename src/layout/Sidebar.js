@@ -1,6 +1,6 @@
 import useScreenWidth from "@/hooks/useScreenWidth";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillProduct } from "react-icons/ai";
 import { BiCategory } from "react-icons/bi";
 import { FaHome } from "react-icons/fa";
@@ -65,13 +65,19 @@ const links = [
 ];
 
 const Sidebar = ({ hideSidebar, toggleSidebar, isOpen, setIsOpen }) => {
+  const [screen_size, setScreenSize] = useState(0);
+
   const screenWidth = useScreenWidth();
+
+  useEffect(() => {
+    setScreenSize(screenWidth);
+  }, [screenWidth]);
 
   return (
     <div>
       <div
         className={`w-screen h-screen app-sidebar lg:hidden ${
-          screenWidth <= 992 && isOpen ? "block" : "hidden"
+          screen_size <= 992 && isOpen ? "block" : "hidden"
         }`}
         onClick={() => {
           setIsOpen(false);
@@ -82,7 +88,7 @@ const Sidebar = ({ hideSidebar, toggleSidebar, isOpen, setIsOpen }) => {
       ></div>
       <aside
         className={`${
-          screenWidth <= 992 && isOpen ? "block" : "hidden"
+          screen_size <= 992 && isOpen ? "block" : "hidden"
         } app-sidebar lg:block   ${hideSidebar ? "w-[5rem]" : "w-[15rem]"} `}
         id="sidebar"
       >

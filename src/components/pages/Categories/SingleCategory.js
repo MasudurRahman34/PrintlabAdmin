@@ -6,7 +6,7 @@ import { getSingleCategoryQuery } from "@/resolvers/query";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import toast from "react-hot-toast";
 
 const TextEditor = dynamic(() => import("@/components/TextEditor"), {
@@ -94,6 +94,7 @@ const SingleCategory = () => {
 
   useEffect(() => {
     if (data) {
+      console.log(data?.data);
       setFormState({
         category_name: data?.data.title,
         parent_category: data?.data.category_id,
@@ -199,4 +200,4 @@ const SingleCategory = () => {
   );
 };
 
-export default SingleCategory;
+export default memo(SingleCategory);
