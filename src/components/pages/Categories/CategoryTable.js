@@ -14,15 +14,6 @@ const CategoryTable = ({ data, refetch }) => {
               <table className="table min-w-full whitespace-nowrap table-bordered">
                 <thead>
                   <tr>
-                    <th scope="col" className="!text-start">
-                      <input
-                        className="form-check-input check-all"
-                        type="checkbox"
-                        id="all-products"
-                        value=""
-                        aria-label="..."
-                      />
-                    </th>
                     <th scope="col" className="text-start">
                       Image
                     </th>

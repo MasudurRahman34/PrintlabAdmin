@@ -1,33 +1,37 @@
+import useScreenWidth from "@/hooks/useScreenWidth";
 import React from "react";
 
 const Header = ({ toggleSidebar, hideSidebar }) => {
-  console.log(hideSidebar)
+  const screenWidth = useScreenWidth();
   return (
     <>
-      <header className="app-header">
+      <header
+        className="app-header"
+        style={{
+          paddingLeft: screenWidth > 992 ? (hideSidebar ? "5rem" : "15rem") : 0,
+        }}
+      >
         <nav className="main-header !h-[3.75rem]" aria-label="Global">
           <div className="main-header-container ps-[0.725rem] pe-[1rem] ">
             <div className="header-content-left">
-              <div className="header-element">
+              {/* <div className="header-element">
                 <div className="horizontal-logo">
                   <a href="index.html" className="header-logo">
                     PrintLab
                   </a>
                 </div>
-              </div>
-  
+              </div> */}
+
               <div className="header-element md:px-[0.325rem] !items-center">
-   
-                <a
+                <a 
+                href="#"
                   aria-label="Hide Sidebar"
-                  className="sidemenu-toggle animated-arrow  hor-toggle horizontal-navtoggle inline-flex items-center"
+                  className="inline-flex items-center sidemenu-toggle animated-arrow hor-toggle horizontal-navtoggle"
                   onClick={toggleSidebar}
                 >
                   <span></span>
                 </a>
-          
               </div>
- 
             </div>
 
             <div className="header-content-right">
@@ -60,10 +64,10 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                   className="hs-dropdown-menu ti-dropdown-menu min-w-[10rem] hidden !-mt-3"
                   aria-labelledby="dropdown-flag"
                 >
-                  <div className="ti-dropdown-divider divide-y divide-gray-200 dark:divide-white/10">
+                  <div className="divide-y divide-gray-200 ti-dropdown-divider dark:divide-white/10">
                     <div className="py-2 first:pt-0 last:pb-0">
                       <div className="ti-dropdown-item !p-[0.65rem] ">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
+                        <div className="flex items-center w-full space-x-2 rtl:space-x-reverse">
                           <div className="h-[1.375rem] flex items-center w-[1.375rem] rounded-full">
                             <img
                               src="../assets/images/flags/us_flag.jpg"
@@ -79,7 +83,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         </div>
                       </div>
                       <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
+                        <div className="flex items-center w-full space-x-2 rtl:space-x-reverse">
                           <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
                             <img
                               src="../assets/images/flags/spain_flag.jpg"
@@ -95,7 +99,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         </div>
                       </div>
                       <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
+                        <div className="flex items-center w-full space-x-2 rtl:space-x-reverse">
                           <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
                             <img
                               src="../assets/images/flags/french_flag.jpg"
@@ -111,7 +115,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         </div>
                       </div>
                       <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
+                        <div className="flex items-center w-full space-x-2 rtl:space-x-reverse">
                           <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
                             <img
                               src="../assets/images/flags/germany_flag.jpg"
@@ -127,7 +131,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         </div>
                       </div>
                       <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
+                        <div className="flex items-center w-full space-x-2 rtl:space-x-reverse">
                           <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
                             <img
                               src="../assets/images/flags/italy_flag.jpg"
@@ -143,7 +147,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         </div>
                       </div>
                       <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
+                        <div className="flex items-center w-full space-x-2 rtl:space-x-reverse">
                           <div className="h-[1.375rem] w-[1.375rem] flex items-center  rounded-sm">
                             <img
                               src="../assets/images/flags/russia_flag.jpg"
@@ -169,7 +173,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                 <a
                   aria-label="anchor"
                   className="hs-dark-mode-active:hidden flex hs-dark-mode group flex-shrink-0 justify-center items-center gap-2  rounded-full font-medium transition-all text-xs dark:bg-bgdark dark:hover:bg-black/20 dark:text-[#8c9097] dark:text-white/50 dark:hover:text-white dark:focus:ring-white/10 dark:focus:ring-offset-white/10"
-                  href="javascript:void(0);"
+                  href="#"
                   data-hs-theme-click-value="dark"
                 >
                   <i className="bx bx-moon header-link-icon"></i>
@@ -177,7 +181,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                 <a
                   aria-label="anchor"
                   className="hs-dark-mode-active:flex hidden hs-dark-mode group flex-shrink-0 justify-center items-center gap-2  rounded-full font-medium text-defaulttextcolor  transition-all text-xs dark:bg-bodybg dark:bg-bgdark dark:hover:bg-black/20 dark:text-[#8c9097] dark:text-white/50 dark:hover:text-white dark:focus:ring-white/10 dark:focus:ring-offset-white/10"
-                  href="javascript:void(0);"
+                  href="#"
                   data-hs-theme-click-value="light"
                 >
                   <i className="bx bx-sun header-link-icon"></i>
@@ -212,7 +216,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       Cart Items
                     </p>
                     <a
-                      href="javascript:void(0)"
+                      href="#"
                       className="font-[600] py-[0.25/2rem] px-[0.45rem] rounded-[0.25rem] bg-success/10 text-success text-[0.75em] "
                       id="cart-data"
                     >
@@ -222,8 +226,8 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                   <div>
                     <hr className="dropdown-divider dark:border-white/10" />
                   </div>
-                  <ul className="list-none mb-0" id="header-cart-items-scroll">
-                    <li className="ti-dropdown-item border-b dark:border-defaultborder/10 border-defaultborder ">
+                  <ul className="mb-0 list-none" id="header-cart-items-scroll">
+                    <li className="border-b ti-dropdown-item dark:border-defaultborder/10 border-defaultborder ">
                       <div className="flex items-start cart-dropdown-item">
                         <img
                           src="../assets/images/ecommerce/jpg/1.jpg"
@@ -234,7 +238,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         <div className="grow">
                           <div className="flex items-start justify-between mb-0">
                             <div className="mb-0 !text-[0.8125rem] text-[#232323] font-semibold dark:text-[#8c9097] dark:text-white/50">
-                              <a href="cart.html">SomeThing Phone</a>
+                              <a href="#">SomeThing Phone</a>
                             </div>
 
                             <div className="inline-flex">
@@ -243,15 +247,15 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                               </span>
                               <a
                                 aria-label="anchor"
-                                href="javascript:void(0);"
+                                href="#"
                                 className="header-cart-remove ltr:float-right rtl:float-left dropdown-item-close"
                               >
                                 <i className="ti ti-trash"></i>
                               </a>
                             </div>
                           </div>
-                          <div className="min-w-fit flex  items-start justify-between">
-                            <ul className="header-product-item dark:text-white/50 flex">
+                          <div className="flex items-start justify-between min-w-fit">
+                            <ul className="flex header-product-item dark:text-white/50">
                               <li>Metallic Blue</li>
                               <li>6gb Ram</li>
                             </ul>
@@ -260,7 +264,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       </div>
                     </li>
 
-                    <li className="ti-dropdown-item border-b dark:border-defaultborder/10 border-defaultborder">
+                    <li className="border-b ti-dropdown-item dark:border-defaultborder/10 border-defaultborder">
                       <div className="flex items-start cart-dropdown-item">
                         <img
                           src="../assets/images/ecommerce/jpg/3.jpg"
@@ -270,7 +274,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         <div className="grow">
                           <div className="flex items-start justify-between mb-0">
                             <div className="mb-0 text-[0.8125rem] text-[#232323] dark:text-[#8c9097] dark:text-white/50 font-semibold">
-                              <a href="cart.html">Stop Watch</a>
+                              <a href="#">Stop Watch</a>
                             </div>
                             <div className="inline-flex">
                               <span className="text-black dark:text-white !font-medium mb-1">
@@ -278,14 +282,14 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                               </span>
                               <a
                                 aria-label="anchor"
-                                href="javascript:void(0);"
+                                href="#"
                                 className="header-cart-remove ltr:float-right rtl:float-left dropdown-item-close"
                               >
                                 <i className="ti ti-trash"></i>
                               </a>
                             </div>
                           </div>
-                          <div className="min-w-fit flex items-start justify-between">
+                          <div className="flex items-start justify-between min-w-fit">
                             <ul className="header-product-item">
                               <li>Analog</li>
                               <li>
@@ -298,7 +302,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         </div>
                       </div>
                     </li>
-                    <li className="ti-dropdown-item border-b dark:border-defaultborder/10 border-defaultborder">
+                    <li className="border-b ti-dropdown-item dark:border-defaultborder/10 border-defaultborder">
                       <div className="flex items-start cart-dropdown-item">
                         <img
                           src="../assets/images/ecommerce/jpg/5.jpg"
@@ -308,7 +312,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         <div className="grow">
                           <div className="flex items-start justify-between mb-0">
                             <div className="mb-0 text-[0.8125rem] text-[#232323] font-semibold dark:text-[#8c9097] dark:text-white/50">
-                              <a href="cart.html">Photo Frame</a>
+                              <a href="#">Photo Frame</a>
                             </div>
                             <div className="inline-flex">
                               <span className="text-black !font-medium mb-1 dark:text-white">
@@ -316,22 +320,22 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                               </span>
                               <a
                                 aria-label="anchor"
-                                href="javascript:void(0);"
+                                href="#"
                                 className="header-cart-remove ltr:float-right rtl:float-left dropdown-item-close"
                               >
                                 <i className="ti ti-trash"></i>
                               </a>
                             </div>
                           </div>
-                          <div className="min-w-fit flex items-start justify-between">
-                            <ul className="header-product-item flex">
+                          <div className="flex items-start justify-between min-w-fit">
+                            <ul className="flex header-product-item">
                               <li>Decorative</li>
                             </ul>
                           </div>
                         </div>
                       </div>
                     </li>
-                    <li className="ti-dropdown-item border-b dark:border-defaultborder/10 border-defaultborder">
+                    <li className="border-b ti-dropdown-item dark:border-defaultborder/10 border-defaultborder">
                       <div className="flex items-start cart-dropdown-item">
                         <img
                           src="../assets/images/ecommerce/jpg/4.jpg"
@@ -341,7 +345,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         <div className="grow">
                           <div className="flex items-start justify-between mb-0">
                             <div className="mb-0 text-[0.8125rem] text-[#232323] font-semibold dark:text-[#8c9097] dark:text-white/50">
-                              <a href="cart.html">Kikon Camera</a>
+                              <a href="#">Kikon Camera</a>
                             </div>
                             <div className="inline-flex">
                               <span className="text-black !font-medium mb-1 dark:text-white">
@@ -349,15 +353,15 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                               </span>
                               <a
                                 aria-label="anchor"
-                                href="javascript:void(0);"
+                                href="#"
                                 className="header-cart-remove ltr:float-right rtl:float-left dropdown-item-close"
                               >
                                 <i className="ti ti-trash"></i>
                               </a>
                             </div>
                           </div>
-                          <div className="min-w-fit flex items-start justify-between">
-                            <ul className="header-product-item flex">
+                          <div className="flex items-start justify-between min-w-fit">
+                            <ul className="flex header-product-item">
                               <li>Black</li>
                               <li>50MM</li>
                             </ul>
@@ -375,7 +379,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         <div className="grow">
                           <div className="flex items-start justify-between mb-0">
                             <div className="mb-0 text-[0.8125rem] text-[#232323] font-semibold dark:text-[#8c9097] dark:text-white/50">
-                              <a href="cart.html">Canvas Shoes</a>
+                              <a href="#">Canvas Shoes</a>
                             </div>
                             <div className="inline-flex">
                               <span className="text-black !font-medium mb-1 dark:text-white">
@@ -383,7 +387,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                               </span>
                               <a
                                 aria-label="anchor"
-                                href="javascript:void(0);"
+                                href="#"
                                 className="header-cart-remove ltr:float-right rtl:float-left dropdown-item-close"
                               >
                                 <i className="ti ti-trash"></i>
@@ -391,7 +395,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                             </div>
                           </div>
                           <div className="flex items-start justify-between">
-                            <ul className="header-product-item flex">
+                            <ul className="flex header-product-item">
                               <li>Gray</li>
                               <li>Sports</li>
                             </ul>
@@ -400,11 +404,11 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       </div>
                     </li>
                   </ul>
-                  <div className="p-3 empty-header-item border-t">
+                  <div className="p-3 border-t empty-header-item">
                     <div className="grid">
                       <a
-                        href="checkout.html"
-                        className="w-full ti-btn ti-btn-primary-full p-2"
+                        href="#"
+                        className="w-full p-2 ti-btn ti-btn-primary-full"
                       >
                         Proceed to checkout
                       </a>
@@ -419,10 +423,10 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         Your Cart is Empty
                       </h6>
                       <span className="mb-3 !font-normal text-[0.8125rem] block text-defaulttextcolor dark:text-[#8c9097] dark:text-white/50">
-                        Add some items to make me happy :)
+                        Add some items to make me happy :
                       </span>
                       <a
-                        href="products.html"
+                        href="#"
                         className="ti-btn ti-btn-primary btn-wave ti-btn-wave btn-sm m-1 !text-[0.75rem] !py-[0.25rem] !px-[0.5rem]"
                         data-abc="true"
                       >
@@ -480,10 +484,10 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                             <i className="ti ti-gift text-[1.125rem]"></i>
                           </span>
                         </div>
-                        <div className="grow flex items-center justify-between">
+                        <div className="flex items-center justify-between grow">
                           <div>
                             <p className="mb-0 text-defaulttextcolor dark:text-[#8c9097] dark:text-white/50 text-[0.8125rem] font-semibold">
-                              <a href="notifications.html">
+                              <a href="#">
                                 Your Order Has Been Shipped
                               </a>
                             </p>
@@ -495,7 +499,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                           <div>
                             <a
                               aria-label="anchor"
-                              href="javascript:void(0);"
+                              href="#"
                               className="min-w-fit text-[#8c9097] dark:text-white/50 me-1 dropdown-item-close1"
                             >
                               <i className="ti ti-x text-[1rem]"></i>
@@ -511,10 +515,10 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                             <i className="ti ti-discount-2 text-[1.125rem]"></i>
                           </span>
                         </div>
-                        <div className="grow flex items-center justify-between">
+                        <div className="flex items-center justify-between grow">
                           <div>
                             <p className="mb-0 text-defaulttextcolor dark:text-[#8c9097] dark:text-white/50 text-[0.8125rem]  font-semibold">
-                              <a href="notifications.html">
+                              <a href="#">
                                 Discount Available
                               </a>
                             </p>
@@ -525,7 +529,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                           <div>
                             <a
                               aria-label="anchor"
-                              href="javascript:void(0);"
+                              href="#"
                               className="min-w-fit  text-[#8c9097] dark:text-white/50 me-1 dropdown-item-close1"
                             >
                               <i className="ti ti-x text-[1rem]"></i>
@@ -541,10 +545,10 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                             <i className="ti ti-user-check text-[1.125rem]"></i>
                           </span>
                         </div>
-                        <div className="grow flex items-center justify-between">
+                        <div className="flex items-center justify-between grow">
                           <div>
                             <p className="mb-0 text-defaulttextcolor dark:text-[#8c9097] dark:text-white/50 text-[0.8125rem]  font-semibold">
-                              <a href="notifications.html">
+                              <a href="#">
                                 Account Has Been Verified
                               </a>
                             </p>
@@ -555,7 +559,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                           <div>
                             <a
                               aria-label="anchor"
-                              href="javascript:void(0);"
+                              href="#"
                               className="min-w-fit text-[#8c9097] dark:text-white/50 me-1 dropdown-item-close1"
                             >
                               <i className="ti ti-x text-[1rem]"></i>
@@ -571,10 +575,10 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                             <i className="ti ti-circle-check text-[1.125rem]"></i>
                           </span>
                         </div>
-                        <div className="grow flex items-center justify-between">
+                        <div className="flex items-center justify-between grow">
                           <div>
                             <p className="mb-0 text-defaulttextcolor dark:text-[#8c9097] dark:text-white/50  text-[0.8125rem]  font-semibold">
-                              <a href="notifications.html">
+                              <a href="#">
                                 Order Placed{" "}
                                 <span className="text-warning">
                                   ID: #1116773
@@ -588,7 +592,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                           <div>
                             <a
                               aria-label="anchor"
-                              href="javascript:void(0);"
+                              href="#"
                               className="min-w-fit text-[#8c9097] dark:text-white/50 me-1 dropdown-item-close1"
                             >
                               <i className="ti ti-x text-[1rem]"></i>
@@ -604,10 +608,10 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                             <i className="ti ti-clock text-[1.125rem]"></i>
                           </span>
                         </div>
-                        <div className="grow flex items-center justify-between">
+                        <div className="flex items-center justify-between grow">
                           <div>
                             <p className="mb-0 text-defaulttextcolor dark:text-[#8c9097] dark:text-white/50  text-[0.8125rem]  font-semibold">
-                              <a href="notifications.html">
+                              <a href="#">
                                 Order Delayed{" "}
                                 <span className="text-success">
                                   ID: 7731116
@@ -621,7 +625,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                           <div>
                             <a
                               aria-label="anchor"
-                              href="javascript:void(0);"
+                              href="#"
                               className="min-w-fit text-[#8c9097] dark:text-white/50 me-1 dropdown-item-close1"
                             >
                               <i className="ti ti-x text-[1rem]"></i>
@@ -632,10 +636,10 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                     </li>
                   </ul>
 
-                  <div className="p-4 empty-header-item1 border-t mt-2">
+                  <div className="p-4 mt-2 border-t empty-header-item1">
                     <div className="grid">
                       <a
-                        href="notifications.html"
+                        href="#"
                         className="ti-btn ti-btn-primary-full !m-0 w-full p-2"
                       >
                         View All
@@ -678,16 +682,16 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       </p>
                     </div>
                   </div>
-                  <div className="dropdown-divider mb-0"></div>
+                  <div className="mb-0 dropdown-divider"></div>
                   <div
-                    className="ti-dropdown-divider divide-y divide-gray-200 dark:divide-white/10 main-header-shortcuts p-2"
+                    className="p-2 divide-y divide-gray-200 ti-dropdown-divider dark:divide-white/10 main-header-shortcuts"
                     id="header-shortcut-scroll"
                   >
                     <div className="grid grid-cols-3 gap-2">
                       <div className="">
                         <a
-                          href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          href="#"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <div>
                             <img
@@ -703,8 +707,8 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       </div>
                       <div className="">
                         <a
-                          href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          href="#"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <img
                             src="../assets/images/apps/microsoft-powerpoint.png"
@@ -718,8 +722,8 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       </div>
                       <div className="">
                         <a
-                          href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          href="#"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <img
                             src="../assets/images/apps/microsoft-word.png"
@@ -734,8 +738,8 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       </div>
                       <div className="">
                         <a
-                          href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          href="#"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <img
                             src="../assets/images/apps/calender.png"
@@ -749,8 +753,8 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       </div>
                       <div className="">
                         <a
-                          href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          href="#"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <img
                             src="../assets/images/apps/sketch.png"
@@ -764,8 +768,8 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       </div>
                       <div className="">
                         <a
-                          href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          href="#"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <img
                             src="../assets/images/apps/google-docs.png"
@@ -779,8 +783,8 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       </div>
                       <div className="">
                         <a
-                          href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          href="#"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <img
                             src="../assets/images/apps/google.png"
@@ -794,8 +798,8 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       </div>
                       <div className="">
                         <a
-                          href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          href="#"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <img
                             src="../assets/images/apps/translate.png"
@@ -809,8 +813,8 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       </div>
                       <div className="">
                         <a
-                          href="javascript:void(0);"
-                          className="p-4 items-center related-app block text-center rounded-sm hover:bg-gray-50 dark:hover:bg-black/20"
+                          href="#"
+                          className="items-center block p-4 text-center rounded-sm related-app hover:bg-gray-50 dark:hover:bg-black/20"
                         >
                           <img
                             src="../assets/images/apps/google-sheets.png"
@@ -824,10 +828,10 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="p-4 first:pt-0 border-t">
+                  <div className="p-4 border-t first:pt-0">
                     <a
                       className="w-full ti-btn ti-btn-primary-full p-2 !m-0"
-                      href="javascript:void(0);"
+                      href="#"
                     >
                       View All
                     </a>
@@ -841,12 +845,12 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                 {/*  <!-- Start::header-link --> */}
                 <a
                   aria-label="anchor"
-                  onclick="openFullscreen();"
-                  href="javascript:void(0);"
+                  // onclick="openFullscreen();"
+                  href="#"
                   className="inline-flex flex-shrink-0 justify-center items-center gap-2  !rounded-full font-medium dark:hover:bg-black/20 dark:text-[#8c9097] dark:text-white/50 dark:hover:text-white dark:focus:ring-white/10 dark:focus:ring-offset-white/10"
                 >
                   <i className="bx bx-fullscreen full-screen-open header-link-icon"></i>
-                  <i className="bx bx-exit-fullscreen full-screen-close header-link-icon hidden"></i>
+                  <i className="hidden bx bx-exit-fullscreen full-screen-close header-link-icon"></i>
                 </a>
                 {/*     <!-- End::header-link --> */}
               </div>
@@ -867,7 +871,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                     alt="Image Description"
                   />
                 </button>
-                <div className="md:block hidden dropdown-profile">
+                <div className="hidden md:block dropdown-profile">
                   <p className="font-semibold mb-0 leading-none text-[#536485] text-[0.813rem] ">
                     Json Taylor
                   </p>
@@ -883,7 +887,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                     <li>
                       <a
                         className="w-full ti-dropdown-item !text-[0.8125rem] !gap-x-0  !p-[0.65rem] !inline-flex"
-                        href="profile.html"
+                        href="#"
                       >
                         <i className="ti ti-user-circle text-[1.125rem] me-2 opacity-[0.7]"></i>
                         Profile
@@ -892,7 +896,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                     <li>
                       <a
                         className="w-full ti-dropdown-item !text-[0.8125rem] !gap-x-0  !p-[0.65rem] !inline-flex"
-                        href="mail.html"
+                        href="#"
                       >
                         <i className="ti ti-inbox text-[1.125rem] me-2 opacity-[0.7]"></i>
                         Inbox{" "}
@@ -904,7 +908,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                     <li>
                       <a
                         className="w-full ti-dropdown-item !text-[0.8125rem] !gap-x-0 !p-[0.65rem] !inline-flex"
-                        href="todo.html"
+                        href="#"
                       >
                         <i className="ti ti-clipboard-check text-[1.125rem] me-2 opacity-[0.7]"></i>
                         Task Manager
@@ -913,7 +917,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                     <li>
                       <a
                         className="w-full ti-dropdown-item !text-[0.8125rem] !gap-x-0 !p-[0.65rem] !inline-flex"
-                        href="mail-settings.html"
+                        href="#"
                       >
                         <i className="ti ti-adjustments-horizontal text-[1.125rem] me-2 opacity-[0.7]"></i>
                         Settings
@@ -922,7 +926,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                     <li>
                       <a
                         className="w-full ti-dropdown-item !text-[0.8125rem] !gap-x-0 !p-[0.65rem] !inline-flex "
-                        href="javascript:void(0);"
+                        href="#"
                       >
                         <i className="ti ti-wallet text-[1.125rem] me-2 opacity-[0.7]"></i>
                         Bal: $7,12,950
@@ -931,7 +935,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                     <li>
                       <a
                         className="w-full ti-dropdown-item !text-[0.8125rem] !p-[0.65rem] !gap-x-0 !inline-flex"
-                        href="chat.html"
+                        href="#"
                       >
                         <i className="ti ti-headset text-[1.125rem] me-2 opacity-[0.7]"></i>
                         Support
@@ -940,7 +944,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                     <li>
                       <a
                         className="w-full ti-dropdown-item !text-[0.8125rem] !p-[0.65rem] !gap-x-0 !inline-flex"
-                        href="sign-in-cover.html"
+                        href="#"
                       >
                         <i className="ti ti-logout text-[1.125rem] me-2 opacity-[0.7]"></i>
                         Log Out

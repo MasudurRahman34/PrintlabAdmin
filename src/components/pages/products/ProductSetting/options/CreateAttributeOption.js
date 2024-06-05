@@ -2,6 +2,7 @@ import ModalLayout from "@/components/ui/ModalLayout";
 import { addAttributeOptionMutation } from "@/resolvers/mutation";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
+import { SketchPicker } from "react-color";
 import toast from "react-hot-toast";
 
 const CreateOption = ({ option, refetch, product_refetch }) => {
@@ -67,16 +68,29 @@ const CreateOption = ({ option, refetch, product_refetch }) => {
           isPending={isPending}
           handleMutate={handleSubmit}
         >
-          <div className="">
-            <div className="col-span-12 xl:col-span-4 lg:col-span-6 md:col-span-6 sm:col-span-12">
+          <div className="min-w-[350px] ">
+            <div className="w-full col-span-12 xl:col-span-4 lg:col-span-6 md:col-span-6 sm:col-span-12">
               <p className="mb-2 text-muted">Title</p>
-              <input
-                type="text"
-                className="form-control"
-                name="title"
-                value={form_state.title}
-                onChange={handleChange}
-              />
+              {option.type.label === "Select" ? (
+                <input
+                  type="text"
+                  className="form-control"
+                  name="title"
+                  value={form_state.title}
+                  onChange={handleChange}
+                />
+              ) : option.type.label === "Color" ? (
+                <SketchPicker
+                  color={form_state.title}
+                  onChange={(color) => {
+                    console.log(color);
+                    setFormState({
+                      ...form_state,
+                      title: color.hex,
+                    });
+                  }}
+                />
+              ) : null}
             </div>
           </div>
         </ModalLayout>

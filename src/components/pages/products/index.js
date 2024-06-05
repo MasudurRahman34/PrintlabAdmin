@@ -71,7 +71,7 @@ const ProductsComponent = () => {
             <div className="box">
               <div className="justify-between box-header">
                 <div className="flex items-center gap-3">
-                  <p classNameName="!text-[20px] md:text-[30px]">Products List</p>
+                  <p className="!text-[20px] md:text-[30px]">Products List</p>
                   <div className="flex" role="search">
                     <input
                       onChange={handleSearchChange}
@@ -102,7 +102,7 @@ const ProductsComponent = () => {
                   </button>
                   <button
                     type="button"
-                    class="ti-btn ti-btn-secondary-full label-ti-btn"
+                    className="ti-btn ti-btn-secondary-full label-ti-btn"
                   >
                     <i className=" label-ti-btn-icon me-2">
                       <LuFileJson />
@@ -111,7 +111,7 @@ const ProductsComponent = () => {
                   </button>
                   <button
                     type="button"
-                    class="ti-btn ti-btn-warning-full label-ti-btn "
+                    className="ti-btn ti-btn-warning-full label-ti-btn "
                   >
                     <i className=" label-ti-btn-icon me-2">
                       <FaRegFilePdf />
@@ -125,7 +125,11 @@ const ProductsComponent = () => {
               ) : isError ? (
                 <div>Error: {error.message}</div>
               ) : (
-                <ProductTable products={data?.data} links={data?.links} />
+                <ProductTable
+                  products={data?.data}
+                  links={data?.links}
+                  refetch={refetch}
+                />
               )}
             </div>
           </div>

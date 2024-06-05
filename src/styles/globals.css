@@ -8,5 +8,5 @@
   --background-end-rgb: 255, 255, 255;
 }
 .ql-container.ql-snow {
-  max-height: 153px;
+  min-height: 153px;
 }

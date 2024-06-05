@@ -41,3 +41,6 @@ export const getProductDeliveryServiceQuery = async (product_id) =>
   axios
     .get(`${backendUrl}/product/${product_id}/services/delivery`)
     .then((res) => res.data);
+
+export const getProductArtworkServiceQuery = async () =>
+  axios.get(`${backendUrl}/services/artworks`).then((res) => res.data);

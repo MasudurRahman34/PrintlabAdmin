@@ -53,6 +53,7 @@ const AttachedMediaRender = ({ media, product_refetch }) => {
           <button
             className="text-red-500 rounded-md "
             onClick={() => setShow(true)}
+            type="button"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

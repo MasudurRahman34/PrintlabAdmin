@@ -2,8 +2,13 @@ import CategorySelect from "@/components/CategorySelect";
 import MediaAttach from "@/components/MediaAttach";
 import { addCategoryMutation } from "@/resolvers/mutation";
 import { useMutation } from "@tanstack/react-query";
+import dynamic from "next/dynamic";
 import React from "react";
 import toast from "react-hot-toast";
+
+const TextEditor = dynamic(() => import("@/components/TextEditor"), {
+  ssr: false,
+});
 
 const CategoryForm = ({ refetch }) => {
   const [formState, setFormState] = React.useState({
@@ -95,15 +100,12 @@ const CategoryForm = ({ refetch }) => {
             <label for="inputAddress" className="form-label">
               Description
             </label>
-            <textarea
-              id="description"
-              className="w-full rounded-md"
-              name="description"
-              value={formState.description}
-              onChange={handleChange}
-              rows="6"
-              cols="60"
-            ></textarea>
+            <TextEditor
+              text={formState.description}
+              handleChange={(value) =>
+                setFormState({ ...formState, description: value })
+              }
+            />
           </div>
 
           <div className="col-span-12">
