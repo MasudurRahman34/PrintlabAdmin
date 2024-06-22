@@ -68,33 +68,33 @@ const AddProductmiddle = ({ data, isLoading, isError, refetch }) => {
     <div className="px-5 py-3 bg-white roumded-md">
       <div className="flex gap-4">
         <div className="w-full">
-          <label className="mb-2 text-base font-semibold text-black">
+          <label className="mb-2 text-sm font-semibold text-black lg:text-base">
             Title
           </label>
           <input
             type="text"
-            className="block w-full rounded-md"
+            className="block w-full text-sm rounded-md lg:text-base"
             value={state.title}
             onChange={handleChange}
           />
         </div>
         <div className="w-full">
-          <label className="mb-2 text-base font-semibold text-black">
+          <label className="mb-2 text-sm font-semibold text-black lg:text-base">
             Slug
           </label>
           <input
             type="text"
-            className="block w-full rounded-md"
+            className="block w-full text-sm rounded-md lg:text-base"
             value={state.slug}
             readOnly
           />
         </div>
       </div>
       <div className="mt-2">
-        <label className="mb-2 text-base font-semibold text-black">
+        <label className="mb-2 text-sm font-semibold text-black lg:text-base">
           Description
         </label>
-        <div className="border border-[#949EB7] rounded px-5 py-5">
+        <div className="rounded ">
           <TextEditor
             className="min-h-[150px]"
             value={state.description}
