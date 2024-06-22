@@ -45,9 +45,7 @@ const AddProductleft = () => {
           <button
             onClick={() => setModalIsOpen(true)}
             className="ti-btn ti-btn-primary-full ti-btn-wave"
-          >
-            Add Product
-          </button>
+          ></button>
         </div>
         <div class="table-responsive mb-4 overflow-y-auto max-h-[450px] ">
           <table class="table whitespace-nowrap table-bordered min-w-full table-auto">
