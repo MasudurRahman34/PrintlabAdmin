@@ -2,6 +2,7 @@ import CreateProductModal from "./CreateProductModal";
 import ProductTable from "./ProductTable";
 import { getAllProducts } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
+import { Grid } from "gridjs-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -12,26 +13,26 @@ import { LuFileJson } from "react-icons/lu";
 const ProductsComponent = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const [searchItem, setSearchItem] = useState("");
+  /*   const [searchItem, setSearchItem] = useState(""); */
   const router = useRouter();
   const { page } = router.query;
 
-  const { data, isLoading, isError, error, refetch } = useQuery({
+  /* const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ["get-all-products", page],
     queryFn: () => getAllProducts({ page }),
-  });
-  const handleSearchChange = (event) => {
+  }); */
+  /* const handleSearchChange = (event) => {
     setSearchItem(event.target.value);
-  };
+  }; */
 
   return (
     <>
       <CreateProductModal
-        refetch={refetch}
+        /* refetch={refetch} */
         modalIsOpen={modalIsOpen}
         setIsOpen={setModalIsOpen}
       />
-      <div className="main-content">
+      <div>
         {/* <!-- Page Header --> */}
         <div className="justify-between block page-header md:flex">
           <div className="flex items-center gap-3">
@@ -70,19 +71,6 @@ const ProductsComponent = () => {
           <div className="col-span-12 xl:col-span-12">
             <div className="box">
               <div className="justify-between box-header">
-                <div className="flex items-center gap-3">
-                  <div className="flex" role="search">
-                    <input
-                      onChange={handleSearchChange}
-                      className="form-control !w-auto !rounded-sm me-2"
-                      type="search"
-                      value={searchItem}
-                      placeholder="Search"
-                      aria-label="Search"
-                    />
-                  </div>
-                </div>
-
                 <div class="ti-btn-list space-x-2 rtl:space-x-reverse hidden lg:block">
                   <button
                     type="button"
@@ -113,17 +101,8 @@ const ProductsComponent = () => {
                   </button>
                 </div>
               </div>
-              {isLoading ? (
-                <div>Loading...</div>
-              ) : isError ? (
-                <div>Error: {error.message}</div>
-              ) : (
-                <ProductTable
-                  products={data?.data}
-                  links={data?.links}
-                  refetch={refetch}
-                />
-              )}
+
+              <ProductTable />
             </div>
           </div>
         </div>
@@ -134,3 +113,18 @@ const ProductsComponent = () => {
 };
 
 export default ProductsComponent;
+
+{
+  /* <div className="flex items-center gap-3">
+                  <div className="flex" role="search">
+                    <input
+                      onChange={handleSearchChange}
+                      className="form-control !w-auto !rounded-sm me-2"
+                      type="search"
+                      value={searchItem}
+                      placeholder="Search"
+                      aria-label="Search"
+                    />
+                  </div>
+                </div> */
+}
