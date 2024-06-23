@@ -36,13 +36,13 @@ const ProductsComponent = () => {
         {/* <!-- Page Header --> */}
         <div className="justify-between block page-header md:flex">
           <div className="flex items-center gap-3">
-            <h3 className="!text-defaulttextcolor dark:!text-defaulttextcolor/70 dark:text-white dark:hover:text-white text-[1.125rem] font-semibold">
+            <h3 className="!text-defaulttextcolor dark:!text-defaulttextcolor/70 dark:text-white dark:hover:text-white text-base font-semibold">
               {" "}
               Products List
             </h3>
             <button
               onClick={() => setModalIsOpen(true)}
-              className="ti-btn ti-btn-primary-full ti-btn-wave"
+              className="text-sm ti-btn ti-btn-primary-full ti-btn-wave"
             >
               Add Product
             </button>
@@ -71,33 +71,34 @@ const ProductsComponent = () => {
           <div className="col-span-12 xl:col-span-12">
             <div className="box">
               <div className="justify-between box-header">
-                <div class="ti-btn-list space-x-2 rtl:space-x-reverse hidden lg:block">
+                <div className="space-x-2 ti-btn-list rtl:space-x-reverse ">
                   <button
                     type="button"
-                    class="ti-btn ti-btn-primary-full label-ti-btn"
+                    className="ti-btn ti-btn-primary-full label-ti-btn"
                   >
-                    <i className=" label-ti-btn-icon me-2">
-                      <BsFiletypeCsv />
+                    <i className=" label-ti-btn-icon">
+                      <BsFiletypeCsv className="w-5 h-5" />
                     </i>
-                    Export as Cvs
+
+                    <span className="hidden md:block">Export as Cvs</span>
                   </button>
                   <button
                     type="button"
-                    class="ti-btn ti-btn-secondary-full label-ti-btn"
+                    className="ti-btn ti-btn-secondary-full label-ti-btn"
                   >
-                    <i className=" label-ti-btn-icon me-2">
+                    <i className=" label-ti-btn-icon">
                       <LuFileJson />
                     </i>
-                    Export as Json
+                    <span className="hidden md:block">Export as Json</span>
                   </button>
                   <button
                     type="button"
-                    class="ti-btn ti-btn-warning-full label-ti-btn "
+                    className="ti-btn ti-btn-warning-full label-ti-btn "
                   >
-                    <i className=" label-ti-btn-icon me-2">
+                    <i className=" label-ti-btn-icon">
                       <FaRegFilePdf />
                     </i>
-                    Export as Pdf
+                    <span className="hidden md:block">Export as Pdf</span>
                   </button>
                 </div>
               </div>

@@ -126,10 +126,10 @@ const Artwork = ({ data, isLoading, isError, error, refetch }) => {
     <div className="py-5 Artwork">
       <div>
         <div className="mt-2">
-          <label className="mb-2 text-base font-semibold text-black">
+          <label className="mb-2 text-sm font-semibold text-black md:text-base">
             Artwork Guide
           </label>
-          <div className="border border-[#949EB7] rounded px-5 py-5">
+          <div className="rounded ">
             <TextEditor
               text={state?.artwork_guide}
               handleChange={(value) =>
@@ -142,7 +142,7 @@ const Artwork = ({ data, isLoading, isError, error, refetch }) => {
           </div>
         </div>
         <div className="w-full">
-          <label className="mb-2 text-base font-semibold text-black">
+          <label className="mb-2 text-sm font-semibold text-black md:text-base">
             Artwork template EPS file URL
           </label>
           <input
@@ -154,7 +154,7 @@ const Artwork = ({ data, isLoading, isError, error, refetch }) => {
           />
         </div>
         <div className="w-full">
-          <label className="mb-2 text-base font-semibold text-black">
+          <label className="mb-2 text-sm font-semibold text-black md:text-base">
             Artwork template PDF file URL
           </label>
           <input
@@ -166,7 +166,7 @@ const Artwork = ({ data, isLoading, isError, error, refetch }) => {
           />
         </div>
         <div className="w-full">
-          <label className="mb-2 text-base font-semibold text-black">
+          <label className="mb-2 text-sm font-semibold text-black md:text-base">
             Artwork template InDesign file URL
           </label>
           <input

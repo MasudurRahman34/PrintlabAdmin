@@ -21,7 +21,6 @@ const ProductTable = () => {
           ? row._cells[1].data?.map((category) => category.title).join(", ")
           : "No Category";
       },
-      sort: true,
     },
     {
       name: "Action",
