@@ -131,7 +131,7 @@ const CreateProductModal = ({ modalIsOpen = false, setIsOpen }) => {
                   </svg>
                 </button>
               </div>
-              <div className="flex-1 md:p-6">
+              <div className="flex-1 overflow-y-auto md:p-6">
                 <div className="grid grid-cols-12 md:gap-x-[3rem] gap-0">
                   <div className="col-span-12 ">
                     <div className="grid grid-cols-12 gap-4">
