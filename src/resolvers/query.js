@@ -44,3 +44,30 @@ export const getProductDeliveryServiceQuery = async (product_id) =>
 
 export const getProductArtworkServiceQuery = async () =>
   axios.get(`${backendUrl}/services/artworks`).then((res) => res.data);
+
+export const getAllAttributeOptionsQuery = async ({ token }) =>
+  axios
+    .get(`${backendUrl}/attribute-options`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getAllFileCheckOptionsQuery = async ({ token }) =>
+  axios
+    .get(`${backendUrl}/file-check-options`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getAllConnectedFileCheckOptionsQuery = async ({ token }) =>
+  axios
+    .get(`${backendUrl}/file-checks`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);

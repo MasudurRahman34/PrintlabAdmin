@@ -150,3 +150,34 @@ export const deleteProductMutation = async ({ product_id }) =>
 
 export const deleteMediaMutation = async ({ media_id }) =>
   axios.delete(`${backendUrl}/media/${media_id}`).then((res) => res.data);
+
+export const createFileCheckOptionMutation = async ({ variables, token }) =>
+  axios
+    .post(`${backendUrl}/file-check-options`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const connectFileCheckOptionAttributeOptionMutation = async ({
+  variables,
+  token,
+}) =>
+  axios
+    .post(`${backendUrl}/file-checks`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const disconnectFileCheckOptionAttributeOptionMutation = async ({
+  id,
+  token,
+}) =>
+  axios.delete(`${backendUrl}/file-checks/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });

@@ -5,6 +5,7 @@ import { AiFillProduct } from "react-icons/ai";
 import { BiCategory } from "react-icons/bi";
 import { FaHome } from "react-icons/fa";
 import { FaUsersCog } from "react-icons/fa";
+import { FaFileCircleCheck } from "react-icons/fa6";
 import { IoMdAddCircle } from "react-icons/io";
 import { LuListOrdered } from "react-icons/lu";
 import { MdPermMedia } from "react-icons/md";
@@ -22,6 +23,7 @@ const links = [
     label: "Products",
     Icon: () => <AiFillProduct className="w-6 h-6" />,
   },
+
   /*  {
     href: "/orders",
     label: "Orders",
@@ -62,6 +64,11 @@ const links = [
     label: "Users",
     Icon: () => <FaUsersCog className="w-6 h-6" />,
   }, */
+  {
+    href: "/file-check",
+    label: "File Check",
+    Icon: () => <FaFileCircleCheck className="w-6 h-6" />,
+  },
 ];
 
 const Sidebar = ({ hideSidebar, toggleSidebar, isOpen, setIsOpen }) => {
