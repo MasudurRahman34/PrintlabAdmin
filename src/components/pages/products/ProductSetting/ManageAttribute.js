@@ -194,12 +194,10 @@ const ManageAttribute = ({
       //   is_attribute: product_data.is_attribute.value === 1,
       // });
       setCheckList(temp);
-
-      if (checkedAttributes.length > 0) {
-        setCheckedAttributes((prev) => [...prev]);
-      }
     }
+  }, [data]);
 
+  useEffect(() => {
     if (productAttributeData?.data.length > 0) {
       const temp = [];
       productAttributeData?.data.forEach((attribute) => {
@@ -225,7 +223,7 @@ const ManageAttribute = ({
 
       setCheckedAttributes(temp);
     }
-  }, [data, productAttributeData]);
+  }, [productAttributeLoading]);
   return (
     <>
       <Modal show={show} hideModal={hideModal} refetch={refetch} />

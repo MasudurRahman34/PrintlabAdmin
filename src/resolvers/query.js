@@ -71,3 +71,30 @@ export const getAllConnectedFileCheckOptionsQuery = async ({ token }) =>
       },
     })
     .then((res) => res.data);
+
+export const getAllOrders = async ({ page = 1, token }) =>
+  axios
+    .get(`${backendUrl}/orders`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getOrderById = async ({ id, token }) =>
+  axios
+    .get(`${backendUrl}/orders/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getBannersQuery = async ({ token }) =>
+  axios
+    .get(`${backendUrl}/banners`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);

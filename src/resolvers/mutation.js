@@ -181,3 +181,12 @@ export const disconnectFileCheckOptionAttributeOptionMutation = async ({
       Authorization: `Bearer ${token}`,
     },
   });
+
+export const addBannerMutation = async ({ variables, token }) =>
+  axios
+    .post(`${backendUrl}/banners`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);

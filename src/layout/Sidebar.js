@@ -24,16 +24,16 @@ const links = [
     Icon: () => <AiFillProduct className="w-6 h-6" />,
   },
 
-  /*  {
+  {
     href: "/orders",
     label: "Orders",
     Icon: () => <LuListOrdered className="w-6 h-6" />,
-  }, */
-  /*  {
-    href: "/ordersdetails",
-    label: "Orders Detail",
+  },
+  {
+    href: "/banner",
+    label: "Banner",
     Icon: () => <LuListOrdered className="w-6 h-6" />,
-  }, */
+  },
   /*  {
     href: "/productdetails",
     label: "Products Detail",
