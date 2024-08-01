@@ -64,7 +64,6 @@ const FileConnect = ({
             instruction: "",
           });
 
-          file_check_refetch();
           connected_check_refetch();
         },
         onError: (error) => {

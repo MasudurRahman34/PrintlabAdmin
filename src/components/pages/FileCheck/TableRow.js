@@ -1,10 +1,12 @@
 import { useAuth } from "@/hooks/useAuth";
+import useToastMessage from "@/hooks/useToastMessage";
 import { disconnectFileCheckOptionAttributeOptionMutation } from "@/resolvers/mutation";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
 
 const TableRow = ({ option, connected_check_refetch }) => {
+  const showToastMessage = useToastMessage();
   const { session } = useAuth();
   const { mutate, isPending } = useMutation({
     mutationKey: "disconnectFileCheckOption",
@@ -12,17 +14,22 @@ const TableRow = ({ option, connected_check_refetch }) => {
   });
 
   const handleDisconnect = async (id) => {
-    mutate({
-      id,
-      token: session?.token,
-      onSuccess: () => {
-        toast.success("File Check Option disconnected successfully");
-        connected_check_refetch();
+    console.log(id);
+    mutate(
+      {
+        id,
+        token: session?.token,
       },
-      onError: (error) => {
-        showToastMessage(error.response.data.message);
-      },
-    });
+      {
+        onSuccess: () => {
+          toast.success("File Check Option disconnected successfully");
+          connected_check_refetch();
+        },
+        onError: (error) => {
+          showToastMessage(error.response.data.message);
+        },
+      }
+    );
   };
 
   return (

@@ -82,10 +82,8 @@ const TableData = ({}) => {
         }}
         pagination={{
           enabled: true,
-          limit: 2,
           server: {
-            url: (prev, page, limit) =>
-              `${prev}?limit=${limit}&offset=${page * limit}`,
+            url: (prev, page) => `${prev}?page=${page}`,
           },
         }}
       />

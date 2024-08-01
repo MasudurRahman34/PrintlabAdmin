@@ -176,11 +176,13 @@ export const disconnectFileCheckOptionAttributeOptionMutation = async ({
   id,
   token,
 }) =>
-  axios.delete(`${backendUrl}/file-checks/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  axios
+    .delete(`${backendUrl}/file-checks/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
 
 export const addBannerMutation = async ({ variables, token }) =>
   axios
