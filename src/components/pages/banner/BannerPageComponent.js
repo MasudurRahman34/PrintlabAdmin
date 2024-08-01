@@ -1,18 +1,23 @@
+import DeleteBanner from "./DeleteBanner";
 import BannerImg from "@/components/BannerImg";
 import Pagination from "@/components/Pagination";
 import { useAuth } from "@/hooks/useAuth";
+import useToastMessage from "@/hooks/useToastMessage";
+import { deleteBannerMutation } from "@/resolvers/mutation";
 import { getBannersQuery } from "@/resolvers/query";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import React from "react";
+import toast from "react-hot-toast";
 
 const BannerPageComponent = () => {
   const { session } = useAuth();
-  const { data, isLoading, isError, refetch } = useQuery({
+
+  const { data, isLoading, isError, refetch, isSuccess } = useQuery({
     queryKey: ["get-all-banner", session?.token],
     queryFn: () => getBannersQuery({ token: session?.token }),
     enabled: !!session?.token,
   });
-  console.log(data);
+
   return (
     <div>
       <div className="justify-between block page-header md:flex">
@@ -86,7 +91,7 @@ const BannerPageComponent = () => {
                           </td>
                           <td>
                             <span className="badge bg-light text-default">
-                              www.facebook.com
+                              {item.imageUrl}
                             </span>
                           </td>
                           <td>{item.title}</td>
@@ -100,13 +105,7 @@ const BannerPageComponent = () => {
                               >
                                 <i className="ri-pencil-line"></i>
                               </a>
-                              <a
-                                aria-label="anchor"
-                                href="javascript:void(0);"
-                                className="ti-btn ti-btn-wave product-btn !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-danger/10 text-danger hover:bg-danger hover:text-white hover:border-danger"
-                              >
-                                <i className="ri-delete-bin-line"></i>
-                              </a>
+                              <DeleteBanner id={item.id} refetch={refetch} />
                             </div>
                           </td>
                         </tr>
@@ -114,11 +113,9 @@ const BannerPageComponent = () => {
                     </tbody>
                   </table>
                 </div>
-
-                <Pagination />
               </div>
             ) : (
-              <div>No data found</div>
+              <div className="p-4 text-center">No data found</div>
             )}
           </div>
         </div>

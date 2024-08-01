@@ -14,7 +14,6 @@ const TableRow = ({ option, connected_check_refetch }) => {
   });
 
   const handleDisconnect = async (id) => {
-    console.log(id);
     mutate(
       {
         id,

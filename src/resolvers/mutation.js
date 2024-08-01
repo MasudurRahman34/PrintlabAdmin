@@ -145,7 +145,7 @@ export const updateProductArtworkServiceMutation = async ({
     .put(`${backendUrl}/services/${artwork_id}`, variables)
     .then((res) => res.data);
 
-export const deleteProductMutation = async ({ product_id }) =>
+export const deleteProductMutation = async ({ product_id, token }) =>
   axios.delete(`${backendUrl}/products/${product_id}`).then((res) => res.data);
 
 export const deleteMediaMutation = async ({ media_id }) =>
@@ -200,6 +200,15 @@ export const updateOrderItemStatus = async ({
 }) =>
   axios
     .put(`${backendUrl}/order-items/${order_item_id}`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const deleteBannerMutation = async ({ banner_id, token }) =>
+  axios
+    .delete(`${backendUrl}/banners/${banner_id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

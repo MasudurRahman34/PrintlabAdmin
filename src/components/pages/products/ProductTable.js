@@ -1,74 +1,131 @@
 import TableRow from "./TableRow";
-import Pagination from "@/components/ui/Pagination";
-import { Grid } from "gridjs-react";
-import { _ } from "gridjs-react";
+import Pagination from "@/components/Pagination";
+import useToastMessage from "@/hooks/useToastMessage";
+import { deleteProductMutation } from "@/resolvers/mutation";
+import { getAllProducts } from "@/resolvers/query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 const ProductTable = () => {
-  const columns = [
-    {
-      name: "Product Name",
-      formatter: (cell) => {
-        return cell;
+  const showToastMessage = useToastMessage();
+  const [show, setShow] = useState(true);
+  const [page, setPage] = useState(1);
+  const { data, isLoading, refetch, isError, isSuccess } = useQuery({
+    queryKey: ["get-all-products", page],
+    queryFn: () => getAllProducts({ page }),
+    enabled: !!page,
+  });
+
+  const { mutate, isPending } = useMutation({
+    mutationKey: "delete-product",
+    mutationFn: deleteProductMutation,
+  });
+
+  const deleteProduct = (id) => {
+    mutate(
+      {
+        product_id: id,
       },
-      sort: true,
-    },
-    {
-      name: "Category",
-      formatter: (_, row) => {
-        return row._cells[1].data.length > 0
-          ? row._cells[1].data?.map((category) => category.title).join(", ")
-          : "No Category";
-      },
-    },
-    {
-      name: "Action",
-      formatter: (cell) => {
-        return _(
-          <div class="flex flex-row items-center !gap-2 text-[0.9375rem]">
-            <Link
-              aria-label="anchor"
-              href={`/products/${cell.slug}`}
-              class="ti-btn ti-btn-wave  !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-info/10 text-info hover:bg-info hover:text-white hover:border-info"
-            >
-              <i class="ri-pencil-line"></i>
-            </Link>
-            <button
-              type="button"
-              class="ti-btn ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-danger/10 text-danger hover:bg-danger hover:text-white hover:border-danger"
-              onClick={() => setShow(true)}
-            >
-              <i class="ri-delete-bin-line"></i>
-            </button>
-          </div>
-        );
-      },
-    },
-  ];
+      {
+        onSuccess: (data) => {
+          toast.success("Product deleted successfully");
+          refetch();
+        },
+        onError: (error) => {
+          showToastMessage(error.response.data.message);
+        },
+      }
+    );
+  };
 
   return (
     <div class="box-body">
-      <Grid
-        columns={columns}
-        server={{
-          url: "https://printlabapi.devtaijul.com/api/v1/products",
-          then: (res) => {
-            return res.data.map((product) => {
-              return [product.title, product.categories, product];
-            });
-          },
-        }}
-        search={{
-          server: {
-            url: (prev, keyword) => `${prev}?search=${keyword}`,
-          },
-        }}
-        pagination={{
-          enabled: true,
-          limit: 10,
-        }}
-      />
+      <div className="mb-4 table-responsive">
+        <table className="table min-w-full whitespace-nowrap table-bordered">
+          <thead>
+            <tr>
+              <th scope="col" className="text-start">
+                Image
+              </th>
+
+              <th scope="col" className="text-start">
+                Title
+              </th>
+              <th scope="col" className="text-start">
+                Category
+              </th>
+
+              <th scope="col" className="text-start">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {data?.data.map((item) => (
+              <tr className="product-list" key={item.id}>
+                <td>
+                  <div className="flex items-center">
+                    <div className="me-2">
+                      <span className="avatar avatar-md ">
+                        <Image
+                          src={
+                            item.media.find((media) => media.is_profile === 1)
+                              ?.url ||
+                            item.media[0]?.url ||
+                            "/assets/media/placeholder.png"
+                          }
+                          alt="Product Image"
+                          width={50}
+                          height={50}
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </td>
+
+                <td>{item.title}</td>
+
+                <td>
+                  {item.categories.map((category) => (
+                    <span
+                      key={category.id}
+                      className="badge bg-light text-default"
+                    >
+                      {category.title}
+                    </span>
+                  ))}
+                </td>
+
+                <td>
+                  <div className="flex flex-row items-center !gap-2 text-[0.9375rem]">
+                    <Link
+                      href={`/products/${item.slug}`}
+                      className="ti-btn ti-btn-wave  !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-info/10 text-info hover:bg-info hover:text-white hover:border-info"
+                    >
+                      <i className="ri-pencil-line"></i>
+                    </Link>
+                    <button
+                      type="button"
+                      disabled={isPending}
+                      onClick={() => {
+                        deleteProduct(item.id);
+                      }}
+                      className="ti-btn ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-danger/10 text-danger hover:bg-danger hover:text-white hover:border-danger"
+                    >
+                      <i class="ri-delete-bin-line"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {isSuccess && <Pagination meta={data.meta} />}
     </div>
   );
 };

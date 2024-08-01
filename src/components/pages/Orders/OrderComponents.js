@@ -38,9 +38,7 @@ const OrderComponents = () => {
         <div className="grid grid-cols-12 gap-x-6">
           <div className="col-span-12 xl:col-span-12">
             <div className="box">
-              <div className="px-5 mb-5">
-                <TableData />
-              </div>
+              <TableData />
             </div>
           </div>
         </div>

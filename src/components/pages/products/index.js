@@ -114,18 +114,3 @@ const ProductsComponent = () => {
 };
 
 export default ProductsComponent;
-
-{
-  /* <div className="flex items-center gap-3">
-                  <div className="flex" role="search">
-                    <input
-                      onChange={handleSearchChange}
-                      className="form-control !w-auto !rounded-sm me-2"
-                      type="search"
-                      value={searchItem}
-                      placeholder="Search"
-                      aria-label="Search"
-                    />
-                  </div>
-                </div> */
-}
