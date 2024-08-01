@@ -5,6 +5,7 @@ import "@/styles/style.css";
 import "filepond/dist/filepond.min.css";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import "react-quill/dist/quill.snow.css";
+import "gridjs/dist/theme/mermaid.css";
 import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient();

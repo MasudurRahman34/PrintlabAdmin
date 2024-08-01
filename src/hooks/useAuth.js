@@ -1,0 +1,87 @@
+// hooks/useAuth.js
+
+import useToastMessage from "./useToastMessage";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+
+export const useAuth = () => {
+  const showToastMessage = useToastMessage();
+  const router = useRouter();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    // Check if token is in localStorage
+    const storedSession =
+      typeof window !== "undefined" ? localStorage.getItem("session") : null;
+    const storedUser =
+      typeof window !== "undefined" ? localStorage.getItem("user") : null;
+
+    if (storedSession && storedUser) {
+      setSession(JSON.parse(storedSession));
+      setUser(JSON.parse(storedUser));
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, []);
+
+  const login = async (credentials) => {
+    try {
+      let session;
+      let user;
+
+      const res = await axios.post(
+        `https://printlabapi.devtaijul.com/api/v1/admin/login`,
+        {
+          email: credentials.email,
+          password: credentials.password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await res?.data?.data;
+
+      session = {
+        token: data?.token,
+        token_type: data?.tokenType,
+      };
+      user = data?.user;
+
+      // Save user and token to localStorage
+      if (typeof window !== "undefined") {
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("session", JSON.stringify(session));
+      }
+
+      setUser(user);
+      setSession(session);
+      setIsAuthenticated(true);
+      toast.success(data.message || "Login successful");
+      router.push("/");
+    } catch (error) {
+      showToastMessage(error?.response?.data?.message || "Login failed");
+      setIsAuthenticated(false);
+    }
+  };
+
+  const logout = () => {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("user");
+      localStorage.removeItem("session");
+    }
+    setUser(null);
+    setSession(null);
+    setIsAuthenticated(false);
+    router.push("/");
+  };
+
+  return { isAuthenticated, user, session, login, logout };
+};

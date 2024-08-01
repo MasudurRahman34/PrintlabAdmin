@@ -6,6 +6,10 @@ export const formateDate = (date) => {
   });
 };
 
+export const formatPrice = (price) => {
+  return `£${parseFloat(price).toFixed(2)}`;
+};
+
 export const truncateHTML = ({ html, maxWords }) => {
   // Create a temporary element to hold the HTML
   var tempElement = document.createElement("div");

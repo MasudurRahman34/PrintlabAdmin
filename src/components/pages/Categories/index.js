@@ -14,10 +14,10 @@ const CategoryIndex = () => {
   return (
     <div className="px-5 py-5 bg-white ">
       <div className="grid grid-cols-12 gap-4 ">
-        <div className="col-span-12 lg:col-span-3">
+        <div className="col-span-12 2xl:col-span-3">
           <CategoryForm refetch={refetch} />
         </div>
-        <div className="col-span-12 lg:col-span-9 category-right">
+        <div className="col-span-12 2xl:col-span-9 category-right">
           <CategoryTable data={data} refetch={refetch} />
         </div>
       </div>

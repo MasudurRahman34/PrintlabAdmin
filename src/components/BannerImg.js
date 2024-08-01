@@ -1,62 +1,162 @@
+import { useAuth } from "@/hooks/useAuth";
+import useToastMessage from "@/hooks/useToastMessage";
+import { addBannerMutation } from "@/resolvers/mutation";
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const BannerImg = () => {
+  const showToastMessage = useToastMessage();
+  const { session } = useAuth();
   const [open, setopen] = useState(false);
+
+  const { mutate, isPending } = useMutation({
+    mutationKey: "add-banner",
+    mutationFn: addBannerMutation,
+  });
+
+  const [addBannerState, setAddBannerState] = useState({
+    title: "",
+    description: "",
+    imageUrl: "",
+    productUrl: "",
+  });
+
+  const handleChange = (e) => {
+    setAddBannerState({
+      ...addBannerState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(addBannerState);
+    const { title, description, imageUrl, productUrl } = addBannerState;
+    if (!title || !description || !imageUrl) {
+      return toast.error("Please fill all the fields");
+    }
+
+    const variables = {
+      title,
+      description,
+      imageUrl,
+      productUrl,
+    };
+
+    mutate(
+      {
+        variables,
+        token: session?.token,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Banner added successfully");
+          setAddBannerState({
+            title: "",
+            description: "",
+            imageUrl: "",
+            productUrl: "",
+          });
+        },
+        onError: (error) => {
+          showToastMessage(error);
+        },
+      }
+    );
+  };
 
   return (
     <div>
-        <div className="grid grid-cols-12 gap-6">
-        <div>
-          <button onClick={()=>setopen(!open)} className="py-2 xl:py-3 xl:px-5 px-5 bg-yellow-300 rounded-md text-[12px] outline-none mt-5 mb-5 font-bold">
-            Add Banner
+      <div className="grid grid-cols-12 gap-6 mb-5 ">
+        <div className="col-span-3">
+          <button
+            type="button"
+            className=" ti-btn ti-btn-primary-full ti-btn-wave"
+            onClick={() => setopen(!open)}
+          >
+            {open ? (
+              <span className="me-2">Hide Add Banner Form</span>
+            ) : (
+              <span className="me-2">Show Add Banner Form</span>
+            )}
           </button>
         </div>
       </div>
-      <div
-        className={`grid grid-cols-12 gap-6 mx-auto px-5 relative z-10  ${
-          open ? "visible opacity-100" : "invisible opacity-0"
-        } `}
-      >
-        <div className={` xl:col-span-6 xxl:col-span-5   col-span-12 mx-auto ${open?"left-[35%] top-0":" -left-[999px] top-0"} transition  delay-300 ease-in-out   absolute z-20 px-5 bg-gray-200 py-5 rounded-md `}>
-          <div className="mb-2 xl:mb-4">
-            <label className="box-title">Title</label>
-            <input
-              className="block rounded-md w-full"
-              type="text"
-              placeholder="Enter title"
-            ></input>
-          </div>
-          <div className="mb-2 xl:mb-4">
-            <label className="box-title">Banner Link</label>
-            <input
-              className="block rounded-md w-full"
-              type="text"
-              placeholder="Enter title "
-            ></input>
-          </div>
-          <div className="mb-2 xl:mb-4">
-            <label className="box-title">Upload Image</label>
-            <div className="box-body">
-              <div>
-                <label className="block">
-                  <span className="sr-only">Choose Profile photo</span>
-                  <input
-                    type="file"
-                    className="block w-full border border-gray-200 focus:shadow-sm dark:focus:shadow-white/10 rounded-sm text-sm focus:z-10 focus:outline-0 focus:border-gray-200 dark:focus:border-white/10 dark:border-white/10 dark:text-[#8c9097] dark:text-white/50
-                file:me-4 file:py-2 file:px-4
-                file:rounded-s-sm file:border-0
-                file:text-sm file:font-semibold
-                file:bg-primary file:text-white
-                hover:file:bg-primary focus-visible:outline-none
-                "
-                  />
+      {open && (
+        <div className="p-4 box">
+          <form onSubmit={onSubmit}>
+            <div className="">
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  title
                 </label>
+                <input
+                  type="text"
+                  name="title"
+                  id="title"
+                  onChange={handleChange}
+                  value={addBannerState.title}
+                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Description
+                </label>
+                <textarea
+                  type="text"
+                  name="description"
+                  onChange={handleChange}
+                  value={addBannerState.description}
+                  id="description"
+                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Image Url
+                </label>
+                <input
+                  type="text"
+                  name="imageUrl"
+                  id="imageUrl"
+                  onChange={handleChange}
+                  value={addBannerState.imageUrl}
+                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Product Url
+                </label>
+                <input
+                  type="text"
+                  name="productUrl"
+                  id="productUrl"
+                  onChange={handleChange}
+                  value={addBannerState.productUrl}
+                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                />
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  disabled={isPending}
+                  className="m-2 ti-btn ti-btn-primary-full ti-btn-loader"
+                >
+                  <span className="me-2">Add Banner</span>
+                  {isPending && (
+                    <span className="loading">
+                      <i className="ri-loader-2-fill text-[1rem] animate-spin"></i>
+                    </span>
+                  )}
+                </button>
               </div>
             </div>
-          </div>
-          <button className="py-3 text-center border w-full  text-sm font-bold border-black rounded-md  ">Add Banner</button>
+          </form>
         </div>
-      </div>
+      )}
     </div>
   );
 };

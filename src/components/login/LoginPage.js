@@ -1,41 +1,58 @@
+import { useAuth } from "@/hooks/useAuth";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function LoginPage() {
-const  [show ,setshow] = useState(false)
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { login, isAuthenticated } = useAuth();
+  const [show, setshow] = useState(false);
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+  const onSubmit = async (data) => {
+    try {
+      await login(data);
+      reset();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <div className="container">
-        <div className="flex justify-center authentication authentication-basic items-center h-full text-defaultsize text-defaulttextcolor">
+        <div className="flex items-center justify-center h-full authentication authentication-basic text-defaultsize text-defaulttextcolor">
           <div className="grid grid-cols-12">
             <div className="xxl:col-span-4 xl:col-span-4 lg:col-span-4 md:col-span-3 sm:col-span-2"></div>
-            <div className="xxl:col-span-4 xl:col-span-4 lg:col-span-4 md:col-span-6 sm:col-span-8 col-span-12">
+            <div className="col-span-12 xxl:col-span-4 xl:col-span-4 lg:col-span-4 md:col-span-6 sm:col-span-8">
               <div className="box">
                 <div className="box-body !p-[3rem]">
-                  <p className="h5 font-semibold mb-2 text-center">Sign In</p>
+                  <p className="mb-2 font-semibold text-center h5">Sign In</p>
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid grid-cols-12 gap-y-4">
-                      <div className="xl:col-span-12 col-span-12">
+                      <div className="col-span-12 xl:col-span-12">
                         <label
                           for="signin-username"
                           className="form-label text-default"
                         >
-                        Email
+                          Email
                         </label>
                         <input
                           type="text"
                           className="form-control form-control-lg w-full !rounded-md"
                           id="signin-username"
                           placeholder="Enter Email"
-                          {...register("email", { required: true})}
+                          {...register("email", {
+                            required: true,
+                            validate: (value) => value.includes("@"),
+                          })}
                         />
                       </div>
-                      <div className="xl:col-span-12 col-span-12 mb-2">
+                      <div className="col-span-12 mb-2 xl:col-span-12">
                         <label
                           for="signin-password"
-                          className="form-label text-default flex justify-between "
+                          className="flex justify-between form-label text-default "
                         >
                           Password
                           <a
@@ -47,11 +64,11 @@ const  [show ,setshow] = useState(false)
                         </label>
                         <div className="input-group">
                           <input
-                            type={`${show?"text":"password"}`}
+                            type={`${show ? "text" : "password"}`}
                             className="form-control form-control-lg !rounded-s-md"
                             id="signin-password"
                             placeholder="password"
-                            {...register("password", { required: true})}
+                            {...register("password", { required: true })}
                           />
                           <button
                             aria-label="button"
@@ -60,7 +77,10 @@ const  [show ,setshow] = useState(false)
                             onclick="createpassword('signin-password',this)"
                             id="button-addon2"
                           >
-                            <i onClick={()=>setshow(!show)} className="ri-eye-off-line align-middle"></i>
+                            <i
+                              onClick={() => setshow(!show)}
+                              className="align-middle ri-eye-off-line"
+                            ></i>
                           </button>
                         </div>
                         <div className="mt-2">
@@ -80,9 +100,9 @@ const  [show ,setshow] = useState(false)
                           </div>
                         </div>
                       </div>
-                      <div className="xl:col-span-12 col-span-12 grid mt-2">
-                        <button 
-                        type="submit"
+                      <div className="grid col-span-12 mt-2 xl:col-span-12">
+                        <button
+                          type="submit"
                           href="index.html"
                           className="ti-btn ti-btn-primary !bg-primary !text-white !font-medium"
                         >
@@ -91,44 +111,9 @@ const  [show ,setshow] = useState(false)
                       </div>
                     </div>
                   </form>
-                  <div className="text-center">
-                    <p className="text-[0.75rem] text-[#8c9097] dark:text-white/50 mt-4">
-                      Dont have an account?{" "}
-                      <a href="sign-up-basic.html" className="text-primary">
-                        Sign Up
-                      </a>
-                    </p>
-                  </div>
-                  <div className="text-center my-4 authentication-barrier">
-                    <span>OR</span>
-                  </div>
-                  <div className="btn-list text-center">
-                    <button
-                      aria-label="button"
-                      type="button"
-                      className="ti-btn ti-btn-icon ti-btn-light me-[0.365rem]"
-                    >
-                      <i className="ri-facebook-line font-bold text-dark opacity-[0.7]"></i>
-                    </button>
-                    <button
-                      aria-label="button"
-                      type="button"
-                      className="ti-btn ti-btn-icon ti-btn-light me-[0.365rem]"
-                    >
-                      <i className="ri-google-line font-bold text-dark opacity-[0.7]"></i>
-                    </button>
-                    <button
-                      aria-label="button"
-                      type="button"
-                      className="ti-btn ti-btn-icon ti-btn-light"
-                    >
-                      <i className="ri-twitter-line font-bold text-dark opacity-[0.7]"></i>
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
-            <div className="xxl:col-span-4 xl:col-span-4 lg:col-span-4 md:col-span-3 sm:col-span-2"></div>
           </div>
         </div>
       </div>

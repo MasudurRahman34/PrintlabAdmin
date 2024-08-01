@@ -2,8 +2,8 @@ import axios from "axios";
 
 const backendUrl = "https://printlabapi.devtaijul.com/api/v1";
 
-export const getAllMedia = async () =>
-  axios.get(`${backendUrl}/media`).then((res) => res.data);
+export const getAllMedia = async ({ current_page = 1 }) =>
+  axios.get(`${backendUrl}/media?page=${current_page}`).then((res) => res.data);
 
 export const getMediaById = async (id) =>
   axios.get(`${backendUrl}/media/${id}`).then((res) => res.data);
@@ -44,3 +44,57 @@ export const getProductDeliveryServiceQuery = async (product_id) =>
 
 export const getProductArtworkServiceQuery = async () =>
   axios.get(`${backendUrl}/services/artworks`).then((res) => res.data);
+
+export const getAllAttributeOptionsQuery = async ({ token }) =>
+  axios
+    .get(`${backendUrl}/attribute-options`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getAllFileCheckOptionsQuery = async ({ token }) =>
+  axios
+    .get(`${backendUrl}/file-check-options`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getAllConnectedFileCheckOptionsQuery = async ({ token }) =>
+  axios
+    .get(`${backendUrl}/file-checks`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getAllOrders = async ({ page = 1, token }) =>
+  axios
+    .get(`${backendUrl}/orders`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getOrderById = async ({ id, token }) =>
+  axios
+    .get(`${backendUrl}/orders/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getBannersQuery = async ({ token }) =>
+  axios
+    .get(`${backendUrl}/banners`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);

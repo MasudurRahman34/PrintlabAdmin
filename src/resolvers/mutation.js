@@ -145,8 +145,72 @@ export const updateProductArtworkServiceMutation = async ({
     .put(`${backendUrl}/services/${artwork_id}`, variables)
     .then((res) => res.data);
 
-export const deleteProductMutation = async ({ product_id }) =>
+export const deleteProductMutation = async ({ product_id, token }) =>
   axios.delete(`${backendUrl}/products/${product_id}`).then((res) => res.data);
 
 export const deleteMediaMutation = async ({ media_id }) =>
   axios.delete(`${backendUrl}/media/${media_id}`).then((res) => res.data);
+
+export const createFileCheckOptionMutation = async ({ variables, token }) =>
+  axios
+    .post(`${backendUrl}/file-check-options`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const connectFileCheckOptionAttributeOptionMutation = async ({
+  variables,
+  token,
+}) =>
+  axios
+    .post(`${backendUrl}/file-checks`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const disconnectFileCheckOptionAttributeOptionMutation = async ({
+  id,
+  token,
+}) =>
+  axios
+    .delete(`${backendUrl}/file-checks/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const addBannerMutation = async ({ variables, token }) =>
+  axios
+    .post(`${backendUrl}/banners`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const updateOrderItemStatus = async ({
+  order_item_id,
+  variables,
+  token,
+}) =>
+  axios
+    .put(`${backendUrl}/order-items/${order_item_id}`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const deleteBannerMutation = async ({ banner_id, token }) =>
+  axios
+    .delete(`${backendUrl}/banners/${banner_id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
