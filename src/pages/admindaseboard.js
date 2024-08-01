@@ -6,7 +6,6 @@ import { AdminLayout } from "@/layout/AdminLayout";
 
 const Admindaseboard = () => {
   return (
-
     <AdminLayout>
       <div className="md:flex block items-center justify-between my-[1.5rem] page-header-breadcrumb">
         <div>
@@ -17,26 +16,26 @@ const Admindaseboard = () => {
             Track your sales activity, leads and deals here.
           </p>
         </div>
-        <div className="btn-list md:mt-0 mt-2">
+        <div className="mt-2 btn-list md:mt-0">
           <button
             type="button"
             className="ti-btn bg-primary text-white btn-wave !font-medium !me-[0.375rem] !ms-0 !text-[0.85rem] !rounded-[0.35rem] !py-[0.51rem] !px-[0.86rem] shadow-none"
           >
-            <i className="ri-filter-3-fill  inline-block"></i>Filters
+            <i className="inline-block ri-filter-3-fill"></i>Filters
           </button>
           <button
             type="button"
             className="ti-btn ti-btn-outline-secondary btn-wave !font-medium  !me-[0.375rem]  !ms-0 !text-[0.85rem] !rounded-[0.35rem] !py-[0.51rem] !px-[0.86rem] shadow-none"
           >
-            <i className="ri-upload-cloud-line  inline-block"></i>Export
+            <i className="inline-block ri-upload-cloud-line"></i>Export
           </button>
         </div>
       </div>
       <div className="grid grid-cols-12 gap-x-6">
-        <div className="xxl:col-span-9 xl:col-span-12  col-span-12">
+        <div className="col-span-12 xxl:col-span-9 xl:col-span-12">
           <div className="grid grid-cols-12 gap-x-6">
-            <div className="xxl:col-span-4 xl:col-span-4  col-span-12">
-              <div className="xxl:col-span-12 xl:col-span-12 col-span-12">
+            <div className="col-span-12 xxl:col-span-4 xl:col-span-4">
+              <div className="col-span-12 xxl:col-span-12 xl:col-span-12">
                 <div className="box crm-highlight-card">
                   <div className="box-body">
                     <div className="flex items-center justify-between">
@@ -72,9 +71,9 @@ const Admindaseboard = () => {
                   </div>
                 </div>
               </div>
-              <div className="xxl:col-span-12 xl:col-span-12 col-span-12">
+              <div className="col-span-12 xxl:col-span-12 xl:col-span-12">
                 <div className="box">
-                  <div className="box-header flex justify-between">
+                  <div className="flex justify-between box-header">
                     <div className="box-title">Top Deals</div>
                     <div className="hs-dropdown ti-dropdown">
                       <a
@@ -85,7 +84,7 @@ const Admindaseboard = () => {
                       >
                         <i className="fe fe-more-vertical text-[0.8rem]"></i>
                       </a>
-                      <ul className="hs-dropdown-menu ti-dropdown-menu hidden">
+                      <ul className="hidden hs-dropdown-menu ti-dropdown-menu">
                         <li>
                           <a
                             className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
@@ -114,11 +113,11 @@ const Admindaseboard = () => {
                     </div>
                   </div>
                   <div className="box-body">
-                    <ul className="list-none crm-top-deals mb-0">
+                    <ul className="mb-0 list-none crm-top-deals">
                       <li className="mb-[0.9rem]">
-                        <div className="flex items-start flex-wrap">
+                        <div className="flex flex-wrap items-start">
                           <div className="me-2">
-                            <span className=" inline-flex items-center justify-center">
+                            <span className="inline-flex items-center justify-center ">
                               <img
                                 src="../assets/images/faces/10.jpg"
                                 alt=""
@@ -140,7 +139,7 @@ const Admindaseboard = () => {
                         </div>
                       </li>
                       <li className="mb-[0.9rem]">
-                        <div className="flex items-start flex-wrap">
+                        <div className="flex flex-wrap items-start">
                           <div className="me-2">
                             <span className="inline-flex items-center justify-center !w-[1.75rem] !h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full text-warning  bg-warning/10 font-semibold">
                               EK
@@ -160,7 +159,7 @@ const Admindaseboard = () => {
                         </div>
                       </li>
                       <li className="mb-[0.9rem]">
-                        <div className="flex items-top flex-wrap">
+                        <div className="flex flex-wrap items-top">
                           <div className="me-2">
                             <span className="inline-flex items-center justify-center">
                               <img
@@ -184,7 +183,7 @@ const Admindaseboard = () => {
                         </div>
                       </li>
                       <li className="mb-[0.9rem]">
-                        <div className="flex items-top flex-wrap">
+                        <div className="flex flex-wrap items-top">
                           <div className="me-2">
                             <span className="inline-flex items-center justify-center !w-[1.75rem] !h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full text-success bg-success/10 font-semibold">
                               GP
@@ -204,7 +203,7 @@ const Admindaseboard = () => {
                         </div>
                       </li>
                       <li>
-                        <div className="flex items-top flex-wrap">
+                        <div className="flex flex-wrap items-top">
                           <div className="me-2">
                             <span className="inline-flex items-center justify-center !w-[1.75rem] !h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full text-primary bg-primary/10 font-semibold">
                               KA
@@ -227,9 +226,9 @@ const Admindaseboard = () => {
                   </div>
                 </div>
               </div>
-              <div className="xxl:col-span-12 xl:col-span-12 col-span-12">
+              <div className="col-span-12 xxl:col-span-12 xl:col-span-12">
                 <div className="box">
-                  <div className="box-header justify-between">
+                  <div className="justify-between box-header">
                     <div className="box-title">Profit Earned</div>
                     <div className="hs-dropdown ti-dropdown">
                       <a
@@ -238,10 +237,10 @@ const Admindaseboard = () => {
                         aria-expanded="false"
                       >
                         View All
-                        <i className="ri-arrow-down-s-line align-middle ms-1 inline-block"></i>
+                        <i className="inline-block align-middle ri-arrow-down-s-line ms-1"></i>
                       </a>
                       <ul
-                        className="hs-dropdown-menu ti-dropdown-menu hidden"
+                        className="hidden hs-dropdown-menu ti-dropdown-menu"
                         role="menu"
                       >
                         <li>
@@ -277,13 +276,13 @@ const Admindaseboard = () => {
                 </div>
               </div>
             </div>
-            <div className="xxl:col-span-8  xl:col-span-8  col-span-12">
+            <div className="col-span-12 xxl:col-span-8 xl:col-span-8">
               <div className="grid grid-cols-12 gap-x-6">
                 <ManageProduct />
                 <ManageProduct />
                 <ManageProduct />
                 <ManageProduct />
-                <div className="xxl:col-span-12 xl:col-span-12 col-span-12">
+                <div className="col-span-12 xxl:col-span-12 xl:col-span-12">
                   <div className="box">
                     <div className="box-header !gap-0 !m-0 justify-between">
                       <div className="box-title">Revenue Analytics</div>
@@ -294,10 +293,10 @@ const Admindaseboard = () => {
                           aria-expanded="false"
                         >
                           View All
-                          <i className="ri-arrow-down-s-line align-middle ms-1 inline-block"></i>
+                          <i className="inline-block align-middle ri-arrow-down-s-line ms-1"></i>
                         </a>
                         <ul
-                          className="hs-dropdown-menu ti-dropdown-menu hidden"
+                          className="hidden hs-dropdown-menu ti-dropdown-menu"
                           role="menu"
                         >
                           <li>
@@ -334,9 +333,9 @@ const Admindaseboard = () => {
                 </div>
               </div>
             </div>
-            <div className="xxl:col-span-12 xl:col-span-12 col-span-12">
+            <div className="col-span-12 xxl:col-span-12 xl:col-span-12">
               <div className="box custom-card">
-                <div className="box-header justify-between">
+                <div className="justify-between box-header">
                   <div className="box-title">Deals Statistics</div>
                   <div className="flex flex-wrap gap-2">
                     <div>
@@ -354,10 +353,10 @@ const Admindaseboard = () => {
                         aria-expanded="false"
                       >
                         Sort By
-                        <i className="ri-arrow-down-s-line align-middle ms-1 inline-block"></i>
+                        <i className="inline-block align-middle ri-arrow-down-s-line ms-1"></i>
                       </a>
                       <ul
-                        className="hs-dropdown-menu ti-dropdown-menu hidden"
+                        className="hidden hs-dropdown-menu ti-dropdown-menu"
                         role="menu"
                       >
                         <li>
@@ -390,9 +389,9 @@ const Admindaseboard = () => {
                 </div>
                 <div className="box-body">
                   <div className="overflow-x-auto">
-                    <table className="table min-w-full whitespace-nowrap table-hover border table-bordered">
+                    <table className="table min-w-full border whitespace-nowrap table-hover table-bordered">
                       <thead>
-                        <tr className="border border-inherit border-solid dark:border-defaultborder/10">
+                        <tr className="border border-solid border-inherit dark:border-defaultborder/10">
                           <th scope="row" className="!ps-4 !pe-5">
                             <input
                               className="form-check-input"
@@ -444,16 +443,16 @@ const Admindaseboard = () => {
                     </table>
                   </div>
                 </div>
-                <Pagination/>
+                {/* <Pagination/> */}
               </div>
             </div>
           </div>
         </div>
-        <div className="xxl:col-span-3 xl:col-span-12 col-span-12">
+        <div className="col-span-12 xxl:col-span-3 xl:col-span-12">
           <div className="grid grid-cols-12 gap-x-6">
-            <div className="xxl:col-span-12 xl:col-span-12  col-span-12">
+            <div className="col-span-12 xxl:col-span-12 xl:col-span-12">
               <div className="box">
-                <div className="box-header justify-between">
+                <div className="justify-between box-header">
                   <div className="box-title">Leads By Source</div>
                   <div className="hs-dropdown ti-dropdown">
                     <a
@@ -464,7 +463,7 @@ const Admindaseboard = () => {
                     >
                       <i className="fe fe-more-vertical text-[0.8rem]"></i>
                     </a>
-                    <ul className="hs-dropdown-menu ti-dropdown-menu hidden">
+                    <ul className="hidden hs-dropdown-menu ti-dropdown-menu">
                       <li>
                         <a
                           className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
@@ -492,11 +491,11 @@ const Admindaseboard = () => {
                     </ul>
                   </div>
                 </div>
-                <div className="box-body overflow-hidden">
-                  <div className="leads-source-chart flex items-center justify-center">
+                <div className="overflow-hidden box-body">
+                  <div className="flex items-center justify-center leads-source-chart">
                     <canvas
                       id="leads-source"
-                      className="chartjs-chart w-full"
+                      className="w-full chartjs-chart"
                     ></canvas>
                     <div className="lead-source-value ">
                       <span className="block text-[0.875rem] ">Total</span>
@@ -556,9 +555,9 @@ const Admindaseboard = () => {
                 </div>
               </div>
             </div>
-            <div className="xxl:col-span-12 xl:col-span-6  col-span-12">
+            <div className="col-span-12 xxl:col-span-12 xl:col-span-6">
               <div className="box">
-                <div className="box-header justify-between">
+                <div className="justify-between box-header">
                   <div className="box-title">Deals Status</div>
                   <div className="hs-dropdown ti-dropdown">
                     <a
@@ -567,10 +566,10 @@ const Admindaseboard = () => {
                       aria-expanded="false"
                     >
                       View All
-                      <i className="ri-arrow-down-s-line align-middle ms-1 inline-block"></i>
+                      <i className="inline-block align-middle ri-arrow-down-s-line ms-1"></i>
                     </a>
                     <ul
-                      className="hs-dropdown-menu ti-dropdown-menu hidden"
+                      className="hidden hs-dropdown-menu ti-dropdown-menu"
                       role="menu"
                     >
                       <li>
@@ -640,7 +639,7 @@ const Admindaseboard = () => {
                       aria-valuemax="100"
                     ></div>
                   </div>
-                  <ul className="list-none mb-0 pt-2 crm-deals-status">
+                  <ul className="pt-2 mb-0 list-none crm-deals-status">
                     <li className="primary">
                       <div className="flex items-center text-[0.813rem]  justify-between">
                         <div>Successful Deals</div>
@@ -677,9 +676,9 @@ const Admindaseboard = () => {
                 </div>
               </div>
             </div>
-            <div className="xxl:col-span-12 xl:col-span-6  col-span-12">
+            <div className="col-span-12 xxl:col-span-12 xl:col-span-6">
               <div className="box">
-                <div className="box-header justify-between">
+                <div className="justify-between box-header">
                   <div className="box-title">Recent Activity</div>
                   <div className="hs-dropdown ti-dropdown">
                     <a
@@ -688,10 +687,10 @@ const Admindaseboard = () => {
                       aria-expanded="false"
                     >
                       View All
-                      <i className="ri-arrow-down-s-line align-middle ms-1 inline-block"></i>
+                      <i className="inline-block align-middle ri-arrow-down-s-line ms-1"></i>
                     </a>
                     <ul
-                      className="hs-dropdown-menu ti-dropdown-menu hidden"
+                      className="hidden hs-dropdown-menu ti-dropdown-menu"
                       role="menu"
                     >
                       <li>
@@ -723,7 +722,7 @@ const Admindaseboard = () => {
                 </div>
                 <div className="box-body">
                   <div>
-                    <ul className="list-none mb-0 crm-recent-activity">
+                    <ul className="mb-0 list-none crm-recent-activity">
                       <li className="crm-recent-activity-content">
                         <div className="flex items-start">
                           <div className="me-4">
@@ -738,7 +737,7 @@ const Admindaseboard = () => {
                             <span>
                               <a
                                 href="javascript:void(0);"
-                                className="text-primary font-semibold"
+                                className="font-semibold text-primary"
                               >
                                 Added new events in next week.
                               </a>
@@ -752,7 +751,7 @@ const Admindaseboard = () => {
                         </div>
                       </li>
                       <li className="crm-recent-activity-content">
-                        <div className="flex items-start  text-defaultsize">
+                        <div className="flex items-start text-defaultsize">
                           <div className="me-4">
                             <span className="w-[1.25rem] h-[1.25rem] leading-[1.25rem] inline-flex items-center justify-center font-medium text-[0.65rem] text-secondary bg-secondary/10 rounded-full">
                               <i className="bi bi-circle-fill text-[0.5rem]"></i>
@@ -777,7 +776,7 @@ const Admindaseboard = () => {
                           </div>
                         </div>
                       </li>
-                      <li className="crm-recent-activity-content  text-defaultsize">
+                      <li className="crm-recent-activity-content text-defaultsize">
                         <div className="flex items-start">
                           <div className="me-4">
                             <span className="w-[1.25rem] h-[1.25rem] leading-[1.25rem] inline-flex items-center justify-center font-medium text-[0.65rem] text-success bg-success/10 rounded-full">
@@ -787,7 +786,7 @@ const Admindaseboard = () => {
                           <div className="crm-timeline-content">
                             <span>
                               Created a{" "}
-                              <span className="text-success font-semibold">
+                              <span className="font-semibold text-success">
                                 New Task
                               </span>{" "}
                               today{" "}
@@ -803,7 +802,7 @@ const Admindaseboard = () => {
                           </div>
                         </div>
                       </li>
-                      <li className="crm-recent-activity-content  text-defaultsize">
+                      <li className="crm-recent-activity-content text-defaultsize">
                         <div className="flex items-start">
                           <div className="me-4">
                             <span className="w-[1.25rem] h-[1.25rem] leading-[1.25rem] inline-flex items-center justify-center font-medium text-[0.65rem] text-pink bg-pink/10 rounded-full">
@@ -826,7 +825,7 @@ const Admindaseboard = () => {
                           </div>
                         </div>
                       </li>
-                      <li className="crm-recent-activity-content  text-defaultsize">
+                      <li className="crm-recent-activity-content text-defaultsize">
                         <div className="flex items-start">
                           <div className="me-4">
                             <span className="w-[1.25rem] h-[1.25rem] leading-[1.25rem] inline-flex items-center justify-center font-medium text-[0.65rem] text-warning bg-warning/10 rounded-full">
@@ -843,7 +842,7 @@ const Admindaseboard = () => {
                           </div>
                         </div>
                       </li>
-                      <li className="crm-recent-activity-content  text-defaultsize">
+                      <li className="crm-recent-activity-content text-defaultsize">
                         <div className="flex items-start">
                           <div className="me-4">
                             <span className="w-[1.25rem] h-[1.25rem] leading-[1.25rem] inline-flex items-center justify-center font-medium text-[0.65rem] text-info bg-info/10 rounded-full">
@@ -853,7 +852,7 @@ const Admindaseboard = () => {
                           <div className="crm-timeline-content">
                             <span>
                               Neon Tarly added{" "}
-                              <span className="text-info font-semibold">
+                              <span className="font-semibold text-info">
                                 Robert Bright
                               </span>{" "}
                               to AI summit project.
@@ -866,7 +865,7 @@ const Admindaseboard = () => {
                           </div>
                         </div>
                       </li>
-                      <li className="crm-recent-activity-content  text-defaultsize">
+                      <li className="crm-recent-activity-content text-defaultsize">
                         <div className="flex items-start">
                           <div className="me-4">
                             <span className="w-[1.25rem] h-[1.25rem] leading-[1.25rem] inline-flex items-center justify-center font-medium text-[0.65rem] text-[#232323] dark:text-white bg-[#232323]/10 dark:bg-white/20 rounded-full">
@@ -886,7 +885,7 @@ const Admindaseboard = () => {
                           </div>
                         </div>
                       </li>
-                      <li className="crm-recent-activity-content  text-defaultsize">
+                      <li className="crm-recent-activity-content text-defaultsize">
                         <div className="flex items-start">
                           <div className="me-4">
                             <span className="w-[1.25rem] h-[1.25rem] leading-[1.25rem] inline-flex items-center justify-center font-medium text-[0.65rem] text-purple bg-purple/10 rounded-full">
@@ -898,7 +897,7 @@ const Admindaseboard = () => {
                               Completed documentation of{" "}
                               <a
                                 href="javascript:void(0);"
-                                className="text-purple underline font-semibold"
+                                className="font-semibold underline text-purple"
                               >
                                 AI Summit.
                               </a>
@@ -920,7 +919,6 @@ const Admindaseboard = () => {
         </div>
       </div>
     </AdminLayout>
-
   );
 };
 
