@@ -1,4 +1,5 @@
 import { useAuth } from "@/hooks/useAuth";
+import { formatPrice } from "@/utils/common";
 import { Grid } from "gridjs-react";
 import { _ } from "gridjs-react";
 import Link from "next/link";
@@ -20,36 +21,36 @@ const TableData = ({}) => {
       name: "Payment Status",
       formatter: (cell) => {
         if (cell === "pending") {
-          return _(<span class="text-warning">{cell}</span>);
-        } else if (status === "completed") {
-          return _(<span class="text-success">{cell}</span>);
+          return _(<span className="text-warning">{cell}</span>);
+        } else if (cell === "Paid") {
+          return _(<span className="text-success">{cell}</span>);
         } else {
-          return _(<span class="text-danger">{cell}</span>);
+          return _(<span className="text-danger">{cell}</span>);
         }
       },
     },
     {
       name: "Total Price",
-      formatter: (cell) => cell,
+      formatter: (cell) => formatPrice(cell),
     },
     {
       name: "Action",
       formatter: (cell) => {
         return _(
-          <div class="flex flex-row items-center !gap-2 text-[0.9375rem]">
+          <div className="flex flex-row items-center !gap-2 text-[0.9375rem]">
             <Link
               aria-label="anchor"
               href={`/orders/${cell}`}
-              class="ti-btn ti-btn-wave  !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-info/10 text-info hover:bg-info hover:text-white hover:border-info"
+              className="ti-btn ti-btn-wave  !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-info/10 text-info hover:bg-info hover:text-white hover:border-info"
             >
-              <i class="ri-pencil-line"></i>
+              <i className="ri-pencil-line"></i>
             </Link>
             <button
               type="button"
-              class="ti-btn ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-danger/10 text-danger hover:bg-danger hover:text-white hover:border-danger"
+              className="ti-btn ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-danger/10 text-danger hover:bg-danger hover:text-white hover:border-danger"
               onClick={() => setShow(true)}
             >
-              <i class="ri-delete-bin-line"></i>
+              <i className="ri-delete-bin-line"></i>
             </button>
           </div>
         );
@@ -58,7 +59,7 @@ const TableData = ({}) => {
   ];
 
   return (
-    <div class="box-body">
+    <div className="box-body">
       <Grid
         columns={columns}
         server={{

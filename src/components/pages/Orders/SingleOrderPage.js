@@ -12,16 +12,14 @@ const OrdersDetails = () => {
   const router = useRouter();
   const { order_id } = router.query;
 
-  const { data, isError } = useQuery({
+  const { data, isError, isLoading, refetch } = useQuery({
     queryKey: ["get-all-orders", order_id, session?.token],
     queryFn: () => getOrderById({ id: order_id, token: session?.token }),
     enabled: !!session?.token && !!order_id,
   });
 
-  console.log(data, isError);
-
   return (
-    <div className="main-content">
+    <div>
       <div className="justify-between block page-header md:flex">
         <div>
           <h3 className="!text-defaulttextcolor dark:!text-defaulttextcolor/70 dark:text-white dark:hover:text-white text-[1.125rem] font-semibold">
@@ -49,15 +47,30 @@ const OrdersDetails = () => {
       </div>
 
       <div className="grid grid-cols-12 gap-x-6">
-        <div className="col-span-12 xl:col-span-9">
-          <OrdersList />
-        </div>
-        <div className="col-span-12 xl:col-span-3">
-          <Ordertraking />
-        </div>
         <div className="col-span-12 ">
-          <UserDetails />
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : isError ? (
+            <div>
+              <h1>Error</h1>
+              <button onClick={() => refetch()}>Retry</button>
+            </div>
+          ) : (
+            data &&
+            data.data && (
+              <OrdersList
+                orderItems={data.data.order_items}
+                refetch={refetch}
+              />
+            )
+          )}
         </div>
+        {/* <div className="col-span-12 xl:col-span-3">
+          <Ordertraking />
+        </div> */}
+        {/* <div className="col-span-12 ">
+          <UserDetails />
+        </div> */}
       </div>
     </div>
   );

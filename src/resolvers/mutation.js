@@ -190,3 +190,16 @@ export const addBannerMutation = async ({ variables, token }) =>
       },
     })
     .then((res) => res.data);
+
+export const updateOrderItemStatus = async ({
+  order_item_id,
+  variables,
+  token,
+}) =>
+  axios
+    .put(`${backendUrl}/order-items/${order_item_id}`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
