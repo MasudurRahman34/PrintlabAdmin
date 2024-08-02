@@ -70,7 +70,7 @@ const ProductsComponent = () => {
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 xl:col-span-12">
             <div className="box">
-              <div className="justify-between box-header">
+              {/*  <div className="justify-between box-header">
                 <div className="space-x-2 ti-btn-list rtl:space-x-reverse ">
                   <button
                     type="button"
@@ -101,7 +101,7 @@ const ProductsComponent = () => {
                     <span className="hidden md:block">Export as Pdf</span>
                   </button>
                 </div>
-              </div>
+              </div> */}
 
               <ProductTable />
             </div>
