@@ -6,14 +6,11 @@ const withAuth = (WrappedComponent) => {
   const WithAuth = (props) => {
     const router = useRouter();
     const { isAuthenticated, isLoading, user } = useAuth();
+    console.log("isAuthenticated", isAuthenticated, isLoading);
 
     useEffect(() => {
       if (!isLoading && !isAuthenticated) {
         router.replace("/login");
-      } else if (isAuthenticated && user) {
-        if (user.email_verified_at === null) {
-          router.replace("/verify-email-alert");
-        }
       }
     }, [isAuthenticated, router, isLoading, user]);
 

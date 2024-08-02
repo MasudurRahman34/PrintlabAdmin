@@ -23,6 +23,16 @@ const links = [
     label: "Products",
     Icon: () => <AiFillProduct className="w-6 h-6" />,
   },
+  {
+    href: "/categories",
+    label: "Category",
+    Icon: () => <BiCategory className="w-6 h-6" />,
+  },
+  {
+    href: "/media",
+    label: "Media",
+    Icon: () => <MdPermMedia className="w-6 h-6" />,
+  },
 
   {
     href: "/orders",
@@ -39,21 +49,13 @@ const links = [
     label: "Products Detail",
     Icon: () => <AiFillProduct className="w-6 h-6" />,
   }, */
-  {
-    href: "/categories",
-    label: "Category",
-    Icon: () => <BiCategory className="w-6 h-6" />,
-  },
+
   /* {
     href: "/addproduct",
     label: "Add Products",
     Icon: () => <IoMdAddCircle className="w-6 h-6" />,
   }, */
-  {
-    href: "/media",
-    label: "Media",
-    Icon: () => <MdPermMedia className="w-6 h-6" />,
-  },
+
   /*  {
     href: "/banner",
     label: "Add Banner",
@@ -106,8 +108,8 @@ const Sidebar = ({ hideSidebar, toggleSidebar, isOpen, setIsOpen }) => {
             width: hideSidebar ? "5rem" : "15rem",
           }}
         >
-          <a
-            href="index.html"
+          <Link
+            href="/"
             className={`header-logo ${
               hideSidebar ? " opacity-0 invisible" : " opacity-100 visible"
             }"`}
@@ -119,7 +121,7 @@ const Sidebar = ({ hideSidebar, toggleSidebar, isOpen, setIsOpen }) => {
                 className="desktop-dark"
               />
             )}
-          </a>
+          </Link>
         </div>
         {/*  <!-- End::main-sidebar-header -->
 

@@ -34,7 +34,7 @@ const BannerPageComponent = () => {
         </div>
       </div>
 
-      <BannerImg />
+      <BannerImg refetch={refetch} />
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-12 xl:col-span-12">
           <div className="box">

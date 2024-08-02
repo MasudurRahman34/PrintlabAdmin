@@ -5,7 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-const BannerImg = () => {
+const BannerImg = ({ refetch }) => {
   const showToastMessage = useToastMessage();
   const { session } = useAuth();
   const [open, setopen] = useState(false);
@@ -55,6 +55,7 @@ const BannerImg = () => {
             description: "",
             imageUrl: "",
           });
+          refetch();
         },
         onError: (error) => {
           showToastMessage(error);

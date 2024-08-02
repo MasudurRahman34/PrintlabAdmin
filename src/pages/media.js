@@ -1,5 +1,5 @@
 import Media from "@/components/pages/Media";
-import { AdminLayout } from "@/layout/AdminLayout";
+import AdminLayout from "@/layout/AdminLayout";
 import React from "react";
 
 const page = () => {

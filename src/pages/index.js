@@ -1,6 +1,6 @@
-import { AdminLayout } from "@/layout/AdminLayout";
+import AdminLayout from "@/layout/AdminLayout";
 
-function Home() {
+const Home = () => {
   return (
     <AdminLayout>
       <div className="grid grid-cols-12 mt-5 gap-x-6">
@@ -989,5 +989,5 @@ function Home() {
       </div>
     </AdminLayout>
   );
-}
+};
 export default Home;

@@ -3,6 +3,7 @@ import useToastMessage from "@/hooks/useToastMessage";
 import { deleteBannerMutation } from "@/resolvers/mutation";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
+import toast from "react-hot-toast";
 
 const DeleteBanner = ({ id, refetch }) => {
   const { session } = useAuth();

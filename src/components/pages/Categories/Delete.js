@@ -1,11 +1,15 @@
 import DeleteModal from "@/components/ui/DeleteModal";
+import useToastMessage from "@/hooks/useToastMessage";
 import { deleteCategoryMutation } from "@/resolvers/mutation";
 import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 const Delete = ({ refetch, category_id }) => {
+  const showToastMessage = useToastMessage();
   const [show, setShow] = useState(false);
+
   const hideModal = () => setShow(false);
   const { mutate, isPending } = useMutation({
     mutationKey: "delete-category",
@@ -13,9 +17,19 @@ const Delete = ({ refetch, category_id }) => {
   });
 
   const handleDelete = async () => {
-    await mutate({ category_id });
-    refetch();
-    hideModal();
+    await mutate(
+      { category_id },
+      {
+        onSuccess: () => {
+          toast.success("Category deleted successfully");
+          refetch();
+          hideModal();
+        },
+        onError: (error) => {
+          showToastMessage(error?.response?.data?.message);
+        },
+      }
+    );
   };
 
   return (

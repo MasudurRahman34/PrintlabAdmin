@@ -1,7 +1,9 @@
+import { useAuth } from "@/hooks/useAuth";
 import useScreenWidth from "@/hooks/useScreenWidth";
 import React, { useEffect, useState } from "react";
 
 const Header = ({ toggleSidebar, hideSidebar }) => {
+  const { logout } = useAuth();
   const [screen_size, setScreenSize] = useState(0);
   const [settingsOpen, setSettingsOpen] = useState(false);
 
@@ -74,7 +76,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                   className="main-header-dropdown !-mt-3 !p-0 hs-dropdown-menu ti-dropdown-menu bg-white !w-[22rem] border-0 border-defaultborder hidden !m-0"
                   aria-labelledby="dropdown-notification"
                 >
-                  <div className="ti-dropdown-header !m-0 !p-4 !bg-transparent flex justify-between items-center">
+                  {/*   <div className="ti-dropdown-header !m-0 !p-4 !bg-transparent flex justify-between items-center">
                     <p className="mb-0 text-[1.0625rem] text-defaulttextcolor font-semibold dark:text-[#8c9097] dark:text-white/50">
                       Notifications
                     </p>
@@ -85,8 +87,8 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                       5 Unread
                     </span>
                   </div>
-                  <div className="dropdown-divider"></div>
-                  <ul
+                  <div className="dropdown-divider"></div> */}
+                  {/*    <ul
                     className="list-none !m-0 !p-0 end-0"
                     id="header-notification-scroll"
                   >
@@ -247,7 +249,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         </div>
                       </div>
                     </li>
-                  </ul>
+                  </ul> */}
 
                   <div className="p-4 mt-2 border-t empty-header-item1">
                     <div className="grid">
@@ -281,34 +283,39 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                 <button
                   id="dropdown-profile"
                   type="button"
-                  className="hs-dropdown-toggle ti-dropdown-toggle !gap-2 !p-0 flex-shrink-0 sm:me-2 me-0 !rounded-full !shadow-none text-xs align-middle !border-0 !shadow-transparent "
+                  className="hs-dropdown-toggle ti-dropdown-toggle !gap-2 !p-0 flex-shrink-0 sm:me-2 me-0 !rounded-full !shadow-none text-xs align-middle !border-0 !shadow-transparent  bg-gray-300 h-8 w-8"
                   onClick={() => {
                     setSettingsOpen((prev) => !prev);
                   }}
                 >
-                  <img
-                    className="inline-block rounded-full "
-                    src="../assets/images/faces/9.jpg"
-                    width="32"
-                    height="32"
-                    alt="Image Description"
-                  />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="w-6 h-6 text-[#536485] dark:text-white/50"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
                 </button>
-                <div className="hidden md:block dropdown-profile">
+                {/*   <div className="hidden md:block dropdown-profile">
                   <p className="font-semibold mb-0 leading-none text-[#536485] text-[0.813rem] ">
                     Json Taylor
                   </p>
                   <span className="opacity-[0.7] font-normal text-[#536485] block text-[0.6875rem] ">
                     Web Designer
                   </span>
-                </div>
+                </div> */}
                 <div
                   className={`hs-dropdown-menu ti-dropdown-menu !-mt-3 border-0 w-[11rem] !p-0 border-defaultborder  main-header-dropdown  pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end absolute  ${
                     settingsOpen ? "block" : "hidden"
                   }`}
                   style={{
                     top: "70px",
-                    right: "90px",
+                    right: "20px",
                   }}
                   aria-labelledby="dropdown-profile"
                 >
@@ -324,23 +331,13 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                     </li>
 
                     <li>
-                      <a
-                        className="w-full ti-dropdown-item !text-[0.8125rem] !gap-x-0 !p-[0.65rem] !inline-flex"
-                        href="mail-settings.html"
-                      >
-                        <i className="ti ti-adjustments-horizontal text-[1.125rem] me-2 opacity-[0.7]"></i>
-                        Settings
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
+                      <button
                         className="w-full ti-dropdown-item !text-[0.8125rem] !p-[0.65rem] !gap-x-0 !inline-flex"
-                        href="sign-in-cover.html"
+                        onClick={logout}
                       >
                         <i className="ti ti-logout text-[1.125rem] me-2 opacity-[0.7]"></i>
                         Log Out
-                      </a>
+                      </button>
                     </li>
                   </ul>
                 </div>

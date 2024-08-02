@@ -17,14 +17,6 @@ const ProductsComponent = () => {
   const router = useRouter();
   const { page } = router.query;
 
-  /* const { data, isLoading, isError, error, refetch } = useQuery({
-    queryKey: ["get-all-products", page],
-    queryFn: () => getAllProducts({ page }),
-  }); */
-  /* const handleSearchChange = (event) => {
-    setSearchItem(event.target.value);
-  }; */
-
   return (
     <>
       <CreateProductModal
