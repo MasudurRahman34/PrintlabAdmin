@@ -73,11 +73,7 @@ const BannerImg = ({ refetch }) => {
             className=" ti-btn ti-btn-primary-full ti-btn-wave"
             onClick={() => setopen(!open)}
           >
-            {open ? (
-              <span className="me-2">Hide Add Banner Form</span>
-            ) : (
-              <span className="me-2">Show Add Banner Form</span>
-            )}
+            <span className="me-2">Add Banner</span>
           </button>
         </div>
       </div>
