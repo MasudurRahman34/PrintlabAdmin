@@ -17,8 +17,6 @@ const TableData = ({}) => {
     enabled: !!session?.token || !!page,
   });
 
-  console.log(data);
-
   return (
     <div className="box-body">
       <div className=" table-responsive">
@@ -65,12 +63,6 @@ const TableData = ({}) => {
                     >
                       <i className="ri-pencil-line"></i>
                     </Link>
-                    {/*  <button
-                      type="button"
-                      className="ti-btn ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-danger/10 text-danger hover:bg-danger hover:text-white hover:border-danger"
-                    >
-                      <i className="ri-delete-bin-line"></i>
-                    </button> */}
                   </div>
                 </td>
               </tr>

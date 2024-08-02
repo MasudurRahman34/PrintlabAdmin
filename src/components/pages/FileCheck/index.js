@@ -53,7 +53,9 @@ const FileCheckComponent = () => {
     <section className="bg-white">
       <div className="px-4 py-8">
         <div className="mb-4">
-          <h1 className="text-2xl font-bold">Manage File Check</h1>
+          <h1 className="text-xl font-medium">
+            Connect attributes with File check options
+          </h1>
           <p>
             File check is a process to verify the file before sending it to the
             printer.

@@ -100,7 +100,30 @@ const OrderItemCard = ({ item, refetch }) => {
                 </p>
               </div>
               <div>
-                <h1 className="text-lg font-semibold">Just Print</h1>
+                <h1 className="text-lg font-semibold">
+                  {item.artwork_service.title}
+                </h1>
+              </div>
+            </div>
+            <div className="w-full p-2 bg-white md:w-1/3">
+              <div className="mb-3">
+                <h1 className="text-lg font-semibold">Delivery To</h1>
+                <p className="text-sm">
+                  {item.shipping_address.first_name +
+                    " " +
+                    item.shipping_address.last_name}
+                </p>
+                <p className="text-sm">
+                  {item.shipping_address.address},{" "}
+                  {item.shipping_address.country}, {item.shipping_address.phone}
+                  , {item.shipping_address.email},{" "}
+                  {item.shipping_address.post_code}
+                </p>
+              </div>
+              <div>
+                <h1 className="text-lg font-semibold">Delivery By</h1>
+                <p className="text-sm">Thursday, 27th June 2024</p>
+                <p className="text-sm">By 8pm (FREE)</p>
               </div>
             </div>
             <div className="w-full p-2 bg-white md:w-1/3">
@@ -126,9 +149,9 @@ const OrderItemCard = ({ item, refetch }) => {
             </div>
           </div>
           <div className="p-4">
-            <div className="flex flex-col items-end justify-between w-full gap-2 sm:flex-row">
-              <div className="flex-1 w-full">
-                <label htmlFor="status" className="block font-medium">
+            <div className="flex flex-col items-end justify-start w-full gap-2 sm:flex-row">
+              <div className="w-full max-w-md">
+                <label htmlFor="status" className="block mb-1 font-medium">
                   Update Status
                 </label>
                 <select
@@ -151,10 +174,11 @@ const OrderItemCard = ({ item, refetch }) => {
                   <option value="Partially Refunded">Partially Refunded</option>
                 </select>
               </div>
-              <div>
+              <div className="flex-1">
                 <button
                   type="button"
-                  className="m-2 ti-btn ti-btn-primary-full ti-btn-loader disabled:bg-zinc-900"
+                  style={{ marginBottom: "0" }}
+                  className=" ti-btn ti-btn-primary-full ti-btn-loader disabled:bg-zinc-900"
                   onClick={handleUpdate}
                   disabled={isPending || item.status === order_status}
                 >

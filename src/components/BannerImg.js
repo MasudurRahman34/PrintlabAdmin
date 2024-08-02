@@ -19,7 +19,6 @@ const BannerImg = () => {
     title: "",
     description: "",
     imageUrl: "",
-    productUrl: "",
   });
 
   const handleChange = (e) => {
@@ -31,8 +30,8 @@ const BannerImg = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(addBannerState);
-    const { title, description, imageUrl, productUrl } = addBannerState;
+
+    const { title, description, imageUrl } = addBannerState;
     if (!title || !description || !imageUrl) {
       return toast.error("Please fill all the fields");
     }
@@ -41,7 +40,6 @@ const BannerImg = () => {
       title,
       description,
       imageUrl,
-      productUrl,
     };
 
     mutate(
@@ -56,7 +54,6 @@ const BannerImg = () => {
             title: "",
             description: "",
             imageUrl: "",
-            productUrl: "",
           });
         },
         onError: (error) => {
@@ -126,19 +123,7 @@ const BannerImg = () => {
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
               </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  Product Url
-                </label>
-                <input
-                  type="text"
-                  name="productUrl"
-                  id="productUrl"
-                  onChange={handleChange}
-                  value={addBannerState.productUrl}
-                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                />
-              </div>
+
               <div>
                 <button
                   type="submit"

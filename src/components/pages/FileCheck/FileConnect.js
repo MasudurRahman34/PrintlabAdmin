@@ -75,8 +75,6 @@ const FileConnect = ({
 
   return (
     <div className="max-w-xl ">
-      <h1 className="text-xl">Connect attributes with File check options</h1>
-
       <div className="grid items-center w-full grid-cols-12 py-3 gap ">
         <div className="col-span-12 md:col-span-5">
           <label
@@ -157,7 +155,7 @@ const FileConnect = ({
       <div className="flex items-center justify-center mt-4">
         <button
           type="button"
-          className="w-full ti-btn ti-btn-primary-full ti-btn-loader "
+          className="w-full md:w-[200px] ti-btn ti-btn-primary-full ti-btn-loader "
           onClick={handleConnect}
         >
           <span className="me-2">Connect</span>

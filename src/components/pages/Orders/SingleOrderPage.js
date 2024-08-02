@@ -65,12 +65,6 @@ const OrdersDetails = () => {
             )
           )}
         </div>
-        {/* <div className="col-span-12 xl:col-span-3">
-          <Ordertraking />
-        </div> */}
-        {/* <div className="col-span-12 ">
-          <UserDetails />
-        </div> */}
       </div>
     </div>
   );
