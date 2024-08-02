@@ -59,9 +59,9 @@ const FileCheckComponent = () => {
             printer.
           </p>
         </div>
-        <div>
+        {/*  <div>
           <FileCheckOption file_check_refetch={file_check_refetch} />
-        </div>
+        </div> */}
         <div>
           {file_check_loading || attribute_loading ? (
             <div>Loading...</div>

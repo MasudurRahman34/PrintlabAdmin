@@ -1,0 +1,42 @@
+import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/router";
+import { useEffect, memo } from "react";
+
+const withAuth = (WrappedComponent) => {
+  const WithAuth = (props) => {
+    const router = useRouter();
+    const { isAuthenticated, isLoading, user } = useAuth();
+
+    useEffect(() => {
+      if (!isLoading && !isAuthenticated) {
+        router.replace("/login");
+      } else if (isAuthenticated && user) {
+        if (user.email_verified_at === null) {
+          router.replace("/verify-email-alert");
+        }
+      }
+    }, [isAuthenticated, router, isLoading, user]);
+
+    if (isLoading) {
+      return (
+        <div className="container mx-auto min-h-[40vh] flex items-center justify-center">
+          <p className="text-2xl font-semibold">Loading...</p>
+        </div>
+      ); // or a loading spinner
+    }
+
+    return <WrappedComponent {...props} />;
+  };
+
+  // Set a display name for easier debugging
+  WithAuth.displayName = `WithAuth(${getDisplayName(WrappedComponent)})`;
+
+  return memo(WithAuth);
+};
+
+// Helper function to get the display name of the wrapped component
+function getDisplayName(WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || "Component";
+}
+
+export default withAuth;

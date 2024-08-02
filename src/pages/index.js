@@ -1,792 +1,630 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
 import { AdminLayout } from "@/layout/AdminLayout";
-import Container from "postcss/lib/container";
-const inter = Inter({ subsets: ["latin"] });
-export default function Home() {
+
+function Home() {
   return (
     <AdminLayout>
-        <div className=" grid grid-cols-12 gap-x-6 mt-5">
+      <div className="grid grid-cols-12 mt-5 gap-x-6">
         {/* left section */}
-        <div className="xxl:col-span-9 xl:col-span-9 col-span-12">
-        <div className="grid grid-cols-12 gap-x-6 ">
-          <div className="xxl:col-span-4 xl:col-span-4 col-span-12">
-            <div className="box crm-highlight-card">
-              <div className="box-body ">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-semibold text-[1.125rem] text-white mb-2">
-                      Your target is incomplete
-                    </div>
-                    <span className="block text-[0.75rem] text-white">
-                      <span className="opacity-[0.7]">You have completed</span>
-                      <span className="font-semibold text-warning">48%</span>{" "}
-                      <span className="opacity-[0.7]">
-                        of the given target, you can also check your status
+        <div className="col-span-12 xxl:col-span-9 xl:col-span-9">
+          <div className="grid grid-cols-12 gap-x-6 ">
+            <div className="col-span-12 xxl:col-span-4 xl:col-span-4">
+              <div className="box crm-highlight-card">
+                <div className="box-body ">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-semibold text-[1.125rem] text-white mb-2">
+                        Your target is incomplete
+                      </div>
+                      <span className="block text-[0.75rem] text-white">
+                        <span className="opacity-[0.7]">
+                          You have completed
+                        </span>
+                        <span className="font-semibold text-warning">48%</span>{" "}
+                        <span className="opacity-[0.7]">
+                          of the given target, you can also check your status
+                        </span>
                       </span>
-                      
-                    </span>
-                    <span className="block font-semibold mt-[0.125rem]">
-                      <a
-                        className="text-white text-[0.813rem]"
-                        href="javascript:void(0);"
-                      >
-                        <u>Click here</u>
-                      </a>
-                    </span>
-                  </div>
-                  <div>
-                    <div id="crm-main"></div>
+                      <span className="block font-semibold mt-[0.125rem]">
+                        <a
+                          className="text-white text-[0.813rem]"
+                          href="javascript:void(0);"
+                        >
+                          <u>Click here</u>
+                        </a>
+                      </span>
+                    </div>
+                    <div>
+                      <div id="crm-main"></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="box">
-              <div className="box-header flex justify-between">
-                <div className="box-title">Top Deals</div>
-                <div className="hs-dropdown ti-dropdown">
-                  <a
-                    aria-label="anchor"
-                    href="javascript:void(0);"
-                    className="flex items-center justify-center w-[1.75rem] h-[1.75rem]  !text-[0.8rem] !py-1 !px-2 rounded-sm bg-light border-light shadow-none !font-medium"
-                    aria-expanded="false"
-                  >
-                    <i className="fe fe-more-vertical text-[0.8rem]"></i>
-                  </a>
-                  <ul className="hs-dropdown-menu ti-dropdown-menu hidden">
-                    <li>
-                      <a
-                        className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
-                        href="javascript:void(0);"
-                      >
-                        Week
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
-                        href="javascript:void(0);"
-                      >
-                        Month
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
-                        href="javascript:void(0);"
-                      >
-                        Year
-                      </a>
-                    </li>
-                  </ul>
+            {/* end left section */}
+            {/* start middle section */}
+            <div className="col-span-12 xxl:col-span-8 xl:col-span-8">
+              <div className="grid grid-cols-12 gap-x-6">
+                <div className="col-span-12 xxl:col-span-6 xl:col-span-6">
+                  <div className="box">
+                    <div className="box-body">
+                      <div className="flex justify-between items-top">
+                        <div>
+                          <span className="!text-[0.8rem]  !w-[2.5rem] !h-[2.5rem] !leading-[2.5rem] !rounded-full inline-flex items-center justify-center bg-primary">
+                            <i className="ti ti-users text-[1rem] text-white"></i>
+                          </span>
+                        </div>
+                        <div className="flex-grow ms-4">
+                          <div className="flex flex-wrap items-center justify-between">
+                            <div>
+                              <p className="text-[#8c9097] dark:text-white/50 text-[0.813rem] mb-0">
+                                Total Customers
+                              </p>
+                              <h4 className="font-semibold  text-[1.5rem] !mb-2 ">
+                                1,02,890
+                              </h4>
+                            </div>
+                            <div id="crm-total-customers"></div>
+                          </div>
+                          <div className="flex items-center justify-between !mt-1">
+                            <div>
+                              <a
+                                className="text-primary text-[0.813rem]"
+                                href="javascript:void(0);"
+                              >
+                                View All
+                                <i className="inline-block font-semibold ti ti-arrow-narrow-right ms-2"></i>
+                              </a>
+                            </div>
+                            <div className="text-end">
+                              <p className="mb-0 text-success text-[0.813rem] font-semibold">
+                                +40%
+                              </p>
+                              <p className="text-[#8c9097] dark:text-white/50 opacity-[0.7] text-[0.6875rem]">
+                                this month
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-span-12 xxl:col-span-6 xl:col-span-6">
+                  <div className="overflow-hidden box">
+                    <div className="box-body">
+                      <div className="flex justify-between items-top">
+                        <div>
+                          <span className="!text-[0.8rem]  !w-[2.5rem] !h-[2.5rem] !leading-[2.5rem] !rounded-full inline-flex items-center justify-center bg-secondary">
+                            <i className="ti ti-wallet text-[1rem] text-white"></i>
+                          </span>
+                        </div>
+                        <div className="flex-grow ms-4">
+                          <div className="flex flex-wrap items-center justify-between">
+                            <div>
+                              <p className="text-[#8c9097] dark:text-white/50 text-[0.813rem] mb-0">
+                                Total Revenue
+                              </p>
+                              <h4 className="font-semibold text-[1.5rem] !mb-2 ">
+                                $56,562
+                              </h4>
+                            </div>
+                            <div id="crm-total-revenue"></div>
+                          </div>
+                          <div className="flex items-center justify-between mt-1">
+                            <div>
+                              <a
+                                className="text-secondary text-[0.813rem]"
+                                href="javascript:void(0);"
+                              >
+                                View All
+                                <i className="inline-block font-semibold ti ti-arrow-narrow-right ms-2"></i>
+                              </a>
+                            </div>
+                            <div className="text-end">
+                              <p className="mb-0 text-success text-[0.813rem] font-semibold">
+                                +25%
+                              </p>
+                              <p className="text-[#8c9097] dark:text-white/50 opacity-[0.7] text-[0.6875rem]">
+                                this month
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-span-12 xxl:col-span-6 xl:col-span-6">
+                  <div className="overflow-hidden box">
+                    <div className="box-body">
+                      <div className="flex justify-between items-top">
+                        <div>
+                          <span className="!text-[0.8rem]  !w-[2.5rem] !h-[2.5rem] !leading-[2.5rem] !rounded-full inline-flex items-center justify-center bg-success">
+                            <i className="ti ti-wave-square text-[1rem] text-white"></i>
+                          </span>
+                        </div>
+                        <div className="flex-grow ms-4">
+                          <div className="flex flex-wrap items-center justify-between">
+                            <div>
+                              <p className="text-[#8c9097] dark:text-white/50 text-[0.813rem] mb-0">
+                                Conversion Ratio
+                              </p>
+                              <h4 className="font-semibold text-[1.5rem] !mb-2 ">
+                                12.08%
+                              </h4>
+                            </div>
+                            <div id="crm-conversion-ratio"></div>
+                          </div>
+                          <div className="flex items-center justify-between mt-1">
+                            <div>
+                              <a
+                                className="text-success text-[0.813rem]"
+                                href="javascript:void(0);"
+                              >
+                                View All
+                                <i className="inline-block font-semibold ti ti-arrow-narrow-right ms-2"></i>
+                              </a>
+                            </div>
+                            <div className="text-end">
+                              <p className="mb-0 text-danger text-[0.813rem] font-semibold">
+                                -12%
+                              </p>
+                              <p className="text-[#8c9097] dark:text-white/50 opacity-[0.7] text-[0.6875rem]">
+                                this month
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-span-12 xxl:col-span-6 xl:col-span-6">
+                  <div className="overflow-hidden box">
+                    <div className="box-body">
+                      <div className="flex justify-between items-top">
+                        <div>
+                          <span className="!text-[0.8rem]  !w-[2.5rem] !h-[2.5rem] !leading-[2.5rem] !rounded-full inline-flex items-center justify-center bg-warning">
+                            <i className="ti ti-briefcase text-[1rem] text-white"></i>
+                          </span>
+                        </div>
+                        <div className="flex-grow ms-4">
+                          <div className="flex flex-wrap items-center justify-between">
+                            <div>
+                              <p className="text-[#8c9097] dark:text-white/50 text-[0.813rem] mb-0">
+                                Total Deals
+                              </p>
+                              <h4 className="font-semibold text-[1.5rem] !mb-2 ">
+                                2,543
+                              </h4>
+                            </div>
+                            <div id="crm-total-deals"></div>
+                          </div>
+                          <div className="flex items-center justify-between mt-1">
+                            <div>
+                              <a
+                                className="text-warning text-[0.813rem]"
+                                href="javascript:void(0);"
+                              >
+                                View All
+                                <i className="inline-block font-semibold ti ti-arrow-narrow-right ms-2"></i>
+                              </a>
+                            </div>
+                            <div className="text-end">
+                              <p className="mb-0 text-success text-[0.813rem] font-semibold">
+                                +19%
+                              </p>
+                              <p className="text-[#8c9097] dark:text-white/50  opacity-[0.7] text-[0.6875rem]">
+                                this month
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-span-12 xxl:col-span-12 xl:col-span-12">
+            <div className="box custom-card">
+              <div className="justify-between box-header">
+                <div className="box-title">Deals Statistics</div>
+                <div className="flex flex-wrap gap-2">
+                  <div>
+                    <input
+                      className="ti-form-control form-control-sm"
+                      type="text"
+                      placeholder="Search Here"
+                      aria-label=".form-control-sm example"
+                    />
+                  </div>
+                  <div className="hs-dropdown ti-dropdown">
+                    <a
+                      href="javascript:void(0);"
+                      className="ti-btn ti-btn-primary !bg-primary !text-white !py-1 !px-2 !text-[0.75rem] !m-0 !gap-0 !font-medium"
+                      aria-expanded="false"
+                    >
+                      Sort By
+                      <i className="inline-block align-middle ri-arrow-down-s-line ms-1"></i>
+                    </a>
+                    <ul
+                      className="hidden hs-dropdown-menu ti-dropdown-menu"
+                      role="menu"
+                    >
+                      <li>
+                        <a
+                          className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
+                          href="javascript:void(0);"
+                        >
+                          New
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
+                          href="javascript:void(0);"
+                        >
+                          Popular
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
+                          href="javascript:void(0);"
+                        >
+                          Relevant
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
               <div className="box-body">
-                <ul className="list-none crm-top-deals mb-0">
-                  <li className="mb-[0.9rem]">
-                    <div className="flex items-start flex-wrap">
-                      <div className="me-2">
-                        <span className=" inline-flex items-center justify-center">
-                          <img
-                            src="../assets/images/faces/10.jpg"
-                            alt=""
-                            className="w-[1.75rem] h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full"
+                <div className="overflow-x-auto">
+                  <table className="table min-w-full border whitespace-nowrap table-hover table-bordered">
+                    <thead>
+                      <tr className="border border-solid border-inherit dark:border-defaultborder/10">
+                        <th scope="row" className="!ps-4 !pe-5">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="checkboxNoLabel1"
+                            value=""
+                            aria-label="..."
                           />
-                        </span>
-                      </div>
-                      <div className="flex-grow">
-                        <p className="font-semibold mb-[1.4px]  text-[0.813rem]">
-                          Michael Jordan
-                        </p>
-                        <p className="text-[#8c9097] dark:text-white/50 text-[0.75rem]">
-                          michael.jordan@example.com
-                        </p>
-                      </div>
-                      <div className="font-semibold text-[0.9375rem] ">$2,893</div>
-                    </div>
-                  </li>
-                  <li className="mb-[0.9rem]">
-                    <div className="flex items-start flex-wrap">
-                      <div className="me-2">
-                        <span className="inline-flex items-center justify-center !w-[1.75rem] !h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full text-warning  bg-warning/10 font-semibold">
-                          EK
-                        </span>
-                      </div>
-                      <div className="flex-grow">
-                        <p className="font-semibold mb-[1.4px]  text-[0.813rem]">
-                          Emigo Kiaren
-                        </p>
-                        <p className="text-[#8c9097] dark:text-white/50 text-[0.75rem]">
-                          emigo.kiaren@gmail.com
-                        </p>
-                      </div>
-                      <div className="font-semibold text-[0.9375rem] ">$4,289</div>
-                    </div>
-                  </li>
-                  <li className="mb-[0.9rem]">
-                    <div className="flex items-top flex-wrap">
-                      <div className="me-2">
-                        <span className="inline-flex items-center justify-center">
-                          <img
-                            src="../assets/images/faces/12.jpg"
-                            alt=""
-                            className="!w-[1.75rem] !h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full"
+                        </th>
+                        <th
+                          scope="col"
+                          className="!text-start !text-[0.85rem] min-w-[200px]"
+                        >
+                          Sales Rep
+                        </th>
+                        <th scope="col" className="!text-start !text-[0.85rem]">
+                          Category
+                        </th>
+                        <th scope="col" className="!text-start !text-[0.85rem]">
+                          Mail
+                        </th>
+                        <th scope="col" className="!text-start !text-[0.85rem]">
+                          Location
+                        </th>
+                        <th scope="col" className="!text-start !text-[0.85rem]">
+                          Date
+                        </th>
+                        <th scope="col" className="!text-start !text-[0.85rem]">
+                          Action
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border border-solid border-inherit hover:bg-gray-100 dark:border-defaultborder/10 dark:hover:bg-light">
+                        <th scope="row" className="!ps-4 !pe-5">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="checkboxNoLabel2"
+                            value=""
+                            aria-label="..."
                           />
-                        </span>
-                      </div>
-                      <div className="flex-grow">
-                        <p className="font-semibold mb-[1.4px]  text-[0.813rem]">
-                          Randy Origoan
-                        </p>
-                        <p className="text-[#8c9097] dark:text-white/50 text-[0.75rem]">
-                          randy.origoan@gmail.com
-                        </p>
-                      </div>
-                      <div className="font-semibold text-[0.9375rem] ">$6,347</div>
-                    </div>
-                  </li>
-                  <li className="mb-[0.9rem]">
-                    <div className="flex items-top flex-wrap">
-                      <div className="me-2">
-                        <span className="inline-flex items-center justify-center !w-[1.75rem] !h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full text-success bg-success/10 font-semibold">
-                          GP
-                        </span>
-                      </div>
-                      <div className="flex-grow">
-                        <p className="font-semibold mb-[1.4px]  text-[0.813rem]">
-                          George Pieterson
-                        </p>
-                        <p className="text-[#8c9097] dark:text-white/50 text-[0.75rem]">
-                          george.pieterson@gmail.com
-                        </p>
-                      </div>
-                      <div className="font-semibold text-[0.9375rem] ">$3,894</div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="flex items-top flex-wrap">
-                      <div className="me-2">
-                        <span className="inline-flex items-center justify-center !w-[1.75rem] !h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full text-primary bg-primary/10 font-semibold">
-                          KA
-                        </span>
-                      </div>
-                      <div className="flex-grow">
-                        <p className="font-semibold mb-[1.4px]  text-[0.813rem]">
-                          Kiara Advain
-                        </p>
-                        <p className="text-[#8c9097] dark:text-white/50 text-[0.75rem]">
-                          kiaraadvain214@gmail.com
-                        </p>
-                      </div>
-                      <div className="font-semibold text-[0.9375rem] ">$2,679</div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="box">
-              <div className="box-header justify-between">
-                <div className="box-title">Profit Earned</div>
-                <div className="hs-dropdown ti-dropdown">
-                  <a
-                    href="javascript:void(0);"
-                    className="px-2 font-normal text-[0.75rem] text-[#8c9097] dark:text-white/50"
-                    aria-expanded="false"
-                  >
-                    View All
-                    <i className="ri-arrow-down-s-line align-middle ms-1 inline-block"></i>
-                  </a>
-                  <ul className="hs-dropdown-menu ti-dropdown-menu hidden" role="menu">
-                    <li>
-                      <a
-                        className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
-                        href="javascript:void(0);"
-                      >
-                        Today
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
-                        href="javascript:void(0);"
-                      >
-                        This Week
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
-                        href="javascript:void(0);"
-                      >
-                        Last Week
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="box-body !py-0 !ps-0">
-                <div id="crm-profits-earned"></div>
-              </div>
-            </div>
-          </div>
-        {/* end left section */}
-        {/* start middle section */}
-          <div className="xxl:col-span-8 xl:col-span-8 col-span-12">
-          <div className=" grid grid-cols-12 gap-x-6 ">
-            <div className="xxl:col-span-6 xl:col-span-6 col-span-12" >
-              <div className="box">
-                <div className="box-body">
-                  <div className="flex items-top justify-between">
-                    <div>
-                      <span className="!text-[0.8rem]  !w-[2.5rem] !h-[2.5rem] !leading-[2.5rem] !rounded-full inline-flex items-center justify-center bg-primary">
-                        <i className="ti ti-users text-[1rem] text-white"></i>
-                      </span>
-                    </div>
-                    <div className="flex-grow ms-4">
-                      <div className="flex items-center justify-between flex-wrap">
-                        <div>
-                          <p className="text-[#8c9097] dark:text-white/50 text-[0.813rem] mb-0">
-                            Total Customers
-                          </p>
-                          <h4 className="font-semibold  text-[1.5rem] !mb-2 ">1,02,890</h4>
-                        </div>
-                        <div id="crm-total-customers"></div>
-                      </div>
-                      <div className="flex items-center justify-between !mt-1">
-                        <div>
-                          <a
-                            className="text-primary text-[0.813rem]"
-                            href="javascript:void(0);"
-                          >
-                            View All
-                            <i className="ti ti-arrow-narrow-right ms-2 font-semibold inline-block"></i>
-                          </a>
-                        </div>
-                        <div className="text-end">
-                          <p className="mb-0 text-success text-[0.813rem] font-semibold">
-                            +40%
-                          </p>
-                          <p className="text-[#8c9097] dark:text-white/50 opacity-[0.7] text-[0.6875rem]">
-                            this month
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="xxl:col-span-6 xl:col-span-6 col-span-12">
-                <div className="box overflow-hidden">
-                  <div className="box-body">
-                    <div className="flex items-top justify-between">
-                      <div>
-                        <span className="!text-[0.8rem]  !w-[2.5rem] !h-[2.5rem] !leading-[2.5rem] !rounded-full inline-flex items-center justify-center bg-secondary">
-                          <i className="ti ti-wallet text-[1rem] text-white"></i>
-                        </span>
-                      </div>
-                      <div className="flex-grow ms-4">
-                        <div className="flex items-center justify-between flex-wrap">
-                          <div>
-                            <p className="text-[#8c9097] dark:text-white/50 text-[0.813rem] mb-0">
-                              Total Revenue
-                            </p>
-                            <h4 className="font-semibold text-[1.5rem] !mb-2 ">
-                              $56,562
-                            </h4>
+                        </th>
+                        <td>
+                          <div className="flex items-center font-semibold">
+                            <span className="!me-2 inline-flex justify-center items-center">
+                              <img
+                                src="../assets/images/faces/4.jpg"
+                                alt="img"
+                                className="w-[1.75rem] h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full"
+                              />
+                            </span>
+                            Mayor Kelly
                           </div>
-                          <div id="crm-total-revenue"></div>
-                        </div>
-                        <div className="flex items-center justify-between mt-1">
-                          <div>
+                        </td>
+                        <td>Manufacture</td>
+                        <td>mayorkelly@gmail.com</td>
+                        <td>
+                          <span className="inline-flex text-info !py-[0.15rem] !px-[0.45rem] rounded-sm !font-semibold !text-[0.75em] bg-info/10">
+                            Germany
+                          </span>
+                        </td>
+                        <td>Sep 15 - Oct 12, 2023</td>
+                        <td>
+                          <div className="flex flex-row items-center !gap-2 text-[0.9375rem]">
                             <a
-                              className="text-secondary text-[0.813rem]"
+                              aria-label="anchor"
                               href="javascript:void(0);"
+                              className="ti-btn ti-btn-icon ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-success/10 text-success hover:bg-success hover:text-white hover:border-success"
                             >
-                              View All
-                              <i className="ti ti-arrow-narrow-right ms-2 font-semibold inline-block"></i>
+                              <i className="ri-download-2-line"></i>
+                            </a>
+                            <a
+                              aria-label="anchor"
+                              href="javascript:void(0);"
+                              className="ti-btn ti-btn-icon ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-primary/10 text-primary hover:bg-primary hover:text-white hover:border-primary"
+                            >
+                              <i className="ri-edit-line"></i>
                             </a>
                           </div>
-                          <div className="text-end">
-                            <p className="mb-0 text-success text-[0.813rem] font-semibold">
-                              +25%
-                            </p>
-                            <p className="text-[#8c9097] dark:text-white/50 opacity-[0.7] text-[0.6875rem]">
-                              this month
-                            </p>
+                        </td>
+                      </tr>
+                      <tr className="border border-solid border-inherit hover:bg-gray-100 dark:border-defaultborder/10 dark:hover:bg-light">
+                        <th scope="row" className="!ps-4 !pe-5">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="checkboxNoLabel13"
+                            value=""
+                            aria-label="..."
+                            checked
+                          />
+                        </th>
+                        <td>
+                          <div className="flex items-center font-semibold">
+                            <span className="inline-flex items-center justify-center me-2">
+                              <img
+                                src="../assets/images/faces/15.jpg"
+                                alt="img"
+                                className="w-[1.75rem] h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full"
+                              />
+                            </span>
+                            Andrew Garfield
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-            <div className="xxl:col-span-6 xl:col-span-6 col-span-12">
-                <div className="box overflow-hidden">
-                  <div className="box-body">
-                    <div className="flex items-top justify-between">
-                      <div>
-                        <span className="!text-[0.8rem]  !w-[2.5rem] !h-[2.5rem] !leading-[2.5rem] !rounded-full inline-flex items-center justify-center bg-success">
-                          <i className="ti ti-wave-square text-[1rem] text-white"></i>
-                        </span>
-                      </div>
-                      <div className="flex-grow ms-4">
-                        <div className="flex items-center justify-between flex-wrap">
-                          <div>
-                            <p className="text-[#8c9097] dark:text-white/50 text-[0.813rem] mb-0">
-                              Conversion Ratio
-                            </p>
-                            <h4 className="font-semibold text-[1.5rem] !mb-2 ">12.08%</h4>
-                          </div>
-                          <div id="crm-conversion-ratio"></div>
-                        </div>
-                        <div className="flex items-center justify-between mt-1">
-                          <div>
+                        </td>
+                        <td>Development</td>
+                        <td>andrewgarfield@gmail.com</td>
+                        <td>
+                          <span className="inline-flex text-primary !py-[0.15rem] !px-[0.45rem] rounded-sm !font-semibold !text-[0.75em] bg-primary/10">
+                            Canada
+                          </span>
+                        </td>
+                        <td>Apr 10 - Dec 12, 2023</td>
+                        <td>
+                          <div className="flex flex-row items-center !gap-2 text-[0.9375rem]">
                             <a
-                              className="text-success text-[0.813rem]"
+                              aria-label="anchor"
                               href="javascript:void(0);"
+                              className="ti-btn ti-btn-icon ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-success/10 text-success hover:bg-success hover:text-white hover:border-success"
                             >
-                              View All
-                              <i className="ti ti-arrow-narrow-right ms-2 font-semibold inline-block"></i>
+                              <i className="ri-download-2-line"></i>
+                            </a>
+                            <a
+                              aria-label="anchor"
+                              href="javascript:void(0);"
+                              className="ti-btn ti-btn-icon ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-primary/10 text-primary hover:bg-primary hover:text-white hover:border-primary"
+                            >
+                              <i className="ri-edit-line"></i>
                             </a>
                           </div>
-                          <div className="text-end">
-                            <p className="mb-0 text-danger text-[0.813rem] font-semibold">
-                              -12%
-                            </p>
-                            <p className="text-[#8c9097] dark:text-white/50 opacity-[0.7] text-[0.6875rem]">
-                              this month
-                            </p>
+                        </td>
+                      </tr>
+                      <tr className="border border-solid border-inherit hover:bg-gray-100 dark:border-defaultborder/10 dark:hover:bg-light">
+                        <th scope="row" className="!ps-4 !pe-5">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="checkboxNoLabel4"
+                            value=""
+                            aria-label="..."
+                          />
+                        </th>
+                        <td>
+                          <div className="flex items-center font-semibold">
+                            <span className="inline-flex items-center justify-center me-2">
+                              <img
+                                src="../assets/images/faces/11.jpg"
+                                alt="img"
+                                className="w-[1.75rem] h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full"
+                              />
+                            </span>
+                            Simon Cowel
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-            <div className="xxl:col-span-6 xl:col-span-6 col-span-12">
-                <div className="box overflow-hidden">
-                  <div className="box-body">
-                    <div className="flex items-top justify-between">
-                      <div>
-                        <span className="!text-[0.8rem]  !w-[2.5rem] !h-[2.5rem] !leading-[2.5rem] !rounded-full inline-flex items-center justify-center bg-warning">
-                          <i className="ti ti-briefcase text-[1rem] text-white"></i>
-                        </span>
-                      </div>
-                      <div className="flex-grow ms-4">
-                        <div className="flex items-center justify-between flex-wrap">
-                          <div>
-                            <p className="text-[#8c9097] dark:text-white/50 text-[0.813rem] mb-0">
-                              Total Deals
-                            </p>
-                            <h4 className="font-semibold text-[1.5rem] !mb-2 ">2,543</h4>
-                          </div>
-                          <div id="crm-total-deals"></div>
-                        </div>
-                        <div className="flex items-center justify-between mt-1">
-                          <div>
+                        </td>
+                        <td>Service</td>
+                        <td>simoncowel234@gmail.com</td>
+                        <td>
+                          <span className="inline-flex text-danger !py-[0.15rem] !px-[0.45rem] rounded-sm !font-semibold !text-[0.75em] bg-danger/10">
+                            Europe
+                          </span>
+                        </td>
+                        <td>Sep 15 - Oct 12, 2023</td>
+                        <td>
+                          <div className="flex flex-row items-center !gap-2 text-[0.9375rem]">
                             <a
-                              className="text-warning text-[0.813rem]"
+                              aria-label="anchor"
                               href="javascript:void(0);"
+                              className="ti-btn ti-btn-icon ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-success/10 text-success hover:bg-success hover:text-white hover:border-success"
                             >
-                              View All
-                              <i className="ti ti-arrow-narrow-right ms-2 font-semibold inline-block"></i>
+                              <i className="ri-download-2-line"></i>
+                            </a>
+                            <a
+                              aria-label="anchor"
+                              href="javascript:void(0);"
+                              className="ti-btn ti-btn-icon ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-primary/10 text-primary hover:bg-primary hover:text-white hover:border-primary"
+                            >
+                              <i className="ri-edit-line"></i>
                             </a>
                           </div>
-                          <div className="text-end">
-                            <p className="mb-0 text-success text-[0.813rem] font-semibold">
-                              +19%
-                            </p>
-                            <p className="text-[#8c9097] dark:text-white/50  opacity-[0.7] text-[0.6875rem]">
-                              this month
-                            </p>
+                        </td>
+                      </tr>
+                      <tr className="border border-solid border-inherit hover:bg-gray-100 dark:border-defaultborder/10 dark:hover:bg-light">
+                        <th scope="row" className="!ps-4 !pe-5">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="checkboxNoLabel5"
+                            value=""
+                            aria-label="..."
+                            checked
+                          />
+                        </th>
+                        <td>
+                          <div className="flex items-center font-semibold">
+                            <span className="inline-flex items-center justify-center me-2">
+                              <img
+                                src="../assets/images/faces/8.jpg"
+                                alt="img"
+                                className="w-[1.75rem] h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full"
+                              />
+                            </span>
+                            Mirinda Hers
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                        </td>
+                        <td>Marketing</td>
+                        <td>mirindahers@gmail.com</td>
+                        <td>
+                          <span className="inline-flex text-warning !py-[0.15rem] !px-[0.45rem] rounded-sm !font-semibold !text-[0.75em] bg-warning/10">
+                            USA
+                          </span>
+                        </td>
+                        <td>Apr 14 - Dec 14, 2023</td>
+                        <td>
+                          <div className="flex flex-row items-center !gap-2  text-[0.9375rem]">
+                            <a
+                              aria-label="anchor"
+                              href="javascript:void(0);"
+                              className="ti-btn ti-btn-icon ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-success/10 text-success hover:bg-success hover:text-white hover:border-success"
+                            >
+                              <i className="ri-download-2-line"></i>
+                            </a>
+                            <a
+                              aria-label="anchor"
+                              href="javascript:void(0);"
+                              className="ti-btn ti-btn-icon ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-primary/10 text-primary hover:bg-primary hover:text-white hover:border-primary"
+                            >
+                              <i className="ri-edit-line"></i>
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr className="border border-solid border-inherit hover:bg-gray-100 dark:border-defaultborder/10 dark:hover:bg-light">
+                        <th scope="row" className="!ps-4 !pe-5">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="checkboxNoLabel3"
+                            value=""
+                            aria-label="..."
+                            checked
+                          />
+                        </th>
+                        <td>
+                          <div className="flex items-center font-semibold">
+                            <span className="inline-flex items-center justify-center me-2">
+                              <img
+                                src="../assets/images/faces/9.jpg"
+                                alt="img"
+                                className="w-[1.75rem] h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full"
+                              />
+                            </span>
+                            Jacob Smith
+                          </div>
+                        </td>
+                        <td>Social Plataform</td>
+                        <td>jacobsmith@gmail.com</td>
+                        <td>
+                          <span className="inline-flex text-success !py-[0.15rem] !px-[0.45rem] rounded-sm !font-semibold !text-[0.75em] bg-success/10">
+                            Singapore
+                          </span>
+                        </td>
+                        <td>Feb 25 - Nov 25, 2023</td>
+                        <td>
+                          <div className="flex flex-row items-center !gap-2 text-[0.9375rem]">
+                            <a
+                              aria-label="anchor"
+                              href="javascript:void(0);"
+                              className="ti-btn ti-btn-icon ti-btn-wave !m-0 !h-[1.75rem] !gap-0 !w-[1.75rem] text-[0.8rem] bg-success/10 text-success hover:bg-success hover:text-white hover:border-success"
+                            >
+                              <i className="ri-download-2-line"></i>
+                            </a>
+                            <a
+                              aria-label="anchor"
+                              href="javascript:void(0);"
+                              className="ti-btn ti-btn-icon ti-btn-wave !m-0 !h-[1.75rem] !gap-0 !w-[1.75rem] text-[0.8rem] bg-primary/10 text-primary hover:bg-primary hover:text-white hover:border-primary"
+                            >
+                              <i className="ri-edit-line"></i>
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-            </div>
-            <div className="xxl:col-span-12 xl:col-span-12 col-span-12">
-                <div className="box">
-                  <div className="box-header !gap-0 !m-0 justify-between">
-                    <div className="box-title">Revenue Analytics</div>
-                    <div className="hs-dropdown ti-dropdown">
-                      <a
-                        href="javascript:void(0);"
-                        className="text-[0.75rem] px-2 font-normal text-[#8c9097] dark:text-white/50"
-                        aria-expanded="false"
-                      >
-                        View All
-                        <i className="ri-arrow-down-s-line align-middle ms-1 inline-block"></i>
-                      </a>
-                      <ul
-                        className="hs-dropdown-menu ti-dropdown-menu hidden"
-                        role="menu"
-                      >
-                        <li>
-                          <a
-                            className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
-                            href="javascript:void(0);"
-                          >
-                            Today
+              </div>
+              <div className="box-footer">
+                <div className="items-center sm:flex">
+                  <div className="text-defaulttextcolor dark:text-defaulttextcolor/70">
+                    Showing 5 Entries{" "}
+                    <i className="font-semibold bi bi-arrow-right ms-2"></i>
+                  </div>
+                  <div className="ms-auto">
+                    <nav
+                      aria-label="Page navigation"
+                      className="pagination-style-4"
+                    >
+                      <ul className="mb-0 ti-pagination">
+                        <li className="page-item disabled">
+                          <a className="page-link" href="javascript:void(0);">
+                            Prev
                           </a>
                         </li>
-                        <li>
+                        <li className="page-item">
                           <a
-                            className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
+                            className="page-link active"
                             href="javascript:void(0);"
                           >
-                            This Week
+                            1
                           </a>
                         </li>
-                        <li>
+                        <li className="page-item">
+                          <a className="page-link" href="javascript:void(0);">
+                            2
+                          </a>
+                        </li>
+                        <li className="page-item">
                           <a
-                            className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
+                            className="page-link !text-primary"
                             href="javascript:void(0);"
                           >
-                            Last Week
+                            next
                           </a>
                         </li>
                       </ul>
-                    </div>
-                  </div>
-                  <div className="box-body !py-5">
-                    <div id="crm-revenue-analytics"></div>
+                    </nav>
                   </div>
                 </div>
+              </div>
             </div>
-            </div>
-          </div>
-          </div>
-          <div className="xxl:col-span-12 xl:col-span-12 col-span-12">
-                  <div className="box custom-card">
-                    <div className="box-header justify-between">
-                      <div className="box-title">
-                        Deals Statistics
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        <div>
-                          <input className="ti-form-control form-control-sm" type="text" placeholder="Search Here"
-                            aria-label=".form-control-sm example"/>
-                        </div>
-                        <div className="hs-dropdown ti-dropdown">
-                          <a href="javascript:void(0);"
-                            className="ti-btn ti-btn-primary !bg-primary !text-white !py-1 !px-2 !text-[0.75rem] !m-0 !gap-0 !font-medium"
-                            aria-expanded="false">
-                            Sort By<i className="ri-arrow-down-s-line align-middle ms-1 inline-block"></i>
-                          </a>
-                          <ul className="hs-dropdown-menu ti-dropdown-menu hidden" role="menu">
-                            <li><a className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
-                                href="javascript:void(0);">New</a></li>
-                            <li><a className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
-                                href="javascript:void(0);">Popular</a></li>
-                            <li><a className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
-                                href="javascript:void(0);">Relevant</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="box-body">
-                      <div className="overflow-x-auto">
-                        <table className="table min-w-full whitespace-nowrap table-hover border table-bordered">
-                          <thead>
-                            <tr className="border border-inherit border-solid dark:border-defaultborder/10">
-                              <th scope="row" className="!ps-4 !pe-5"><input className="form-check-input" type="checkbox"
-                                  id="checkboxNoLabel1" value="" aria-label="..."/></th>
-                              <th scope="col" className="!text-start !text-[0.85rem] min-w-[200px]">Sales Rep</th>
-                              <th scope="col" className="!text-start !text-[0.85rem]">Category</th>
-                              <th scope="col" className="!text-start !text-[0.85rem]">Mail</th>
-                              <th scope="col" className="!text-start !text-[0.85rem]">Location</th>
-                              <th scope="col" className="!text-start !text-[0.85rem]">Date</th>
-                              <th scope="col" className="!text-start !text-[0.85rem]">Action</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr className="border border-inherit border-solid hover:bg-gray-100 dark:border-defaultborder/10 dark:hover:bg-light">
-                              <th scope="row" className="!ps-4 !pe-5"><input className="form-check-input" type="checkbox"
-                                  id="checkboxNoLabel2" value="" aria-label="..."/></th>
-                              <td>
-                                <div className="flex items-center font-semibold">
-                                  <span className="!me-2 inline-flex justify-center items-center">
-                                    <img src="../assets/images/faces/4.jpg" alt="img"
-                                      className="w-[1.75rem] h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full"/>
-                                  </span>Mayor Kelly
-                                </div>
-                              </td>
-                              <td>Manufacture</td>
-                              <td>mayorkelly@gmail.com</td>
-                              <td>
-                                <span
-                                  className="inline-flex text-info !py-[0.15rem] !px-[0.45rem] rounded-sm !font-semibold !text-[0.75em] bg-info/10">Germany</span>
-                              </td>
-                              <td>Sep 15 - Oct 12, 2023</td>
-                              <td>
-                                <div className="flex flex-row items-center !gap-2 text-[0.9375rem]">
-                                  <a aria-label="anchor" href="javascript:void(0);"
-                                    className="ti-btn ti-btn-icon ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-success/10 text-success hover:bg-success hover:text-white hover:border-success"><i
-                                      className="ri-download-2-line"></i></a>
-                                  <a aria-label="anchor" href="javascript:void(0);"
-                                    className="ti-btn ti-btn-icon ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-primary/10 text-primary hover:bg-primary hover:text-white hover:border-primary"><i
-                                      className="ri-edit-line"></i></a>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr className="border border-inherit border-solid hover:bg-gray-100 dark:border-defaultborder/10 dark:hover:bg-light">
-                              <th scope="row" className="!ps-4 !pe-5"><input className="form-check-input" type="checkbox"
-                                  id="checkboxNoLabel13" value="" aria-label="..." checked/></th>
-                              <td>
-                                <div className="flex items-center font-semibold">
-                                  <span className="inline-flex  justify-center items-center me-2">
-                                    <img src="../assets/images/faces/15.jpg" alt="img"
-                                      className="w-[1.75rem] h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full"/>
-                                  </span>Andrew Garfield
-                                </div>
-                              </td>
-                              <td>Development</td>
-                              <td>andrewgarfield@gmail.com</td>
-                              <td>
-                                <span
-                                  className="inline-flex text-primary !py-[0.15rem] !px-[0.45rem] rounded-sm !font-semibold !text-[0.75em] bg-primary/10">Canada</span>
-                              </td>
-                              <td>Apr 10 - Dec 12, 2023</td>
-                              <td>
-                                <div className="flex flex-row items-center !gap-2 text-[0.9375rem]">
-                                  <a aria-label="anchor" href="javascript:void(0);"
-                                    className="ti-btn ti-btn-icon ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-success/10 text-success hover:bg-success hover:text-white hover:border-success"><i
-                                      className="ri-download-2-line"></i></a>
-                                  <a aria-label="anchor" href="javascript:void(0);"
-                                    className="ti-btn ti-btn-icon ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-primary/10 text-primary hover:bg-primary hover:text-white hover:border-primary"><i
-                                      className="ri-edit-line"></i></a>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr className="border border-inherit border-solid hover:bg-gray-100 dark:border-defaultborder/10 dark:hover:bg-light">
-                              <th scope="row" className="!ps-4 !pe-5"><input className="form-check-input" type="checkbox"
-                                  id="checkboxNoLabel4" value="" aria-label="..."/></th>
-                              <td>
-                                <div className="flex items-center font-semibold">
-                                  <span className="inline-flex  justify-center items-center me-2">
-                                    <img src="../assets/images/faces/11.jpg" alt="img"
-                                      className="w-[1.75rem] h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full"/>
-                                  </span>Simon Cowel
-                                </div>
-                              </td>
-                              <td>Service</td>
-                              <td>simoncowel234@gmail.com</td>
-                              <td>
-                                <span
-                                  className="inline-flex text-danger !py-[0.15rem] !px-[0.45rem] rounded-sm !font-semibold !text-[0.75em] bg-danger/10">Europe</span>
-                              </td>
-                              <td>Sep 15 - Oct 12, 2023</td>
-                              <td>
-                                <div className="flex flex-row items-center !gap-2 text-[0.9375rem]">
-                                  <a aria-label="anchor" href="javascript:void(0);"
-                                    className="ti-btn ti-btn-icon ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-success/10 text-success hover:bg-success hover:text-white hover:border-success"><i
-                                      className="ri-download-2-line"></i></a>
-                                  <a aria-label="anchor" href="javascript:void(0);"
-                                    className="ti-btn ti-btn-icon ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-primary/10 text-primary hover:bg-primary hover:text-white hover:border-primary"><i
-                                      className="ri-edit-line"></i></a>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr className="border border-inherit border-solid hover:bg-gray-100 dark:border-defaultborder/10 dark:hover:bg-light">
-                              <th scope="row" className="!ps-4 !pe-5"><input className="form-check-input" type="checkbox"
-                                  id="checkboxNoLabel5" value="" aria-label="..." checked/></th>
-                              <td>
-                                <div className="flex items-center font-semibold">
-                                  <span className="inline-flex justify-center items-center me-2">
-                                    <img src="../assets/images/faces/8.jpg" alt="img"
-                                      className="w-[1.75rem] h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full"/>
-                                  </span>Mirinda Hers
-                                </div>
-                              </td>
-                              <td>Marketing</td>
-                              <td>mirindahers@gmail.com</td>
-                              <td>
-                                <span
-                                  className="inline-flex text-warning !py-[0.15rem] !px-[0.45rem] rounded-sm !font-semibold !text-[0.75em] bg-warning/10">USA</span>
-                              </td>
-                              <td>Apr 14 - Dec 14, 2023</td>
-                              <td>
-                                <div className="flex flex-row items-center !gap-2  text-[0.9375rem]">
-                                  <a aria-label="anchor" href="javascript:void(0);"
-                                    className="ti-btn ti-btn-icon ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-success/10 text-success hover:bg-success hover:text-white hover:border-success"><i
-                                      className="ri-download-2-line"></i></a>
-                                  <a aria-label="anchor" href="javascript:void(0);"
-                                    className="ti-btn ti-btn-icon ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-primary/10 text-primary hover:bg-primary hover:text-white hover:border-primary"><i
-                                      className="ri-edit-line"></i></a>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr className="border border-inherit border-solid hover:bg-gray-100 dark:border-defaultborder/10 dark:hover:bg-light">
-                              <th scope="row" className="!ps-4 !pe-5"><input className="form-check-input" type="checkbox"
-                                  id="checkboxNoLabel3" value="" aria-label="..." checked/></th>
-                              <td>
-                                <div className="flex items-center font-semibold">
-                                  <span className="inline-flex  justify-center items-center me-2">
-                                    <img src="../assets/images/faces/9.jpg" alt="img"
-                                      className="w-[1.75rem] h-[1.75rem] leading-[1.75rem] text-[0.65rem]  rounded-full"/>
-                                  </span>Jacob Smith
-                                </div>
-                              </td>
-                              <td>Social Plataform</td>
-                              <td>jacobsmith@gmail.com</td>
-                              <td>
-                                <span
-                                  className="inline-flex text-success !py-[0.15rem] !px-[0.45rem] rounded-sm !font-semibold !text-[0.75em] bg-success/10">Singapore</span>
-                              </td>
-                              <td>Feb 25 - Nov 25, 2023</td>
-                              <td>
-                                <div className="flex flex-row items-center !gap-2 text-[0.9375rem]">
-                                  <a aria-label="anchor" href="javascript:void(0);"
-                                    className="ti-btn ti-btn-icon ti-btn-wave !m-0 !h-[1.75rem] !gap-0 !w-[1.75rem] text-[0.8rem] bg-success/10 text-success hover:bg-success hover:text-white hover:border-success"><i
-                                      className="ri-download-2-line"></i></a>
-                                  <a aria-label="anchor" href="javascript:void(0);"
-                                    className="ti-btn ti-btn-icon ti-btn-wave !m-0 !h-[1.75rem] !gap-0 !w-[1.75rem] text-[0.8rem] bg-primary/10 text-primary hover:bg-primary hover:text-white hover:border-primary"><i
-                                      className="ri-edit-line"></i></a>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                    <div className="box-footer">
-                      <div className="sm:flex items-center">
-                        <div className="text-defaulttextcolor dark:text-defaulttextcolor/70">
-                          Showing 5 Entries <i className="bi bi-arrow-right ms-2 font-semibold"></i>
-                        </div>
-                        <div className="ms-auto">
-                          <nav aria-label="Page navigation" className="pagination-style-4">
-                            <ul className="ti-pagination mb-0">
-                                <li className="page-item disabled">
-                                    <a className="page-link" href="javascript:void(0);">
-                                        Prev
-                                    </a>
-                                </li>
-                                <li className="page-item"><a className="page-link active" href="javascript:void(0);">1</a></li>
-                                <li className="page-item"><a className="page-link" href="javascript:void(0);">2</a></li>
-                                <li className="page-item">
-                                    <a className="page-link !text-primary" href="javascript:void(0);">
-                                        next
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
           </div>
         </div>
         {/* end middle section */}
         {/* start last section */}
-        <div className="xxl:col-span-3 xl:col-span-3 col-span-12" >
-          <div className="xxl:col-span-3 xl:col-span-12 col-span-12">
+        <div className="col-span-12 xxl:col-span-3 xl:col-span-3">
+          <div className="col-span-12 xxl:col-span-3 xl:col-span-12">
             <div className="grid grid-cols-12 gap-x-6">
-              <div className="xxl:col-span-12 xl:col-span-12  col-span-12">
+              <div className="col-span-12 xxl:col-span-12 xl:col-span-6">
                 <div className="box">
-                  <div className="box-header justify-between">
-                    <div className="box-title">Leads By Source</div>
-                    <div className="hs-dropdown ti-dropdown">
-                      <a
-                        aria-label="anchor"
-                        href="javascript:void(0);"
-                        className="flex items-center justify-center w-[1.75rem] h-[1.75rem] ! !text-[0.8rem] !py-1 !px-2 rounded-sm bg-light border-light shadow-none !font-medium"
-                        aria-expanded="false"
-                      >
-                        <i className="fe fe-more-vertical text-[0.8rem]"></i>
-                      </a>
-                      <ul className="hs-dropdown-menu ti-dropdown-menu hidden">
-                        <li>
-                          <a
-                            className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
-                            href="javascript:void(0);"
-                          >
-                            Week
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
-                            href="javascript:void(0);"
-                          >
-                            Month
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
-                            href="javascript:void(0);"
-                          >
-                            Year
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="box-body overflow-hidden">
-                    <div className="leads-source-chart flex items-center justify-center">
-                      <canvas
-                        id="leads-source"
-                        className="chartjs-chart w-full"
-                      ></canvas>
-                      <div className="lead-source-value ">
-                        <span className="block text-[0.875rem] ">Total</span>
-                        <span className="block text-[1.5625rem] font-bold">
-                          4,145
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-4 border-t border-dashed dark:border-defaultborder/10">
-                    <div className="col !p-0">
-                      <div className="!ps-4 p-[0.95rem] text-center border-e border-dashed dark:border-defaultborder/10">
-                        <span className="text-[#8c9097] dark:text-white/50 text-[0.75rem] mb-1 crm-lead-legend mobile inline-block">
-                          Mobile
-                        </span>
-                        <div>
-                          <span className="text-[1rem]  font-semibold">1,624</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col !p-0">
-                      <div className="p-[0.95rem] text-center border-e border-dashed dark:border-defaultborder/10">
-                        <span className="text-[#8c9097] dark:text-white/50 text-[0.75rem] mb-1 crm-lead-legend desktop inline-block">
-                          Desktop
-                        </span>
-                        <div>
-                          <span className="text-[1rem]  font-semibold">1,267</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col !p-0">
-                      <div className="p-[0.95rem] text-center border-e border-dashed dark:border-defaultborder/10">
-                        <span className="text-[#8c9097] dark:text-white/50 text-[0.75rem] mb-1 crm-lead-legend laptop inline-block">
-                          Laptop
-                        </span>
-                        <div>
-                          <span className="text-[1rem]  font-semibold">1,153</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col !p-0">
-                      <div className="!pe-4 p-[0.95rem] text-center">
-                        <span className="text-[#8c9097] dark:text-white/50 text-[0.75rem] mb-1 crm-lead-legend tablet inline-block">
-                          Tablet
-                        </span>
-                        <div>
-                          <span className="text-[1rem]  font-semibold">679</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="xxl:col-span-12 xl:col-span-6  col-span-12">
-                <div className="box">
-                  <div className="box-header justify-between">
+                  <div className="justify-between box-header">
                     <div className="box-title">Deals Status</div>
                     <div className="hs-dropdown ti-dropdown">
                       <a
@@ -795,10 +633,10 @@ export default function Home() {
                         aria-expanded="false"
                       >
                         View All
-                        <i className="ri-arrow-down-s-line align-middle ms-1 inline-block"></i>
+                        <i className="inline-block align-middle ri-arrow-down-s-line ms-1"></i>
                       </a>
                       <ul
-                        className="hs-dropdown-menu ti-dropdown-menu hidden"
+                        className="hidden hs-dropdown-menu ti-dropdown-menu"
                         role="menu"
                       >
                         <li>
@@ -868,7 +706,7 @@ export default function Home() {
                         aria-valuemax="100"
                       ></div>
                     </div>
-                    <ul className="list-none mb-0 pt-2 crm-deals-status">
+                    <ul className="pt-2 mb-0 list-none crm-deals-status">
                       <li className="primary">
                         <div className="flex items-center text-[0.813rem]  justify-between">
                           <div>Successful Deals</div>
@@ -905,9 +743,9 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="xxl:col-span-12 xl:col-span-6  col-span-12">
+              <div className="col-span-12 xxl:col-span-12 xl:col-span-6">
                 <div className="box">
-                  <div className="box-header justify-between">
+                  <div className="justify-between box-header">
                     <div className="box-title">Recent Activity</div>
                     <div className="hs-dropdown ti-dropdown">
                       <a
@@ -916,10 +754,10 @@ export default function Home() {
                         aria-expanded="false"
                       >
                         View All
-                        <i className="ri-arrow-down-s-line align-middle ms-1 inline-block"></i>
+                        <i className="inline-block align-middle ri-arrow-down-s-line ms-1"></i>
                       </a>
                       <ul
-                        className="hs-dropdown-menu ti-dropdown-menu hidden"
+                        className="hidden hs-dropdown-menu ti-dropdown-menu"
                         role="menu"
                       >
                         <li>
@@ -951,7 +789,7 @@ export default function Home() {
                   </div>
                   <div className="box-body">
                     <div>
-                      <ul className="list-none mb-0 crm-recent-activity">
+                      <ul className="mb-0 list-none crm-recent-activity">
                         <li className="crm-recent-activity-content">
                           <div className="flex items-start">
                             <div className="me-4">
@@ -966,7 +804,7 @@ export default function Home() {
                               <span>
                                 <a
                                   href="javascript:void(0);"
-                                  className="text-primary font-semibold"
+                                  className="font-semibold text-primary"
                                 >
                                   Added new events in next week.
                                 </a>
@@ -980,7 +818,7 @@ export default function Home() {
                           </div>
                         </li>
                         <li className="crm-recent-activity-content">
-                          <div className="flex items-start  text-defaultsize">
+                          <div className="flex items-start text-defaultsize">
                             <div className="me-4">
                               <span className="w-[1.25rem] h-[1.25rem] leading-[1.25rem] inline-flex items-center justify-center font-medium text-[0.65rem] text-secondary bg-secondary/10 rounded-full">
                                 <i className="bi bi-circle-fill text-[0.5rem]"></i>
@@ -989,7 +827,9 @@ export default function Home() {
                             <div className="crm-timeline-content">
                               <span>
                                 New theme for{" "}
-                                <span className="font-semibold">Spruko Website</span>{" "}
+                                <span className="font-semibold">
+                                  Spruko Website
+                                </span>{" "}
                                 completed
                               </span>
                               <span className="block text-[0.75rem] text-[#8c9097] dark:text-white/50">
@@ -1003,7 +843,7 @@ export default function Home() {
                             </div>
                           </div>
                         </li>
-                        <li className="crm-recent-activity-content  text-defaultsize">
+                        <li className="crm-recent-activity-content text-defaultsize">
                           <div className="flex items-start">
                             <div className="me-4">
                               <span className="w-[1.25rem] h-[1.25rem] leading-[1.25rem] inline-flex items-center justify-center font-medium text-[0.65rem] text-success bg-success/10 rounded-full">
@@ -1013,7 +853,7 @@ export default function Home() {
                             <div className="crm-timeline-content">
                               <span>
                                 Created a{" "}
-                                <span className="text-success font-semibold">
+                                <span className="font-semibold text-success">
                                   New Task
                                 </span>{" "}
                                 today{" "}
@@ -1029,7 +869,7 @@ export default function Home() {
                             </div>
                           </div>
                         </li>
-                        <li className="crm-recent-activity-content  text-defaultsize">
+                        <li className="crm-recent-activity-content text-defaultsize">
                           <div className="flex items-start">
                             <div className="me-4">
                               <span className="w-[1.25rem] h-[1.25rem] leading-[1.25rem] inline-flex items-center justify-center font-medium text-[0.65rem] text-pink bg-pink/10 rounded-full">
@@ -1052,7 +892,7 @@ export default function Home() {
                             </div>
                           </div>
                         </li>
-                        <li className="crm-recent-activity-content  text-defaultsize">
+                        <li className="crm-recent-activity-content text-defaultsize">
                           <div className="flex items-start">
                             <div className="me-4">
                               <span className="w-[1.25rem] h-[1.25rem] leading-[1.25rem] inline-flex items-center justify-center font-medium text-[0.65rem] text-warning bg-warning/10 rounded-full">
@@ -1069,7 +909,7 @@ export default function Home() {
                             </div>
                           </div>
                         </li>
-                        <li className="crm-recent-activity-content  text-defaultsize">
+                        <li className="crm-recent-activity-content text-defaultsize">
                           <div className="flex items-start">
                             <div className="me-4">
                               <span className="w-[1.25rem] h-[1.25rem] leading-[1.25rem] inline-flex items-center justify-center font-medium text-[0.65rem] text-info bg-info/10 rounded-full">
@@ -1079,7 +919,7 @@ export default function Home() {
                             <div className="crm-timeline-content">
                               <span>
                                 Neon Tarly added{" "}
-                                <span className="text-info font-semibold">
+                                <span className="font-semibold text-info">
                                   Robert Bright
                                 </span>{" "}
                                 to AI summit project.
@@ -1092,7 +932,7 @@ export default function Home() {
                             </div>
                           </div>
                         </li>
-                        <li className="crm-recent-activity-content  text-defaultsize">
+                        <li className="crm-recent-activity-content text-defaultsize">
                           <div className="flex items-start">
                             <div className="me-4">
                               <span className="w-[1.25rem] h-[1.25rem] leading-[1.25rem] inline-flex items-center justify-center font-medium text-[0.65rem] text-[#232323] dark:text-white bg-[#232323]/10 dark:bg-white/20 rounded-full">
@@ -1112,7 +952,7 @@ export default function Home() {
                             </div>
                           </div>
                         </li>
-                        <li className="crm-recent-activity-content  text-defaultsize">
+                        <li className="crm-recent-activity-content text-defaultsize">
                           <div className="flex items-start">
                             <div className="me-4">
                               <span className="w-[1.25rem] h-[1.25rem] leading-[1.25rem] inline-flex items-center justify-center font-medium text-[0.65rem] text-purple bg-purple/10 rounded-full">
@@ -1124,7 +964,7 @@ export default function Home() {
                                 Completed documentation of{" "}
                                 <a
                                   href="javascript:void(0);"
-                                  className="text-purple underline font-semibold"
+                                  className="font-semibold underline text-purple"
                                 >
                                   AI Summit.
                                 </a>
@@ -1146,8 +986,8 @@ export default function Home() {
           </div>
         </div>
         {/* end last sectin */}
-        </div>
- 
+      </div>
     </AdminLayout>
   );
 }
+export default Home;

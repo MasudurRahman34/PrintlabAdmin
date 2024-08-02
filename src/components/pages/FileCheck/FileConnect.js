@@ -76,8 +76,67 @@ const FileConnect = ({
   return (
     <div className="max-w-xl ">
       <h1 className="text-xl">Connect attributes with File check options</h1>
+
+      <div className="grid items-center w-full grid-cols-12 py-3 gap ">
+        <div className="col-span-12 md:col-span-5">
+          <label
+            htmlFor="file_check_option"
+            className="mb-1 text-xs md:text-base"
+          >
+            <span className="text-red-500">*</span> File Check Options
+          </label>
+          <select
+            name="file_check_option_id"
+            value={fileConnectState.file_check_option_id}
+            onChange={(e) =>
+              setFileConnectState({
+                ...fileConnectState,
+                [e.target.name]: e.target.value,
+              })
+            }
+            className="form-control form-control-lg !rounded-s-md text-xs md:text-base"
+          >
+            <option value="">Select File Check Option</option>
+            {file_check_options.map((option) => (
+              <option value={option.id} key={option.id}>
+                {option.title}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="flex items-center justify-center col-span-12 md:col-span-2">
+          <MdConnectingAirports className="w-6 h-6 mt-3 rotate-90 md:rotate-0" />
+        </div>
+
+        <div className="col-span-12 md:col-span-5">
+          <label
+            htmlFor="file_check_option"
+            className="mb-1 text-xs md:text-base"
+          >
+            <span className="text-red-500">*</span> File Attribute Options
+          </label>
+          <select
+            name="attribute_option_id"
+            value={fileConnectState.attribute_option_id}
+            onChange={(e) =>
+              setFileConnectState({
+                ...fileConnectState,
+                [e.target.name]: e.target.value,
+              })
+            }
+            className="form-control form-control-lg !rounded-s-md text-xs md:text-base"
+          >
+            <option value="">Select attribute option </option>
+            {attribute_options.map((option) => (
+              <option value={option.id} key={option.id}>
+                {option.title}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
       <div className="w-full mt-3">
-        <label htmlFor="file_check_option">
+        <label htmlFor="file_check_option " className="mb-1">
           <span className="text-red-500">*</span> Instruction
         </label>
         <input
@@ -93,59 +152,6 @@ const FileConnect = ({
             })
           }
         />
-      </div>
-      <div className="grid items-center w-full grid-cols-12 py-3 gap ">
-        <div className="col-span-5">
-          <label htmlFor="file_check_option">
-            <span className="text-red-500">*</span> File Check Option Title
-          </label>
-          <select
-            name="file_check_option_id"
-            value={fileConnectState.file_check_option_id}
-            onChange={(e) =>
-              setFileConnectState({
-                ...fileConnectState,
-                [e.target.name]: e.target.value,
-              })
-            }
-            className="form-control form-control-lg !rounded-s-md"
-          >
-            <option value="">Select File Check Option</option>
-            {file_check_options.map((option) => (
-              <option value={option.id} key={option.id}>
-                {option.title}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="flex items-center justify-center col-span-2">
-          <MdConnectingAirports className="w-6 h-6 mt-3" />
-        </div>
-
-        <div className="col-span-5">
-          <label htmlFor="file_check_option">
-            <span className="text-red-500">*</span> File Check Option
-            Description
-          </label>
-          <select
-            name="attribute_option_id"
-            value={fileConnectState.attribute_option_id}
-            onChange={(e) =>
-              setFileConnectState({
-                ...fileConnectState,
-                [e.target.name]: e.target.value,
-              })
-            }
-            className="form-control form-control-lg !rounded-s-md"
-          >
-            <option value="">Select attribute option </option>
-            {attribute_options.map((option) => (
-              <option value={option.id} key={option.id}>
-                {option.title}
-              </option>
-            ))}
-          </select>
-        </div>
       </div>
 
       <div className="flex items-center justify-center mt-4">
