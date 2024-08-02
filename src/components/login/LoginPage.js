@@ -55,12 +55,6 @@ export default function LoginPage() {
                           className="flex justify-between form-label text-default "
                         >
                           Password
-                          <a
-                            href="reset-password-basic.html"
-                            className="ltr:float-right rtl:float-left text-danger"
-                          >
-                            Forget password ?
-                          </a>
                         </label>
                         <div className="input-group">
                           <input
@@ -82,22 +76,6 @@ export default function LoginPage() {
                               className="align-middle ri-eye-off-line"
                             ></i>
                           </button>
-                        </div>
-                        <div className="mt-2">
-                          <div className="form-check !ps-0">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              value=""
-                              id="defaultCheck1"
-                            />
-                            <label
-                              className="form-check-label text-[#8c9097] dark:text-white/50 font-normal"
-                              for="defaultCheck1"
-                            >
-                              Remember password ?
-                            </label>
-                          </div>
                         </div>
                       </div>
                       <div className="grid col-span-12 mt-2 xl:col-span-12">

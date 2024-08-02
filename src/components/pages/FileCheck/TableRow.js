@@ -32,26 +32,25 @@ const TableRow = ({ option, connected_check_refetch }) => {
   };
 
   return (
-    <tr key={option.id}>
+    <tr
+      key={option.id}
+      className="border border-solid border-inherit hover:bg-gray-100 dark:border-defaultborder/10 dark:hover:bg-light"
+    >
       <td className="px-4 py-2 border">{option.file_check_option_title}</td>
       <td className="px-4 py-2 border">{option.attribute_option_title}</td>
       <td className="px-4 py-2 border">{option.instruction}</td>
 
       <td className="px-4 py-2 border">
-        <button
-          type="button"
-          className="ti-btn ti-btn-danger"
-          onClick={() => handleDisconnect(option.id)}
-        >
-          Disconnect
-          {isPending && (
-            <span
-              className="ml-2 spinner-border spinner-border-sm"
-              role="status"
-              aria-hidden="true"
-            />
-          )}
-        </button>
+        <div className="flex flex-row items-center !gap-2 text-[0.9375rem]">
+          <button
+            type="button"
+            onClick={() => handleDisconnect(option.id)}
+            disabled={isPending}
+            className="ti-btn ti-btn-icon ti-btn-wave !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-danger/10 text-danger hover:bg-danger hover:text-white hover:border-danger"
+          >
+            <i className="ri-delete-bin-line"></i>
+          </button>
+        </div>
       </td>
     </tr>
   );

@@ -29,3 +29,15 @@ export const truncateHTML = ({ html, maxWords }) => {
 
   return truncatedText;
 };
+
+export const truncateStringByCharacters = (str, maxChars) => {
+  // Check if the string needs to be truncated
+  if (str.length <= maxChars) {
+    return str;
+  }
+
+  // Truncate the string to the maximum number of characters and add ellipsis
+  const truncatedText = str.slice(0, maxChars) + "...";
+
+  return truncatedText;
+};

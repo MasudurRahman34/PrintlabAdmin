@@ -1,5 +1,5 @@
 import CategoryIndex from "@/components/pages/Categories";
-import { AdminLayout } from "@/layout/AdminLayout";
+import AdminLayout from "@/layout/AdminLayout";
 
 const categories = () => {
   return (

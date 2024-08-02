@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const backendUrl = "https://printlabapi.devtaijul.com/api/v1";
+const backendUrl =
+  process.env.NEXT_PUBLIC_BACKEND_URL ||
+  "https://printlabapi.devtaijul.com/api/v1";
 
 export const getAllMedia = async ({ current_page = 1 }) =>
   axios.get(`${backendUrl}/media?page=${current_page}`).then((res) => res.data);

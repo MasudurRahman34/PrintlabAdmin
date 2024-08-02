@@ -1,5 +1,5 @@
 import OrdersDetails from "@/components/pages/Orders/SingleOrderPage";
-import { AdminLayout } from "@/layout/AdminLayout";
+import AdminLayout from "@/layout/AdminLayout";
 import React from "react";
 
 const index = () => {

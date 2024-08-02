@@ -12,6 +12,7 @@ export const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [session, setSession] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Check if token is in localStorage
@@ -24,18 +25,20 @@ export const useAuth = () => {
       setSession(JSON.parse(storedSession));
       setUser(JSON.parse(storedUser));
       setIsAuthenticated(true);
+      setIsLoading(false);
     } else {
       setIsAuthenticated(false);
+      setIsLoading(false);
     }
   }, []);
 
-  const login = async (credentials) => {
+  const login = async (credentials, { redirect_url }) => {
     try {
       let session;
       let user;
 
       const res = await axios.post(
-        `https://printlabapi.devtaijul.com/api/v1/admin/login`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/v1/admin/login`,
         {
           email: credentials.email,
           password: credentials.password,
@@ -65,10 +68,16 @@ export const useAuth = () => {
       setSession(session);
       setIsAuthenticated(true);
       toast.success(data.message || "Login successful");
-      router.push("/");
+      return {
+        status: "success",
+        message: data.message,
+      };
     } catch (error) {
       showToastMessage(error?.response?.data?.message || "Login failed");
       setIsAuthenticated(false);
+      return {
+        status: "error",
+      };
     }
   };
 
@@ -83,5 +92,31 @@ export const useAuth = () => {
     router.push("/");
   };
 
-  return { isAuthenticated, user, session, login, logout };
+  const register = async ({ token, token_type, user }) => {
+    try {
+      const session = {
+        token,
+        token_type,
+      };
+
+      // Save user and token to localStorage
+      if (typeof window !== "undefined") {
+        await localStorage.setItem("user", JSON.stringify(user));
+        await localStorage.setItem("session", JSON.stringify(session));
+      }
+
+      setUser(user);
+      setSession(session);
+      setIsAuthenticated(true);
+      toast.success("Registration successful");
+
+      // Redirect to verify email page
+
+      if (!user.email_verified_at) {
+        router.push("/verify-email-alert");
+      }
+    } catch (error) {}
+  };
+
+  return { isAuthenticated, user, session, login, logout, register, isLoading };
 };

@@ -3,6 +3,7 @@ import useToastMessage from "@/hooks/useToastMessage";
 import { updateOrderItemStatus } from "@/resolvers/mutation";
 import { formateDate, formatPrice } from "@/utils/common";
 import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -40,6 +41,30 @@ const OrderItemCard = ({ item, refetch }) => {
   const handleChange = (e) => {
     setOrderStatus(e.target.value);
   };
+
+  const handleDownload = async (url, filename, fileExtension) => {
+    try {
+      const response = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${session?.token}`,
+        },
+        responseType: "blob",
+      });
+
+      const result = await response.data;
+
+      const blob = new Blob([result]);
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.download = `${filename}`;
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Download failed", error);
+    }
+  };
   return (
     <div
       className={` mb-4 overflow-hidden border rounded  border-gray-100 w-full bg-white`}
@@ -66,9 +91,9 @@ const OrderItemCard = ({ item, refetch }) => {
       </div>
       <div className="w-full p-4 ">
         <div className="w-full bg-gray-100">
-          <div className="flex flex-col items-stretch justify-between w-full gap-1 md:flex-row">
-            <div className="w-full bg-white md:w-2/3">
-              <div className="mb-2">
+          <div className="grid w-full grid-cols-12 gap-1 ">
+            <div className="w-full col-span-12 p-4 bg-white md:col-span-5">
+              <div>
                 {item.status === "Pending" || item.status === "On Hold" ? (
                   <h1 className="text-xl font-semibold text-yellow-600">
                     {item.status}
@@ -100,10 +125,12 @@ const OrderItemCard = ({ item, refetch }) => {
                 </p>
               </div>
               <div>
-                <h1 className="text-lg font-semibold">Just Print</h1>
+                <h1 className="text-lg font-semibold">
+                  {item.artwork_service.title}
+                </h1>
               </div>
             </div>
-            <div className="w-full p-2 bg-white md:w-1/3">
+            <div className="w-full col-span-12 p-4 bg-white md:col-span-5">
               <div className="mb-3">
                 <h1 className="text-lg font-semibold">Delivery To</h1>
                 <p className="text-sm">
@@ -118,17 +145,50 @@ const OrderItemCard = ({ item, refetch }) => {
                   {item.shipping_address.post_code}
                 </p>
               </div>
-              <div>
+              <div className="">
                 <h1 className="text-lg font-semibold">Delivery By</h1>
-                <p className="text-sm">Thursday, 27th June 2024</p>
-                <p className="text-sm">By 8pm (FREE)</p>
+                <p className="text-sm">{formateDate(item.delivery_date)}</p>
               </div>
+            </div>
+            <div className="w-full col-span-12 p-4 bg-white md:col-span-2">
+              <h1 className="text-lg font-semibold">File</h1>
+              <div>
+                {item?.file ? (
+                  <div>
+                    <button
+                      onClick={() => {
+                        handleDownload(
+                          item.file.url,
+                          item.file.slug,
+                          item.file.extension
+                        );
+                      }}
+                      className="flex items-center w-12 gap-2 p-2 bg-gray-200 rounded"
+                    >
+                      <img
+                        src={
+                          item.file.extension === "pdf"
+                            ? "/assets/img/icons8-pdf-96.png"
+                            : "/assets/img/icons8-docs-480.png"
+                        }
+                        alt="Docs"
+                      />
+                    </button>
+                    {item.file.is_force_upload === 1 && (
+                      <p className="text-red-500">Force Uploaded</p>
+                    )}
+                  </div>
+                ) : (
+                  "No File Attached"
+                )}
+              </div>
+              <div></div>
             </div>
           </div>
           <div className="p-4">
-            <div className="flex flex-col items-end justify-between w-full gap-2 sm:flex-row">
-              <div className="flex-1 w-full">
-                <label htmlFor="status" className="block font-medium">
+            <div className="flex flex-col items-end justify-start w-full gap-2 sm:flex-row">
+              <div className="w-full max-w-md">
+                <label htmlFor="status" className="block mb-1 font-medium">
                   Update Status
                 </label>
                 <select
@@ -151,10 +211,11 @@ const OrderItemCard = ({ item, refetch }) => {
                   <option value="Partially Refunded">Partially Refunded</option>
                 </select>
               </div>
-              <div>
+              <div className="flex-1">
                 <button
                   type="button"
-                  className="m-2 ti-btn ti-btn-primary-full ti-btn-loader disabled:bg-zinc-900"
+                  style={{ marginBottom: "0" }}
+                  className=" ti-btn ti-btn-primary-full ti-btn-loader disabled:bg-zinc-900"
                   onClick={handleUpdate}
                   disabled={isPending || item.status === order_status}
                 >

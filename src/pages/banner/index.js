@@ -1,5 +1,5 @@
 import BannerPageComponent from "@/components/pages/banner/BannerPageComponent";
-import { AdminLayout } from "@/layout/AdminLayout";
+import AdminLayout from "@/layout/AdminLayout";
 
 const Banner = () => {
   return (

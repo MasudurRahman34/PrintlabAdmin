@@ -17,14 +17,6 @@ const ProductsComponent = () => {
   const router = useRouter();
   const { page } = router.query;
 
-  /* const { data, isLoading, isError, error, refetch } = useQuery({
-    queryKey: ["get-all-products", page],
-    queryFn: () => getAllProducts({ page }),
-  }); */
-  /* const handleSearchChange = (event) => {
-    setSearchItem(event.target.value);
-  }; */
-
   return (
     <>
       <CreateProductModal
@@ -70,7 +62,7 @@ const ProductsComponent = () => {
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 xl:col-span-12">
             <div className="box">
-              <div className="justify-between box-header">
+              {/*  <div className="justify-between box-header">
                 <div className="space-x-2 ti-btn-list rtl:space-x-reverse ">
                   <button
                     type="button"
@@ -101,7 +93,7 @@ const ProductsComponent = () => {
                     <span className="hidden md:block">Export as Pdf</span>
                   </button>
                 </div>
-              </div>
+              </div> */}
 
               <ProductTable />
             </div>

@@ -1,3 +1,5 @@
+import { useAuth } from "@/hooks/useAuth";
+import useToastMessage from "@/hooks/useToastMessage";
 import { addProductMutation } from "@/resolvers/mutation";
 import { useMutation } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
@@ -17,6 +19,8 @@ const product_types = [
 ];
 
 const CreateProductModal = ({ modalIsOpen = false, setIsOpen }) => {
+  const showToastMessage = useToastMessage();
+  const { session, isAuthenticated } = useAuth();
   const router = useRouter();
   const [formData, setFormData] = useState({
     title: "",
@@ -46,7 +50,7 @@ const CreateProductModal = ({ modalIsOpen = false, setIsOpen }) => {
     variables.type = parseInt(variables.type);
 
     mutate(
-      { variables },
+      { variables, token: session?.token },
       {
         onSuccess: (data) => {
           toast.success("Product added successfully");
@@ -59,7 +63,7 @@ const CreateProductModal = ({ modalIsOpen = false, setIsOpen }) => {
           window.open(`/products/${data.data.slug}`);
         },
         onError: (error) => {
-          toast.error(error.response.data.message[0] || "An error occurred");
+          showToastMessage(error.response.data.message);
         },
       }
     );

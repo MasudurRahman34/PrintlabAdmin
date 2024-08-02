@@ -5,12 +5,18 @@ import { useAuth } from "@/hooks/useAuth";
 import useToastMessage from "@/hooks/useToastMessage";
 import { deleteBannerMutation } from "@/resolvers/mutation";
 import { getBannersQuery } from "@/resolvers/query";
+import { truncateStringByCharacters } from "@/utils/common";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
 
 const BannerPageComponent = () => {
   const { session } = useAuth();
+
+  const handleCopyString = (string) => {
+    navigator.clipboard.writeText(string);
+    toast.success("Copied to clipboard");
+  };
 
   const { data, isLoading, isError, refetch, isSuccess } = useQuery({
     queryKey: ["get-all-banner", session?.token],
@@ -23,35 +29,15 @@ const BannerPageComponent = () => {
       <div className="justify-between block page-header md:flex">
         <div>
           <h3 className="!text-defaulttextcolor dark:!text-defaulttextcolor/70 dark:text-white dark:hover:text-white text-[1.125rem] font-semibold">
-            Products List
+            Banner List
           </h3>
         </div>
-        <ol className="flex items-center min-w-0 whitespace-nowrap">
-          <li className="text-[0.813rem] ps-[0.5rem]">
-            <a
-              className="flex items-center truncate text-primary hover:text-primary dark:text-primary"
-              href="javascript:void(0);"
-            >
-              Ecommerce
-              <i className="ti ti-chevrons-right flex-shrink-0 text-[#8c9097] dark:text-white/50 px-[0.5rem] overflow-visible rtl:rotate-180"></i>
-            </a>
-          </li>
-          <li
-            className="text-[0.813rem] text-defaulttextcolor font-semibold hover:text-primary dark:text-[#8c9097] dark:text-white/50 "
-            aria-current="page"
-          >
-            Banner List
-          </li>
-        </ol>
       </div>
 
-      <BannerImg />
+      <BannerImg refetch={refetch} />
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-12 xl:col-span-12">
           <div className="box">
-            <div className="box-header">
-              <div className="box-title">Banner</div>
-            </div>
             {isLoading ? (
               <div>Loading</div>
             ) : isError ? (
@@ -59,10 +45,10 @@ const BannerPageComponent = () => {
             ) : data?.data.length > 0 ? (
               <div className="box-body">
                 <div className="mb-4 table-responsive">
-                  <table className="table min-w-full whitespace-nowrap table-bordered">
+                  <table className="table min-w-full border whitespace-nowrap table-hover table-bordered">
                     <thead>
-                      <tr>
-                        <th scope="col" className="text-start">
+                      <tr className="bg-gray-200 border border-solid border-inherit dark:border-defaultborder/10">
+                        <th scope="col" className="w-10 text-start">
                           Banner Image
                         </th>
                         <th scope="col" className="text-start">
@@ -79,7 +65,10 @@ const BannerPageComponent = () => {
                     </thead>
                     <tbody>
                       {data?.data.map((item) => (
-                        <tr className="product-list" key={item.id}>
+                        <tr
+                          className="border border-solid product-list border-inherit hover:bg-gray-100 dark:border-defaultborder/10 dark:hover:bg-light"
+                          key={item.id}
+                        >
                           <td>
                             <div className="flex items-center">
                               <div className="me-2">
@@ -90,8 +79,11 @@ const BannerPageComponent = () => {
                             </div>
                           </td>
                           <td>
-                            <span className="badge bg-light text-default">
-                              {item.imageUrl}
+                            <span
+                              className="badge bg-light text-default"
+                              onClick={() => handleCopyString(item.imageUrl)}
+                            >
+                              {truncateStringByCharacters(item.imageUrl, 70)}
                             </span>
                           </td>
                           <td>{item.title}</td>

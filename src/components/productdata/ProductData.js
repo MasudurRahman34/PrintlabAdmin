@@ -60,7 +60,7 @@ export default function ProductData({
               <li
                 key={tab.id}
                 className={`px-3 py-2 border cursor-pointer   ${
-                  active === tab.name ? "text-white  bg-purple-500 " : ""
+                  active === tab.name ? "text-white  bg-primary " : ""
                 }`}
                 onClick={() => setActive(tab.name)}
               >

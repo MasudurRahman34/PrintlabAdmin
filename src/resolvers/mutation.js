@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const backendUrl = "https://printlabapi.devtaijul.com/api/v1";
+const backendUrl =
+  process.env.NEXT_PUBLIC_BACKEND_URL ||
+  "https://printlabapi.devtaijul.com/api/v1";
 
 export const updateMediaMutation = async ({ variables, media_id }) =>
   axios
@@ -18,8 +20,14 @@ export const updateCategoryMutation = async ({ variables, category_id }) =>
     .put(`${backendUrl}/categories/${category_id}`, variables)
     .then((res) => res.data);
 
-export const addProductMutation = async ({ variables }) =>
-  axios.post(`${backendUrl}/products`, variables).then((res) => res.data);
+export const addProductMutation = async ({ variables, token }) =>
+  axios
+    .post(`${backendUrl}/products`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
 
 export const deleteCategoryMutation = async ({ category_id }) =>
   axios
