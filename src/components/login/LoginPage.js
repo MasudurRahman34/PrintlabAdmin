@@ -1,8 +1,11 @@
 import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 export default function LoginPage() {
+  const router = useRouter();
   const { login, isAuthenticated } = useAuth();
   const [show, setshow] = useState(false);
   const { register, handleSubmit, reset } = useForm({
@@ -15,8 +18,9 @@ export default function LoginPage() {
     try {
       await login(data);
       reset();
+      router.push("/");
     } catch (error) {
-      console.log(error);
+      toast.error("Something went wrong");
     }
   };
   return (

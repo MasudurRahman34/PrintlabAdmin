@@ -32,13 +32,13 @@ export const useAuth = () => {
     }
   }, []);
 
-  const login = async (credentials, { redirect_url }) => {
+  const login = async (credentials) => {
     try {
       let session;
       let user;
 
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/v1/admin/login`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/login`,
         {
           email: credentials.email,
           password: credentials.password,
@@ -89,34 +89,8 @@ export const useAuth = () => {
     setUser(null);
     setSession(null);
     setIsAuthenticated(false);
-    router.push("/");
+    router.push("/login");
   };
 
-  const register = async ({ token, token_type, user }) => {
-    try {
-      const session = {
-        token,
-        token_type,
-      };
-
-      // Save user and token to localStorage
-      if (typeof window !== "undefined") {
-        await localStorage.setItem("user", JSON.stringify(user));
-        await localStorage.setItem("session", JSON.stringify(session));
-      }
-
-      setUser(user);
-      setSession(session);
-      setIsAuthenticated(true);
-      toast.success("Registration successful");
-
-      // Redirect to verify email page
-
-      if (!user.email_verified_at) {
-        router.push("/verify-email-alert");
-      }
-    } catch (error) {}
-  };
-
-  return { isAuthenticated, user, session, login, logout, register, isLoading };
+  return { isAuthenticated, user, session, login, logout, isLoading };
 };
