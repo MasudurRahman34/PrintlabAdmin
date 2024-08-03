@@ -1,28 +1,55 @@
 import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/router";
+import useToastMessage from "@/hooks/useToastMessage";
+import { loginMutation } from "@/resolvers/mutation";
+import { loginSchema } from "@/utils/schema";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 
 export default function LoginPage() {
-  const router = useRouter();
+  const showToastMessage = useToastMessage();
   const { login, isAuthenticated } = useAuth();
   const [show, setshow] = useState(false);
-  const { register, handleSubmit, reset } = useForm({
+  const { mutate, isPending } = useMutation({
+    mutationKey: "login",
+    mutationFn: loginMutation,
+  });
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       email: "",
       password: "",
     },
+    resolver: yupResolver(loginSchema),
   });
-  const onSubmit = async (data) => {
-    try {
-      await login(data);
-      reset();
-      router.push("/");
-    } catch (error) {
-      toast.error("Something went wrong");
-    }
+  const onSubmit = (data) => {
+    const variables = {
+      email: data.email,
+      password: data.password,
+    };
+
+    mutate(
+      {
+        variables,
+      },
+      {
+        onSuccess: (data) => {
+          const { token, tokenType, user } = data?.data;
+          console.log(token, tokenType, user);
+          login({ token, token_type: tokenType, user });
+        },
+        onError: (error) => {
+          showToastMessage(error.response.data.message);
+        },
+      }
+    );
   };
+
   return (
     <div>
       <div className="container">
@@ -52,6 +79,9 @@ export default function LoginPage() {
                             validate: (value) => value.includes("@"),
                           })}
                         />
+                        {errors.email && (
+                          <p className="text-red-500">{errors.email.message}</p>
+                        )}
                       </div>
                       <div className="col-span-12 mb-2 xl:col-span-12">
                         <label
@@ -81,14 +111,20 @@ export default function LoginPage() {
                             ></i>
                           </button>
                         </div>
+                        {errors.password && (
+                          <p className="text-red-500">
+                            {errors.password.message}
+                          </p>
+                        )}
                       </div>
                       <div className="grid col-span-12 mt-2 xl:col-span-12">
                         <button
                           type="submit"
                           href="index.html"
                           className="ti-btn ti-btn-primary !bg-primary !text-white !font-medium"
+                          disabled={isPending}
                         >
-                          Sign In
+                          {isPending ? "Loading..." : "Sign In"}
                         </button>
                       </div>
                     </div>

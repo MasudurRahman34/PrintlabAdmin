@@ -6,9 +6,7 @@ import React, { useEffect, useState } from "react";
 
 const AdminLayout = ({ children }) => {
   const [screen_size, setScreenSize] = useState(0);
-
   const screenWidth = useScreenWidth();
-
   const [isOpen, setIsOpen] = useState(false);
   const [hideSidebar, setHideSidebar] = useState(false);
   const toggleSidebar = () => {

@@ -1,13 +1,9 @@
 // hooks/useAuth.js
 
-import useToastMessage from "./useToastMessage";
-import axios from "axios";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import toast from "react-hot-toast";
 
 export const useAuth = () => {
-  const showToastMessage = useToastMessage();
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
@@ -32,31 +28,12 @@ export const useAuth = () => {
     }
   }, []);
 
-  const login = async (credentials) => {
+  const login = async ({ token, token_type, user }) => {
     try {
-      let session;
-      let user;
-
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/login`,
-        {
-          email: credentials.email,
-          password: credentials.password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      const data = await res?.data?.data;
-
-      session = {
-        token: data?.token,
-        token_type: data?.tokenType,
+      const session = {
+        token,
+        token_type,
       };
-      user = data?.user;
 
       // Save user and token to localStorage
       if (typeof window !== "undefined") {
@@ -67,21 +44,26 @@ export const useAuth = () => {
       setUser(user);
       setSession(session);
       setIsAuthenticated(true);
-      toast.success(data.message || "Login successful");
-      return {
-        status: "success",
-        message: data.message,
-      };
+      router.push("/");
     } catch (error) {
-      showToastMessage(error?.response?.data?.message || "Login failed");
       setIsAuthenticated(false);
-      return {
-        status: "error",
-      };
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    /* const response = await axios
+      .post(
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/logout`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${session.token}`,
+          },
+        }
+      )
+      .then((res) => res.data);
+    console.log(response); */
+
     if (typeof window !== "undefined") {
       localStorage.removeItem("user");
       localStorage.removeItem("session");

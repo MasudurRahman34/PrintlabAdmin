@@ -222,3 +222,6 @@ export const deleteBannerMutation = async ({ banner_id, token }) =>
       },
     })
     .then((res) => res.data);
+
+export const loginMutation = async ({ variables }) =>
+  axios.post(`${backendUrl}/admin/login`, variables).then((res) => res.data);
