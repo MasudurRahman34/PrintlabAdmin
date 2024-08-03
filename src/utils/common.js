@@ -1,9 +1,12 @@
 export const formateDate = (date) => {
-  return new Date(date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const options = { year: "numeric", month: "long", day: "numeric" };
+
+  const fullDate = new Date(date).toLocaleDateString("en-GB", options);
+  const year = new Date(date).getFullYear();
+  const month = new Date(date).getMonth();
+  const day = new Date(date).getDate();
+
+  return `${fullDate}, ${year}-${month}-${day}`;
 };
 
 export const formatPrice = (price) => {

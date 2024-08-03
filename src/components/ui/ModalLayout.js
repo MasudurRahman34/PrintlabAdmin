@@ -14,8 +14,8 @@ const ModalLayout = ({
       id="hs-vertically-centered-modal"
       className={` hs-overlay bg-black/40 ti-modal ${show ? "open" : "hidden"}`}
     >
-      <div className="hs-overlay-open:mt-7 ti-modal-box mt-0 ease-out min-h-[calc(100%-3.5rem)] flex items-center justify-center">
-        <div className="ti-modal-content">
+      <div className="hs-overlay-open:mt-7 ti-modal-box  mt-0 ease-out min-h-[calc(100%-3.5rem)] flex items-center justify-center">
+        <div className="w-full max-w-md ti-modal-content">
           <div className="ti-modal-header">
             <h6 className="modal-title" id="staticBackdropLabel2">
               {title}
@@ -42,7 +42,7 @@ const ModalLayout = ({
               </svg>
             </button>
           </div>
-          <div className="ti-modal-body">{children}</div>
+          <div className="w-full ti-modal-body">{children}</div>
           <div className="ti-modal-footer">
             <button
               type="button"

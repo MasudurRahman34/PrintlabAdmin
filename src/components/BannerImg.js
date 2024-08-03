@@ -66,8 +66,8 @@ const BannerImg = ({ refetch }) => {
 
   return (
     <div>
-      <div className="grid grid-cols-12 gap-6 mb-5 ">
-        <div className="col-span-3">
+      <div className="mb-5 ">
+        <div>
           <button
             type="button"
             className=" ti-btn ti-btn-primary-full ti-btn-wave"
@@ -78,7 +78,7 @@ const BannerImg = ({ refetch }) => {
         </div>
       </div>
       {open && (
-        <div className="p-4 box">
+        <div className="w-full max-w-2xl p-4 box">
           <form onSubmit={onSubmit}>
             <div className="">
               <div className="mb-4">

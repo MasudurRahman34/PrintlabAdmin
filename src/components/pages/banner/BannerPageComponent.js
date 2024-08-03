@@ -83,7 +83,7 @@ const BannerPageComponent = () => {
                               className="badge bg-light text-default"
                               onClick={() => handleCopyString(item.imageUrl)}
                             >
-                              {truncateStringByCharacters(item.imageUrl, 70)}
+                              {truncateStringByCharacters(item.imageUrl, 50)}
                             </span>
                           </td>
                           <td>{item.title}</td>

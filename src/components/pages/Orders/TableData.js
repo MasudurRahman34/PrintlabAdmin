@@ -3,8 +3,6 @@ import { useAuth } from "@/hooks/useAuth";
 import { getAllOrders } from "@/resolvers/query";
 import { formateDate, formatPrice } from "@/utils/common";
 import { useQuery } from "@tanstack/react-query";
-import { Grid } from "gridjs-react";
-import { _ } from "gridjs-react";
 import Link from "next/link";
 import React, { useState } from "react";
 

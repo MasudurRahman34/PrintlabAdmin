@@ -7,7 +7,7 @@ const OrderComponents = () => {
   const { session } = useAuth();
 
   return (
-    <div className="main-content">
+    <div>
       <div className="justify-between block page-header md:flex">
         <div>
           <h3 className="!text-defaulttextcolor dark:!text-defaulttextcolor/70 dark:text-white dark:hover:text-white text-[1.125rem] font-semibold">
