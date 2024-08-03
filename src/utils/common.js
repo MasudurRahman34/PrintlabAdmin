@@ -6,6 +6,10 @@ export const formateDate = (date) => {
   });
 };
 
+export const formatPrice = (price) => {
+  return `£${parseFloat(price).toFixed(2)}`;
+};
+
 export const truncateHTML = ({ html, maxWords }) => {
   // Create a temporary element to hold the HTML
   var tempElement = document.createElement("div");
@@ -22,6 +26,18 @@ export const truncateHTML = ({ html, maxWords }) => {
 
   // Join the truncated words array into a string
   var truncatedText = truncatedWords.join(" ");
+
+  return truncatedText;
+};
+
+export const truncateStringByCharacters = (str, maxChars) => {
+  // Check if the string needs to be truncated
+  if (str.length <= maxChars) {
+    return str;
+  }
+
+  // Truncate the string to the maximum number of characters and add ellipsis
+  const truncatedText = str.slice(0, maxChars) + "...";
 
   return truncatedText;
 };

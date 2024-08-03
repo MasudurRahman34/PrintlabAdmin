@@ -148,10 +148,10 @@ const Specification = ({
     <div className="py-5 Artwork">
       <div>
         <div className="mt-2">
-          <label className="mb-2 text-base font-semibold text-black">
+          <label className="mb-2 text-sm font-semibold text-black md:text-base">
             Delails
           </label>
-          <div className="border border-[#949EB7] rounded px-5 py-5">
+          <div className="rounded ">
             <TextEditor
               text={state?.details}
               handleChange={(value) =>
@@ -164,7 +164,7 @@ const Specification = ({
           </div>
         </div>
         <div className="w-full">
-          <label className="mb-2 text-base font-semibold text-black">
+          <label className="mb-2 text-sm font-semibold text-black md:text-base">
             Details Image URL (Optional)
           </label>
           <input
@@ -177,10 +177,10 @@ const Specification = ({
         </div>
 
         <div className="mt-2">
-          <label className="mb-2 text-base font-semibold text-black">
+          <label className="mb-2 text-sm font-semibold text-black md:text-base">
             Technical Specification (Optional)
           </label>
-          <div className="border border-[#949EB7] rounded px-5 py-5">
+          <div className="rounded ">
             <TextEditor
               text={state?.technical_specification}
               handleChange={(value) =>
@@ -193,7 +193,7 @@ const Specification = ({
           </div>
         </div>
         <div className="w-full">
-          <label className="mb-2 text-base font-semibold text-black">
+          <label className="mb-2 text-sm font-semibold text-black md:text-base">
             Technial Specification Image URL (Optional)
           </label>
           <input

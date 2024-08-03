@@ -1,13 +1,12 @@
 import Header from "./Header";
 import Sidebar from "./Sidebar";
+import withAuth from "@/hoc/withAuth";
 import useScreenWidth from "@/hooks/useScreenWidth";
 import React, { useEffect, useState } from "react";
 
-export const AdminLayout = ({ children }) => {
+const AdminLayout = ({ children }) => {
   const [screen_size, setScreenSize] = useState(0);
-
   const screenWidth = useScreenWidth();
-
   const [isOpen, setIsOpen] = useState(false);
   const [hideSidebar, setHideSidebar] = useState(false);
   const toggleSidebar = () => {
@@ -44,3 +43,5 @@ export const AdminLayout = ({ children }) => {
     </div>
   );
 };
+
+export default withAuth(AdminLayout);

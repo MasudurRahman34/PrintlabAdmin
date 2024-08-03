@@ -2,6 +2,7 @@ import CreateProductModal from "./CreateProductModal";
 import ProductTable from "./ProductTable";
 import { getAllProducts } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
+import { Grid } from "gridjs-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -12,36 +13,28 @@ import { LuFileJson } from "react-icons/lu";
 const ProductsComponent = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const [searchItem, setSearchItem] = useState("");
+  /*   const [searchItem, setSearchItem] = useState(""); */
   const router = useRouter();
   const { page } = router.query;
-
-  const { data, isLoading, isError, error, refetch } = useQuery({
-    queryKey: ["get-all-products", page],
-    queryFn: () => getAllProducts({ page }),
-  });
-  const handleSearchChange = (event) => {
-    setSearchItem(event.target.value);
-  };
 
   return (
     <>
       <CreateProductModal
-        refetch={refetch}
+        /* refetch={refetch} */
         modalIsOpen={modalIsOpen}
         setIsOpen={setModalIsOpen}
       />
-      <div className="main-content">
+      <div>
         {/* <!-- Page Header --> */}
         <div className="justify-between block page-header md:flex">
           <div className="flex items-center gap-3">
-            <h3 className="!text-defaulttextcolor dark:!text-defaulttextcolor/70 dark:text-white dark:hover:text-white text-[1.125rem] font-semibold">
+            <h3 className="!text-defaulttextcolor dark:!text-defaulttextcolor/70 dark:text-white dark:hover:text-white text-base font-semibold">
               {" "}
               Products List
             </h3>
             <button
               onClick={() => setModalIsOpen(true)}
-              className="ti-btn ti-btn-primary-full ti-btn-wave"
+              className="text-sm ti-btn ti-btn-primary-full ti-btn-wave"
             >
               Add Product
             </button>
@@ -69,61 +62,40 @@ const ProductsComponent = () => {
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 xl:col-span-12">
             <div className="box">
-              <div className="justify-between box-header">
-                <div className="flex items-center gap-3">
-                  <div className="flex" role="search">
-                    <input
-                      onChange={handleSearchChange}
-                      className="form-control !w-auto !rounded-sm me-2"
-                      type="search"
-                      value={searchItem}
-                      placeholder="Search"
-                      aria-label="Search"
-                    />
-                  </div>
-                </div>
-
-                <div class="ti-btn-list space-x-2 rtl:space-x-reverse hidden lg:block">
+              {/*  <div className="justify-between box-header">
+                <div className="space-x-2 ti-btn-list rtl:space-x-reverse ">
                   <button
                     type="button"
-                    class="ti-btn ti-btn-primary-full label-ti-btn"
+                    className="ti-btn ti-btn-primary-full label-ti-btn"
                   >
-                    <i className=" label-ti-btn-icon me-2">
-                      <BsFiletypeCsv />
+                    <i className=" label-ti-btn-icon">
+                      <BsFiletypeCsv className="w-5 h-5" />
                     </i>
-                    Export as Cvs
+
+                    <span className="hidden md:block">Export as Cvs</span>
                   </button>
                   <button
                     type="button"
-                    class="ti-btn ti-btn-secondary-full label-ti-btn"
+                    className="ti-btn ti-btn-secondary-full label-ti-btn"
                   >
-                    <i className=" label-ti-btn-icon me-2">
+                    <i className=" label-ti-btn-icon">
                       <LuFileJson />
                     </i>
-                    Export as Json
+                    <span className="hidden md:block">Export as Json</span>
                   </button>
                   <button
                     type="button"
-                    class="ti-btn ti-btn-warning-full label-ti-btn "
+                    className="ti-btn ti-btn-warning-full label-ti-btn "
                   >
-                    <i className=" label-ti-btn-icon me-2">
+                    <i className=" label-ti-btn-icon">
                       <FaRegFilePdf />
                     </i>
-                    Export as Pdf
+                    <span className="hidden md:block">Export as Pdf</span>
                   </button>
                 </div>
-              </div>
-              {isLoading ? (
-                <div>Loading...</div>
-              ) : isError ? (
-                <div>Error: {error.message}</div>
-              ) : (
-                <ProductTable
-                  products={data?.data}
-                  links={data?.links}
-                  refetch={refetch}
-                />
-              )}
+              </div> */}
+
+              <ProductTable />
             </div>
           </div>
         </div>

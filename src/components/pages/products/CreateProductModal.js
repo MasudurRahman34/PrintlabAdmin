@@ -1,3 +1,5 @@
+import { useAuth } from "@/hooks/useAuth";
+import useToastMessage from "@/hooks/useToastMessage";
 import { addProductMutation } from "@/resolvers/mutation";
 import { useMutation } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
@@ -17,6 +19,8 @@ const product_types = [
 ];
 
 const CreateProductModal = ({ modalIsOpen = false, setIsOpen }) => {
+  const showToastMessage = useToastMessage();
+  const { session, isAuthenticated } = useAuth();
   const router = useRouter();
   const [formData, setFormData] = useState({
     title: "",
@@ -46,7 +50,7 @@ const CreateProductModal = ({ modalIsOpen = false, setIsOpen }) => {
     variables.type = parseInt(variables.type);
 
     mutate(
-      { variables },
+      { variables, token: session?.token },
       {
         onSuccess: (data) => {
           toast.success("Product added successfully");
@@ -59,7 +63,7 @@ const CreateProductModal = ({ modalIsOpen = false, setIsOpen }) => {
           window.open(`/products/${data.data.slug}`);
         },
         onError: (error) => {
-          toast.error(error.response.data.message[0] || "An error occurred");
+          showToastMessage(error.response.data.message);
         },
       }
     );
@@ -106,11 +110,11 @@ const CreateProductModal = ({ modalIsOpen = false, setIsOpen }) => {
           <div className="h-full box">
             <div className="box-body add-products !p-0 flex flex-col h-full justify-between">
               <div className="flex items-center justify-between ">
-                <div className="p-2 text-xl font-bold">
+                <div className="py-2 text-base font-bold md:text-xl">
                   <p className="">Create Product</p>
                 </div>
                 <button
-                  className="flex items-center justify-center border w-14 h-14 hover:bg-gray-200"
+                  className="flex items-center justify-center w-12 h-12 border hover:bg-gray-200"
                   onClick={() => {
                     closeModal();
                   }}
@@ -131,7 +135,7 @@ const CreateProductModal = ({ modalIsOpen = false, setIsOpen }) => {
                   </svg>
                 </button>
               </div>
-              <div className="flex-1 p-6">
+              <div className="flex-1 overflow-y-auto md:p-6">
                 <div className="grid grid-cols-12 md:gap-x-[3rem] gap-0">
                   <div className="col-span-12 ">
                     <div className="grid grid-cols-12 gap-4">
@@ -148,12 +152,6 @@ const CreateProductModal = ({ modalIsOpen = false, setIsOpen }) => {
                           id="product-name-add"
                           placeholder="Name"
                         />
-                        <label
-                          for="product-name-add"
-                          className="form-label mt-1 text-[0.75rem] opacity-[0.5] !text-[#8c9097] dark:text-white/50 !mb-0"
-                        >
-                          *Product Name should not exceed 30 characters
-                        </label>
                       </div>
                       <div className="col-span-12">
                         <label

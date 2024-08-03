@@ -130,7 +130,7 @@ const DeliveryService = ({ product_data }) => {
             className="ti-btn ti-btn-icon ti-btn-primary-full ti-btn-wave"
             onClick={() => setShow(true)}
           >
-            <i className="ri-bank-fill"></i>
+            <i className="bi bi-plus-lg "></i>
           </button>
         </div>
         <div className="mt-4 table-responsive">

@@ -13,8 +13,12 @@ export default function SingleProducttable({ product }) {
         router.push(`/products/${product?.slug || id}`);
       }}
     >
-      <td>{product?.title}</td>
-      <td>{product?.categories[0]?.title}</td>
+      <td>
+        <span className="text-xs">{product?.title}</span>
+      </td>
+      <td>
+        <span className="text-xs">{product?.categories[0]?.title}</span>
+      </td>
     </tr>
   );
 }

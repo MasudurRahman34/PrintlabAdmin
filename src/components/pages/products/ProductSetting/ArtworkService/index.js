@@ -31,13 +31,13 @@ const ArtworkService = ({
     <section className="w-full py-3">
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-semibold">Delivery Service</h3>
-        <button
+        {/* <button
           type="button"
           aria-label="button"
           className="ti-btn ti-btn-icon ti-btn-primary-full ti-btn-wave"
         >
-          <i className="ri-bank-fill"></i>
-        </button>
+          <i className="bi bi-plus-lg "></i>
+        </button> */}
       </div>
       <div className="grid grid-cols-12 mt-4 ">
         <div className="col-span-12 lg:col-span-4 ">

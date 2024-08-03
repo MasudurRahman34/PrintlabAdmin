@@ -5,6 +5,7 @@ import { AiFillProduct } from "react-icons/ai";
 import { BiCategory } from "react-icons/bi";
 import { FaHome } from "react-icons/fa";
 import { FaUsersCog } from "react-icons/fa";
+import { FaFileCircleCheck } from "react-icons/fa6";
 import { IoMdAddCircle } from "react-icons/io";
 import { LuListOrdered } from "react-icons/lu";
 import { MdPermMedia } from "react-icons/md";
@@ -22,36 +23,39 @@ const links = [
     label: "Products",
     Icon: () => <AiFillProduct className="w-6 h-6" />,
   },
-  /*  {
-    href: "/orders",
-    label: "Orders",
-    Icon: () => <LuListOrdered className="w-6 h-6" />,
-  }, */
-  /*  {
-    href: "/ordersdetails",
-    label: "Orders Detail",
-    Icon: () => <LuListOrdered className="w-6 h-6" />,
-  }, */
-  /*  {
-    href: "/productdetails",
-    label: "Products Detail",
-    Icon: () => <AiFillProduct className="w-6 h-6" />,
-  }, */
   {
     href: "/categories",
     label: "Category",
     Icon: () => <BiCategory className="w-6 h-6" />,
   },
-  /* {
-    href: "/addproduct",
-    label: "Add Products",
-    Icon: () => <IoMdAddCircle className="w-6 h-6" />,
-  }, */
   {
     href: "/media",
     label: "Media",
     Icon: () => <MdPermMedia className="w-6 h-6" />,
   },
+
+  {
+    href: "/orders",
+    label: "Orders",
+    Icon: () => <LuListOrdered className="w-6 h-6" />,
+  },
+  {
+    href: "/banner",
+    label: "Banner",
+    Icon: () => <LuListOrdered className="w-6 h-6" />,
+  },
+  /*  {
+    href: "/productdetails",
+    label: "Products Detail",
+    Icon: () => <AiFillProduct className="w-6 h-6" />,
+  }, */
+
+  /* {
+    href: "/addproduct",
+    label: "Add Products",
+    Icon: () => <IoMdAddCircle className="w-6 h-6" />,
+  }, */
+
   /*  {
     href: "/banner",
     label: "Add Banner",
@@ -62,6 +66,11 @@ const links = [
     label: "Users",
     Icon: () => <FaUsersCog className="w-6 h-6" />,
   }, */
+  {
+    href: "/file-check",
+    label: "File Check",
+    Icon: () => <FaFileCircleCheck className="w-6 h-6" />,
+  },
 ];
 
 const Sidebar = ({ hideSidebar, toggleSidebar, isOpen, setIsOpen }) => {
@@ -99,8 +108,8 @@ const Sidebar = ({ hideSidebar, toggleSidebar, isOpen, setIsOpen }) => {
             width: hideSidebar ? "5rem" : "15rem",
           }}
         >
-          <a
-            href="index.html"
+          <Link
+            href="/"
             className={`header-logo ${
               hideSidebar ? " opacity-0 invisible" : " opacity-100 visible"
             }"`}
@@ -112,7 +121,7 @@ const Sidebar = ({ hideSidebar, toggleSidebar, isOpen, setIsOpen }) => {
                 className="desktop-dark"
               />
             )}
-          </a>
+          </Link>
         </div>
         {/*  <!-- End::main-sidebar-header -->
 

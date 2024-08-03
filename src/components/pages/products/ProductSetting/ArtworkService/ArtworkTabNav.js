@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 
 const ArtworkTabNav = ({ row, activeArtwork, setActiveArtwork }) => {
-  const [showId, setShowId] = useState(null);
-
-  console.log(activeArtwork);
+  const [showId, setShowId] = useState(row.id);
+  console.log(showId);
 
   return (
     <>
       <div
         key={row.id}
-        className={`flex items-center px-3 cursor-pointer rounded-sm hover:text-white justify-between py-2 mt-2 border-b border-defaultborder hover:bg-[#8614bb] ${
-          activeArtwork?.id === row?.id && "bg-[#8614bb] text-white"
+        className={`flex items-center px-3 cursor-pointer rounded-sm hover:text-white justify-between py-2 mt-2 border-b border-defaultborder hover:bg-primary ${
+          activeArtwork?.id === row?.id && "bg-primary text-white"
         }`}
       >
         <div
@@ -47,8 +46,8 @@ const ArtworkTabNav = ({ row, activeArtwork, setActiveArtwork }) => {
         row?.children.map((child) => (
           <div
             key={child.id}
-            className={` flex items-center px-3 cursor-pointer rounded-sm hover:text-white justify-between py-2 mt-2 border-b border-defaultborder hover:bg-[#8614bb] ${
-              activeArtwork?.id === child.id && "bg-[#8614bb] text-white"
+            className={` flex items-center px-3 cursor-pointer rounded-sm hover:text-white justify-between py-2 mt-2 border-b border-defaultborder hover:bg-primary ${
+              activeArtwork?.id === child.id && "bg-primary text-white"
             } ${showId === row.id ? "flex " : "hidden"}`}
             onClick={() => {
               setActiveArtwork(child);

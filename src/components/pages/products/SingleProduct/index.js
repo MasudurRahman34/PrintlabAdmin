@@ -33,11 +33,11 @@ const SingleProduct = () => {
   });
 
   return (
-    <div className="grid grid-cols-12 gap-3 px-5 mt-5 bg-[#F0F1F7] mb-[50px]">
-      <div className="col-span-12 xxl:col-span-4 xl:col-span-6">
+    <div className="grid grid-cols-12 gap-3  mt-5 bg-[#F0F1F7] mb-[50px]">
+      <div className="col-span-12 lg:col-span-4">
         <AddProductleft />
       </div>
-      <div className="col-span-12  xxl:col-span-5 xl:col-span-6">
+      <div className="col-span-12 lg:col-span-4 ">
         <AddProductmiddle
           data={data?.data}
           isLoading={isLoading}
@@ -45,7 +45,7 @@ const SingleProduct = () => {
           isError={isError}
         />
       </div>
-      <div className="w-full col-span-12 rounded-md xxl:col-span-3 xl:col-span-6">
+      <div className="col-span-12 lg:col-span-4">
         <AccordionsCard
           data={data?.data}
           isLoading={isLoading}
