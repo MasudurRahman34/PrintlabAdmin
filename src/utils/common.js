@@ -6,7 +6,7 @@ export const formateDate = (date) => {
   const month = new Date(date).getMonth();
   const day = new Date(date).getDate();
 
-  return `${fullDate}, ${year}-${month}-${day}`;
+  return ` ${day}-${month}-${year}`;
 };
 
 export const formatPrice = (price) => {

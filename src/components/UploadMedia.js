@@ -64,7 +64,7 @@ const UploadMedia = ({ refetch }) => {
 
                   axios
                     .post(
-                      "https://printlabapi.devtaijul.com/api/v1/media",
+                      `${process.env.NEXT_PUBLIC_BACKEND_URL}/media`,
                       formData
                     )
                     .then((res) => {

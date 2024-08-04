@@ -1,4 +1,5 @@
 import { useAuth } from "@/hooks/useAuth";
+import useToastMessage from "@/hooks/useToastMessage";
 import { connectFileCheckOptionAttributeOptionMutation } from "@/resolvers/mutation";
 import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
@@ -10,6 +11,7 @@ const FileConnect = ({
   attribute_options = [],
   connected_check_refetch,
 }) => {
+  const showToastMessage = useToastMessage();
   const { session } = useAuth();
   const { mutate, isPending } = useMutation({
     mutationKey: "connectFileCheckOption",

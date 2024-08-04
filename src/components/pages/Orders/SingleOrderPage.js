@@ -1,6 +1,4 @@
 import OrdersList from "@/components/ui/OrdersList";
-import Ordertraking from "@/components/ui/Ordertraking";
-import UserDetails from "@/components/ui/UserDetails";
 import { useAuth } from "@/hooks/useAuth";
 import { getOrderById } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
