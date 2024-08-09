@@ -4,7 +4,7 @@ import { getAllOrders } from "@/resolvers/query";
 import { formateDate, formatPrice } from "@/utils/common";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const TableData = ({}) => {
   const { session } = useAuth();
@@ -14,6 +14,16 @@ const TableData = ({}) => {
     queryFn: () => getAllOrders({ page, token: session?.token }),
     enabled: !!session?.token || !!page,
   });
+
+  const handlePageChange = ({ page }) => {
+    console.log(page);
+
+    setPage(page);
+  };
+
+  useEffect(() => {
+    refetch();
+  }, [page]);
 
   return (
     <div className="box-body">
@@ -68,7 +78,11 @@ const TableData = ({}) => {
           </tbody>
         </table>
       </div>
-      <div>{isSuccess && <Pagination meta={data.meta} />}</div>
+      <div>
+        {isSuccess && (
+          <Pagination meta={data.meta} paginationFn={handlePageChange} />
+        )}
+      </div>
     </div>
   );
 };

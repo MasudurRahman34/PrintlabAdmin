@@ -6,6 +6,7 @@ import React, { useState } from "react";
 
 const OrderItemCard = ({ item, refetch }) => {
   const { isAuthenticated, session } = useAuth();
+  console.log(item);
 
   const handleDownload = async (url, filename, fileExtension) => {
     try {
@@ -114,6 +115,12 @@ const OrderItemCard = ({ item, refetch }) => {
                 <h1 className="text-lg font-semibold">Delivery By</h1>
                 <p className="text-sm">{formateDate(item.delivery_date)}</p>
               </div>
+              {item.tracking_number && (
+                <div className="">
+                  <h1 className="text-lg font-semibold">Tracking Number</h1>
+                  <p className="text-sm">{item.tracking_number}</p>
+                </div>
+              )}
             </div>
             <div className="w-full col-span-12 p-4 bg-white md:col-span-2">
               <h1 className="text-lg font-semibold">File</h1>

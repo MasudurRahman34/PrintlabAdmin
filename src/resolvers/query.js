@@ -76,7 +76,7 @@ export const getAllConnectedFileCheckOptionsQuery = async ({ token }) =>
 
 export const getAllOrders = async ({ page = 1, token }) =>
   axios
-    .get(`${backendUrl}/orders`, {
+    .get(`${backendUrl}/orders?page=${page}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
