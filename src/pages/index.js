@@ -1,8 +1,10 @@
+import MetaData from "@/components/MetaData";
 import AdminLayout from "@/layout/AdminLayout";
 
 const Home = () => {
   return (
     <AdminLayout>
+      <MetaData title="Home" />
       <div className="grid grid-cols-12 mt-5 gap-x-6">
         {/* left section */}
         <div className="col-span-12 xxl:col-span-9 xl:col-span-9">

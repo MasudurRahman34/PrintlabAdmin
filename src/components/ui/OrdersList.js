@@ -1,36 +1,9 @@
+import OrderItemFile from "../pages/Orders/OrderItemFile";
 import OrderStatusUpdate from "../pages/Orders/OrderStatusUpdate";
-import { useAuth } from "@/hooks/useAuth";
 import { formateDate, formatPrice } from "@/utils/common";
-import axios from "axios";
 import React, { useState } from "react";
 
 const OrderItemCard = ({ item, refetch }) => {
-  const { isAuthenticated, session } = useAuth();
-  console.log(item);
-
-  const handleDownload = async (url, filename, fileExtension) => {
-    try {
-      const response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${session?.token}`,
-        },
-        responseType: "blob",
-      });
-
-      const result = await response.data;
-
-      const blob = new Blob([result]);
-      const link = document.createElement("a");
-      link.href = window.URL.createObjectURL(blob);
-      link.download = `${filename}`;
-
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } catch (error) {
-      console.error("Download failed", error);
-    }
-  };
   return (
     <div
       className={` mb-4 overflow-hidden border rounded  border-gray-100 w-full bg-white`}
@@ -122,40 +95,7 @@ const OrderItemCard = ({ item, refetch }) => {
                 </div>
               )}
             </div>
-            <div className="w-full col-span-12 p-4 bg-white md:col-span-2">
-              <h1 className="text-lg font-semibold">File</h1>
-              <div>
-                {item?.file ? (
-                  <div>
-                    <button
-                      onClick={() => {
-                        handleDownload(
-                          item.file.url,
-                          item.file.slug,
-                          item.file.extension
-                        );
-                      }}
-                      className="flex items-center w-12 gap-2 p-2 bg-gray-200 rounded"
-                    >
-                      <img
-                        src={
-                          item.file.extension === "pdf"
-                            ? "/assets/img/icons8-pdf-96.png"
-                            : "/assets/img/icons8-docs-480.png"
-                        }
-                        alt="Docs"
-                      />
-                    </button>
-                    {item.file.is_force_upload === 1 && (
-                      <p className="text-red-500">Force Uploaded</p>
-                    )}
-                  </div>
-                ) : (
-                  "No File Attached"
-                )}
-              </div>
-              <div></div>
-            </div>
+            <OrderItemFile item={item} />
           </div>
           <OrderStatusUpdate item={item} refetch={refetch} />
         </div>
