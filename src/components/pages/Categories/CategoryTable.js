@@ -11,9 +11,9 @@ const CategoryTable = ({ data, refetch }) => {
           </div>
           <div className="box-body">
             <div className="mb-4 table-responsive">
-              <table className="table min-w-full whitespace-nowrap table-bordered">
+              <table className="table min-w-full border whitespace-nowrap table-hover table-bordered">
                 <thead>
-                  <tr>
+                  <tr className="bg-gray-200 border border-solid border-inherit dark:border-defaultborder/10">
                     <th scope="col" className="text-start">
                       Image
                     </th>

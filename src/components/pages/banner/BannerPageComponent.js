@@ -90,13 +90,13 @@ const BannerPageComponent = () => {
 
                           <td>
                             <div className="flex flex-row items-center !gap-2 text-[0.9375rem]">
-                              <a
+                              {/* <a
                                 aria-label="anchor"
                                 href="edit-products.html"
                                 className="ti-btn ti-btn-wave  !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-info/10 text-info hover:bg-info hover:text-white hover:border-info"
                               >
                                 <i className="ri-pencil-line"></i>
-                              </a>
+                              </a> */}
                               <DeleteBanner id={item.id} refetch={refetch} />
                             </div>
                           </td>

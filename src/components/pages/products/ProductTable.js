@@ -44,9 +44,9 @@ const ProductTable = () => {
   return (
     <div class="box-body">
       <div className="mb-4 table-responsive">
-        <table className="table min-w-full whitespace-nowrap table-bordered">
+        <table className="table min-w-full border whitespace-nowrap table-hover table-bordered">
           <thead>
-            <tr>
+            <tr className="bg-gray-200 border border-solid border-inherit dark:border-defaultborder/10">
               <th scope="col" className="text-start">
                 Image
               </th>
@@ -65,7 +65,10 @@ const ProductTable = () => {
           </thead>
           <tbody>
             {data?.data.map((item) => (
-              <tr className="product-list" key={item.id}>
+              <tr
+                className="border border-solid product-list border-inherit hover:bg-gray-100 dark:border-defaultborder/10 dark:hover:bg-light"
+                key={item.id}
+              >
                 <td>
                   <div className="flex items-center">
                     <div className="me-2">

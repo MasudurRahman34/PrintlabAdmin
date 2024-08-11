@@ -10,8 +10,10 @@ export const getAllMedia = async ({ current_page = 1 }) =>
 export const getMediaById = async (id) =>
   axios.get(`${backendUrl}/media/${id}`).then((res) => res.data);
 
-export const getAllCategories = async () =>
-  await axios.get(`${backendUrl}/categories`).then((res) => res.data);
+export const getAllCategories = async ({ page = 1 }) =>
+  await axios
+    .get(`${backendUrl}/categories?page=${page}`)
+    .then((res) => res.data);
 
 export const getSingleCategoryQuery = async (slug) =>
   axios.get(`${backendUrl}/categories/${slug}`).then((res) => res.data);

@@ -1,5 +1,5 @@
+import Pagination from "./Pagination";
 import CreateProductModal from "./pages/products/CreateProductModal";
-import Pagination from "./ui/Pagination";
 import SingleProducttable from "./ui/SingleProducttable";
 import { getAllProducts } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
@@ -9,22 +9,28 @@ import { useState } from "react";
 const AddProductleft = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const router = useRouter();
-  const { page } = router.query;
+  const [page, setPage] = useState(1);
   const [searchitem, setSearchItem] = useState("");
   const {
     data: productss,
     isLoading,
     isError,
+    isSuccess,
     refetch,
   } = useQuery({
-    queryKey: ["getProductsQuery"],
-    queryFn: getAllProducts,
+    queryKey: ["getProductsQuery", page],
+    queryFn: () => getAllProducts({ page }),
+    enabled: !!page,
   });
   if (isLoading) {
     return <div>Loading</div>;
   }
   const handleSearchChange = (event) => {
     setSearchItem(event.target.value);
+  };
+
+  const handlePageChange = (page) => {
+    setPage(page);
   };
 
   return (
@@ -81,7 +87,9 @@ const AddProductleft = () => {
             </tbody>
           </table>
         </div>
-        <Pagination links={productss.links} />
+        {isSuccess && (
+          <Pagination meta={productss?.meta} paginationFn={handlePageChange} />
+        )}
       </div>
     </>
   );

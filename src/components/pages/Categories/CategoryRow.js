@@ -16,7 +16,10 @@ const CategoryRow = ({ item, refetch }) => {
   console.log(profileImg(item?.media));
   return (
     <>
-      <tr className="product-list" key={item.id}>
+      <tr
+        className="border border-solid product-list border-inherit hover:bg-gray-100 dark:border-defaultborder/10 dark:hover:bg-light"
+        key={item.id}
+      >
         <td>
           <div className="flex items-center">
             <div className="me-2">
@@ -57,7 +60,10 @@ const CategoryRow = ({ item, refetch }) => {
       </tr>
       {item.children.length > 0 &&
         item.children.map((child) => (
-          <tr className="product-list" key={child.id}>
+          <tr
+            className="border border-solid product-list border-inherit hover:bg-gray-100 dark:border-defaultborder/10 dark:hover:bg-light"
+            key={child.id}
+          >
             <td>
               <div className="flex items-center">
                 <div className="me-2">

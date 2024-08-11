@@ -6,7 +6,7 @@ const Pagination = ({ meta, paginationFn }) => {
   }, [meta]);
 
   return (
-    <div className="box-footer">
+    <div className="flex items-center justify-center box-footer md:block">
       <div className="items-center sm:flex">
         <div className="text-defaulttextcolor dark:text-defaulttextcolor/70">
           Showing {meta.from} to {meta.to} of {meta.total} entries
