@@ -1,7 +1,7 @@
-import TableData from "./TableData";
+import CartsTable from "./CartsTable";
 import React from "react";
 
-const OrderComponents = () => {
+const CartsComponent = () => {
   return (
     <div>
       <div className="justify-between block page-header md:flex">
@@ -34,7 +34,7 @@ const OrderComponents = () => {
         <div className="grid grid-cols-12 gap-x-6">
           <div className="col-span-12 xl:col-span-12">
             <div className="box">
-              <TableData />
+              <CartsTable />
             </div>
           </div>
         </div>
@@ -43,4 +43,4 @@ const OrderComponents = () => {
   );
 };
 
-export default OrderComponents;
+export default CartsComponent;

@@ -108,14 +108,29 @@ const OrderItemsTableData = ({}) => {
                       className="border border-solid product-list border-inherit hover:bg-gray-100 dark:border-defaultborder/10 dark:hover:bg-light"
                       key={item.id}
                     >
-                      <td>{item.id}</td>
+                      <td>{item.order_item_number}</td>
 
                       <td>{formateDate(item.created_at)}</td>
 
                       <td>
-                        <span className="text-warning">{item.status}</span>
+                        <span
+                          className={`px-4 py-1 rounded-md text-white ${
+                            item.status === "Processing" ||
+                            item.status === "Designing" ||
+                            item.status === "Printing"
+                              ? "bg-info"
+                              : item.status === "Pending" ||
+                                item.status === "On Hold"
+                              ? "bg-warning"
+                              : item.status === "Dispatched"
+                              ? "bg-success"
+                              : "bg-danger"
+                          }`}
+                        >
+                          {item.status}
+                        </span>
                       </td>
-                      <td>{formatPrice(item.price)}</td>
+                      <td>{formatPrice(item.total)}</td>
 
                       <td>
                         <div className="flex flex-row items-center !gap-2 text-[0.9375rem]">

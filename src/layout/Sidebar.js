@@ -49,6 +49,11 @@ const links = [
     label: "Banner",
     Icon: () => <LuListOrdered className="w-6 h-6" />,
   },
+  {
+    href: "/carts",
+    label: "Carts",
+    Icon: () => <LuListOrdered className="w-6 h-6" />,
+  },
   /*  {
     href: "/productdetails",
     label: "Products Detail",
