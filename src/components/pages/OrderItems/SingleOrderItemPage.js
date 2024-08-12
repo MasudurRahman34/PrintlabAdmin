@@ -1,20 +1,21 @@
 import Loading from "@/components/ui/Loading";
-import OrdersList from "@/components/ui/OrdersList";
+import OrdersList, { OrderItemCard } from "@/components/ui/OrdersList";
 import { useAuth } from "@/hooks/useAuth";
-import { getOrderById } from "@/resolvers/query";
+import { getOrderItemById } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import React from "react";
 
-const OrdersDetails = () => {
+const SingleOrderItemComponent = () => {
   const { session } = useAuth();
   const router = useRouter();
-  const { order_id } = router.query;
+  const { order_item_id } = router.query;
 
   const { data, isError, isLoading, refetch } = useQuery({
-    queryKey: ["get-all-orders", order_id, session?.token],
-    queryFn: () => getOrderById({ id: order_id, token: session?.token }),
-    enabled: !!session?.token && !!order_id,
+    queryKey: ["get-all-orders", order_item_id, session?.token],
+    queryFn: () =>
+      getOrderItemById({ id: order_item_id, token: session?.token }),
+    enabled: !!session?.token && !!order_item_id,
   });
 
   return (
@@ -26,7 +27,7 @@ const OrdersDetails = () => {
             Orders Details
           </h3>
         </div>
-        <ol className="flex items-center min-w-0 whitespace-nowrap">
+        {/* <ol className="flex items-center min-w-0 whitespace-nowrap">
           <li className="text-[0.813rem] ps-[0.5rem]">
             <a
               className="flex items-center truncate text-primary hover:text-primary dark:text-primary"
@@ -42,7 +43,7 @@ const OrdersDetails = () => {
           >
             Orders Details
           </li>
-        </ol>
+        </ol> */}
       </div>
 
       <div className="grid grid-cols-12 gap-x-6">
@@ -56,12 +57,7 @@ const OrdersDetails = () => {
             </div>
           ) : (
             data &&
-            data.data && (
-              <OrdersList
-                orderItems={data.data.order_items}
-                refetch={refetch}
-              />
-            )
+            data.data && <OrderItemCard item={data?.data} refetch={refetch} />
           )}
         </div>
       </div>
@@ -69,4 +65,4 @@ const OrdersDetails = () => {
   );
 };
 
-export default OrdersDetails;
+export default SingleOrderItemComponent;

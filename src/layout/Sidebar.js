@@ -40,6 +40,11 @@ const links = [
     Icon: () => <LuListOrdered className="w-6 h-6" />,
   },
   {
+    href: "/order-items",
+    label: "Order Items",
+    Icon: () => <LuListOrdered className="w-6 h-6" />,
+  },
+  {
     href: "/banner",
     label: "Banner",
     Icon: () => <LuListOrdered className="w-6 h-6" />,

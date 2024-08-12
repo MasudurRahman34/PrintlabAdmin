@@ -3,7 +3,7 @@ import OrderStatusUpdate from "../pages/Orders/OrderStatusUpdate";
 import { formateDate, formatPrice } from "@/utils/common";
 import React, { useState } from "react";
 
-const OrderItemCard = ({ item, refetch }) => {
+export const OrderItemCard = ({ item, refetch }) => {
   return (
     <div
       className={` mb-4 overflow-hidden border rounded  border-gray-100 w-full bg-white`}

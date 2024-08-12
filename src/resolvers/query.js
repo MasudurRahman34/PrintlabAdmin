@@ -88,9 +88,31 @@ export const getAllOrders = async ({ page = 1, token, start_date, end_date }) =>
     )
     .then((res) => res.data);
 
+export const getAllOrderItems = async ({
+  page = 1,
+  token,
+  start_date,
+  end_date,
+}) =>
+  axios
+    .get(
+      `${backendUrl}/order-items?page=${page}&start_date=${start_date}&end_date=${end_date}`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    )
+    .then((res) => res.data);
+
 export const getOrderById = async ({ id, token }) =>
   axios
     .get(`${backendUrl}/orders/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getOrderItemById = async ({ id, token }) =>
+  axios
+    .get(`${backendUrl}/order-items/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

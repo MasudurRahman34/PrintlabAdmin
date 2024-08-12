@@ -1,11 +1,7 @@
 import TableData from "./TableData";
-import Card from "@/components/Card";
-import { useAuth } from "@/hooks/useAuth";
 import React from "react";
 
 const OrderComponents = () => {
-  const { session } = useAuth();
-
   return (
     <div>
       <div className="justify-between block page-header md:flex">
