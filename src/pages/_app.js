@@ -6,6 +6,7 @@ import "filepond/dist/filepond.min.css";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import "react-quill/dist/quill.snow.css";
 import "gridjs/dist/theme/mermaid.css";
+import "react-datepicker/dist/react-datepicker.css";
 import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient();
@@ -14,7 +15,6 @@ export default function App({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
       <Component {...pageProps} />
-      <ReactQueryDevtools initialIsOpen={false} />
       <div
         style={{
           zIndex: 999999999999999,

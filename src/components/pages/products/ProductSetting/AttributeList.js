@@ -12,7 +12,7 @@ const AttributeList = ({
 }) => {
   return (
     <div className="flex items-center justify-between w-full mt-2">
-      <label className="text-[#333335] text-sm md:text-base w-[10%] ">
+      <label className="text-[#333335] text-sm md:text-base w-full ">
         {title}
         <AttributeManage
           attribute_id={value}

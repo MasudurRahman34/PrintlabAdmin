@@ -38,7 +38,6 @@ const CombinationRow = ({ row, idx }) => {
       { combination_id: row?.id, variables },
       {
         onSuccess: (data) => {
-          console.log(data);
           toast.success(data.message);
           // handle success here
         },

@@ -1,5 +1,6 @@
 import Pagination from "./Pagination";
 import CreateProductModal from "./pages/products/CreateProductModal";
+import Loading from "./ui/Loading";
 import SingleProducttable from "./ui/SingleProducttable";
 import { getAllProducts } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
@@ -14,6 +15,7 @@ const AddProductleft = () => {
   const {
     data: productss,
     isLoading,
+    isFetching,
     isError,
     isSuccess,
     refetch,
@@ -22,9 +24,7 @@ const AddProductleft = () => {
     queryFn: () => getAllProducts({ page }),
     enabled: !!page,
   });
-  if (isLoading) {
-    return <div>Loading</div>;
-  }
+
   const handleSearchChange = (event) => {
     setSearchItem(event.target.value);
   };
@@ -68,27 +68,39 @@ const AddProductleft = () => {
             </svg>
           </button>
         </div>
-        <div className="table-responsive mb-4 overflow-y-auto max-h-[450px] ">
-          <table className="table min-w-full table-auto whitespace-nowrap table-bordered">
-            <thead>
-              <tr>
-                <th scope="col" className="text-start ">
-                  Title
-                </th>
-                <th scope="col" className="text-start">
-                  Category
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {productss?.data?.map((product) => (
-                <SingleProducttable product={product} key={product?.title} />
-              ))}
-            </tbody>
-          </table>
-        </div>
-        {isSuccess && (
-          <Pagination meta={productss?.meta} paginationFn={handlePageChange} />
+        {isLoading || isFetching ? (
+          <Loading />
+        ) : (
+          <div>
+            <div className="table-responsive mb-4 overflow-y-auto max-h-[450px] ">
+              <table className="table min-w-full table-auto whitespace-nowrap table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col" className="text-start ">
+                      Title
+                    </th>
+                    <th scope="col" className="text-start">
+                      Category
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {productss?.data?.map((product) => (
+                    <SingleProducttable
+                      product={product}
+                      key={product?.title}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {isSuccess && (
+              <Pagination
+                meta={productss?.meta}
+                paginationFn={handlePageChange}
+              />
+            )}
+          </div>
         )}
       </div>
     </>

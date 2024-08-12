@@ -32,30 +32,15 @@ const ProductsComponent = () => {
               {" "}
               Products List
             </h3>
+          </div>
+          <div className="flex items-center gap-3">
             <button
               onClick={() => setModalIsOpen(true)}
-              className="text-sm ti-btn ti-btn-primary-full ti-btn-wave"
+              className="ti-btn ti-btn-primary"
             >
               Add Product
             </button>
           </div>
-          <ol className="flex items-center min-w-0 whitespace-nowrap">
-            <li className="text-[0.813rem] ps-[0.5rem]">
-              <a
-                className="flex items-center truncate text-primary hover:text-primary dark:text-primary"
-                href="javascript:void(0);"
-              >
-                Ecommerce
-                <i className="ti ti-chevrons-right flex-shrink-0 text-[#8c9097] dark:text-white/50 px-[0.5rem] overflow-visible rtl:rotate-180"></i>
-              </a>
-            </li>
-            <li
-              className="text-[0.813rem] text-defaulttextcolor font-semibold hover:text-primary dark:text-[#8c9097] dark:text-white/50 "
-              aria-current="page"
-            >
-              Products List
-            </li>
-          </ol>
         </div>
         {/*   <!-- Page Header Close -->
                 <!-- Start::row-1 --> */}

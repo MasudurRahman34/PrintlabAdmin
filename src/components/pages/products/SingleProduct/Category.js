@@ -1,3 +1,4 @@
+import Loading from "@/components/ui/Loading";
 import { saveProductCategoryMutation } from "@/resolvers/mutation";
 import { getAllCategories } from "@/resolvers/query";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -13,7 +14,7 @@ const CategoryComponent = ({
   // here i will save category id as Array
   const [checkedItems, setCheckedItems] = React.useState([]);
 
-  const { data, isLoading, isError, error, refetch } = useQuery({
+  const { data, isLoading, isFetching, isError, error, refetch } = useQuery({
     queryKey: ["getCategoriesQuery"],
     queryFn: getAllCategories,
   });
@@ -83,71 +84,71 @@ const CategoryComponent = ({
     }
   }, [product_data]);
 
-  if (isLoading) {
-    return <div>Loading</div>;
-  }
-
   return (
     <div
       id="hs-basic-with-title-and-arrow-stretched-collapse-one"
       className={`hs-accordion-content transition duration-300 `}
       aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one"
     >
-      <div className="text-gray-800 !py-3 !px-4 dark:text-gray-200">
-        <div className="mt-2 category-section">
-          <fieldset className="fieldset-scroll max-h-[300px] overflow-y-auto px-2 border">
-            <legend>Choose your Category:</legend>
-            {data?.data.map((item) => (
-              <div key={item.slug}>
-                <div className="flex items-center mt-1">
-                  <input
-                    type="checkbox"
-                    id={item.slug}
-                    name="scales"
-                    checked={checkedItems.includes(item.id)}
-                    onChange={() =>
-                      handleChange({
-                        category_id: item.id,
-                      })
-                    }
-                    className=" mb-1 mr-1 mt-[2px]"
-                  />
-                  <label htmlFor={item.slug}>{item.title}</label>
-                </div>
-                {item.children.map((childItem) => (
-                  <div
-                    key={childItem.slug}
-                    className="flex items-center mt-1 ml-3"
-                  >
+      {isLoading || isFetching ? (
+        <Loading />
+      ) : (
+        <div className="text-gray-800 !py-3 !px-4 dark:text-gray-200">
+          <div className="mt-2 category-section">
+            <fieldset className="fieldset-scroll max-h-[300px] overflow-y-auto px-2 border">
+              <legend>Choose your Category:</legend>
+              {data?.data.map((item) => (
+                <div key={item.slug}>
+                  <div className="flex items-center mt-1">
                     <input
                       type="checkbox"
-                      id={childItem.slug}
+                      id={item.slug}
                       name="scales"
-                      checked={checkedItems.includes(childItem.id)}
+                      checked={checkedItems.includes(item.id)}
                       onChange={() =>
                         handleChange({
-                          category_id: childItem.id,
+                          category_id: item.id,
                         })
                       }
                       className=" mb-1 mr-1 mt-[2px]"
                     />
-                    <label htmlFor={childItem.slug}>{childItem.title}</label>
+                    <label htmlFor={item.slug}>{item.title}</label>
                   </div>
-                ))}
-              </div>
-            ))}
-          </fieldset>
+                  {item.children.map((childItem) => (
+                    <div
+                      key={childItem.slug}
+                      className="flex items-center mt-1 ml-3"
+                    >
+                      <input
+                        type="checkbox"
+                        id={childItem.slug}
+                        name="scales"
+                        checked={checkedItems.includes(childItem.id)}
+                        onChange={() =>
+                          handleChange({
+                            category_id: childItem.id,
+                          })
+                        }
+                        className=" mb-1 mr-1 mt-[2px]"
+                      />
+                      <label htmlFor={childItem.slug}>{childItem.title}</label>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </fieldset>
+          </div>
+          <div className="flex items-center justify-end py-3">
+            <button
+              type="button"
+              className="ti-btn ti-btn-primary-full ti-btn-wave"
+              onClick={handleSave}
+            >
+              Save
+            </button>
+          </div>
         </div>
-        <div className="flex items-center justify-end py-3">
-          <button
-            type="button"
-            className="ti-btn ti-btn-primary-full ti-btn-wave"
-            onClick={handleSave}
-          >
-            Save
-          </button>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

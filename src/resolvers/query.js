@@ -76,13 +76,16 @@ export const getAllConnectedFileCheckOptionsQuery = async ({ token }) =>
     })
     .then((res) => res.data);
 
-export const getAllOrders = async ({ page = 1, token }) =>
+export const getAllOrders = async ({ page = 1, token, start_date, end_date }) =>
   axios
-    .get(`${backendUrl}/orders?page=${page}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    .get(
+      `${backendUrl}/orders?page=${page}&start_date=${start_date}&end_date=${end_date}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
     .then((res) => res.data);
 
 export const getOrderById = async ({ id, token }) =>

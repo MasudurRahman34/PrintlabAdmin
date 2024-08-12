@@ -1,6 +1,7 @@
 import CategoryForm from "./CategoryForm";
 import CategoryTable from "./CategoryTable";
 import Pagination from "@/components/Pagination";
+import Loading from "@/components/ui/Loading";
 import { getAllCategories } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
@@ -40,7 +41,7 @@ const CategoryIndex = () => {
 
         <div className="col-span-12 2xl:col-span-9 category-right">
           {isLoading ? (
-            <div>Loading</div>
+            <Loading />
           ) : isError ? (
             <div>Error</div>
           ) : (

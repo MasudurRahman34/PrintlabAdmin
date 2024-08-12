@@ -1,4 +1,5 @@
 import TableRow from "./TableRow";
+import Loading from "@/components/ui/Loading";
 import ModalLayout from "@/components/ui/ModalLayout";
 import { createDeliveryServiceMutation } from "@/resolvers/mutation";
 import {
@@ -77,8 +78,6 @@ const DeliveryService = ({ product_data }) => {
     }
   }, [productDeliveryServiceData, data]);
 
-  console.log(tableState);
-
   return (
     <>
       <ModalLayout
@@ -134,42 +133,40 @@ const DeliveryService = ({ product_data }) => {
           </button>
         </div>
         <div className="mt-4 table-responsive">
-          <table className="table min-w-full whitespace-nowrap table-bordered">
-            <thead>
-              <tr className="border-b border-defaultborder">
-                <th scope="col" className="text-start">
-                  Title
-                </th>
-                <th scope="col" className="text-start">
-                  Status
-                </th>
-                <th scope="col" className="text-start">
-                  Cost
-                </th>
-                <th scope="col" className="text-start">
-                  Duration
-                </th>
-                <th scope="col" className="text-start">
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {isLoading ? (
-                <tr>
-                  <td colSpan="5">Loading...</td>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <table className="table min-w-full whitespace-nowrap table-bordered">
+              <thead>
+                <tr className="border-b border-defaultborder">
+                  <th scope="col" className="text-start">
+                    Title
+                  </th>
+                  <th scope="col" className="text-start">
+                    Status
+                  </th>
+                  <th scope="col" className="text-start">
+                    Cost
+                  </th>
+                  <th scope="col" className="text-start">
+                    Duration
+                  </th>
+                  <th scope="col" className="text-start">
+                    Action
+                  </th>
                 </tr>
-              ) : (
-                tableState.map((row) => (
+              </thead>
+              <tbody>
+                {tableState.map((row) => (
                   <TableRow
                     row={row}
                     key={row.id}
                     product_id={product_data?.id}
                   />
-                ))
-              )}
-            </tbody>
-          </table>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       </section>
     </>

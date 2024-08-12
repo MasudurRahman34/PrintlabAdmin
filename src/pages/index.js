@@ -9,7 +9,7 @@ const Home = () => {
         {/* left section */}
         <div className="col-span-12 xxl:col-span-9 xl:col-span-9">
           <div className="grid grid-cols-12 gap-x-6 ">
-            <div className="col-span-12 xxl:col-span-4 xl:col-span-4">
+            {/* <div className="col-span-12 xxl:col-span-4 xl:col-span-4">
               <div className="box crm-highlight-card">
                 <div className="box-body ">
                   <div className="flex items-center justify-between">
@@ -41,10 +41,10 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* end left section */}
             {/* start middle section */}
-            <div className="col-span-12 xxl:col-span-8 xl:col-span-8">
+            <div className="col-span-12 ">
               <div className="grid grid-cols-12 gap-x-6">
                 <div className="col-span-12 xxl:col-span-6 xl:col-span-6">
                   <div className="box">

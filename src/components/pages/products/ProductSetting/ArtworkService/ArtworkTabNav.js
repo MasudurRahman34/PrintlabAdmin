@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 const ArtworkTabNav = ({ row, activeArtwork, setActiveArtwork }) => {
   const [showId, setShowId] = useState(row.id);
-  console.log(showId);
 
   return (
     <>

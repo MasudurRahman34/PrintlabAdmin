@@ -4,6 +4,7 @@ import AddProductmiddle from "./AddProductmiddle";
 import AddProductleft from "@/components/AddProductleft";
 import MetaData from "@/components/MetaData";
 import ProductData from "@/components/productdata/ProductData";
+import Loading from "@/components/ui/Loading";
 import {
   getProductCombinationQuery,
   getSingleProductQuery,
@@ -71,7 +72,7 @@ const SingleProduct = () => {
         </div>
 
         {combination_loading ? (
-          <div>Loading...</div>
+          <Loading />
         ) : combination_error ? (
           <div>Error: {combination_error.message}</div>
         ) : (

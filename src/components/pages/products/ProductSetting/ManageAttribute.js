@@ -1,5 +1,6 @@
 import AttributeList from "./AttributeList";
 import OptionAccordions from "./OptionAccordions";
+import Loading from "@/components/ui/Loading";
 import Modal from "@/components/ui/Modal";
 import {
   getCombinationTableMutation,
@@ -258,7 +259,7 @@ const ManageAttribute = ({
           <div className="p-3 box-body">
             <div id="crm-profits-earned ">
               {isLoading ? (
-                <div>Loading...</div>
+                <Loading />
               ) : isError ? (
                 <div>Error</div>
               ) : (
