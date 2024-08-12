@@ -1,3 +1,4 @@
+import useToastMessage from "@/hooks/useToastMessage";
 import { attachMediaMutation } from "@/resolvers/mutation";
 import { getAllMedia } from "@/resolvers/query";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -16,7 +17,8 @@ const MediaAttach = ({
   modalIsOpen,
   closeModal,
 }) => {
-  const [ids, setIds] = React.useState([]);
+  const showToastMessage = useToastMessage();
+  const [ids, setIds] = React.useState(selectedMedia);
 
   const { mutate, isPending } = useMutation({
     mutationKey: "attach-media",
@@ -49,6 +51,7 @@ const MediaAttach = ({
 
     if (multiple) {
       if (ids.length >= 5) {
+        showToastMessage("You can only select 5 media");
         return;
       }
 
@@ -88,18 +91,13 @@ const MediaAttach = ({
       },
       {
         onSuccess: (data) => {
-          console.log("Media attached successfully");
           closeModal();
-          handleMediaSelect({ clear: true, add: true });
           toast.success(data?.message || "Media attached successfully");
           refetch();
+          setIds([...selectedMedia]);
         },
         onError: (error) => {
-          const keys = Object.keys(error.response.data.message);
-
-          keys.map((key) => {
-            toast.error(error.response.data.message[key][0]);
-          });
+          showToastMessage(error.response.data.message);
         },
       }
     );
@@ -107,7 +105,7 @@ const MediaAttach = ({
 
   useEffect(() => {
     if (selectedMedia.length > 0) {
-      setIds(selectedMedia);
+      setIds((prev) => [...selectedMedia]);
     }
   }, [selectedMedia]);
 
@@ -116,8 +114,8 @@ const MediaAttach = ({
       isOpen={modalIsOpen}
       onAfterOpen={afterOpenModal}
       onRequestClose={() => {
+        handleMediaSelect({ clear: true });
         closeModal();
-        handleMediaSelect({ clear: true, add: true });
       }}
       className="transform -translate-x-1/2 -translate-y-1/2 bg-white border top-1/2 left-1/2 "
       style={{
