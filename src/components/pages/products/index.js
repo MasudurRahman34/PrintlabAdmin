@@ -47,39 +47,6 @@ const ProductsComponent = () => {
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 xl:col-span-12">
             <div className="box">
-              {/*  <div className="justify-between box-header">
-                <div className="space-x-2 ti-btn-list rtl:space-x-reverse ">
-                  <button
-                    type="button"
-                    className="ti-btn ti-btn-primary-full label-ti-btn"
-                  >
-                    <i className=" label-ti-btn-icon">
-                      <BsFiletypeCsv className="w-5 h-5" />
-                    </i>
-
-                    <span className="hidden md:block">Export as Cvs</span>
-                  </button>
-                  <button
-                    type="button"
-                    className="ti-btn ti-btn-secondary-full label-ti-btn"
-                  >
-                    <i className=" label-ti-btn-icon">
-                      <LuFileJson />
-                    </i>
-                    <span className="hidden md:block">Export as Json</span>
-                  </button>
-                  <button
-                    type="button"
-                    className="ti-btn ti-btn-warning-full label-ti-btn "
-                  >
-                    <i className=" label-ti-btn-icon">
-                      <FaRegFilePdf />
-                    </i>
-                    <span className="hidden md:block">Export as Pdf</span>
-                  </button>
-                </div>
-              </div> */}
-
               <ProductTable />
             </div>
           </div>

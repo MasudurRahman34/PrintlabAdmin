@@ -8,7 +8,7 @@ import React, { useState } from "react";
 
 const Media = () => {
   const [current_page, set_current_page] = useState(1);
-  const { data, isLoading, isError, error, refetch, isFetching } = useQuery({
+  const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ["get-all-media", current_page],
     queryFn: () => getAllMedia({ current_page }),
     enabled: !!current_page,
@@ -27,7 +27,7 @@ const Media = () => {
         <p className="text-sm font-bold md:text-md">All Media</p>
       </div>
       <div className="w-full h-full">
-        {isLoading || isFetching ? (
+        {isLoading ? (
           <Loading />
         ) : isError ? (
           <div className="text-red-500">{error?.message}</div>

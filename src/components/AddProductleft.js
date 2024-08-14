@@ -4,18 +4,15 @@ import Loading from "./ui/Loading";
 import SingleProducttable from "./ui/SingleProducttable";
 import { getAllProducts } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/router";
 import { useState } from "react";
 
 const AddProductleft = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const router = useRouter();
   const [page, setPage] = useState(1);
   const [searchitem, setSearchItem] = useState("");
   const {
     data: productss,
     isLoading,
-    isFetching,
     isError,
     isSuccess,
     refetch,
@@ -42,12 +39,12 @@ const AddProductleft = () => {
       />
 
       <div class="box-body bg-white">
-        <div className="flex justify-between py-3">
-          <input
+        <div className="flex justify-end py-3">
+          {/* <input
             onChange={handleSearchChange}
             placeholder="Search"
             className="text-xs rounded-md"
-          />
+          /> */}
           <button
             onClick={() => setModalIsOpen(true)}
             className="ti-btn ti-btn-primary-full ti-btn-wave"
@@ -68,7 +65,7 @@ const AddProductleft = () => {
             </svg>
           </button>
         </div>
-        {isLoading || isFetching ? (
+        {isLoading ? (
           <Loading />
         ) : (
           <div>

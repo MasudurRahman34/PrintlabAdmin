@@ -12,15 +12,12 @@ import toast from "react-hot-toast";
 
 const ProductTable = () => {
   const showToastMessage = useToastMessage();
-  const [show, setShow] = useState(true);
   const [page, setPage] = useState(1);
-  const { data, isLoading, refetch, isError, isFetching, isSuccess } = useQuery(
-    {
-      queryKey: ["get-all-products", page],
-      queryFn: () => getAllProducts({ page }),
-      enabled: !!page,
-    }
-  );
+  const { data, isLoading, refetch, isError, isSuccess } = useQuery({
+    queryKey: ["get-all-products", page],
+    queryFn: () => getAllProducts({ page }),
+    enabled: !!page,
+  });
 
   const { mutate, isPending } = useMutation({
     mutationKey: "delete-product",
@@ -46,9 +43,11 @@ const ProductTable = () => {
 
   return (
     <div class="box-body">
-      {isLoading || isFetching ? (
+      {isLoading ? (
         <Loading />
-      ) : (
+      ) : isError ? (
+        <div>Error</div>
+      ) : isSuccess ? (
         <div className="mb-4 table-responsive">
           {data?.data?.length > 0 ? (
             <div>
@@ -143,7 +142,7 @@ const ProductTable = () => {
             </div>
           )}
         </div>
-      )}
+      ) : null}
     </div>
   );
 };

@@ -14,18 +14,17 @@ const OrderItemsTableData = ({}) => {
   const [endDate, setEndDate] = useState(new Date());
   const { session } = useAuth();
   const [page, setPage] = useState(1);
-  const { data, isLoading, isError, isFetching, isSuccess, refetch, error } =
-    useQuery({
-      queryKey: ["orders", session?.token, page],
-      queryFn: () =>
-        getAllOrderItems({
-          page,
-          token: session?.token,
-          start_date: formatDateString(startDate),
-          end_date: formatDateString(endDate),
-        }),
-      enabled: !!session?.token || !!page,
-    });
+  const { data, isLoading, isError, isSuccess, refetch, error } = useQuery({
+    queryKey: ["orders", session?.token, page],
+    queryFn: () =>
+      getAllOrderItems({
+        page,
+        token: session?.token,
+        start_date: formatDateString(startDate),
+        end_date: formatDateString(endDate),
+      }),
+    enabled: !!session?.token || !!page,
+  });
 
   const handlePageChange = ({ page }) => {
     setPage(page);
@@ -75,7 +74,7 @@ const OrderItemsTableData = ({}) => {
         </div>
       </div>
       <div className="box-body">
-        {isLoading || isFetching ? (
+        {isLoading ? (
           <Loading />
         ) : data?.data?.length > 0 ? (
           <>

@@ -14,7 +14,7 @@ const CategoryComponent = ({
   // here i will save category id as Array
   const [checkedItems, setCheckedItems] = React.useState([]);
 
-  const { data, isLoading, isFetching, isError, error, refetch } = useQuery({
+  const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ["getCategoriesQuery"],
     queryFn: getAllCategories,
   });
@@ -90,7 +90,7 @@ const CategoryComponent = ({
       className={`hs-accordion-content transition duration-300 `}
       aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one"
     >
-      {isLoading || isFetching ? (
+      {isLoading ? (
         <Loading />
       ) : (
         <div className="text-gray-800 !py-3 !px-4 dark:text-gray-200">
