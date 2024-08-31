@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
+import toast from "react-hot-toast";
 
 const CartsTable = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -31,7 +32,7 @@ const CartsTable = () => {
 
   useEffect(() => {
     refetch();
-  }, [page, startDate, endDate]);
+  }, [page, startDate, endDate, refetch]);
 
   return (
     <>
