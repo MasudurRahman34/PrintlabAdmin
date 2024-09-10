@@ -11,61 +11,15 @@ const typeList = [
     id: 1,
     name: "Text",
   },
-  {
-    id: 2,
-    name: "Textarea",
-  },
+
   {
     id: 3,
     name: "Select",
   },
-  {
-    id: 4,
-    name: "Multiselect",
-  },
-  {
-    id: 5,
-    name: "Date",
-  },
-  {
-    id: 6,
-    name: "Boolean",
-  },
-  {
-    id: 7,
-    name: "Number",
-  },
-  {
-    id: 8,
-    name: "Price",
-  },
+
   {
     id: 9,
     name: "Color",
-  },
-  {
-    id: 10,
-    name: "Image",
-  },
-  {
-    id: 11,
-    name: "File",
-  },
-  {
-    id: 12,
-    name: "Gallery",
-  },
-  {
-    id: 13,
-    name: "Video",
-  },
-  {
-    id: 14,
-    name: "URL",
-  },
-  {
-    id: 15,
-    name: "Email",
   },
 ];
 
@@ -177,7 +131,7 @@ const Modal = ({ show, hideModal, refetch, attribute, attribute_id }) => {
         <div className="ti-modal-content">
           <div className="ti-modal-header">
             <h6 className="modal-title" id="staticBackdropLabel2">
-              Modal title
+              {attribute_id ? "Edit Attribute" : "Add Attribute"}
             </h6>
             <button
               type="button"

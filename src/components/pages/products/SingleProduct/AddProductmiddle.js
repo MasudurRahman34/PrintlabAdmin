@@ -73,6 +73,7 @@ const AddProductmiddle = ({ data, isLoading, isError, refetch }) => {
           </label>
           <input
             type="text"
+            name="title"
             className="block w-full text-sm rounded-md lg:text-base"
             value={state.title}
             onChange={handleChange}

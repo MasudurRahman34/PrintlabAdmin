@@ -23,7 +23,7 @@ const CategoryIndex = () => {
   return (
     <div className="px-5 py-5 bg-white ">
       <div className="grid grid-cols-12 gap-4 ">
-        <div className="col-span-12">
+        <div className="flex items-center justify-end col-span-12">
           <button
             className="px-4 py-2 text-white rounded-sm bg-primary"
             onClick={() => {
