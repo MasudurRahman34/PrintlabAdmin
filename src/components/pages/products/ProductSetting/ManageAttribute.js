@@ -19,6 +19,7 @@ const ManageAttribute = ({
   product_data,
   product_refetch,
   combination_refetch,
+  combination_data,
 }) => {
   const router = useRouter();
   const { slug } = router.query;
@@ -152,6 +153,8 @@ const ManageAttribute = ({
       }
     );
   };
+
+  const isCombinationExist = combination_data?.data?.length > 0;
 
   const handleMutate = () => {
     const form_data = new FormData();
@@ -293,30 +296,48 @@ const ManageAttribute = ({
           toggleAccordion={toggleAccordion}
         />
       </div>
-      <div className="flex items-center justify-end w-full gap-3 mt-10">
-        {productAttributeData?.data?.length > 0 && (
+      <div className="pb-3">
+        <div className="flex items-center justify-end w-full gap-3 mt-10">
+          {productAttributeData?.data?.length > 0 && (
+            <button
+              type="button"
+              className="ti-btn ti-btn-primary-full ti-btn-loader disabled:opacity-50"
+              disabled={isPending || isCombinationExist}
+              onClick={handleMutate}
+            >
+              <span class="me-2">Configure Product</span>
+              {combinationLoading ? (
+                <span class="loading">
+                  <i class="ri-loader-2-fill text-[1rem] animate-spin"></i>
+                </span>
+              ) : null}
+            </button>
+          )}
           <button
             type="button"
-            class="ti-btn ti-btn-primary-full ti-btn-loader "
-            disabled={isPending}
-            onClick={handleMutate}
+            className="ti-btn ti-btn-primary-full ti-btn-wave disabled:opacity-50"
+            disabled={isPending || isCombinationExist}
+            onClick={handleSave}
           >
-            <span class="me-2">Configure Product</span>
-            {combinationLoading ? (
-              <span class="loading">
-                <i class="ri-loader-2-fill text-[1rem] animate-spin"></i>
-              </span>
-            ) : null}
+            {isPending ? "Saving..." : "Save"}
           </button>
-        )}
-        <button
-          type="button"
-          class="ti-btn ti-btn-primary-full ti-btn-wave"
-          disabled={isPending}
-          onClick={handleSave}
-        >
-          {isPending ? "Saving..." : "Save"}
-        </button>
+        </div>
+        {productAttributeData?.data?.length > 0 ? (
+          isCombinationExist ? (
+            <div className="mt-3 text-right">
+              <p className="text-red-500">
+                Product is already configured. You can not change the attribute.
+              </p>
+            </div>
+          ) : (
+            <div className="mt-3 text-right">
+              <p className="text-red-500">
+                Once you configured the product, you can not change the
+                attribute.
+              </p>
+            </div>
+          )
+        ) : null}
       </div>
     </>
   );

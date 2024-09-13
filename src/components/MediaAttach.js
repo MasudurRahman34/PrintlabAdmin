@@ -1,9 +1,10 @@
+import Pagination from "./Pagination";
 import useToastMessage from "@/hooks/useToastMessage";
 import { attachMediaMutation } from "@/resolvers/mutation";
 import { getAllMedia } from "@/resolvers/query";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Modal from "react-modal";
 
@@ -17,6 +18,7 @@ const MediaAttach = ({
   modalIsOpen,
   closeModal,
 }) => {
+  const [current_page, set_current_page] = useState(1);
   const showToastMessage = useToastMessage();
   const [ids, setIds] = React.useState(selectedMedia);
 
@@ -68,8 +70,9 @@ const MediaAttach = ({
   };
 
   const { data, isError, isLoading, error } = useQuery({
-    queryKey: ["get-all-media"],
-    queryFn: getAllMedia,
+    queryKey: ["get-all-media", current_page],
+    queryFn: () => getAllMedia({ current_page }),
+    enabled: !!current_page,
   });
 
   const afterOpenModal = () => {
@@ -101,6 +104,11 @@ const MediaAttach = ({
         },
       }
     );
+  };
+
+  const paginateFn = ({ page }) => {
+    set_current_page(page);
+    refetch();
   };
 
   useEffect(() => {
@@ -165,7 +173,7 @@ const MediaAttach = ({
           </button>
         </div>
 
-        <div className="flex-1 w-full h-full">
+        <div className="flex-1 w-full h-full p-4">
           {isLoading ? (
             <div className="w-full h-full">
               <div class="rounded-md h-12 w-12 border-4 border-t-4 border-blue-500 animate-spin absolute"></div>
@@ -175,24 +183,29 @@ const MediaAttach = ({
           ) : data?.data.length === 0 ? (
             <div className="text-center text-gray-500">No media found</div>
           ) : (
-            <div className="flex flex-wrap items-center justify-start gap-3 py-5 ">
-              {data?.data.map((media) => (
-                <button
-                  key={media.id}
-                  className={`col-span-1 p-2 flex items-center justify-center border  bg-gray-100 rounded-md min-w-[150px] h-auto max-w-[200px] ${
-                    ids.includes(media.id) && "border-primary"
-                  }`}
-                  onClick={() => handleMediaSelect({ media_id: media.id })}
-                >
-                  <Image
-                    src={media.url}
-                    alt={media.name}
-                    className="object-cover w-32 h-32"
-                    width={200}
-                    height={200}
-                  />
-                </button>
-              ))}
+            <div>
+              <div className="flex flex-wrap items-center justify-start gap-3 py-5 ">
+                {data?.data.map((media) => (
+                  <button
+                    key={media.id}
+                    className={`col-span-1 p-2 flex items-center justify-center border  bg-gray-100 rounded-md min-w-[150px] h-auto max-w-[200px] ${
+                      ids.includes(media.id) && "border-primary"
+                    }`}
+                    onClick={() => handleMediaSelect({ media_id: media.id })}
+                  >
+                    <Image
+                      src={media.url}
+                      alt={media.name}
+                      className="object-cover w-32 h-32"
+                      width={200}
+                      height={200}
+                    />
+                  </button>
+                ))}
+              </div>
+              <div>
+                <Pagination meta={data?.meta} paginationFn={paginateFn} />
+              </div>
             </div>
           )}
         </div>
@@ -206,7 +219,7 @@ const MediaAttach = ({
               handleMediaSelect({ clear: true });
             }}
           >
-            Cancle
+            Cancel
           </button>
           <button
             type="button"

@@ -37,6 +37,7 @@ export default function ProductData({
   error,
   refetch,
   combination_refetch,
+  combination_data,
 }) {
   const router = useRouter();
   const { slug } = router.query;
@@ -96,6 +97,7 @@ export default function ProductData({
               product_isLoading={isLoading}
               product_error={error}
               product_isError={isError}
+              combination_data={combination_data}
               product_refetch={refetch}
               combination_refetch={combination_refetch}
             />

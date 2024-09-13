@@ -2,7 +2,12 @@ import ManageAttribute from "./ManageAttribute";
 import Switcher from "@/components/ui/Switcher";
 import React, { useState } from "react";
 
-const Attribute = ({ product_data, product_refetch, combination_refetch }) => {
+const Attribute = ({
+  product_data,
+  product_refetch,
+  combination_refetch,
+  combination_data,
+}) => {
   const [state, setState] = useState({
     is_attribute: true,
   });
@@ -39,6 +44,7 @@ const Attribute = ({ product_data, product_refetch, combination_refetch }) => {
             setState={setState}
             product_data={product_data}
             product_refetch={product_refetch}
+            combination_data={combination_data}
             combination_refetch={combination_refetch}
           />
         )}

@@ -68,6 +68,7 @@ const SingleProduct = () => {
             isError={isError}
             refetch={refetch}
             combination_refetch={combination_refetch}
+            combination_data={combination_data}
           />
         </div>
 
