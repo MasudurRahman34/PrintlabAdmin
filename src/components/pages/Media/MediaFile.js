@@ -4,6 +4,8 @@ import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { FaFileZipper } from "react-icons/fa6";
+import { FaFilePdf } from "react-icons/fa6";
 import Modal from "react-modal";
 
 const MediaFile = ({ media, refetch }) => {
@@ -84,13 +86,25 @@ const MediaFile = ({ media, refetch }) => {
         key={media.id}
         onClick={openModal}
       >
-        <Image
-          src={media.url}
-          width={150}
-          height={150}
-          alt={media.slug}
-          className="object-cover w-full h-full rounded-lg max-h-32"
-        />
+        {media.extension === "zip" ? (
+          <div className="flex flex-col items-center justify-center w-full h-full gap-1 bg-gray-400 rounded-xl">
+            <FaFileZipper className="w-10 h-12" />
+            <p className="text-xs text-center">{media.extension}</p>
+          </div>
+        ) : media.extension === "pdf" ? (
+          <div className="flex flex-col items-center justify-center w-full h-full gap-1 bg-gray-400 rounded-xl">
+            <FaFilePdf className="w-10 h-12" />
+            <p className="text-xs text-center">{media.extension}</p>
+          </div>
+        ) : (
+          <Image
+            src={media.url}
+            width={150}
+            height={150}
+            alt={media.slug}
+            className="object-cover w-full h-full rounded-lg max-h-32"
+          />
+        )}
       </div>
       <Modal
         isOpen={modalIsOpen}
@@ -143,13 +157,25 @@ const MediaFile = ({ media, refetch }) => {
           <hr />
           <div className="grid grid-cols-12 min-h-[88vh]">
             <div className="flex justify-center col-span-12 p-3 pr-2 lg:col-span-6">
-              <Image
-                src={media.url}
-                width={700}
-                height={700}
-                alt={media.slug}
-                className="object-cover w-full h-full rounded-lg max-w-[700px] "
-              />
+              {media.extension === "zip" ? (
+                <div className="flex flex-col items-center justify-center w-full h-full gap-1 bg-gray-400 rounded-xl">
+                  <FaFileZipper className="w-20 h-28" />
+                  <p className="text-xs text-center">{media.extension}</p>
+                </div>
+              ) : media.extension === "pdf" ? (
+                <div className="flex flex-col items-center justify-center w-full h-full gap-1 bg-gray-400 rounded-xl">
+                  <FaFilePdf className="w-20 h-28" />
+                  <p className="text-xs text-center">{media.extension}</p>
+                </div>
+              ) : (
+                <Image
+                  src={media.url}
+                  width={700}
+                  height={700}
+                  alt={media.slug}
+                  className="object-cover w-full h-full rounded-lg max-w-[700px] "
+                />
+              )}
             </div>
 
             <div className="col-span-12 p-3 bg-gray-200 lg:col-span-6">

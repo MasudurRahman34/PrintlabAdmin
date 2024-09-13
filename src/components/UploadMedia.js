@@ -1,8 +1,10 @@
+import useToastMessage from "@/hooks/useToastMessage";
 import axios from "axios";
 import React, { useState } from "react";
 import { FilePond, File, registerPlugin } from "react-filepond";
 
 const UploadMedia = ({ refetch }) => {
+  const showToastMessage = useToastMessage();
   const [files, setFiles] = useState([]);
   const [fileUploadOpen, setFileUploadOpen] = useState(false);
   const [state, setState] = useState({
@@ -68,7 +70,6 @@ const UploadMedia = ({ refetch }) => {
                       formData
                     )
                     .then((res) => {
-                      console.log(res);
                       load(res);
                       refetch();
                     })
@@ -77,6 +78,7 @@ const UploadMedia = ({ refetch }) => {
                         err?.response?.status &&
                         err?.response?.status !== 200
                       ) {
+                        showToastMessage(err?.response?.data?.message);
                         error("Error uploading file");
                       }
                     });

@@ -6,6 +6,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { FaFilePdf, FaFileZipper } from "react-icons/fa6";
 import Modal from "react-modal";
 
 const MediaAttach = ({
@@ -184,7 +185,7 @@ const MediaAttach = ({
             <div className="text-center text-gray-500">No media found</div>
           ) : (
             <div>
-              <div className="flex flex-wrap items-center justify-start gap-3 py-5 ">
+              <div className="flex flex-wrap justify-start gap-3 py-5 ">
                 {data?.data.map((media) => (
                   <button
                     key={media.id}
@@ -193,13 +194,23 @@ const MediaAttach = ({
                     }`}
                     onClick={() => handleMediaSelect({ media_id: media.id })}
                   >
-                    <Image
-                      src={media.url}
-                      alt={media.name}
-                      className="object-cover w-32 h-32"
-                      width={200}
-                      height={200}
-                    />
+                    {media.extension === "zip" ? (
+                      <div className="flex flex-col items-center justify-center w-full h-full gap-1 bg-gray-400 rounded-xl">
+                        <FaFileZipper className="w-10 h-28" />
+                      </div>
+                    ) : media.extension === "pdf" ? (
+                      <div className="flex flex-col items-center justify-center w-full h-full gap-1 bg-gray-400 rounded-xl">
+                        <FaFilePdf className="w-10 h-28" />
+                      </div>
+                    ) : (
+                      <Image
+                        src={media.url}
+                        alt={media.name}
+                        className="object-cover w-32 h-32"
+                        width={200}
+                        height={200}
+                      />
+                    )}
                   </button>
                 ))}
               </div>
