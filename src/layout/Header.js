@@ -320,7 +320,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                   aria-labelledby="dropdown-profile"
                 >
                   <ul className="text-defaulttextcolor font-medium dark:text-[#8c9097] dark:text-white/50">
-                    <li>
+                    {/* <li>
                       <a
                         className="w-full ti-dropdown-item !text-[0.8125rem] !gap-x-0  !p-[0.65rem] !inline-flex"
                         href="profile.html"
@@ -329,7 +329,7 @@ const Header = ({ toggleSidebar, hideSidebar }) => {
                         Profile
                       </a>
                     </li>
-
+ */}
                     <li>
                       <button
                         className="w-full ti-dropdown-item !text-[0.8125rem] !p-[0.65rem] !gap-x-0 !inline-flex"
