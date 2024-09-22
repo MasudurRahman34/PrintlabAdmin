@@ -5,6 +5,7 @@ import DeliveryService from "../pages/products/ProductSetting/DeliveryService";
 import Specification from "../pages/products/ProductSetting/Specification";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import QuantityRule from "../pages/products/ProductSetting/QuantityRule";
 
 const tabList = [
   {
@@ -27,6 +28,10 @@ const tabList = [
   {
     id: 3,
     name: "Attribute",
+  },
+  {
+    id: 6,
+    name: "Quantity",
   },
 ];
 
@@ -55,12 +60,12 @@ export default function ProductData({
         <p className="text-base font-medium text-black">Product data</p>
       </div>
       <div className="grid grid-cols-12 gap-5">
-        <div className="col-span-12 py-3 md:col-span-3 ">
-          <ul className="flex flex-col gap-2">
+        <div className="col-span-12 py-3 ">
+          <ul className="flex flex-col justify-between w-full gap-2 md:flex-row">
             {tabList.map((tab) => (
               <li
                 key={tab.id}
-                className={`px-3 py-2 border cursor-pointer   ${
+                className={`px-3 py-2 border cursor-pointer w-full text-center  ${
                   active === tab.name ? "text-white  bg-primary " : ""
                 }`}
                 onClick={() => setActive(tab.name)}
@@ -70,7 +75,7 @@ export default function ProductData({
             ))}
           </ul>
         </div>
-        <div className="col-span-12 md:col-span-9">
+        <div className="col-span-12">
           {active === "Artwork" && (
             <ArtworkComponent
               data={data}
@@ -118,6 +123,17 @@ export default function ProductData({
               product_id={data?.id}
               product_data={data}
               product_isLoading={isLoading}
+              product_error={error}
+              product_isError={isError}
+              product_refetch={refetch}
+              combination_refetch={combination_refetch}
+            />
+          )}
+          {active === "Quantity" && (
+            <QuantityRule
+              product_id={data?.id}
+              product_data={data}
+              isLoading={isLoading}
               product_error={error}
               product_isError={isError}
               product_refetch={refetch}

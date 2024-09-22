@@ -78,7 +78,7 @@ const SingleProduct = () => {
           <div>Error: {combination_error.message}</div>
         ) : (
           combination_data?.data.length > 0 && (
-            <div className="col-span-12 bg-white px-5 rounded-md border border-[#333335]">
+            <div className="col-span-12 bg-white md:px-5 rounded-md border border-[#333335]">
               <ConfigureTable data={combination_data} />
             </div>
           )

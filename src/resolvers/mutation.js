@@ -225,3 +225,8 @@ export const deleteBannerMutation = async ({ banner_id, token }) =>
 
 export const loginMutation = async ({ variables }) =>
   axios.post(`${backendUrl}/admin/login`, variables).then((res) => res.data);
+
+export const updateQuantityRuleMutation = async ({ variables, product_id }) =>
+  axios
+    .put(`${backendUrl}/quantity-rule/${product_id}`, variables)
+    .then((res) => res.data);

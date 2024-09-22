@@ -58,7 +58,7 @@ const CombinationRow = ({ row, idx }) => {
           <input
             type="number"
             name="price"
-            className="w-20"
+            className="w-28"
             value={state.price}
             onChange={handleChange}
           />
@@ -68,7 +68,7 @@ const CombinationRow = ({ row, idx }) => {
         <div className="flex space-x-2">
           <input
             type="number"
-            className="w-20"
+            className="w-28"
             name="quantity"
             value={state.quantity}
             onChange={handleChange}
