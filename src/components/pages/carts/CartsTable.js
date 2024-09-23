@@ -15,7 +15,7 @@ const CartsTable = () => {
   const { session } = useAuth();
   const [page, setPage] = useState(1);
   const { data, isLoading, isError, isSuccess, refetch, error } = useQuery({
-    queryKey: ["orders", session?.token, page],
+    queryKey: ["carts", session?.token, page],
     queryFn: () =>
       getAllCarts({
         page,

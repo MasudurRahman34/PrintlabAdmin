@@ -15,7 +15,7 @@ const OrderItemsTableData = ({}) => {
   const { session } = useAuth();
   const [page, setPage] = useState(1);
   const { data, isLoading, isError, isSuccess, refetch, error } = useQuery({
-    queryKey: ["orders", session?.token, page],
+    queryKey: ["order_items", session?.token, page],
     queryFn: () =>
       getAllOrderItems({
         page,

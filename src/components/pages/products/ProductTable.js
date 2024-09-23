@@ -41,6 +41,11 @@ const ProductTable = () => {
     );
   };
 
+  const paginationFn = ({ page }) => {
+    setPage(page);
+    refetch();
+  };
+
   return (
     <div class="box-body">
       {isLoading ? (
@@ -134,7 +139,9 @@ const ProductTable = () => {
                   ))}
                 </tbody>
               </table>
-              {isSuccess && <Pagination meta={data.meta} />}
+              {isSuccess && (
+                <Pagination meta={data.meta} paginationFn={paginationFn} />
+              )}
             </div>
           ) : (
             <div className="flex items-center justify-center min-h-32 ">

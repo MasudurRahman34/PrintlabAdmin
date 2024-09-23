@@ -1,13 +1,20 @@
+import { useAuth } from "@/hooks/useAuth";
+import useToastMessage from "@/hooks/useToastMessage";
 import { updateQuantityRuleMutation } from "@/resolvers/mutation";
 import { useMutation } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const UpdateTableRow = ({ row }) => {
+  const { session } = useAuth();
+  const showToastMessage = useToastMessage();
   const [state, setState] = useState({
     increment: 1,
     min_quantity: 1,
     max_quantity: 1,
     status: 1,
+    per_quantity_price: 1,
+    calculate_as: "multiply",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,16 +28,32 @@ const UpdateTableRow = ({ row }) => {
 
   const handleUpdate = () => {
     const variables = {
-      id: row?.id,
       increment: state.increment,
       min_quantity: state.min_quantity,
       max_quantity: state.max_quantity,
       status: state.status ? 1 : 0,
-      per_quantity_price: 1,
-      calculate_as: "multiply",
+      per_increament_price: state.per_quantity_price,
+      calculation_type: state.calculate_as,
     };
+
+    mutate(
+      {
+        variables,
+        quantity_id: row?.id,
+        token: session?.token,
+      },
+      {
+        onSuccess: (data) => {
+          toast.success("Updated");
+          console.log(data);
+        },
+        onError: (error) => {
+          console.log(error);
+          showToastMessage(error?.response?.data?.message);
+        },
+      }
+    );
   };
-  console.log(state);
 
   useEffect(() => {
     if (row) {
@@ -39,8 +62,8 @@ const UpdateTableRow = ({ row }) => {
         min_quantity: row?.min_quantity,
         max_quantity: row?.max_quantity,
         status: row?.status,
-        per_quantity_price: row?.per_quantity_price,
-        calculate_as: row?.calculate_as || "multiply",
+        per_quantity_price: row?.per_increament_price,
+        calculate_as: row?.calculation_type || "multiply",
       });
     }
   }, [row]);
@@ -120,6 +143,7 @@ const UpdateTableRow = ({ row }) => {
         <button
           aria-label="anchor"
           className="ti-btn ti-btn-wave  !gap-0 !m-0 !h-[1.75rem] !w-[1.75rem] text-[0.8rem] bg-info/10 text-info hover:bg-info hover:text-white hover:border-info"
+          onClick={handleUpdate}
         >
           <i className="ri-save-line"></i>
         </button>

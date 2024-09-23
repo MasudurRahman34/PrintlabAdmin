@@ -226,7 +226,24 @@ export const deleteBannerMutation = async ({ banner_id, token }) =>
 export const loginMutation = async ({ variables }) =>
   axios.post(`${backendUrl}/admin/login`, variables).then((res) => res.data);
 
-export const updateQuantityRuleMutation = async ({ variables, product_id }) =>
+export const updateQuantityRuleMutation = async ({
+  variables,
+  quantity_id,
+  token,
+}) =>
   axios
-    .put(`${backendUrl}/quantity-rule/${product_id}`, variables)
+    .put(`${backendUrl}/quantity-rule/${quantity_id}`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const createQuantityRuleMutation = async ({ variables, token }) =>
+  axios
+    .post(`${backendUrl}/quantity-rule`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then((res) => res.data);
