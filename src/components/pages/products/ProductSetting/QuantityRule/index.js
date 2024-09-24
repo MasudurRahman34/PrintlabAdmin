@@ -4,21 +4,8 @@ import UpdateTableRow from "./UpdateTableRow";
 import CreateTableRow from "./CreateTableRow";
 
 const QuantityRule = ({ product_data, isLoading }) => {
-  console.log(product_data);
-
   return (
     <section className="w-full py-3">
-      <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold">Delivery Service</h3>
-        <button
-          type="button"
-          aria-label="button"
-          className="ti-btn ti-btn-icon ti-btn-primary-full ti-btn-wave"
-          onClick={() => setShow(true)}
-        >
-          <i className="bi bi-plus-lg "></i>
-        </button>
-      </div>
       <div className="mt-4 table-responsive">
         {isLoading ? (
           <Loading />
