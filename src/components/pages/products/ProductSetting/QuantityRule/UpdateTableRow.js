@@ -5,7 +5,9 @@ import { useMutation } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-const UpdateTableRow = ({ row }) => {
+const UpdateTableRow = ({ row, refetch }) => {
+  console.log(row);
+
   const { session } = useAuth();
   const showToastMessage = useToastMessage();
   const [state, setState] = useState({
@@ -13,6 +15,7 @@ const UpdateTableRow = ({ row }) => {
     min_quantity: 1,
     max_quantity: 1,
     status: 1,
+    price_reduction_rate: 0,
     per_quantity_price: 1,
     calculate_as: "multiply",
   });
@@ -32,6 +35,7 @@ const UpdateTableRow = ({ row }) => {
       min_quantity: state.min_quantity,
       max_quantity: state.max_quantity,
       status: state.status ? 1 : 0,
+      reduction_percentage: state.price_reduction_rate,
       per_increament_price: state.per_quantity_price,
       calculation_type: state.calculate_as,
     };
@@ -44,11 +48,10 @@ const UpdateTableRow = ({ row }) => {
       },
       {
         onSuccess: (data) => {
-          toast.success("Updated");
-          console.log(data);
+          toast.success(" Quantity rule updated successfully");
+          refetch();
         },
         onError: (error) => {
-          console.log(error);
           showToastMessage(error?.response?.data?.message);
         },
       }
@@ -61,6 +64,7 @@ const UpdateTableRow = ({ row }) => {
         increment: row?.increment,
         min_quantity: row?.min_quantity,
         max_quantity: row?.max_quantity,
+        price_reduction_rate: row?.reduction_percentage,
         status: row?.status,
         per_quantity_price: row?.per_increament_price,
         calculate_as: row?.calculation_type || "multiply",
@@ -70,6 +74,28 @@ const UpdateTableRow = ({ row }) => {
 
   return (
     <tr class="border-b border-defaultborder">
+      <td>
+        {/* Cost will be a input number */}
+
+        <input
+          type="number"
+          className="w-20"
+          name="min_quantity"
+          value={state.min_quantity}
+          onChange={handleChange}
+        />
+      </td>
+      <td>
+        {/* Duration will be a input number */}
+
+        <input
+          type="number"
+          className="w-20"
+          name="max_quantity"
+          value={state.max_quantity}
+          onChange={handleChange}
+        />
+      </td>
       <td scope="row">
         <input
           type="number"
@@ -85,6 +111,15 @@ const UpdateTableRow = ({ row }) => {
           className="w-28"
           name="per_quantity_price"
           value={state.per_quantity_price}
+          onChange={handleChange}
+        />
+      </td>
+      <td scope="row">
+        <input
+          type="number"
+          className="w-28"
+          name="price_reduction_rate"
+          value={state.price_reduction_rate}
           onChange={handleChange}
         />
       </td>
@@ -112,33 +147,7 @@ const UpdateTableRow = ({ row }) => {
           Add
         </label>
       </td>
-      <td>
-        <span class="badge bg-success/10 text-success">
-          {row?.status == 1 ? "active" : "enactive"}
-        </span>
-      </td>
-      <td>
-        {/* Cost will be a input number */}
 
-        <input
-          type="number"
-          className="w-20"
-          name="min_quantity"
-          value={state.min_quantity}
-          onChange={handleChange}
-        />
-      </td>
-      <td>
-        {/* Duration will be a input number */}
-
-        <input
-          type="number"
-          className="w-20"
-          name="max_quantity"
-          value={state.max_quantity}
-          onChange={handleChange}
-        />
-      </td>
       <td>
         <button
           aria-label="anchor"

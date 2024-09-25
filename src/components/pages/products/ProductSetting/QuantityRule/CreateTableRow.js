@@ -5,7 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-const CreateTableRow = ({ product_id }) => {
+const CreateTableRow = ({ product_id, refetch }) => {
   const showToastMessage = useToastMessage();
   const { session } = useAuth();
   const [state, setState] = useState({
@@ -13,8 +13,9 @@ const CreateTableRow = ({ product_id }) => {
     per_quantity_price: 1,
     calculate_as: "multiply",
     min_quantity: 1,
+    price_reduction_rate: 0,
     max_quantity: 1,
-    status: 1,
+    status: 0,
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +34,8 @@ const CreateTableRow = ({ product_id }) => {
       min_quantity: state.min_quantity,
       max_quantity: state.max_quantity,
       status: state.status ? 1 : 0,
-      per_increament_price: state.per_quantity_price,
+      reduction_percentage: state.price_reduction_rate,
+      per_increment_price: state.per_quantity_price,
       calculation_type: state.calculate_as,
     };
 
@@ -45,10 +47,9 @@ const CreateTableRow = ({ product_id }) => {
       {
         onSuccess: (data) => {
           toast.success("Created successfully");
-          console.log(data);
+          refetch();
         },
         onError: (error) => {
-          console.log(error);
           showToastMessage(error?.response?.data?.message);
         },
       }
@@ -57,6 +58,28 @@ const CreateTableRow = ({ product_id }) => {
 
   return (
     <tr class="border-b border-defaultborder">
+      <td>
+        {/* Cost will be a input number */}
+
+        <input
+          type="number"
+          className="w-20"
+          name="min_quantity"
+          value={state.min_quantity}
+          onChange={handleChange}
+        />
+      </td>
+      <td>
+        {/* Duration will be a input number */}
+
+        <input
+          type="number"
+          className="w-20"
+          name="max_quantity"
+          value={state.max_quantity}
+          onChange={handleChange}
+        />
+      </td>
       <td scope="row">
         <input
           type="number"
@@ -72,6 +95,15 @@ const CreateTableRow = ({ product_id }) => {
           className="w-28"
           name="per_quantity_price"
           value={state.per_quantity_price}
+          onChange={handleChange}
+        />
+      </td>
+      <td scope="row">
+        <input
+          type="number"
+          className="w-28"
+          name="price_reduction_rate"
+          value={state.price_reduction_rate}
           onChange={handleChange}
         />
       </td>
@@ -99,33 +131,7 @@ const CreateTableRow = ({ product_id }) => {
           Add
         </label>
       </td>
-      <td>
-        <span class="badge bg-success/10 text-success">
-          {state?.status == 1 ? "active" : "enactive"}
-        </span>
-      </td>
-      <td>
-        {/* Cost will be a input number */}
 
-        <input
-          type="number"
-          className="w-20"
-          name="min_quantity"
-          value={state.min_quantity}
-          onChange={handleChange}
-        />
-      </td>
-      <td>
-        {/* Duration will be a input number */}
-
-        <input
-          type="number"
-          className="w-20"
-          name="max_quantity"
-          value={state.max_quantity}
-          onChange={handleChange}
-        />
-      </td>
       <td>
         <button
           aria-label="anchor"

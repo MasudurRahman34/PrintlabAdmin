@@ -1,3 +1,4 @@
+import Loader from "@/components/ui/Loader";
 import { getSingleProductQuery } from "@/resolvers/query";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
@@ -11,14 +12,16 @@ const General = () => {
     queryFn: () => getSingleProductQuery(slug),
     enabled: !!slug,
   });
-if(isLoading){
-<h1>Loading...</h1>
-}
-  let TextEditor;
-  if (typeof window !== "undefined") { TextEditor = require("@/components/TextEditor").default;
+  if (isLoading) {
+    <Loader />;
   }
-  console.log(data?.data?.specification);
-  const { technical_specification_imageUrl, details } = data?.data?.specification;
+  let TextEditor;
+  if (typeof window !== "undefined") {
+    TextEditor = require("@/components/TextEditor").default;
+  }
+
+  const { technical_specification_imageUrl, details } =
+    data?.data?.specification;
 
   return (
     <div className="general">
@@ -43,4 +46,3 @@ if(isLoading){
 };
 
 export default General;
-

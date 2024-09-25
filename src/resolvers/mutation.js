@@ -247,3 +247,12 @@ export const createQuantityRuleMutation = async ({ variables, token }) =>
       },
     })
     .then((res) => res.data);
+
+export const updateQuantityOptionsMutation = async ({ variables, token }) =>
+  axios
+    .post(`${backendUrl}/quantity-options`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
