@@ -23,9 +23,7 @@ const ConfigureTable = ({ data }) => {
                     <th scope="col" class="text-start">
                       Price
                     </th>
-                    <th scope="col" class="text-start">
-                      Quantity
-                    </th>
+
                     <th scope="col" class="text-start">
                       Combination
                     </th>

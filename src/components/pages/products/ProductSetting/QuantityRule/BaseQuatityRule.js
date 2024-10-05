@@ -53,74 +53,18 @@ const BaseQuatityRule = ({ product_data, refetch }) => {
 
   return (
     <div>
-      {product_data?.productQuantityRule ? (
-        <div className="flex flex-col items-start gap-5 md:items-center md:flex-row">
-          <Switcher
-            lable="Quantity Status"
-            isChecked={status}
-            setIsChecked={() => {
-              handleStatusChange({ status: !status });
-            }}
-          />
-
-          <Switcher
-            lable="Quantity Option Status"
-            isChecked={quantityOptionStatus}
-            setIsChecked={() => {
-              handleStatusChange({
-                status: !quantityOptionStatus,
-                statusType: "quantity_option_status",
-              });
-            }}
-          />
-        </div>
-      ) : (
-        <div>
-          <h2 className="text-lg font-semibold">
-            {" "}
-            <span className="font-bold text-red-600">*</span> Create Quantity
-            Rule
-          </h2>
-        </div>
-      )}
-      <table className="table min-w-full mt-3 whitespace-nowrap table-bordered">
-        <thead>
-          <tr className="border-b border-defaultborder">
-            <th scope="col" className="text-start">
-              Min Quantity
-            </th>
-            <th scope="col" className="text-start">
-              Max Quantity
-            </th>
-            <th scope="col" className="text-start">
-              Quantity Increment
-            </th>
-            <th scope="col" className="text-start">
-              Per Increment Price
-            </th>
-            <th scope="col" className="text-start">
-              Price Reduction Rate (%)
-            </th>
-            <th scope="col" className="text-start">
-              Calculate As
-            </th>
-
-            <th scope="col" className="text-start">
-              Action
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {product_data?.productQuantityRule ? (
-            <UpdateTableRow
-              row={product_data.productQuantityRule}
-              refetch={refetch}
-            />
-          ) : (
-            <CreateTableRow product_id={product_data?.id} refetch={refetch} />
-          )}
-        </tbody>
-      </table>
+      <div className="flex flex-col items-start gap-5 md:items-center md:flex-row">
+        <Switcher
+          lable="Quantity Option Status"
+          isChecked={quantityOptionStatus}
+          setIsChecked={() => {
+            handleStatusChange({
+              status: !quantityOptionStatus,
+              statusType: "quantity_option_status",
+            });
+          }}
+        />
+      </div>
     </div>
   );
 };
