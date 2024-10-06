@@ -7,14 +7,12 @@ const QuantityTableRow = ({
     min_quantity: 1,
     max_quantity: 1,
     status: 1,
-    price_reduction_rate: 0,
     per_quantity_price: 1,
     calculation_type: "multiply",
   },
+  idx,
   setState,
 }) => {
-  console.log(state);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setState((prev) => ({ ...prev, [name]: value }));
@@ -80,10 +78,10 @@ const QuantityTableRow = ({
           <input
             type="radio"
             className="w-28"
-            name="calculation_type"
+            name={`${idx}_calculation_type`}
             value="multiply"
-            checked={state.calculation_type === "multiply"}
-            onChange={handleChange}
+            checked={state[`${idx}_calculation_type`] === "multiply"}
+            onClick={handleChange}
           />
           Multiply
         </label>
@@ -91,10 +89,10 @@ const QuantityTableRow = ({
           <input
             type="radio"
             className="w-28"
-            name="calculation_type"
+            name={`${idx}_calculation_type`}
             value="add"
-            checked={state.calculation_type === "add"}
-            onChange={handleChange}
+            checked={state[`${idx}_calculation_type`] === "add"}
+            onClick={handleChange}
           />
           Add
         </label>

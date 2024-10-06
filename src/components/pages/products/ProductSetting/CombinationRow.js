@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { updateCombinationMutation } from "@/resolvers/mutation";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 import CombinationQuantityRule from "./Combination/CombinationQuantityRule";
 import Switcher from "@/components/ui/Switcher";
-import { getTextColor } from "@/utils/common";
 
 const CombinationRow = ({ row, idx }) => {
   const [state, setState] = useState({
     price: row?.price,
     quantity: row?.quantity,
-    calculation_type: row?.calculation_type,
     increment: row?.increment,
     max_quantity: row?.max_quantity,
     min_quantity: row?.min_quantity,
@@ -19,9 +17,8 @@ const CombinationRow = ({ row, idx }) => {
     quantity_option_status: row?.quantity_option_status,
     reduction_percentage: row?.reduction_percentage,
     quantity_rule: row?.quantity_rule,
+    [`${idx}_calculation_type`]: row?.calculation_type,
   });
-
-  console.log("state", state);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -112,6 +109,15 @@ const CombinationRow = ({ row, idx }) => {
   return (
     <>
       <tr className="border-b border-defaultborder">
+        <td scope="row" className="!ps-4 !pe-5">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="checkboxNoLabel1"
+            value=""
+            aria-label="..."
+          />
+        </td>
         <td>{idx + 1}</td>
         <td>{row?.sku}</td>
         <td>
@@ -131,7 +137,6 @@ const CombinationRow = ({ row, idx }) => {
             {row?.combination_string.split(",").map((item, index) => {
               if (item.startsWith("Color : ")) {
                 const color = item.split(" : ")[1];
-                console.log("color", color);
 
                 return (
                   <>
@@ -211,6 +216,7 @@ const CombinationRow = ({ row, idx }) => {
             combination_data={row}
             state={state}
             setState={setState}
+            idx={idx}
           />
         </td>
       </tr>

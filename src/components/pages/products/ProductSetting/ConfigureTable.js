@@ -10,10 +10,19 @@ const ConfigureTable = ({ data }) => {
       <div class="w-full">
         <div class="box-body ">
           <div class="avatar-list-stacked">
-            <div class="table-responsive">
+            <div class="table-responsive max-h-[800px] overflow-y-auto scrollbar-thin">
               <table class="table whitespace-nowrap min-w-full">
                 <thead>
                   <tr class="border-b border-defaultborder">
+                    <th scope="row" className="!ps-4 !pe-5">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="checkboxNoLabel1"
+                        value=""
+                        aria-label="..."
+                      />
+                    </th>
                     <th scope="col" class="text-start">
                       S/R
                     </th>
@@ -47,6 +56,9 @@ const ConfigureTable = ({ data }) => {
                   })}
                 </tbody>
               </table>
+            </div>
+            <div>
+              <button>Delete Selected</button>
             </div>
           </div>
         </div>

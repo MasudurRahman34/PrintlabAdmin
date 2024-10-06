@@ -4,9 +4,9 @@ import QuantityTableRow from "./QuantityTableRow";
 
 const CombinationQuantityRule = ({
   combination_data,
-
   state,
   setState,
+  idx,
 }) => {
   return (
     <div>
@@ -38,6 +38,7 @@ const CombinationQuantityRule = ({
             state={state}
             setState={setState}
             row={combination_data}
+            idx={idx}
           />
         </tbody>
       </table>
