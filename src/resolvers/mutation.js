@@ -256,3 +256,18 @@ export const updateQuantityOptionsMutation = async ({ variables, token }) =>
       },
     })
     .then((res) => res.data);
+
+export const destroyQuantityOptionsMutation = async ({
+  quantity_option_ids,
+  product_id,
+  token,
+}) =>
+  axios
+    .delete(`${backendUrl}/product/${product_id}/combinations`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      data: quantity_option_ids,
+    })
+    .then((res) => res.data);

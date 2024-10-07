@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import CombinationQuantityRule from "./Combination/CombinationQuantityRule";
 import Switcher from "@/components/ui/Switcher";
 
-const CombinationRow = ({ row, idx }) => {
+const CombinationRow = ({ row, idx, combinationIds, handleAddCombination }) => {
   const [state, setState] = useState({
     price: row?.price,
     quantity: row?.quantity,
@@ -24,6 +24,8 @@ const CombinationRow = ({ row, idx }) => {
     const { name, value } = e.target;
     setState((prev) => ({ ...prev, [name]: value }));
   };
+
+  console.log("row", combinationIds.includes(row?.id));
 
   const { mutate, isPending } = useMutation({
     mutationKey: "updateCombination",
@@ -113,9 +115,10 @@ const CombinationRow = ({ row, idx }) => {
           <input
             className="form-check-input"
             type="checkbox"
-            id="checkboxNoLabel1"
-            value=""
+            id="combination_id"
+            checked={combinationIds.includes(row?.id)}
             aria-label="..."
+            onChange={() => handleAddCombination(row?.id)}
           />
         </td>
         <td>{idx + 1}</td>
@@ -168,13 +171,7 @@ const CombinationRow = ({ row, idx }) => {
             })}
           </div>
         </td>
-        <td>
-          <div className="avatar-list-stacked">
-            <span className="badge bg-primary/10 text-primary">
-              {row?.visibility.label}
-            </span>
-          </div>
-        </td>
+
         <td>
           <Switcher
             isChecked={state.quantity_rule ? true : false}
@@ -186,14 +183,7 @@ const CombinationRow = ({ row, idx }) => {
             }}
           />
         </td>
-        <td>
-          {/* Default is a radio button . where any one should be selected */}
-          <div className="avatar-list-stacked">
-            <span className="badge bg-primary/10 text-primary">
-              {row.default.label}
-            </span>
-          </div>
-        </td>
+
         <td>
           <div className="hstack flex gap-3 text-[.9375rem]">
             <button

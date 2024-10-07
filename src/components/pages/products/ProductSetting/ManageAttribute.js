@@ -12,7 +12,7 @@ import {
 } from "@/resolvers/query";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import toast from "react-hot-toast";
 
 const ManageAttribute = ({
@@ -21,9 +21,6 @@ const ManageAttribute = ({
   combination_refetch,
   combination_data,
 }) => {
-  const router = useRouter();
-  const { slug } = router.query;
-
   const [checkList, setCheckList] = React.useState([]);
   const [show, setShow] = React.useState(false);
 
@@ -45,6 +42,8 @@ const ManageAttribute = ({
     queryFn: () => getProductAttributeExistanceQuery(product_data?.id),
     enabled: !!product_data?.id,
   });
+
+  console.log(productAttributeData);
 
   // getting all attribute from here
   const { data, isLoading, isError, error, refetch } = useQuery({
@@ -181,6 +180,19 @@ const ManageAttribute = ({
     );
   };
 
+  const { isNewAttributeOption, isNewAttribute } = useMemo(() => {
+    const isNewAttributeOption = !!productAttributeData?.data?.find(
+      (option) => option.default === 1
+    );
+    const isNewAttribute = !!productAttributeData?.data?.find(
+      (option) => option.is_new_attribute === 1
+    );
+    return {
+      isNewAttributeOption,
+      isNewAttribute,
+    };
+  }, [productAttributeData?.data]);
+
   // useEffect for setting the data to the checkList
   useEffect(() => {
     if (data) {
@@ -301,8 +313,10 @@ const ManageAttribute = ({
           {productAttributeData?.data?.length > 0 && (
             <button
               type="button"
-              className="ti-btn ti-btn-primary-full ti-btn-loader disabled:opacity-50"
-              disabled={isPending || isCombinationExist}
+              className={`ti-btn  ti-btn-loader disabled:opacity-50 ${
+                isNewAttribute ? "ti-btn-danger-full" : "ti-btn-primary-full"
+              }`}
+              disabled={isPending || !isNewAttributeOption}
               onClick={handleMutate}
             >
               <span class="me-2">Configure Product</span>
@@ -316,28 +330,26 @@ const ManageAttribute = ({
           <button
             type="button"
             className="ti-btn ti-btn-primary-full ti-btn-wave disabled:opacity-50"
-            disabled={isPending || isCombinationExist}
+            disabled={isPending}
             onClick={handleSave}
           >
             {isPending ? "Saving..." : "Save"}
           </button>
         </div>
-        {productAttributeData?.data?.length > 0 ? (
-          isCombinationExist ? (
-            <div className="mt-3 text-right">
-              <p className="text-red-500">
-                Product is already configured. You can not change the attribute.
-              </p>
-            </div>
-          ) : (
-            <div className="mt-3 text-right">
-              <p className="text-red-500">
-                Once you configured the product, you can not change the
-                attribute.
-              </p>
-            </div>
-          )
-        ) : null}
+        {isNewAttribute ? (
+          <div className="mt-3 text-right">
+            <p className="text-red-500">
+              You have new attribute. If you configure then all the previous
+              data will be lost.
+            </p>
+          </div>
+        ) : (
+          <div className="mt-3 text-right">
+            <p className="text-green-800">
+              You have new option. Configure the product .
+            </p>
+          </div>
+        )}
       </div>
     </>
   );
