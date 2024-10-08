@@ -18,7 +18,6 @@ const OptionAccordions = ({
     >
       <div className="hs-accordion-group">
         {options
-          // Filter out the options that are not checked by checkedAttributesid exists in the checkedAttributes array and the checked value is true
           .filter((accordion) =>
             checkedAttributes.find((item) => item.id === accordion.id)
           )

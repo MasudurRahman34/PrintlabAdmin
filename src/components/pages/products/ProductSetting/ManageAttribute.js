@@ -43,8 +43,6 @@ const ManageAttribute = ({
     enabled: !!product_data?.id,
   });
 
-  console.log(productAttributeData);
-
   // getting all attribute from here
   const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ["attributes"],
@@ -152,8 +150,6 @@ const ManageAttribute = ({
       }
     );
   };
-
-  const isCombinationExist = combination_data?.data?.length > 0;
 
   const handleMutate = () => {
     const form_data = new FormData();
