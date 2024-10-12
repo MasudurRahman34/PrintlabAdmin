@@ -8,7 +8,7 @@ const CategorySelect = ({ selected, onChange, name = "" }) => {
     queryFn: getAllCategories,
   });
 
-  useEffect(() => {}, [selected]);
+  console.log(selected, "selected");
 
   if (isPending) return <p>Loading...</p>;
   if (isError) return <p>Error fetching categories. Please try again later</p>;

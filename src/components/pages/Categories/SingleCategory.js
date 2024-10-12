@@ -53,9 +53,12 @@ const SingleCategory = () => {
     if (formState.parent_category)
       variables.category_id = formState.parent_category;
 
+    console.log("variables", variables);
+
     mutate(
       {
         variables,
+        category_id: data?.data.id,
       },
       {
         onSuccess: () => {
@@ -88,8 +91,7 @@ const SingleCategory = () => {
   };
 
   useEffect(() => {
-    if (data) {
-      console.log(data?.data);
+    if (data?.data) {
       setFormState({
         category_name: data?.data.title,
         parent_category: data?.data.category_id,
@@ -97,7 +99,9 @@ const SingleCategory = () => {
         media_ids: data?.data.media.map((media) => media.id),
       });
     }
-  }, [data]);
+  }, [data?.data]);
+
+  console.log("formdata", formState);
 
   return (
     <>
@@ -128,9 +132,9 @@ const SingleCategory = () => {
                     Parent category
                   </label>
                   <CategorySelect
-                    value={formState.parent_category}
                     onChange={handleChange}
                     name="parent_category"
+                    selected={formState.parent_category}
                   />
                 </div>
                 <div className="col-span-12 ">

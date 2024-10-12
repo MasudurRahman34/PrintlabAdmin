@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { updateCombinationMutation } from "@/resolvers/mutation";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 import CombinationQuantityRule from "./Combination/CombinationQuantityRule";
 import Switcher from "@/components/ui/Switcher";
@@ -24,8 +25,6 @@ const CombinationRow = ({ row, idx, combinationIds, handleAddCombination }) => {
     const { name, value } = e.target;
     setState((prev) => ({ ...prev, [name]: value }));
   };
-
-  console.log("row", combinationIds.includes(row?.id));
 
   const { mutate, isPending } = useMutation({
     mutationKey: "updateCombination",
@@ -110,7 +109,11 @@ const CombinationRow = ({ row, idx, combinationIds, handleAddCombination }) => {
   // price field should be a input field to edit the price as number
   return (
     <>
-      <tr className="border-b border-defaultborder">
+      <tr
+        className={`border-b border-defaultborder ${
+          idx % 2 === 0 ? "bg-gray-300" : ""
+        }`}
+      >
         <td scope="row" className="!ps-4 !pe-5">
           <input
             className="form-check-input"
@@ -191,15 +194,19 @@ const CombinationRow = ({ row, idx, combinationIds, handleAddCombination }) => {
               className="ti-btn ti-btn-icon ti-btn-sm ti-btn-success-full"
               onClick={handleMutate}
             >
-              <i className="ri-save-line"></i>
+              {isPending ? (
+                <AiOutlineLoading3Quarters className="animate-spin" />
+              ) : (
+                <i className="ri-save-line"></i>
+              )}
             </button>
           </div>
         </td>
       </tr>
       <tr
-        className={`w-full transition-all  duration-1000 border-b border-defaultborder  ${
-          state.quantity_rule ? "h-full" : "h-0"
-        }`}
+        className={`w-full transition-all  duration-1000 border-b border-defaultborder ${
+          idx % 2 === 0 ? "bg-gray-300" : ""
+        }  ${state.quantity_rule ? "h-full" : "h-0"}`}
       >
         <td colSpan="9" className={`${state.quantity_rule ? "" : "hidden"}`}>
           <CombinationQuantityRule

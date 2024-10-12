@@ -71,11 +71,11 @@ const links = [
     label: "Add Banner",
     Icon: () => <PiFlagBannerFoldFill className="w-6 h-6" />,
   }, */
-  /* {
-    href: "/usermanagements",
-    label: "Users",
+  {
+    href: "/customers",
+    label: "Customers",
     Icon: () => <FaUsersCog className="w-6 h-6" />,
-  }, */
+  },
   {
     href: "/file-check",
     label: "File Check",
