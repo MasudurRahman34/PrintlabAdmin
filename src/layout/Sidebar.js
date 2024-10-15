@@ -54,11 +54,11 @@ const links = [
     label: "Carts",
     Icon: () => <LuListOrdered className="w-6 h-6" />,
   },
-  /*  {
-    href: "/productdetails",
-    label: "Products Detail",
+  {
+    href: "/refunds",
+    label: "Refunds",
     Icon: () => <AiFillProduct className="w-6 h-6" />,
-  }, */
+  },
 
   /* {
     href: "/addproduct",

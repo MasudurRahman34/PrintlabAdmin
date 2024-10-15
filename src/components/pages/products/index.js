@@ -13,10 +13,6 @@ import { LuFileJson } from "react-icons/lu";
 const ProductsComponent = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  /*   const [searchItem, setSearchItem] = useState(""); */
-  const router = useRouter();
-  const { page } = router.query;
-
   return (
     <>
       <CreateProductModal

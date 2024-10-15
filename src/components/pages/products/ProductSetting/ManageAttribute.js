@@ -14,6 +14,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import React, { useEffect, useState, useMemo } from "react";
 import toast from "react-hot-toast";
+import CombinationChangeAlert from "./CombinationChangeAlert";
 
 const ManageAttribute = ({
   product_data,
@@ -153,6 +154,8 @@ const ManageAttribute = ({
 
   const handleMutate = () => {
     const form_data = new FormData();
+
+    form_data.append("is_new_attribute", isNewAttribute ? 1 : 0);
 
     checkedAttributes.forEach((attribute) => {
       attribute.options.forEach((option) => {
@@ -302,6 +305,7 @@ const ManageAttribute = ({
           options={[...checkList]}
           checkedAttributes={checkedAttributes}
           toggleAccordion={toggleAccordion}
+          productAttributeData={productAttributeData}
         />
       </div>
       <div className="pb-3">
@@ -332,20 +336,11 @@ const ManageAttribute = ({
             {isPending ? "Saving..." : "Save"}
           </button>
         </div>
-        {isNewAttribute ? (
-          <div className="mt-3 text-right">
-            <p className="text-red-500">
-              You have new attribute. If you configure then all the previous
-              data will be lost.
-            </p>
-          </div>
-        ) : (
-          <div className="mt-3 text-right">
-            <p className="text-green-800">
-              You have new option. Configure the product .
-            </p>
-          </div>
-        )}
+        <CombinationChangeAlert
+          isNewAttribute={isNewAttribute}
+          isNewAttributeOption={isNewAttributeOption}
+          productAttributeData={productAttributeData}
+        />
       </div>
     </>
   );

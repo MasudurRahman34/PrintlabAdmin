@@ -9,6 +9,7 @@ const OptionAccordions = ({
   product_refetch,
   handleOptionCheck,
   attribute_refetch,
+  productAttributeData,
 }) => {
   return (
     <div
@@ -32,6 +33,7 @@ const OptionAccordions = ({
               toggleAccordion={toggleAccordion}
               product_refetch={product_refetch}
               handleOptionCheck={handleOptionCheck}
+              productAttributeData={productAttributeData}
             />
           ))}
       </div>

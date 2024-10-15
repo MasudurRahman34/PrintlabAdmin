@@ -9,6 +9,7 @@ const OptionCard = ({
   product_refetch,
   handleOptionCheck,
   attribute_refetch,
+  productAttributeData,
 }) => {
   return (
     <>
@@ -76,6 +77,7 @@ const OptionCard = ({
                     product_refetch={product_refetch}
                     attribute_refetch={attribute_refetch}
                     attribute={option}
+                    productAttributeData={productAttributeData}
                   />
                 ))}
               </div>

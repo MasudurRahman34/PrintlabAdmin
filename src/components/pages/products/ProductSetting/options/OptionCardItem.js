@@ -1,5 +1,5 @@
 import AttributeOptionManage from "./AttributeOptionManage";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
 const OptionCardItem = ({
   item,
@@ -8,7 +8,19 @@ const OptionCardItem = ({
   product_refetch,
   attribute,
   attribute_refetch,
+  productAttributeData,
 }) => {
+  console.log("productAttributeData", productAttributeData?.data);
+  console.log("item", item);
+
+  const isDefault =
+    productAttributeData &&
+    productAttributeData?.data?.find(
+      (element) => element.attribute_option_id === item.id
+    )?.default;
+
+  console.log("isDefault", isDefault);
+
   return (
     <div className="flex items-center col-span-12 px-3 py-3 border rounded-md lg:col-span-6 xl:col-span-4">
       <div className="flex w-full gap-3">
@@ -39,11 +51,14 @@ const OptionCardItem = ({
             }
           />
 
-          <div className="flex items-center gap-3">
+          <div className={`flex items-center gap-3 `}>
             {attribute.type.label === "Color" ? (
               <span
                 className="w-8 h-8 rounded-full"
                 style={{
+                  border: "3px solid ",
+                  borderColor: isDefault ? "red" : item.title,
+
                   backgroundColor: item.title,
                   width: "20px",
                   height: "20px",
@@ -51,7 +66,13 @@ const OptionCardItem = ({
                 }}
               ></span>
             ) : (
-              <p className="text-sm font-semibold text-black ">{item.title}</p>
+              <p
+                className={`text-sm font-semibold ${
+                  isDefault ? "text-red-700" : "text-black"
+                } `}
+              >
+                {item.title}
+              </p>
             )}
 
             <div className="ti-btn-group !m-0">
