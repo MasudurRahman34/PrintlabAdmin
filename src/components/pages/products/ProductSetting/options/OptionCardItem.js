@@ -10,16 +10,11 @@ const OptionCardItem = ({
   attribute_refetch,
   productAttributeData,
 }) => {
-  console.log("productAttributeData", productAttributeData?.data);
-  console.log("item", item);
-
   const isDefault =
     productAttributeData &&
     productAttributeData?.data?.find(
       (element) => element.attribute_option_id === item.id
     )?.default;
-
-  console.log("isDefault", isDefault);
 
   return (
     <div className="flex items-center col-span-12 px-3 py-3 border rounded-md lg:col-span-6 xl:col-span-4">

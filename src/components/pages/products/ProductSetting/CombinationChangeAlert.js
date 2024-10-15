@@ -6,7 +6,6 @@ const CombinationChangeAlert = ({
   isNewAttributeOption,
   productAttributeData,
 }) => {
-
   if (!isNewAttribute) {
     return (
       <div className="mt-3 text-right">
@@ -16,14 +15,17 @@ const CombinationChangeAlert = ({
       </div>
     );
   }
-  return (
-    <div className="mt-3 text-right">
-      <p className="text-red-500">
-        You have new attribute. It might be cause as mismatch the combination.
-        you need to configure the product and previus data will be lost.
-      </p>
-    </div>
-  );
+  if (!isNewAttributeOption) {
+    return (
+      <div className="mt-3 text-right">
+        <p className="text-green-800">
+          New attribute found. Configure the product .
+        </p>
+      </div>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default CombinationChangeAlert;

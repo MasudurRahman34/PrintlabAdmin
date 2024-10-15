@@ -239,6 +239,15 @@ const ManageAttribute = ({
       setCheckedAttributes(temp);
     }
   }, [productAttributeLoading]);
+
+  console.log(
+    "checkedAttributes",
+    !!combination_data?.data?.length,
+    isPending,
+    isNewAttributeOption,
+    !!combination_data?.data?.length
+  );
+
   return (
     <>
       <Modal show={show} hideModal={hideModal} refetch={refetch} />
@@ -316,7 +325,11 @@ const ManageAttribute = ({
               className={`ti-btn  ti-btn-loader disabled:opacity-50 ${
                 isNewAttribute ? "ti-btn-danger-full" : "ti-btn-primary-full"
               }`}
-              disabled={isPending || !isNewAttributeOption}
+              /* disabled={
+                isPending ||
+                isNewAttributeOption ||
+                !!combination_data?.data?.length
+              } */
               onClick={handleMutate}
             >
               <span class="me-2">Configure Product</span>
@@ -339,7 +352,6 @@ const ManageAttribute = ({
         <CombinationChangeAlert
           isNewAttribute={isNewAttribute}
           isNewAttributeOption={isNewAttributeOption}
-          productAttributeData={productAttributeData}
         />
       </div>
     </>
