@@ -170,6 +170,8 @@ const ManageAttribute = ({
       {
         onSuccess: (data) => {
           combination_refetch();
+          productAttributeRefetch();
+          refetch();
           toast.success("Product Configured successfully");
         },
         onError: (error) => {
@@ -179,18 +181,29 @@ const ManageAttribute = ({
     );
   };
 
-  const { isNewAttributeOption, isNewAttribute } = useMemo(() => {
-    const isNewAttributeOption = !!productAttributeData?.data?.find(
-      (option) => option.default === 1
-    );
-    const isNewAttribute = !!productAttributeData?.data?.find(
-      (option) => option.is_new_attribute === 1
-    );
-    return {
-      isNewAttributeOption,
-      isNewAttribute,
-    };
-  }, [productAttributeData?.data]);
+  const { isNewAttributeOption, isNewAttribute, isConfigured, isDeleted } =
+    useMemo(() => {
+      const isNewAttributeOption = !!productAttributeData?.data?.find(
+        (option) => option.default === 1
+      );
+      const isNewAttribute = !!productAttributeData?.data?.find(
+        (option) => option.is_new_attribute === 1
+      );
+
+      const isConfigured = !!productAttributeData?.data?.find(
+        (option) => option.is_configured === 0
+      );
+
+      const isDeleted = !!productAttributeData?.data?.find(
+        (option) => option.deleted_at !== null
+      );
+      return {
+        isNewAttributeOption,
+        isNewAttribute,
+        isConfigured,
+        isDeleted: !isDeleted,
+      };
+    }, [productAttributeData?.data]);
 
   // useEffect for setting the data to the checkList
   useEffect(() => {
@@ -222,31 +235,24 @@ const ManageAttribute = ({
           temp.filter((item) => item.id === attribute.attribute_id).length > 0
         ) {
           temp.forEach((item) => {
-            if (item.id === attribute.attribute_id) {
+            if (item.id === attribute.attribute_id && !attribute.deleted_at) {
               item.options.push(attribute.attribute_option_id);
             }
           });
-        }
-        // if the attribute id is not in the temp array then push the attribute id with the option id as the options
-        else {
-          temp.push({
-            id: attribute.attribute_id,
-            options: [attribute.attribute_option_id],
-          });
+        } else {
+          // if the attribute id is not in the temp array then push the attribute id with the option id as the options
+          if (!attribute.deleted_at) {
+            temp.push({
+              id: attribute.attribute_id,
+              options: [attribute.attribute_option_id],
+            });
+          }
         }
       });
 
       setCheckedAttributes(temp);
     }
   }, [productAttributeLoading]);
-
-  console.log(
-    "checkedAttributes",
-    !!combination_data?.data?.length,
-    isPending,
-    isNewAttributeOption,
-    !!combination_data?.data?.length
-  );
 
   return (
     <>
@@ -325,11 +331,7 @@ const ManageAttribute = ({
               className={`ti-btn  ti-btn-loader disabled:opacity-50 ${
                 isNewAttribute ? "ti-btn-danger-full" : "ti-btn-primary-full"
               }`}
-              /* disabled={
-                isPending ||
-                isNewAttributeOption ||
-                !!combination_data?.data?.length
-              } */
+              disabled={isPending || isConfigured || isDeleted}
               onClick={handleMutate}
             >
               <span class="me-2">Configure Product</span>
@@ -352,6 +354,8 @@ const ManageAttribute = ({
         <CombinationChangeAlert
           isNewAttribute={isNewAttribute}
           isNewAttributeOption={isNewAttributeOption}
+          isConfigured={isConfigured}
+          isDeletedAt={!isDeleted}
         />
       </div>
     </>

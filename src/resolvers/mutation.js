@@ -271,3 +271,10 @@ export const destroyQuantityOptionsMutation = async ({
       data: quantity_option_ids,
     })
     .then((res) => res.data);
+
+export const updateRefundMutation = async ({ variables, refund_id, token }) =>
+  axios.put(`${backendUrl}/refund/${refund_id}`, variables, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
