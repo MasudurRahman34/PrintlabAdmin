@@ -1,6 +1,7 @@
 import TableRow from "./TableRow";
 import Loading from "@/components/ui/Loading";
 import ModalLayout from "@/components/ui/ModalLayout";
+import useToastMessage from "@/hooks/useToastMessage";
 import { createDeliveryServiceMutation } from "@/resolvers/mutation";
 import {
   getAllDeliveryServiceQuery,
@@ -11,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const DeliveryService = ({ product_data }) => {
+  const showToastMessage = useToastMessage();
   const [tableState, setTableState] = useState([]);
   const [state, setState] = useState({
     title: "",
@@ -48,8 +50,9 @@ const DeliveryService = ({ product_data }) => {
           refetch();
         },
         onError: (error) => {
-          toast.error(error.response.data.message[0] || "An error occurred");
-          console.log(error);
+          showToastMessage(
+            error.response.data.message[0] || "An error occurred"
+          );
         },
       }
     );

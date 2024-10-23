@@ -1,4 +1,5 @@
 import ModalLayout from "@/components/ui/ModalLayout";
+import useToastMessage from "@/hooks/useToastMessage";
 import { addAttributeOptionMutation } from "@/resolvers/mutation";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
@@ -7,6 +8,7 @@ import toast from "react-hot-toast";
 
 const CreateOption = ({ option, refetch, product_refetch }) => {
   const [show, setShow] = React.useState(false);
+  const showToastMessage = useToastMessage();
 
   const [form_state, setFormState] = React.useState({
     title: "",
@@ -42,7 +44,6 @@ const CreateOption = ({ option, refetch, product_refetch }) => {
       },
       {
         onSuccess: (data) => {
-          console.log(data);
           toast.success("Option added successfully");
           hideModal();
           setFormState({
@@ -52,8 +53,7 @@ const CreateOption = ({ option, refetch, product_refetch }) => {
           refetch();
         },
         onError: (error) => {
-          console.log(error);
-          toast.error("Failed to add option");
+          showToastMessage(error.response.data.message);
         },
       }
     );
@@ -83,7 +83,6 @@ const CreateOption = ({ option, refetch, product_refetch }) => {
                 <SketchPicker
                   color={form_state.title}
                   onChange={(color) => {
-                    console.log(color);
                     setFormState({
                       ...form_state,
                       title: color.hex,

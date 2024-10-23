@@ -1,10 +1,6 @@
-import BannerImg from "./BannerImg";
 import { useState } from "react";
 
 export default function BannerTable() {
-  const [open, setopen] = useState(false);
-  console.log(open);
-
   return (
     <>
       <tbody>

@@ -101,8 +101,6 @@ const SingleCategory = () => {
     }
   }, [data?.data]);
 
-  console.log("formdata", formState);
-
   return (
     <>
       <MetaData

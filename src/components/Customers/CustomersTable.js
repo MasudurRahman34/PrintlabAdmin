@@ -1,9 +1,10 @@
 import TableRow from "./TableRow";
 import Pagination from "@/components/Pagination";
 import Loading from "@/components/ui/Loading";
+import { useAuth } from "@/hooks/useAuth";
 import useToastMessage from "@/hooks/useToastMessage";
 import { deleteProductMutation } from "@/resolvers/mutation";
-import { getAllProducts } from "@/resolvers/query";
+import { getAllCustomers } from "@/resolvers/query";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,12 +12,13 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 
 const CustomersTable = () => {
+  const { session } = useAuth();
   const showToastMessage = useToastMessage();
   const [page, setPage] = useState(1);
   const { data, isLoading, refetch, isError, isSuccess } = useQuery({
-    queryKey: ["get-all-products", page],
-    queryFn: () => getAllProducts({ page }),
-    enabled: !!page,
+    queryKey: ["get-all-customers", page, session?.token],
+    queryFn: () => getAllCustomers({ page, token: session?.token }),
+    enabled: !!page && !!session?.token,
   });
 
   const { mutate, isPending } = useMutation({
@@ -64,15 +66,18 @@ const CustomersTable = () => {
                     </th>
 
                     <th scope="col" className="text-start">
-                      Title
+                      First Name
                     </th>
                     <th scope="col" className="text-start">
-                      Category
+                      Last Name
+                    </th>
+                    <th scope="col" className="text-start">
+                      Email
                     </th>
 
-                    <th scope="col" className="text-start">
+                    {/*  <th scope="col" className="text-start">
                       Action
-                    </th>
+                    </th> */}
                   </tr>
                 </thead>
                 <tbody>
@@ -82,40 +87,32 @@ const CustomersTable = () => {
                       key={item.id}
                     >
                       <td>
-                        <div className="flex items-center">
-                          <div className="me-2">
-                            <span className="avatar avatar-md ">
-                              <Image
-                                src={
-                                  item.media.find(
-                                    (media) => media.is_profile === 1
-                                  )?.url ||
-                                  item.media[0]?.url ||
-                                  "/assets/media/placeholder.png"
-                                }
-                                alt="Product Image"
-                                width={50}
-                                height={50}
-                              />
-                            </span>
+                        {
+                          <div className="flex items-center">
+                            <div className="me-2">
+                              <div class="avatar me-2">
+                                <Image
+                                  src={
+                                    item?.image
+                                      ? item?.image
+                                      : "/assets/media/placeholder.png"
+                                  }
+                                  alt="Profile Image"
+                                  width={50}
+                                  height={50}
+                                />
+                              </div>
+                            </div>
                           </div>
-                        </div>
+                        }
                       </td>
 
-                      <td>{item.title}</td>
+                      <td>{item.first_name}</td>
 
-                      <td>
-                        {item.categories.map((category) => (
-                          <span
-                            key={category.id}
-                            className="badge bg-light text-default"
-                          >
-                            {category.title}
-                          </span>
-                        ))}
-                      </td>
+                      <td>{item.last_name}</td>
+                      <td>{item.email}</td>
 
-                      <td>
+                      {/*  <td>
                         <div className="flex flex-row items-center !gap-2 text-[0.9375rem]">
                           <Link
                             href={`/products/${item.slug}`}
@@ -134,7 +131,7 @@ const CustomersTable = () => {
                             <i class="ri-delete-bin-line"></i>
                           </button>
                         </div>
-                      </td>
+                      </td> */}
                     </tr>
                   ))}
                 </tbody>

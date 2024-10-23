@@ -33,20 +33,21 @@ const AddProductmiddle = ({ data, isLoading, isError, refetch }) => {
   useEffect(() => {
     if (data) {
       setState({
-        title: data?.title,
-        slug: data?.slug,
-        description: data?.description,
-        meta_title: data?.meta_title,
-        meta_description: data?.meta_description,
-        meta_keywords: data?.meta_keywords,
+        title: data?.title || "",
+        slug: data?.slug || "",
+        description: data?.description || "",
+        meta_title: data?.meta_title || "",
+        meta_description: data?.meta_description || "",
+        meta_keywords: data?.meta_keywords || "",
       });
     }
   }, [data]);
 
   const handleUpdate = () => {
-    const variables = {};
+    const variables = {
+      title: state.title,
+    };
 
-    if (state.title !== data.title) variables.title = state.title;
     if (state.description !== data.description)
       variables.description = state.description;
     if (state.meta_title !== data.meta_title)

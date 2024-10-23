@@ -1,3 +1,4 @@
+import useToastMessage from "@/hooks/useToastMessage";
 import {
   addAttributeMutation,
   updateAttributeMutation,
@@ -24,6 +25,7 @@ const typeList = [
 ];
 
 const Modal = ({ show, hideModal, refetch, attribute, attribute_id }) => {
+  const showToastMessage = useToastMessage();
   const [form_state, set_form_state] = useState({
     title: "",
     type: 1,
@@ -70,7 +72,6 @@ const Modal = ({ show, hideModal, refetch, attribute, attribute_id }) => {
           refetch();
         },
         onError: (err) => {
-          console.log(err);
           toast.error("Failed to add attribute");
         },
       }
@@ -98,8 +99,8 @@ const Modal = ({ show, hideModal, refetch, attribute, attribute_id }) => {
           hideModal();
           toast.success("Attribute updated Successfully");
         },
-        onError: () => {
-          toast.error("Failed to edit attribute");
+        onError: (error) => {
+          showToastMessage(error?.response?.data?.message);
         },
       }
     );

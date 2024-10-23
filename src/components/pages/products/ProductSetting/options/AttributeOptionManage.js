@@ -184,7 +184,6 @@ const AttributeOptionManage = ({
               <button
                 className="group hover:bg-gray-100 flex w-full items-center gap-2 rounded-lg py-1.5 px-3 "
                 onClick={() => {
-                  console.log("show");
                   setEditShow(true);
                 }}
               >

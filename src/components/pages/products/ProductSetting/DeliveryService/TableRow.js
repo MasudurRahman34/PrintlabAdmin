@@ -39,12 +39,10 @@ const TableRow = ({ row, product_id }) => {
       { variables, product_id },
       {
         onSuccess: (data) => {
-          console.log(data);
           toast.success("Delivery Service updated successfully");
         },
         onError: (error) => {
           toast.error(error.response.data.message[0] || "An error occurred");
-          console.log(error);
         },
       }
     );

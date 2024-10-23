@@ -1,8 +1,6 @@
 import React from "react";
 
 const ExportToCsv = ({ combination_data }) => {
-  console.log("combination_data", combination_data);
-
   const handleExportToCsv = () => {
     // handle export to csv here
     const csv = [

@@ -8,8 +8,6 @@ const CategorySelect = ({ selected, onChange, name = "" }) => {
     queryFn: getAllCategories,
   });
 
-  console.log(selected, "selected");
-
   if (isPending) return <p>Loading...</p>;
   if (isError) return <p>Error fetching categories. Please try again later</p>;
 

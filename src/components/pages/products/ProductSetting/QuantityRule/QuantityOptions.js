@@ -46,7 +46,6 @@ const QuantityOptions = ({ product_data, refetch }) => {
       variables[key] = state[key].status ? 1 : 0;
     });
 
-    console.log(variables);
     mutate(
       {
         variables,
@@ -67,7 +66,6 @@ const QuantityOptions = ({ product_data, refetch }) => {
   React.useEffect(() => {
     if (data?.data) {
       const newState = { ...state };
-      console.log(data.data);
 
       Object.keys(data?.data?.quantity_options).map((key) => {
         newState[key] = {

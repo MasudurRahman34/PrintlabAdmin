@@ -40,7 +40,7 @@ export default function LoginPage() {
       {
         onSuccess: (data) => {
           const { token, tokenType, user } = data?.data;
-          console.log(token, tokenType, user);
+
           login({ token, token_type: tokenType, user });
         },
         onError: (error) => {

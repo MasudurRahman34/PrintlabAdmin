@@ -149,3 +149,12 @@ export const getAllRefunds = async ({ page = 1, token }) =>
       },
     })
     .then((res) => res.data);
+
+export const getAllCustomers = async ({ page = 1, token }) =>
+  axios
+    .get(`${backendUrl}/customers?page=${page}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);

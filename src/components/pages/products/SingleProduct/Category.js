@@ -1,4 +1,5 @@
 import Loading from "@/components/ui/Loading";
+import useToastMessage from "@/hooks/useToastMessage";
 import { saveProductCategoryMutation } from "@/resolvers/mutation";
 import { getAllCategories } from "@/resolvers/query";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -11,6 +12,7 @@ const CategoryComponent = ({
   product_error,
   product_refetch,
 }) => {
+  const showToastMessage = useToastMessage();
   // here i will save category id as Array
   const [checkedItems, setCheckedItems] = React.useState([]);
 
@@ -66,7 +68,7 @@ const CategoryComponent = ({
           product_refetch();
         },
         onError: (error) => {
-          console.log(error);
+          showToastMessage(error?.response?.data?.message);
         },
       }
     );

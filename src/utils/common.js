@@ -1,9 +1,12 @@
 export const formateDate = (date) => {
   const options = { year: "numeric", month: "long", day: "numeric" };
 
-  const fullDate = new Date(date).toLocaleDateString("en-GB", options);
+  /*   const fullDate = new Date(Date.UTC(date)).toLocaleDateString(
+    "en-GB",
+    options
+  ); */
   const year = new Date(date).getFullYear();
-  const month = new Date(date).getMonth();
+  const month = new Date(date).getMonth() + 1;
   const day = new Date(date).getDate();
 
   return ` ${day}-${month}-${year}`;

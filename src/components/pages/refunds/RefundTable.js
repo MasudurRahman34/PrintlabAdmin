@@ -8,6 +8,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 
 import UpdateRefund from "./UpdateRefund";
+import { formateDate } from "@/utils/common";
 
 const RefundTable = () => {
   const { session } = useAuth();
@@ -38,7 +39,10 @@ const RefundTable = () => {
                 <thead>
                   <tr className="bg-gray-200 border border-solid border-inherit dark:border-defaultborder/10">
                     <th scope="col" className="text-start">
-                      Order Item ID
+                      Order Item Number
+                    </th>
+                    <th scope="col" className="text-start">
+                      Date
                     </th>
 
                     <th scope="col" className="text-start">
@@ -60,6 +64,9 @@ const RefundTable = () => {
                       key={item.id}
                     >
                       <td>{item.order_item_id}</td>
+                      <td>
+                        <p>{formateDate(item.created_at)}</p>
+                      </td>
 
                       <td>
                         <p>{item.refund_reason}</p>

@@ -6,8 +6,6 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const UpdateTableRow = ({ row, refetch }) => {
-  console.log(row);
-
   const { session } = useAuth();
   const showToastMessage = useToastMessage();
   const [state, setState] = useState({

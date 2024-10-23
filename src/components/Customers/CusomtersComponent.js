@@ -9,16 +9,8 @@ const CusomtersComponent = () => {
         <div className="flex items-center gap-3">
           <h3 className="!text-defaulttextcolor dark:!text-defaulttextcolor/70 dark:text-white dark:hover:text-white text-base font-semibold">
             {" "}
-            Products List
+            Customers List
           </h3>
-        </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => setModalIsOpen(true)}
-            className="ti-btn ti-btn-primary"
-          >
-            Add Product
-          </button>
         </div>
       </div>
       {/*   <!-- Page Header Close -->
