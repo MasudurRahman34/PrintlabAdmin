@@ -26,6 +26,8 @@ const UpdateTopListForm = ({
     type: "",
   });
 
+  console.log(topList, "categories");
+
   const { mutate, isPending } = useMutation({
     mutationKey: "update_top_list",
     mutationFn: updateTopListMutation,
@@ -128,6 +130,12 @@ const UpdateTopListForm = ({
       );
     }
 
+    if (topList?.type === "category") {
+      setSelectedValues(
+        topList?.top_listing_items.map((category) => `${category.itemable_id}`)
+      );
+    }
+
     if (topList) {
       setFormState({
         heading: topList?.heading,
@@ -136,7 +144,7 @@ const UpdateTopListForm = ({
         type: topList?.type,
       });
     }
-  }, [topList]);
+  }, [topList, products, categories]);
 
   return (
     <div className="flex flex-col gap-5">

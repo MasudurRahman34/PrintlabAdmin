@@ -186,3 +186,12 @@ export const getAllProductsWithoutPageQuery = async ({ token }) =>
       },
     })
     .then((res) => res.data);
+
+export const getAllCategoriesWithoutPageQuery = async ({ token }) =>
+  axios
+    .get(`${backendUrl}/categories?show_per_page=1000`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);

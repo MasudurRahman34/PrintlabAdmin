@@ -50,7 +50,10 @@ const TopListingItemTable = ({ items = [], refetch_top_list }) => {
                     if (item.type === "product") {
                       return (
                         <li key={innerItem.id}>
-                          <Link href={`/products/${innerItem.id}`}>
+                          <Link
+                            href={`/products/${innerItem.id}`}
+                            className="hover:underline"
+                          >
                             {innerItem.itemable.title}
                           </Link>
                         </li>
@@ -58,7 +61,10 @@ const TopListingItemTable = ({ items = [], refetch_top_list }) => {
                     } else {
                       return (
                         <li key={innerItem.id}>
-                          <Link href={`/categories/${innerItem.id}`}>
+                          <Link
+                            href={`/categories/${innerItem.id}`}
+                            className="hover:underline"
+                          >
                             {innerItem.itemable.title}
                           </Link>
                         </li>

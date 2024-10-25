@@ -1,6 +1,7 @@
 import { useAuth } from "@/hooks/useAuth";
 
 import {
+  getAllCategoriesWithoutPageQuery,
   getAllProductsWithoutPageQuery,
   getSingleTopListForProductQuery,
 } from "@/resolvers/query";
@@ -43,6 +44,20 @@ const SingleTopListPageComponent = () => {
     enabled: !!session?.token && data?.data?.type === "product",
   });
 
+  const {
+    data: categoriesData,
+    isLoading: categoryLoading,
+    isError: categoryError,
+    refetch: categoryRefetch,
+  } = useQuery({
+    queryKey: ["get-all-category-without-page", session?.token],
+    queryFn: () =>
+      getAllCategoriesWithoutPageQuery({
+        token: session?.token,
+      }),
+    enabled: !!session?.token && data?.data?.type === "category",
+  });
+
   return (
     <section>
       {isLoading || productLoading ? (
@@ -53,7 +68,7 @@ const SingleTopListPageComponent = () => {
         <UpdateTopListForm
           topList={data?.data}
           products={productData?.data}
-          categories={productData?.data}
+          categories={categoriesData?.data}
           refetch={refetch}
           refetchProduct={refetchProduct}
         />
