@@ -158,3 +158,31 @@ export const getAllCustomers = async ({ page = 1, token }) =>
       },
     })
     .then((res) => res.data);
+
+export const getTopListForProductQuery = async ({ token }) =>
+  axios
+    .get(`${backendUrl}/top-listing`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getSingleTopListForProductQuery = async ({ id, token }) => {
+  return axios
+    .get(`${backendUrl}/top-listing/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+};
+
+export const getAllProductsWithoutPageQuery = async ({ token }) =>
+  axios
+    .get(`${backendUrl}/products?show_per_page=1000`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);

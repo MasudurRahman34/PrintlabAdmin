@@ -60,11 +60,11 @@ const links = [
     Icon: () => <AiFillProduct className="w-6 h-6" />,
   },
 
-  /* {
-    href: "/addproduct",
-    label: "Add Products",
+  {
+    href: "/top-listing",
+    label: "Top Listing",
     Icon: () => <IoMdAddCircle className="w-6 h-6" />,
-  }, */
+  },
 
   /*  {
     href: "/banner",
