@@ -1,3 +1,4 @@
+import useToastMessage from "@/hooks/useToastMessage";
 import {
   createArtworkMutation,
   updateArtworkMutation,
@@ -12,6 +13,7 @@ const TextEditor = dynamic(() => import("@/components/TextEditor"), {
   ssr: false,
 });
 const Artwork = ({ data, isLoading, isError, error, refetch }) => {
+  const showToastMessage = useToastMessage();
   const [state, setState] = useState({
     artwork_template_eps_fileUrl: "",
     artwork_template_pdf_fileUrl: "",
@@ -80,7 +82,7 @@ const Artwork = ({ data, isLoading, isError, error, refetch }) => {
           refetch();
         },
         onError: (error) => {
-          toast.error("Error ");
+          showToastMessage(error?.response?.data?.message);
           console.log(error);
         },
       }
@@ -93,7 +95,12 @@ const Artwork = ({ data, isLoading, isError, error, refetch }) => {
       visibility: 1,
     };
 
-    if (state.artwork_guide) variables.artwork_guide = state.artwork_guide;
+    if (state.artwork_guide) {
+      variables.artwork_guide = state.artwork_guide;
+    } else {
+      toast.error("Artwork guide is required");
+      return;
+    }
     if (state.artwork_template_eps_fileUrl)
       variables.artwork_template_eps_fileUrl =
         state.artwork_template_eps_fileUrl;

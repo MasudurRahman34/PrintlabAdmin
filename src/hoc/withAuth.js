@@ -6,7 +6,6 @@ const withAuth = (WrappedComponent) => {
   const WithAuth = (props) => {
     const router = useRouter();
     const { isAuthenticated, isLoading, user } = useAuth();
-    console.log("isAuthenticated", isAuthenticated, isLoading);
 
     useEffect(() => {
       if (!isLoading && !isAuthenticated) {

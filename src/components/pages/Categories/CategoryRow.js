@@ -13,7 +13,6 @@ const CategoryRow = ({ item, refetch }) => {
     );
   };
 
-  console.log(profileImg(item?.media));
   return (
     <>
       <tr

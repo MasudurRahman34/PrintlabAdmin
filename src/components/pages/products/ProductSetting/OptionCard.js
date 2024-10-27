@@ -9,6 +9,7 @@ const OptionCard = ({
   product_refetch,
   handleOptionCheck,
   attribute_refetch,
+  productAttributeData,
 }) => {
   return (
     <>
@@ -66,7 +67,7 @@ const OptionCard = ({
         >
           <div className="accordion-body">
             <div>
-              <div className="grid w-full grid-cols-12 gap-5">
+              <div className="grid w-full grid-cols-12 gap-5 max-h-[300px] overflow-y-auto scrollbar-thin">
                 {option?.options?.map((item, index) => (
                   <OptionCardItem
                     item={item}
@@ -76,6 +77,7 @@ const OptionCard = ({
                     product_refetch={product_refetch}
                     attribute_refetch={attribute_refetch}
                     attribute={option}
+                    productAttributeData={productAttributeData}
                   />
                 ))}
               </div>

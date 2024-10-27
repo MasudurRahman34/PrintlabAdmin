@@ -12,7 +12,7 @@ const SingleOrderItemComponent = () => {
   const { order_item_id } = router.query;
 
   const { data, isError, isLoading, refetch } = useQuery({
-    queryKey: ["get-all-orders", order_item_id, session?.token],
+    queryKey: ["get_order_items_by_id", order_item_id, session?.token],
     queryFn: () =>
       getOrderItemById({ id: order_item_id, token: session?.token }),
     enabled: !!session?.token && !!order_item_id,

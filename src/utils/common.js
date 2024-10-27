@@ -1,9 +1,12 @@
 export const formateDate = (date) => {
   const options = { year: "numeric", month: "long", day: "numeric" };
 
-  const fullDate = new Date(date).toLocaleDateString("en-GB", options);
+  /*   const fullDate = new Date(Date.UTC(date)).toLocaleDateString(
+    "en-GB",
+    options
+  ); */
   const year = new Date(date).getFullYear();
-  const month = new Date(date).getMonth();
+  const month = new Date(date).getMonth() + 1;
   const day = new Date(date).getDate();
 
   return ` ${day}-${month}-${year}`;
@@ -56,3 +59,14 @@ export function formatDateString(dateString) {
   // Format the date as YYYY-MM-DD
   return `${year}-${month}-${day}`;
 }
+export const getTextColor = (bgColor) => {
+  const hex = bgColor.replace("#", ""); // Remove the '#' if present
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+
+  // Calculate luminance
+  const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+  // If luminance is high, return black; otherwise, return white
+  return luminance > 186 ? "#000000" : "#FFFFFF";
+};

@@ -14,18 +14,17 @@ const TableData = ({}) => {
   const [endDate, setEndDate] = useState(new Date());
   const { session } = useAuth();
   const [page, setPage] = useState(1);
-  const { data, isLoading, isError, isFetching, isSuccess, refetch, error } =
-    useQuery({
-      queryKey: ["orders", session?.token, page],
-      queryFn: () =>
-        getAllOrders({
-          page,
-          token: session?.token,
-          start_date: formatDateString(startDate),
-          end_date: formatDateString(endDate),
-        }),
-      enabled: !!session?.token || !!page,
-    });
+  const { data, isLoading, isError, isSuccess, refetch, error } = useQuery({
+    queryKey: ["orders", session?.token, page],
+    queryFn: () =>
+      getAllOrders({
+        page,
+        token: session?.token,
+        start_date: formatDateString(startDate),
+        end_date: formatDateString(endDate),
+      }),
+    enabled: !!session?.token || !!page,
+  });
 
   const handlePageChange = ({ page }) => {
     setPage(page);
@@ -75,7 +74,7 @@ const TableData = ({}) => {
         </div>
       </div>
       <div className="box-body">
-        {isLoading || isFetching ? (
+        {isLoading ? (
           <Loading />
         ) : data?.data?.length > 0 ? (
           <>
@@ -113,7 +112,18 @@ const TableData = ({}) => {
                       <td>{formateDate(item.created_at)}</td>
 
                       <td>
-                        <span className="text-warning">{item.status}</span>
+                        <span
+                          className={`px-4 py-1 rounded-md text-white ${
+                            item.status === "Pending" ||
+                            item.status === "On Hold"
+                              ? "bg-warning"
+                              : item.status === "Paid"
+                              ? "bg-success"
+                              : "bg-danger"
+                          }`}
+                        >
+                          {item.status}
+                        </span>
                       </td>
                       <td>{formatPrice(item.total_price)}</td>
 

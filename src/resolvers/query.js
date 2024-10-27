@@ -101,6 +101,14 @@ export const getAllOrderItems = async ({
     )
     .then((res) => res.data);
 
+export const getAllCarts = async ({ page = 1, token, start_date, end_date }) =>
+  axios
+    .get(
+      `${backendUrl}/carts?page=${page}&start_date=${start_date}&end_date=${end_date}`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    )
+    .then((res) => res.data);
+
 export const getOrderById = async ({ id, token }) =>
   axios
     .get(`${backendUrl}/orders/${id}`, {
@@ -122,6 +130,66 @@ export const getOrderItemById = async ({ id, token }) =>
 export const getBannersQuery = async ({ token }) =>
   axios
     .get(`${backendUrl}/banners`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getQuantityOptionsQuery = async ({ product_id }) =>
+  axios
+    .get(`${backendUrl}/quantity-options/product/${product_id}`)
+    .then((res) => res.data);
+
+export const getAllRefunds = async ({ page = 1, token }) =>
+  axios
+    .get(`${backendUrl}/refund?page=${page}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getAllCustomers = async ({ page = 1, token }) =>
+  axios
+    .get(`${backendUrl}/customers?page=${page}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getTopListForProductQuery = async ({ token }) =>
+  axios
+    .get(`${backendUrl}/top-listing`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getSingleTopListForProductQuery = async ({ id, token }) => {
+  return axios
+    .get(`${backendUrl}/top-listing/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+};
+
+export const getAllProductsWithoutPageQuery = async ({ token }) =>
+  axios
+    .get(`${backendUrl}/products?show_per_page=1000`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getAllCategoriesWithoutPageQuery = async ({ token }) =>
+  axios
+    .get(`${backendUrl}/categories?show_per_page=1000`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

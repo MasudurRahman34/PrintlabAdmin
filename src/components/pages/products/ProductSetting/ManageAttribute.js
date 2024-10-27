@@ -12,17 +12,16 @@ import {
 } from "@/resolvers/query";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import toast from "react-hot-toast";
+import CombinationChangeAlert from "./CombinationChangeAlert";
 
 const ManageAttribute = ({
   product_data,
   product_refetch,
   combination_refetch,
+  combination_data,
 }) => {
-  const router = useRouter();
-  const { slug } = router.query;
-
   const [checkList, setCheckList] = React.useState([]);
   const [show, setShow] = React.useState(false);
 
@@ -156,6 +155,8 @@ const ManageAttribute = ({
   const handleMutate = () => {
     const form_data = new FormData();
 
+    form_data.append("is_new_attribute", isNewAttribute ? 1 : 0);
+
     checkedAttributes.forEach((attribute) => {
       attribute.options.forEach((option) => {
         form_data.append(`attributes[${attribute.id}][]`, option);
@@ -169,6 +170,8 @@ const ManageAttribute = ({
       {
         onSuccess: (data) => {
           combination_refetch();
+          productAttributeRefetch();
+          refetch();
           toast.success("Product Configured successfully");
         },
         onError: (error) => {
@@ -177,6 +180,30 @@ const ManageAttribute = ({
       }
     );
   };
+
+  const { isNewAttributeOption, isNewAttribute, isConfigured, isDeleted } =
+    useMemo(() => {
+      const isNewAttributeOption = !!productAttributeData?.data?.find(
+        (option) => option.default === 1
+      );
+      const isNewAttribute = !!productAttributeData?.data?.find(
+        (option) => option.is_new_attribute === 1
+      );
+
+      const isConfigured = !!productAttributeData?.data?.find(
+        (option) => option.is_configured === 0
+      );
+
+      const isDeleted = !!productAttributeData?.data?.find(
+        (option) => option.deleted_at !== null
+      );
+      return {
+        isNewAttributeOption,
+        isNewAttribute,
+        isConfigured,
+        isDeleted: !isDeleted,
+      };
+    }, [productAttributeData?.data]);
 
   // useEffect for setting the data to the checkList
   useEffect(() => {
@@ -208,23 +235,25 @@ const ManageAttribute = ({
           temp.filter((item) => item.id === attribute.attribute_id).length > 0
         ) {
           temp.forEach((item) => {
-            if (item.id === attribute.attribute_id) {
+            if (item.id === attribute.attribute_id && !attribute.deleted_at) {
               item.options.push(attribute.attribute_option_id);
             }
           });
-        }
-        // if the attribute id is not in the temp array then push the attribute id with the option id as the options
-        else {
-          temp.push({
-            id: attribute.attribute_id,
-            options: [attribute.attribute_option_id],
-          });
+        } else {
+          // if the attribute id is not in the temp array then push the attribute id with the option id as the options
+          if (!attribute.deleted_at) {
+            temp.push({
+              id: attribute.attribute_id,
+              options: [attribute.attribute_option_id],
+            });
+          }
         }
       });
 
       setCheckedAttributes(temp);
     }
   }, [productAttributeLoading]);
+
   return (
     <>
       <Modal show={show} hideModal={hideModal} refetch={refetch} />
@@ -291,32 +320,43 @@ const ManageAttribute = ({
           options={[...checkList]}
           checkedAttributes={checkedAttributes}
           toggleAccordion={toggleAccordion}
+          productAttributeData={productAttributeData}
         />
       </div>
-      <div className="flex items-center justify-end w-full gap-3 mt-10">
-        {productAttributeData?.data?.length > 0 && (
+      <div className="pb-3">
+        <div className="flex items-center justify-end w-full gap-3 mt-10">
+          {productAttributeData?.data?.length > 0 && (
+            <button
+              type="button"
+              className={`ti-btn  ti-btn-loader disabled:opacity-50 ${
+                isNewAttribute ? "ti-btn-danger-full" : "ti-btn-primary-full"
+              }`}
+              disabled={isPending || isConfigured || isDeleted}
+              onClick={handleMutate}
+            >
+              <span class="me-2">Configure Product</span>
+              {combinationLoading ? (
+                <span class="loading">
+                  <i class="ri-loader-2-fill text-[1rem] animate-spin"></i>
+                </span>
+              ) : null}
+            </button>
+          )}
           <button
             type="button"
-            class="ti-btn ti-btn-primary-full ti-btn-loader "
+            className="ti-btn ti-btn-primary-full ti-btn-wave disabled:opacity-50"
             disabled={isPending}
-            onClick={handleMutate}
+            onClick={handleSave}
           >
-            <span class="me-2">Configure Product</span>
-            {combinationLoading ? (
-              <span class="loading">
-                <i class="ri-loader-2-fill text-[1rem] animate-spin"></i>
-              </span>
-            ) : null}
+            {isPending ? "Saving..." : "Save"}
           </button>
-        )}
-        <button
-          type="button"
-          class="ti-btn ti-btn-primary-full ti-btn-wave"
-          disabled={isPending}
-          onClick={handleSave}
-        >
-          {isPending ? "Saving..." : "Save"}
-        </button>
+        </div>
+        <CombinationChangeAlert
+          isNewAttribute={isNewAttribute}
+          isNewAttributeOption={isNewAttributeOption}
+          isConfigured={isConfigured}
+          isDeletedAt={!isDeleted}
+        />
       </div>
     </>
   );

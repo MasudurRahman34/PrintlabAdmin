@@ -29,7 +29,6 @@ const FileCheckOption = ({ file_check_refetch }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(fileCheckOption);
 
     if (!fileCheckOption.title || !fileCheckOption.description) {
       toast.error("Please fill all the fields");

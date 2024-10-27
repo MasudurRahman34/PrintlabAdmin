@@ -68,6 +68,7 @@ const SingleProduct = () => {
             isError={isError}
             refetch={refetch}
             combination_refetch={combination_refetch}
+            combination_data={combination_data}
           />
         </div>
 
@@ -77,8 +78,12 @@ const SingleProduct = () => {
           <div>Error: {combination_error.message}</div>
         ) : (
           combination_data?.data.length > 0 && (
-            <div className="col-span-12 bg-white px-5 rounded-md border border-[#333335]">
-              <ConfigureTable data={combination_data} />
+            <div className="col-span-12 bg-white  rounded-md border border-[#333335]">
+              <ConfigureTable
+                data={combination_data}
+                product_id={data?.data?.id}
+                combination_refetch={combination_refetch}
+              />
             </div>
           )
         )}

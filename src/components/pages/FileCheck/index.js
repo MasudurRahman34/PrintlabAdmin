@@ -1,6 +1,8 @@
 import ConnectedOptionsTable from "./ConnectedOptionsTable";
 import FileCheckOption from "./FileCheckOption";
 import FileConnect from "./FileConnect";
+import Loader from "@/components/ui/Loader";
+import Loading from "@/components/ui/Loading";
 import { useAuth } from "@/hooks/useAuth";
 import {
   getAllAttributeOptionsQuery,
@@ -61,30 +63,29 @@ const FileCheckComponent = () => {
             printer.
           </p>
         </div>
-        {/*  <div>
+        {/* <div>
           <FileCheckOption file_check_refetch={file_check_refetch} />
         </div> */}
-        <div>
-          {file_check_loading || attribute_loading ? (
-            <div>Loading...</div>
-          ) : (
-            <FileConnect
-              file_check_options={file_check_options?.data}
-              attribute_options={attribute_options?.data}
-              connected_check_refetch={connected_check_refetch}
-            />
-          )}
-        </div>
-        <div>
-          {connected_check_loading ? (
-            <div>Loading...</div>
-          ) : (
-            <ConnectedOptionsTable
-              connected_check_options={connected_check_options?.data}
-              connected_check_refetch={connected_check_refetch}
-            />
-          )}
-        </div>
+
+        {file_check_loading || attribute_loading || connected_check_loading ? (
+          <Loading />
+        ) : (
+          <>
+            <div>
+              <FileConnect
+                file_check_options={file_check_options?.data}
+                attribute_options={attribute_options?.data}
+                connected_check_refetch={connected_check_refetch}
+              />
+            </div>
+            <div>
+              <ConnectedOptionsTable
+                connected_check_options={connected_check_options?.data}
+                connected_check_refetch={connected_check_refetch}
+              />
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

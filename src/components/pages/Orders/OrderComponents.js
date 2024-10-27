@@ -11,7 +11,7 @@ const OrderComponents = () => {
             Orders
           </h3>
         </div>
-        <ol className="flex items-center min-w-0 whitespace-nowrap">
+        {/* <ol className="flex items-center min-w-0 whitespace-nowrap">
           <li className="text-[0.813rem] ps-[0.5rem]">
             <a
               className="flex items-center truncate text-primary hover:text-primary dark:text-primary"
@@ -27,7 +27,7 @@ const OrderComponents = () => {
           >
             Orders
           </li>
-        </ol>
+        </ol> */}
       </div>
 
       <div>

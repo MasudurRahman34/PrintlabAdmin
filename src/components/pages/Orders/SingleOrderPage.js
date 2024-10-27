@@ -12,7 +12,7 @@ const OrdersDetails = () => {
   const { order_id } = router.query;
 
   const { data, isError, isLoading, refetch } = useQuery({
-    queryKey: ["get-all-orders", order_id, session?.token],
+    queryKey: ["get-orders_by_id", order_id, session?.token],
     queryFn: () => getOrderById({ id: order_id, token: session?.token }),
     enabled: !!session?.token && !!order_id,
   });

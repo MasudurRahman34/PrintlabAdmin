@@ -1,6 +1,7 @@
 import DeleteBanner from "./DeleteBanner";
 import BannerImg from "@/components/BannerImg";
 import Pagination from "@/components/Pagination";
+import Loading from "@/components/ui/Loading";
 import { useAuth } from "@/hooks/useAuth";
 import useToastMessage from "@/hooks/useToastMessage";
 import { deleteBannerMutation } from "@/resolvers/mutation";
@@ -39,7 +40,7 @@ const BannerPageComponent = () => {
         <div className="col-span-12 xl:col-span-12">
           <div className="box">
             {isLoading ? (
-              <div>Loading</div>
+              <Loading />
             ) : isError ? (
               <div>Error</div>
             ) : data?.data.length > 0 ? (

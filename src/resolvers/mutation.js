@@ -225,3 +225,100 @@ export const deleteBannerMutation = async ({ banner_id, token }) =>
 
 export const loginMutation = async ({ variables }) =>
   axios.post(`${backendUrl}/admin/login`, variables).then((res) => res.data);
+
+export const updateQuantityRuleMutation = async ({
+  variables,
+  quantity_id,
+  token,
+}) =>
+  axios
+    .put(`${backendUrl}/quantity-rule/${quantity_id}`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const createQuantityRuleMutation = async ({ variables, token }) =>
+  axios
+    .post(`${backendUrl}/quantity-rule`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const updateQuantityOptionsMutation = async ({ variables, token }) =>
+  axios
+    .post(`${backendUrl}/quantity-options`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const destroyQuantityOptionsMutation = async ({
+  quantity_option_ids,
+  product_id,
+  token,
+}) =>
+  axios
+    .delete(`${backendUrl}/product/${product_id}/combinations`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      data: quantity_option_ids,
+    })
+    .then((res) => res.data);
+
+export const updateRefundMutation = async ({ variables, refund_id, token }) =>
+  axios
+    .put(`${backendUrl}/refund/${refund_id}`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const ceateTopListingMutation = async ({ variables, token }) =>
+  axios
+    .post(`${backendUrl}/top-listing`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const deleteTopListMutation = async ({ top_list_id, token }) =>
+  axios
+    .delete(`${backendUrl}/top-listing/${top_list_id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const updateTopListMutation = async ({
+  variables,
+  top_list_id,
+  token,
+}) =>
+  axios
+    .put(`${backendUrl}/top-listing/${top_list_id}`, variables, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const connectItemWithTopListMutation = async ({
+  variables,
+  top_list_id,
+  token,
+}) =>
+  axios.post(`${backendUrl}/top-listing/${top_list_id}/items`, variables, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });

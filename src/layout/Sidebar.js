@@ -49,28 +49,33 @@ const links = [
     label: "Banner",
     Icon: () => <LuListOrdered className="w-6 h-6" />,
   },
-  /*  {
-    href: "/productdetails",
-    label: "Products Detail",
+  {
+    href: "/carts",
+    label: "Carts",
+    Icon: () => <LuListOrdered className="w-6 h-6" />,
+  },
+  {
+    href: "/refunds",
+    label: "Refunds",
     Icon: () => <AiFillProduct className="w-6 h-6" />,
-  }, */
+  },
 
-  /* {
-    href: "/addproduct",
-    label: "Add Products",
+  {
+    href: "/top-listing",
+    label: "Top Listing",
     Icon: () => <IoMdAddCircle className="w-6 h-6" />,
-  }, */
+  },
 
   /*  {
     href: "/banner",
     label: "Add Banner",
     Icon: () => <PiFlagBannerFoldFill className="w-6 h-6" />,
   }, */
-  /* {
-    href: "/usermanagements",
-    label: "Users",
+  {
+    href: "/customers",
+    label: "Customers",
     Icon: () => <FaUsersCog className="w-6 h-6" />,
-  }, */
+  },
   {
     href: "/file-check",
     label: "File Check",

@@ -2,14 +2,19 @@ import ManageAttribute from "./ManageAttribute";
 import Switcher from "@/components/ui/Switcher";
 import React, { useState } from "react";
 
-const Attribute = ({ product_data, product_refetch, combination_refetch }) => {
+const Attribute = ({
+  product_data,
+  product_refetch,
+  combination_refetch,
+  combination_data,
+}) => {
   const [state, setState] = useState({
     is_attribute: true,
   });
 
   return (
     <div className="grid grid-cols-12">
-      <div className="col-span-12 mt-3 ">
+      {/* <div className="col-span-12 mt-3 ">
         <Switcher
           isChecked={state.is_attribute}
           setIsChecked={() => {
@@ -32,13 +37,14 @@ const Attribute = ({ product_data, product_refetch, combination_refetch }) => {
           }}
           lable="Is Attribute"
         />
-      </div>
+      </div> */}
       <div className="col-span-12 ">
         {state.is_attribute && (
           <ManageAttribute
             setState={setState}
             product_data={product_data}
             product_refetch={product_refetch}
+            combination_data={combination_data}
             combination_refetch={combination_refetch}
           />
         )}
