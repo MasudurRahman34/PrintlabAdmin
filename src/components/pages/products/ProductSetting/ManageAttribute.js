@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState, useMemo } from "react";
 import toast from "react-hot-toast";
 import CombinationChangeAlert from "./CombinationChangeAlert";
+import { FaBedPulse } from "react-icons/fa6";
 
 const ManageAttribute = ({
   product_data,
@@ -195,15 +196,24 @@ const ManageAttribute = ({
       );
 
       const isDeleted = !!productAttributeData?.data?.find(
-        (option) => option.deleted_at !== null
+        (option) => option.deleted_at
       );
+
       return {
         isNewAttributeOption,
         isNewAttribute,
         isConfigured,
-        isDeleted: !isDeleted,
+        isDeleted,
       };
     }, [productAttributeData?.data]);
+
+  const isDisabled = isNewAttribute
+    ? false
+    : isConfigured
+    ? isNewAttribute
+    : isDeleted
+    ? false
+    : true;
 
   // useEffect for setting the data to the checkList
   useEffect(() => {
@@ -331,7 +341,7 @@ const ManageAttribute = ({
               className={`ti-btn  ti-btn-loader disabled:opacity-50 ${
                 isNewAttribute ? "ti-btn-danger-full" : "ti-btn-primary-full"
               }`}
-              disabled={isPending || isConfigured || isDeleted}
+              disabled={isPending || isDisabled}
               onClick={handleMutate}
             >
               <span class="me-2">Configure Product</span>
@@ -355,7 +365,7 @@ const ManageAttribute = ({
           isNewAttribute={isNewAttribute}
           isNewAttributeOption={isNewAttributeOption}
           isConfigured={isConfigured}
-          isDeletedAt={!isDeleted}
+          isDeletedAt={isDeleted}
         />
       </div>
     </>

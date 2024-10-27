@@ -1,4 +1,5 @@
 import Pagination from "@/components/Pagination";
+import DateFormatter from "@/components/ui/DateFormatter";
 import Loading from "@/components/ui/Loading";
 import { useAuth } from "@/hooks/useAuth";
 import { getAllOrderItems } from "@/resolvers/query";
@@ -109,7 +110,9 @@ const OrderItemsTableData = ({}) => {
                     >
                       <td>{item.order_item_number}</td>
 
-                      <td>{formateDate(item.created_at)}</td>
+                      <td>
+                        <DateFormatter dateInput={item.created_at} />{" "}
+                      </td>
 
                       <td>
                         <span
