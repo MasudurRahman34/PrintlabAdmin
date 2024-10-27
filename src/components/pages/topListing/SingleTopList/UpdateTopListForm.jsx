@@ -7,7 +7,10 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import Select2 from "react-select2-wrapper";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
+
+const animatedComponents = makeAnimated();
 
 const UpdateTopListForm = ({
   topList,
@@ -26,8 +29,6 @@ const UpdateTopListForm = ({
     type: "",
   });
 
-  console.log(topList, "categories");
-
   const { mutate, isPending } = useMutation({
     mutationKey: "update_top_list",
     mutationFn: updateTopListMutation,
@@ -42,14 +43,14 @@ const UpdateTopListForm = ({
     topList?.type === "product"
       ? products?.map((product) => {
           return {
-            id: product.id,
-            text: product.title,
+            value: product.id,
+            label: product.title,
           };
         })
       : categories?.map((category) => {
           return {
-            id: category.id,
-            text: category.title,
+            value: category.id,
+            label: category.title,
           };
         });
 
@@ -62,12 +63,15 @@ const UpdateTopListForm = ({
 
   const handleSelectChange = (e) => {
     // Extract selected values as an array
-    const values = Array.from(
+    /* const values = Array.from(
       e.target.selectedOptions,
       (option) => option.value
     );
-    setSelectedValues(values);
+    setSelectedValues(values); */
+    console.log(e);
   };
+
+  console.log(selectedValues);
 
   const handleUpdateTopList = () => {
     const variables = {};
@@ -103,7 +107,7 @@ const UpdateTopListForm = ({
     connectMutate(
       {
         variables: {
-          items: selectedValues,
+          items: selectedValues.map((item) => item.value),
           type: topList.type,
         },
         top_list_id: topList.id,
@@ -126,13 +130,19 @@ const UpdateTopListForm = ({
     if (topList?.type === "product") {
       // console.log(topList?.products.map((product) => product.id));
       setSelectedValues(
-        topList?.top_listing_items.map((product) => `${product.itemable_id}`)
+        topList?.top_listing_items.map((product) => ({
+          value: product.itemable_id,
+          label: product.itemable.title,
+        }))
       );
     }
 
     if (topList?.type === "category") {
       setSelectedValues(
-        topList?.top_listing_items.map((category) => `${category.itemable_id}`)
+        topList?.top_listing_items.map((category) => ({
+          value: category.itemable_id,
+          label: category.itemable.title,
+        }))
       );
     }
 
@@ -218,7 +228,15 @@ const UpdateTopListForm = ({
           <label className="mb-2 text-sm font-semibold text-black lg:text-base">
             Connect {topList?.type} to top list
           </label>
-          <Select2
+          <Select
+            options={options}
+            closeMenuOnSelect={false}
+            components={animatedComponents}
+            value={selectedValues}
+            onChange={setSelectedValues}
+            isMulti
+          />
+          {/* <Select2
             multiple
             data={options}
             value={selectedValues}
@@ -227,7 +245,7 @@ const UpdateTopListForm = ({
               placeholder: "Search by title",
               allowClear: true,
             }}
-          />
+          /> */}
         </div>
 
         <div className="flex items-center justify-end w-full mt-10">
