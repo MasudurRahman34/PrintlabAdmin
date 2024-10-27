@@ -197,6 +197,7 @@ const UpdateTopListForm = ({
             name="description"
             className="block w-full text-sm rounded-md lg:text-base"
             placeholder="Description"
+            rows={5}
             value={formState.description}
             onChange={handleChange}
           />

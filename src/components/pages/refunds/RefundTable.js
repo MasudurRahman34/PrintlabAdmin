@@ -9,6 +9,7 @@ import React, { useState } from "react";
 
 import UpdateRefund from "./UpdateRefund";
 import { formateDate } from "@/utils/common";
+import Link from "next/link";
 
 const RefundTable = () => {
   const { session } = useAuth();
@@ -24,6 +25,8 @@ const RefundTable = () => {
     setPage(page);
     refetch();
   };
+
+  console.log(data, "refund");
 
   return (
     <div class="box-body">
@@ -63,7 +66,14 @@ const RefundTable = () => {
                       className="border border-solid product-list border-inherit hover:bg-gray-100 dark:border-defaultborder/10 dark:hover:bg-light"
                       key={item.id}
                     >
-                      <td>{item.order_item_id}</td>
+                      <td>
+                        <Link
+                          href={`/order-items/${item?.order_item?.id}`}
+                          className="hover:underline"
+                        >
+                          {item?.order_item?.order_item_number}
+                        </Link>
+                      </td>
                       <td>
                         <p>{formateDate(item.created_at)}</p>
                       </td>
