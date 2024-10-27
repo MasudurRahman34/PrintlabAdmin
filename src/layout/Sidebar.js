@@ -9,8 +9,14 @@ import { FaFileCircleCheck } from "react-icons/fa6";
 import { IoMdAddCircle } from "react-icons/io";
 import { LuListOrdered } from "react-icons/lu";
 import { MdPermMedia } from "react-icons/md";
-import { PiFlagBannerFoldFill } from "react-icons/pi";
+import { FaCartArrowDown } from "react-icons/fa";
+
 import { TbListDetails } from "react-icons/tb";
+import { PiFlagBannerFoldFill } from "react-icons/pi";
+
+import { IoIosArrowDown } from "react-icons/io";
+import { IoSettings } from "react-icons/io5";
+import { RiRefundFill } from "react-icons/ri";
 
 const links = [
   {
@@ -44,26 +50,11 @@ const links = [
     label: "Order Items",
     Icon: () => <LuListOrdered className="w-6 h-6" />,
   },
-  {
-    href: "/banner",
-    label: "Banner",
-    Icon: () => <LuListOrdered className="w-6 h-6" />,
-  },
+
   {
     href: "/carts",
     label: "Carts",
-    Icon: () => <LuListOrdered className="w-6 h-6" />,
-  },
-  {
-    href: "/refunds",
-    label: "Refunds",
-    Icon: () => <AiFillProduct className="w-6 h-6" />,
-  },
-
-  {
-    href: "/top-listing",
-    label: "Top Listing",
-    Icon: () => <IoMdAddCircle className="w-6 h-6" />,
+    Icon: () => <FaCartArrowDown className="w-6 h-6" />,
   },
 
   /*  {
@@ -76,12 +67,88 @@ const links = [
     label: "Customers",
     Icon: () => <FaUsersCog className="w-6 h-6" />,
   },
+
   {
-    href: "/file-check",
-    label: "File Check",
-    Icon: () => <FaFileCircleCheck className="w-6 h-6" />,
+    href: "/refunds",
+    label: "Refunds",
+    Icon: () => <RiRefundFill className="w-6 h-6" />,
+  },
+  {
+    label: "Settings",
+    Icon: () => <IoSettings className="w-6 h-6" />,
+    children: [
+      {
+        href: "/banner",
+        label: "Banner",
+        Icon: () => <PiFlagBannerFoldFill className="w-6 h-6" />,
+      },
+
+      {
+        href: "/top-listing",
+        label: "Top Listing",
+        Icon: () => <IoMdAddCircle className="w-6 h-6" />,
+      },
+      {
+        href: "/file-check",
+        label: "File Check",
+        Icon: () => <FaFileCircleCheck className="w-6 h-6" />,
+      },
+    ],
   },
 ];
+
+const ChildrenLink = ({ link, hideSidebar }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <li className="slide has-sub">
+      <div
+        className="flex items-center gap-2 cursor-pointer side-menu__item"
+        onClick={() => {
+          setIsOpen(!isOpen);
+        }}
+      >
+        <span>
+          <link.Icon />
+        </span>
+        <span
+          className={`${
+            hideSidebar ? " opacity-0 invisible" : " opacity-100 visible"
+          }`}
+        >
+          <span className="side-menu__label">{link.label}</span>
+        </span>
+        <span>
+          <IoIosArrowDown
+            className={`w-7 h-5 ${
+              isOpen ? "transform rotate-180" : "transform rotate-0"
+            }`}
+          />
+        </span>
+      </div>
+      <ul className={`sub-menu ${isOpen ? "" : "hidden"} ml-4`}>
+        {link.children.map((child, idx) => (
+          <li key={idx}>
+            <Link
+              href={child.href}
+              className="flex items-center gap-2 side-menu__item"
+            >
+              <span>
+                <child.Icon />
+              </span>
+              <span
+                className={`${
+                  hideSidebar ? " opacity-0 invisible" : " opacity-100 visible"
+                }`}
+              >
+                <span className="side-menu__label">{child.label}</span>
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </li>
+  );
+};
 
 const Sidebar = ({ hideSidebar, toggleSidebar, isOpen, setIsOpen }) => {
   const [screen_size, setScreenSize] = useState(0);
@@ -152,6 +219,16 @@ const Sidebar = ({ hideSidebar, toggleSidebar, isOpen, setIsOpen }) => {
             </div>
             <ul className="main-menu">
               {links.map((link, idx) => {
+                if (link.children) {
+                  return (
+                    <ChildrenLink
+                      link={link}
+                      key={idx}
+                      hideSidebar={hideSidebar}
+                    />
+                  );
+                }
+
                 return (
                   <li className="slide has-sub" key={idx}>
                     <Link

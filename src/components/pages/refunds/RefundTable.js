@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import UpdateRefund from "./UpdateRefund";
 import { formateDate } from "@/utils/common";
 import Link from "next/link";
+import DateFormatter from "@/components/ui/DateFormatter";
 
 const RefundTable = () => {
   const { session } = useAuth();
@@ -75,7 +76,7 @@ const RefundTable = () => {
                         </Link>
                       </td>
                       <td>
-                        <p>{formateDate(item.created_at)}</p>
+                        <DateFormatter dateInput={item.createdAt} />{" "}
                       </td>
 
                       <td>

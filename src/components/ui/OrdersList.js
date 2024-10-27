@@ -2,6 +2,7 @@ import OrderItemFile from "../pages/Orders/OrderItemFile";
 import OrderStatusUpdate from "../pages/Orders/OrderStatusUpdate";
 import { formateDate, formatPrice } from "@/utils/common";
 import React, { useState } from "react";
+import DateFormatter from "./DateFormatter";
 
 export const OrderItemCard = ({ item, refetch }) => {
   return (
@@ -12,9 +13,10 @@ export const OrderItemCard = ({ item, refetch }) => {
         <div className="flex flex-col justify-between w-full gap-2 md:items-center md:flex-row">
           <p className="text-sm">
             Order placed{" "}
-            <span className="font-semibold">
-              {formateDate(item.created_at)}
-            </span>
+            <DateFormatter
+              dateInput={item.created_at}
+              className="inline font-semibold"
+            />
           </p>
           <p className="text-sm">
             Item <span className="font-semibold">{item.id}</span>
@@ -86,7 +88,7 @@ export const OrderItemCard = ({ item, refetch }) => {
               </div>
               <div className="">
                 <h1 className="text-lg font-semibold">Delivery By</h1>
-                <p className="text-sm">{formateDate(item.delivery_date)}</p>
+                <DateFormatter dateInput={item.delivery_date} />
               </div>
               {item.tracking_number && (
                 <div className="">
