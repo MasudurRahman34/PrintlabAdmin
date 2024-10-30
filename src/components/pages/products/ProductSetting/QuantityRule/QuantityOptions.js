@@ -32,6 +32,8 @@ const QuantityOptions = ({ product_data, refetch }) => {
     enabled: !!product_data?.id,
   });
 
+  
+
   const { mutate, isPending } = useMutation({
     mutationKey: "update_quantity_options",
     mutationFn: updateQuantityOptionsMutation,

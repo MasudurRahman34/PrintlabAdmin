@@ -228,11 +228,11 @@ export const loginMutation = async ({ variables }) =>
 
 export const updateQuantityRuleMutation = async ({
   variables,
-  quantity_id,
+  product_id,
   token,
 }) =>
   axios
-    .put(`${backendUrl}/quantity-rule/${quantity_id}`, variables, {
+    .put(`${backendUrl}/products/${product_id}`, variables, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

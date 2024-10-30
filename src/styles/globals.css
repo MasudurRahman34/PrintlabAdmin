@@ -10,6 +10,10 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+html {
+  zoom: 90%;
+}
+
 body {
   font-family: "Montserrat", sans-serif;
 }

@@ -79,17 +79,6 @@ const QuantityTableRow = ({
             type="radio"
             className="w-28"
             name={`${idx}_calculation_type`}
-            value="multiply"
-            checked={state[`${idx}_calculation_type`] === "multiply"}
-            onClick={handleChange}
-          />
-          Multiply
-        </label>
-        <label className="flex items-center gap-3">
-          <input
-            type="radio"
-            className="w-28"
-            name={`${idx}_calculation_type`}
             value="add"
             checked={state[`${idx}_calculation_type`] === "add"}
             onClick={handleChange}

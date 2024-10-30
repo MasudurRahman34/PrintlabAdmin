@@ -10,8 +10,14 @@ import { useAuth } from "@/hooks/useAuth";
 const BaseQuatityRule = ({ product_data, refetch }) => {
   const { session } = useAuth();
   const showToastMessage = useToastMessage();
-  const [status, setStatus] = React.useState(false);
+
   const [quantityOptionStatus, setQuantityOptionStatus] = React.useState(false);
+
+  console.log("productData", product_data);
+  
+
+
+  
 
   const { mutate, isPending } = useMutation({
     mutationKey: "update_quantity",
@@ -26,7 +32,7 @@ const BaseQuatityRule = ({ product_data, refetch }) => {
       {
         variables,
         token: session?.token,
-        quantity_id: product_data?.productQuantityRule?.id,
+        product_id: product_data?.id,
       },
       {
         onSuccess: (data) => {
@@ -40,13 +46,13 @@ const BaseQuatityRule = ({ product_data, refetch }) => {
   };
 
   React.useEffect(() => {
-    if (product_data?.productQuantityRule) {
-      setStatus(product_data.productQuantityRule.status);
+    if (product_data) {
+     
       setQuantityOptionStatus(
-        product_data.productQuantityRule.quantity_option_status
+        !!product_data.quantity_option_status 
       );
     } else {
-      setStatus(false);
+  
       setQuantityOptionStatus(false);
     }
   }, [product_data]);
