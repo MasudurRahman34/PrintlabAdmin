@@ -17,7 +17,7 @@ const SingleProduct = () => {
   const router = useRouter();
   const { slug } = router.query;
 
-  const { data, isLoading, isError, error, refetch } = useQuery({
+  const { data, isLoading, isError, error, refetch, isFetched } = useQuery({
     queryKey: ["getSingleProductQuery", slug],
     queryFn: () => getSingleProductQuery(slug),
     enabled: !!slug,

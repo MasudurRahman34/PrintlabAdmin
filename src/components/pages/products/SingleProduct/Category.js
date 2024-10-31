@@ -66,6 +66,7 @@ const CategoryComponent = ({
         onSuccess: () => {
           toast.success("Category saved successfully");
           product_refetch();
+          window.location.reload();
         },
         onError: (error) => {
           showToastMessage(error?.response?.data?.message);

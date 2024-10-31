@@ -27,8 +27,6 @@ const RefundTable = () => {
     refetch();
   };
 
-  console.log(data, "refund");
-
   return (
     <div class="box-body">
       {isLoading ? (
@@ -105,7 +103,7 @@ const RefundTable = () => {
             </div>
           ) : (
             <div className="flex items-center justify-center min-h-32 ">
-              <p className="text-base">No Product Available</p>
+              <p className="text-base">No Refund Available</p>
             </div>
           )}
         </div>
