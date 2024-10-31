@@ -13,12 +13,6 @@ const BaseQuatityRule = ({ product_data, refetch }) => {
 
   const [quantityOptionStatus, setQuantityOptionStatus] = React.useState(false);
 
-  console.log("productData", product_data);
-  
-
-
-  
-
   const { mutate, isPending } = useMutation({
     mutationKey: "update_quantity",
     mutationFn: updateQuantityRuleMutation,
@@ -47,12 +41,8 @@ const BaseQuatityRule = ({ product_data, refetch }) => {
 
   React.useEffect(() => {
     if (product_data) {
-     
-      setQuantityOptionStatus(
-        !!product_data.quantity_option_status 
-      );
+      setQuantityOptionStatus(!!product_data.quantity_option_status);
     } else {
-  
       setQuantityOptionStatus(false);
     }
   }, [product_data]);

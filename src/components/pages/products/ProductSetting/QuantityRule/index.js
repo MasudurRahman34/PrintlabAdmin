@@ -17,13 +17,12 @@ const QuantityRule = ({ product_data, isLoading, product_refetch }) => {
               isLoading={isLoading}
               refetch={product_refetch}
             />
-            {product_data?.productQuantityRule &&
-            product_data.productQuantityRule.quantity_option_status ? (
+            {product_data?.quantity_option_status && (
               <QuantityOptions
                 product_data={product_data}
                 refetch={product_refetch}
               />
-            ) : null}
+            )}
           </div>
         )}
       </div>
