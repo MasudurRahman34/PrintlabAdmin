@@ -42,7 +42,9 @@ const CombinationRow = ({ row, idx, combinationIds, handleAddCombination }) => {
     // check reduction percentage should be greater than 0
 
     if (state.quantity_rule) {
-      if (state.min_quantity >= state.max_quantity) {
+      console.log(state.min_quantity, state.max_quantity);
+
+      if (Number(state.min_quantity) >= state.max_quantity) {
         return toast.error("Max Quantity should be greater than Min Quantity");
       }
       if (state.increment <= 0) {
@@ -51,8 +53,8 @@ const CombinationRow = ({ row, idx, combinationIds, handleAddCombination }) => {
       if (state.per_increment_price <= 0) {
         return toast.error("Per Increment Price should be greater than 0");
       }
-      if (state.reduction_percentage <= 0) {
-        return toast.error("Reduction Percentage should be greater than 0");
+      if (state.reduction_percentage < 0) {
+        return toast.error("Reduction Percentage can not be negative");
       }
     }
 

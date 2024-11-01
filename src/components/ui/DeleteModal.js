@@ -3,7 +3,7 @@ import React from "react";
 const DeleteModal = ({ show, hideModal, title, handleDelete, isPending }) => {
   return (
     <div
-      id="hs-vertically-centered-modal"
+      id="hs-vertically-centered-modal "
       className={` hs-overlay ti-modal ${show ? "open" : "hidden"}`}
     >
       <div

@@ -57,6 +57,7 @@ const AttributeOptionManage = ({
           product_refetch();
           attribute_refetch();
           toast.success("Attribute option deleted successfully");
+          setShow(false);
         },
         onError: (error) => {
           toast.error("Failed to delete attribute option");
