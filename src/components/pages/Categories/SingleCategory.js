@@ -53,8 +53,6 @@ const SingleCategory = () => {
     if (formState.parent_category)
       variables.category_id = formState.parent_category;
 
-    console.log("variables", variables);
-
     mutate(
       {
         variables,
